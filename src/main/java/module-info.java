@@ -9,6 +9,7 @@ module at.technikum.tourplanner {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens at.technikum.tourplanner to javafx.fxml;
     exports at.technikum.tourplanner;
