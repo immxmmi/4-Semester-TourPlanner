@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Time;
+
 @Builder(toBuilder = true)
 public class Tour {
 
@@ -36,6 +38,14 @@ public class Tour {
     @Setter
     @Getter
     public int distance;
+
+    @Getter
+    @Setter
+    public Time time;
+
+    @Getter
+    @Setter
+    public Image routeImage;
 
 
     @Override

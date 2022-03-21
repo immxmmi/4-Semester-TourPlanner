@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +25,22 @@ public class TourLog {
     @Getter
     public String report;
 
+    @Getter
+    @Setter
+    public String comment;
+
+    @Getter
+    @Setter
+    @Builder.Default
+    public Difficulty difficulty = Difficulty.Normal;
+
+    @Getter
+    @Setter
+    public int totalTime;
+
+    @Getter
+    @Setter
+    @Builder.Default
+    public Rating rating = Rating.pointDefault;
 
 }
