@@ -1,10 +1,9 @@
 package at.technikum.tourplanner.views;
 
+import at.technikum.tourplanner.dao.CityDao;
+import at.technikum.tourplanner.dao.ImageDao;
 import at.technikum.tourplanner.dao.TourDao;
-import at.technikum.tourplanner.model.City;
-import at.technikum.tourplanner.model.Image;
-import at.technikum.tourplanner.model.Tour;
-import at.technikum.tourplanner.model.Transporter;
+import at.technikum.tourplanner.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -17,17 +16,27 @@ public class MainController {
     @FXML
     protected void onHelloButtonClick() {
 
+        TourLog tourLog = TourLog.builder()
+                .tourLogId("Test")
+                .build();
 
         Image image = Image.builder()
                 .imageId("IMAGE-TEST")
                 .build();
 
+        ImageDao imageDao = new ImageDao();
+
+        imageDao.insert(image);
+
         City city = City.builder()
                 .cityId("City-TEST")
                 .build();
 
-        Time time = new Time(2,2,2);
+        CityDao cityDao = new CityDao();
 
+        cityDao.insert(city);
+
+        Time time = new Time(2,2,2);
 
 
         Tour tour = Tour.builder()
