@@ -9,5 +9,8 @@ public class City {
 
     @Getter
     @Setter
+    public String cityId;
+    @Getter
+    @Setter
     public String name;
 }
