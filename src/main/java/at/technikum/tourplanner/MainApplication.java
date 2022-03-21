@@ -1,20 +1,34 @@
 package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.database.DBConnectImpl;
-import at.technikum.tourplanner.model.Tour;
-import at.technikum.tourplanner.model.Transporter;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class MainApplication {
-    public static void main(String args[]){
-      //  Connection connection = DBConnectImpl.getInstance().getConnection();
+public class MainApplication extends Application {
 
-        Tour tour1 = Tour.builder()
-                .name("Touraaaa")
-                .transporter(Transporter.Bike)
-                .build();
-        System.out.println(tour1.transporter);
-        System.out.println(tour1.name);
+    //static Logger logger = LogManager.getRootLogger();
+
+    @Override
+    public void start(Stage stage) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
+        stage.setTitle("Tour Planner Pro (30 Days free Trial)");
+        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        stage.setMinWidth(500);
+        stage.setMinHeight(500);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        DBConnectImpl.getInstance();
+        launch();
     }
 }

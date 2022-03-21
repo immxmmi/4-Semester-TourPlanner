@@ -83,9 +83,6 @@ public class DBConnectImpl implements Cloneable, DBConnect {
      * Get CONNECTION
      **/
     public Connection getConnection() {
-        if (connection == null) {
-            this.startConnect();
-        }
         return this.connection;
     }
 
