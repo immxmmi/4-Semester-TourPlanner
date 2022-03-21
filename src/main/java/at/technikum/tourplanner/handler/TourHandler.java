@@ -31,7 +31,7 @@ public class TourHandler extends AbstractDBTable implements Repository<Tour>{
         try {
             if (result.next()) {
                 Tour tour = Tour.builder()
-                        .tourId(result.getString("user_id"))
+                        .tourId(result.getString("tourid"))
                         .name(result.getString("name"))
                         .transporter(Transporter.valueOf(result.getString("transporter")))
                         .form(cityHandler.getItemById(result.getString("from")))
@@ -62,7 +62,7 @@ public class TourHandler extends AbstractDBTable implements Repository<Tour>{
     public Tour getItemById(String itemID) {
         this.parameter = new String[]{itemID};
         this.setStatement(
-                "SELECT * FROM " + this.tableName + " WHERE tourId = ? " + ";",
+                "SELECT * FROM " + this.tableName + " WHERE \"tourId\" = ? " + ";",
                 this.parameter
         );
         return buildClass(this.result);
@@ -85,7 +85,8 @@ public class TourHandler extends AbstractDBTable implements Repository<Tour>{
                 "" + item.getDescription()
         };
 
-        this.setStatement("INSERT INTO " + this.tableName + " (tourId,name,from,to,distance,time,transporter,routImage,description)VALUES(?,?,?,?,?,?;?;?;?);", this.parameter);
+
+        this.setStatement("INSERT INTO " + this.tableName + " (\"tourId\",name,\"from\",\"to\",\"distance\",\"time\",\"transporter\",\"routeImage\",\"description\")VALUES(?,?,?,?,?,?,?,?,?);", this.parameter);
 
         return getItemById(item.getTourId());
     }

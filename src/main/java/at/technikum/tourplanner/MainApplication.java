@@ -8,8 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 public class MainApplication extends Application {
 

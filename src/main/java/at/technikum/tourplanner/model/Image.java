@@ -9,15 +9,15 @@ public class Image {
 
     @Getter
     @Setter
-    private int imageId;
+    public String imageId;
 
     @Getter
     @Setter
-    private String filePath;
+    public String filePath;
 
     @Getter
     @Setter
-    private String name;
+    public String name;
 
     @Getter
     @Setter
