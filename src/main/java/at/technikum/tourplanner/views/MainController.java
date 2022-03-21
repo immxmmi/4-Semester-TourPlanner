@@ -46,6 +46,7 @@ public class MainController {
         TourDao tourHandler = new TourDao();
         tourHandler.insert(tour);
 
+
         welcomeText.setText(tour.description);
     }
 }
