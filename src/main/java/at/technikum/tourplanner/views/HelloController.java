@@ -1,4 +1,4 @@
-package at.technikum.tourplanner;
+package at.technikum.tourplanner.views;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

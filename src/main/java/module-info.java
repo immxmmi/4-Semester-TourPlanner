@@ -10,7 +10,10 @@ module at.technikum.tourplanner {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires lombok;
 
     opens at.technikum.tourplanner to javafx.fxml;
     exports at.technikum.tourplanner;
+    exports at.technikum.tourplanner.views;
+    opens at.technikum.tourplanner.views to javafx.fxml;
 }
