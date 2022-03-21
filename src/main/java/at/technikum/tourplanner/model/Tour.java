@@ -22,6 +22,11 @@ public class Tour {
 
     @Setter
     @Getter
+    @Builder.Default
+    public Transporter transporter = Transporter.Walk;
+
+    @Setter
+    @Getter
     public City form;
 
     @Setter
