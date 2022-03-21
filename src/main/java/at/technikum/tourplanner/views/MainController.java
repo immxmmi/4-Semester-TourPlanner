@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.views;
 
-import at.technikum.tourplanner.handler.TourHandler;
+import at.technikum.tourplanner.dao.TourDao;
 import at.technikum.tourplanner.model.City;
 import at.technikum.tourplanner.model.Image;
 import at.technikum.tourplanner.model.Tour;
@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.sql.Time;
-import java.sql.Timestamp;
 
 public class MainController {
     @FXML
@@ -44,7 +43,7 @@ public class MainController {
                 .build();
 
 
-        TourHandler tourHandler = new TourHandler();
+        TourDao tourHandler = new TourDao();
         tourHandler.insert(tour);
 
         welcomeText.setText(tour.description);

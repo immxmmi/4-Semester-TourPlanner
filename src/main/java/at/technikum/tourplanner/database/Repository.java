@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.handler;
+package at.technikum.tourplanner.database;
 
 import java.sql.ResultSet;
 

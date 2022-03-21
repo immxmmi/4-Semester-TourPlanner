@@ -1,13 +1,14 @@
-package at.technikum.tourplanner.handler;
+package at.technikum.tourplanner.dao;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
+import at.technikum.tourplanner.database.Repository;
 import at.technikum.tourplanner.model.City;
 
 import java.sql.ResultSet;
 
-public class CityHandler extends AbstractDBTable implements Repository<City>{
+public class CityDao extends AbstractDBTable implements Repository<City> {
 
-    public CityHandler() {
+    public CityDao() {
         this.tableName = "city";
     }
 
@@ -38,6 +39,9 @@ public class CityHandler extends AbstractDBTable implements Repository<City>{
 
     @Override
     public boolean delete(City item) {
-        return false;
+        this.parameter = new String[]{item.getCityId()};
+        this.setStatement("DELETE FROM "+this.tableName+" WHERE cityId = ? ;", this.parameter);
+        this.closeStatement();
+        return true;
     }
 }

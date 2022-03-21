@@ -8,7 +8,9 @@ create table tour
     "from"       text not null,
     "to"         text not null,
     description  text not null,
-    "routeImage" text not null
+    "routeImage" text not null,
+    "distance"     text not null,
+    "time" text not null
 );
 
 alter table tour

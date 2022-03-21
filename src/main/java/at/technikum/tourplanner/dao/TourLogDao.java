@@ -1,11 +1,17 @@
-package at.technikum.tourplanner.handler;
+package at.technikum.tourplanner.dao;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
+import at.technikum.tourplanner.database.Repository;
 import at.technikum.tourplanner.model.TourLog;
 
 import java.sql.ResultSet;
 
-public class TourLogHandler extends AbstractDBTable implements Repository<TourLog>{
+public class TourLogDao extends AbstractDBTable implements Repository<TourLog> {
+
+    public TourLogDao() {
+        this.tableName = "tourLog";
+    }
+
     @Override
     public TourLog buildClass(ResultSet result) {
         return null;
@@ -33,6 +39,9 @@ public class TourLogHandler extends AbstractDBTable implements Repository<TourLo
 
     @Override
     public boolean delete(TourLog item) {
-        return false;
+        this.parameter = new String[]{item.getTourLogId()};
+        this.setStatement("DELETE FROM "+this.tableName+" WHERE tourLogId = ? ;", this.parameter);
+        this.closeStatement();
+        return true;
     }
 }

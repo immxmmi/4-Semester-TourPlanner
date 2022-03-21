@@ -1,11 +1,16 @@
-package at.technikum.tourplanner.handler;
+package at.technikum.tourplanner.dao;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
+import at.technikum.tourplanner.database.Repository;
 import at.technikum.tourplanner.model.Image;
 
 import java.sql.ResultSet;
 
-public class ImageHandler extends AbstractDBTable implements Repository<Image>{
+public class ImageDao extends AbstractDBTable implements Repository<Image> {
+    public ImageDao() {
+        this.tableName = "image";
+    }
+
     @Override
     public Image buildClass(ResultSet result) {
         return null;
@@ -33,6 +38,10 @@ public class ImageHandler extends AbstractDBTable implements Repository<Image>{
 
     @Override
     public boolean delete(Image item) {
-        return false;
+
+        this.parameter = new String[]{item.getImageId()};
+        this.setStatement("DELETE FROM "+this.tableName+" WHERE imageId = ? ;", this.parameter);
+        this.closeStatement();
+        return true;
     }
 }
