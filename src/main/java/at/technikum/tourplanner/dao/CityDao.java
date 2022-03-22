@@ -27,6 +27,7 @@ public class CityDao extends AbstractDBTable implements Repository<City> {
             if (result.next()) {
                 City city = City.builder()
                         .cityId(result.getString("cityId"))
+                        .name(result.getString("name"))
                         .build();
 
                 this.closeStatement();
@@ -63,9 +64,10 @@ public class CityDao extends AbstractDBTable implements Repository<City> {
         if(getItemById(item.getCityId()) == null){
             this.parameter = new String[]{
                     "" + item.getCityId(),
+                    "" + item.getName()
             };
 
-            this.setStatement("INSERT INTO " + this.tableName + " (\"cityId\")VALUES(?);", this.parameter);
+            this.setStatement("INSERT INTO " + this.tableName + " (\"cityId\",\"name\")VALUES(?,?);", this.parameter);
 
         }
         return getItemById(item.getCityId());

@@ -7,18 +7,22 @@ import at.technikum.tourplanner.model.City;
 import at.technikum.tourplanner.model.Image;
 import at.technikum.tourplanner.model.Tour;
 import at.technikum.tourplanner.model.Transporter;
+import eu.hansolo.tilesfx.Test;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
 
 import java.sql.Time;
 
 public class MainControl {
 
     TourDao tourDao = new TourDao();
-    static Tour createTestClass(){
+
+
+    static void createTestClass() {
         CityDao cityDao = new CityDao();
 
         // Form
@@ -47,43 +51,18 @@ public class MainControl {
                 .build();
 
         ImageDao imageDao = new ImageDao();
-
         imageDao.insert(image);
-
-        Time time = new Time(11,22,3);
-
-        return Tour.builder()
-                .tourId("T-1")
-                .name("Erste Tour")
-                .distance(1000)
-                .form(cityA)
-                .to(cityB)
-                .description("Der erste Ausflug")
-                .transporter(Transporter.Bike)
-                .routeImage(image)
-                .time(time)
-                .build();
     }
-    static protected Tour testTour = createTestClass();
 
 
-
+    protected CityDao cityDao = new CityDao();
+    protected ImageDao imageDao = new ImageDao();
 
 
 
 
     @FXML
-    private Label insertT;
-
-    @FXML
-    private Label deleteT;
-
-    @FXML
-    public Label getT;
-
-    @FXML
-    private Label updateT;
-
+    private Label tourStatus;
     @FXML
     private TextField inputTourID;
     @FXML
@@ -106,20 +85,44 @@ public class MainControl {
 
     @FXML
     private void insertTour(){
-        if(tourDao.insert(this.testTour) == null){
-            insertT.setText("ERROR");
+
+        Tour newTour = Tour.builder()
+                .tourId(inputTourID.getText())
+                .name(inputName.getText())
+                .form(cityDao.getItemById(inputFrom.getText()))
+                .to(cityDao.getItemById(inputTo.getText()))
+                .routeImage(imageDao.getItemById(inputImage.getText()))
+                .transporter(Transporter.valueOf(inputTransporter.getText()))
+                .description(inputDescription.getText())
+                .distance(10)
+                .time(new Time(2,3,4))
+                .build();
+
+        if(newTour == null){
+            tourStatus.setText("ERROR");
+            tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            insertT.setText("OK!");
+            if(tourDao.insert(newTour)!=null){
+                tourStatus.setText("OK!");
+                tourStatus.setTextFill(Paint.valueOf("#13e452"));
+            }else{
+                tourStatus.setText("ERROR");
+                tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
+            }
         }
     }
 
     @FXML
     private void deleteTour(){
 
-        if(tourDao.delete(this.testTour) == false){
-            deleteT.setText("ERROR");
+        Tour currentTour = tourDao.getItemById(inputTourID.getText());
+
+        if(tourDao.delete(currentTour) == false){
+            tourStatus.setText("ERROR");
+            tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            deleteT.setText("OK!");
+            tourStatus.setText("OK!");
+            tourStatus.setTextFill(Paint.valueOf("#13e452"));
         }
 
     }
@@ -127,10 +130,11 @@ public class MainControl {
 
     @FXML
     private void getTour(){
+        Tour currentTour = tourDao.getItemById(inputTourID.getText());
 
-        Tour currentTour = tourDao.getItemById(this.testTour.getTourId());
         if(currentTour == null){
-            inputTourID.setText("ERROR");
+            tourStatus.setText("ERROR");
+            tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
             inputTourID.setText(currentTour.tourId);
             inputName.setText(currentTour.name);
@@ -139,18 +143,34 @@ public class MainControl {
             inputImage.setText(currentTour.routeImage.imageId);
             inputTransporter.setText(currentTour.transporter.toString());
             inputDescription.setText(currentTour.description);
-            inputDistance.setText(""+currentTour.distance);;
-            //inputTime.setText(""+ currentTour.time.getTime());
+            inputDistance.setText(""+currentTour.distance);
+            inputTime.setText("TIME");
         }
 
     }
 
     @FXML
     private void updateTour(){
-        if(tourDao.update(this.testTour) == null){
-            updateT.setText("ERROR");
+        Tour currentTour = tourDao.getItemById(inputTourID.getId());
+        Tour newTour = Tour.builder()
+                .tourId(inputTourID.getText())
+                .name(inputName.getText())
+                .form(cityDao.getItemById(inputFrom.getText()))
+                .to(cityDao.getItemById(inputTo.getText()))
+                .routeImage(imageDao.getItemById(inputImage.getId()))
+                .transporter(Transporter.valueOf(inputTransporter.getText()))
+                .description(inputDescription.getText())
+                .distance(Integer.parseInt(inputDistance.getText()))
+                .build();
+
+
+        if(currentTour == null){
+            tourStatus.setText("ERROR");
+            tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            updateT.setText("OK!");
+            tourDao.update(newTour);
+            tourStatus.setText("OK!");
+            tourStatus.setTextFill(Paint.valueOf("#13e452"));
         }
 
     }
