@@ -2,7 +2,7 @@ package at.technikum.tourplanner.database;
 
 import java.sql.ResultSet;
 
-public interface Repository<T> {
+public interface DaoPattern<T> {
 
     T buildClass(ResultSet result);
 

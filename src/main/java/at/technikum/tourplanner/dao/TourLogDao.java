@@ -1,16 +1,14 @@
 package at.technikum.tourplanner.dao;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
-import at.technikum.tourplanner.database.Repository;
-import at.technikum.tourplanner.model.Tour;
+import at.technikum.tourplanner.database.DaoPattern;
 import at.technikum.tourplanner.model.TourLog;
-import at.technikum.tourplanner.model.Transporter;
 import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TourLogDao extends AbstractDBTable implements Repository<TourLog> {
+public class TourLogDao extends AbstractDBTable implements DaoPattern<TourLog> {
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
