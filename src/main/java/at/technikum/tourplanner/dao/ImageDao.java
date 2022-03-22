@@ -23,12 +23,16 @@ public class ImageDao extends AbstractDBTable implements Repository<Image> {
     /*******************************************************************/
     @Override
     public Image buildClass(ResultSet result) {
+        CityDao cityDao = new CityDao();
         try {
             if (result.next()) {
                 Image image = Image.builder()
                         .imageId(result.getString("imageId"))
+                        .name(result.getString("name"))
+                        .from(cityDao.getItemById(result.getString("from")))
+                        .to(cityDao.getItemById(result.getString("to")))
+                        .filePath(result.getString("filePath"))
                         .build();
-
                 this.closeStatement();
 
                 return image;
@@ -63,9 +67,13 @@ public class ImageDao extends AbstractDBTable implements Repository<Image> {
         if(getItemById(item.getImageId()) == null) {
             this.parameter = new String[]{
                     "" + item.getImageId(),
+                    "" + item.getName(),
+                    "" + item.from.getCityId(),
+                    "" + item.to.getCityId(),
+                    "" + item.filePath
             };
 
-            this.setStatement("INSERT INTO " + this.tableName + " (\"imageId\")VALUES(?);", this.parameter);
+            this.setStatement("INSERT INTO " + this.tableName + " (\"imageId\",\"name\",\"from\",\"to\",\"filePath\")VALUES(?,?,?,?,?);", this.parameter);
              return getItemById(item.getImageId());
         }
         return null;

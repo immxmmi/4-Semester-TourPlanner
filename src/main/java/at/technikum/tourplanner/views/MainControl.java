@@ -7,11 +7,8 @@ import at.technikum.tourplanner.model.City;
 import at.technikum.tourplanner.model.Image;
 import at.technikum.tourplanner.model.Tour;
 import at.technikum.tourplanner.model.Transporter;
-import eu.hansolo.tilesfx.Test;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 
@@ -23,30 +20,11 @@ public class MainControl {
 
 
     static void createTestClass() {
-        CityDao cityDao = new CityDao();
-
-        // Form
-        City cityA = City.builder()
-                .cityId("CityID1")
-                .name("Wien")
-                .build();
-
-        cityDao.insert(cityA);
-
-        // To
-        City cityB = City.builder()
-                .cityId("CityID2")
-                .name("Berlin")
-                .build();
-
-        cityDao.insert(cityB);
 
         // routImage
         Image image = Image.builder()
                 .imageId("Image-1")
                 .name("Wien-Berlin")
-                .from(cityA)
-                .to(cityB)
                 .filePath("/root")
                 .build();
 
@@ -60,7 +38,204 @@ public class MainControl {
 
 
 
+    // Image MODEL
+    @FXML
+    private Label imageStatus;
+    @FXML
+    private TextField inputImageId;
+    @FXML
+    private TextField inputImageName;
 
+    @FXML
+    private TextField inputImageFrom;
+    @FXML
+    private TextField inputImageTo;
+
+    @FXML
+    private TextField inputImagePath;
+
+
+    // Image METHODE
+    @FXML
+    private void insertImage(){
+
+        Image newImage = Image.builder()
+                .imageId(inputImageId.getText())
+                .name(inputImageName.getText())
+                .from(cityDao.getItemById(inputImageFrom.getText()))
+                .to(cityDao.getItemById(inputImageTo.getText()))
+                .filePath(inputImagePath.getText())
+                .build();
+
+
+        if(newImage == null){
+            imageStatus.setText("ERROR");
+            imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        }else{
+            if(imageDao.insert(newImage)!=null){
+                imageStatus.setText("OK!");
+                imageStatus.setTextFill(Paint.valueOf("#13e452"));
+            }else{
+                imageStatus.setText("ERROR");
+                imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
+            }
+        }
+    }
+
+    @FXML
+    private void deleteImage(){
+
+        Image currentImage = imageDao.getItemById(inputImageId.getText());
+
+        if(imageDao.delete(currentImage) == false){
+            imageStatus.setText("ERROR");
+            imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        }else{
+            imageStatus.setText("OK!");
+            imageStatus.setTextFill(Paint.valueOf("#13e452"));
+        }
+
+    }
+
+    @FXML
+    private void getImage(){
+        Image currentImage = imageDao.getItemById(inputImageId.getText());
+
+        if(currentImage == null){
+            imageStatus.setText("ERROR");
+            imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        }else{
+            inputImageId.setText(currentImage.imageId);
+            inputImageName.setText(currentImage.getName());
+            inputImageFrom.setText(currentImage.from.getCityId());
+            inputImageTo.setText(currentImage.to.getCityId());
+            inputImagePath.setText(currentImage.filePath);
+
+            imageStatus.setText("OK!");
+            imageStatus.setTextFill(Paint.valueOf("#13e452"));
+        }
+
+    }
+
+    @FXML
+    private void updateImage(){
+        Image currentImage = imageDao.getItemById(inputImageId.getText());
+        Image newImage = Image.builder()
+                .imageId(inputImageId.getText())
+                .name(inputImageName.getText())
+                .from(cityDao.getItemById(inputFrom.getText()))
+                .to(cityDao.getItemById(inputTo.getText()))
+                .filePath(inputImagePath.getText())
+                .build();
+
+
+
+        if(currentImage == null){
+            imageStatus.setText("ERROR");
+            imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        }else{
+            imageDao.update(newImage);
+            imageStatus.setText("OK!");
+            imageStatus.setTextFill(Paint.valueOf("#13e452"));
+        }
+
+    }
+
+
+
+
+
+
+
+    // CITY MODEL
+    @FXML
+    private Label cityStatus;
+    @FXML
+    private TextField inputCityId;
+    @FXML
+    private TextField inputCityName;
+
+
+    // CITY METHODE
+    @FXML
+    private void insertCity(){
+
+        City newCity = City.builder()
+                .cityId(inputCityName.getText())
+                .name(inputCityId.getText())
+                .build();
+
+        if(newCity == null){
+            cityStatus.setText("ERROR");
+            cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        }else{
+            if(cityDao.insert(newCity)!=null){
+                cityStatus.setText("OK!");
+                cityStatus.setTextFill(Paint.valueOf("#13e452"));
+            }else{
+                cityStatus.setText("ERROR");
+                cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
+            }
+        }
+    }
+
+    @FXML
+    private void deleteCity(){
+
+        City currentCity = cityDao.getItemById(inputCityId.getText());
+
+        if(cityDao.delete(currentCity) == false){
+            cityStatus.setText("ERROR");
+            cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        }else{
+            cityStatus.setText("OK!");
+            cityStatus.setTextFill(Paint.valueOf("#13e452"));
+        }
+
+    }
+
+    @FXML
+    private void getCity(){
+        City currentCity = cityDao.getItemById(inputCityId.getText());
+
+        if(currentCity == null){
+            cityStatus.setText("ERROR");
+            cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        }else{
+            inputCityId.setText(currentCity.cityId);
+            inputCityName.setText(currentCity.name);
+
+            cityStatus.setText("OK!");
+            cityStatus.setTextFill(Paint.valueOf("#13e452"));
+        }
+
+    }
+
+    @FXML
+    private void updateCity(){
+        City currentCity = cityDao.getItemById(inputCityId.getText());
+        City newCity = City.builder()
+                .cityId(inputCityName.getText())
+                .name(inputCityId.getText())
+                .build();
+
+
+        if(currentCity == null){
+            cityStatus.setText("ERROR");
+            cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        }else{
+            cityDao.update(newCity);
+            cityStatus.setText("OK!");
+            cityStatus.setTextFill(Paint.valueOf("#13e452"));
+        }
+
+    }
+
+
+
+
+
+    // TOUR MODEL
     @FXML
     private Label tourStatus;
     @FXML
@@ -83,6 +258,7 @@ public class MainControl {
     private TextField inputDescription;
 
 
+    /// TOUR METHODE
     @FXML
     private void insertTour(){
 
@@ -111,7 +287,6 @@ public class MainControl {
             }
         }
     }
-
     @FXML
     private void deleteTour(){
 
@@ -126,8 +301,6 @@ public class MainControl {
         }
 
     }
-
-
     @FXML
     private void getTour(){
         Tour currentTour = tourDao.getItemById(inputTourID.getText());
@@ -145,10 +318,11 @@ public class MainControl {
             inputDescription.setText(currentTour.description);
             inputDistance.setText(""+currentTour.distance);
             inputTime.setText("TIME");
+            cityStatus.setText("OK!");
+            cityStatus.setTextFill(Paint.valueOf("#13e452"));
         }
 
     }
-
     @FXML
     private void updateTour(){
         Tour currentTour = tourDao.getItemById(inputTourID.getId());
