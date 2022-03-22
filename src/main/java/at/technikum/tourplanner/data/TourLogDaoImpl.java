@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.dao;
+package at.technikum.tourplanner.data;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
 import at.technikum.tourplanner.database.DaoPattern;
@@ -8,11 +8,12 @@ import at.technikum.tourplanner.utils.TextColor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TourLogDao extends AbstractDBTable implements DaoPattern<TourLog> {
+public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
+
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
-    public TourLogDao() {
+    public TourLogDaoImpl() {
         this.tableName = "tourLog";
     }
     /*******************************************************************/

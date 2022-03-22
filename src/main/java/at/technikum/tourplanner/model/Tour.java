@@ -1,51 +1,26 @@
 package at.technikum.tourplanner.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Time;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder(toBuilder = true)
 public class Tour {
 
 
-    @Setter
-    @Getter
-    public String tourId;
+    private String tourId;
+    private String name;
+    private String description;
 
-    @Setter
-    @Getter
-    public String name;
-
-    @Setter
-    @Getter
-    public String description;
-
-    @Setter
-    @Getter
     @Builder.Default
-    public Transporter transporter = Transporter.Walk;
-
-    @Setter
-    @Getter
-    public City form;
-
-    @Setter
-    @Getter
-    public City to;
-
-    @Setter
-    @Getter
-    public int distance;
-
-    @Getter
-    @Setter
-    public Time time;
-
-    @Getter
-    @Setter
-    public Image routeImage;
+    private Transporter transporter = Transporter.Walk;
+    private City form;
+    private City to;
+    private int distance;
+    private Time time;
+    private Image routeImage;
 
 
     @Override
@@ -54,8 +29,8 @@ public class Tour {
                 "tourId='" + tourId + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", form='" + form.name + '\'' +
-                ", to='" + to.name + '\'' +
+                ", form='" + form.getName() + '\'' +
+                ", to='" + to.getName() + '\'' +
                 ", distance=" + distance +
                 '}';
     }

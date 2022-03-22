@@ -1,18 +1,17 @@
-package at.technikum.tourplanner.dao;
+package at.technikum.tourplanner.data;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
-import at.technikum.tourplanner.database.DaoPattern;
 import at.technikum.tourplanner.model.Image;
 import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ImageDao extends AbstractDBTable implements DaoPattern<Image> {
+public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
-    public ImageDao() {
+    public ImageDaoImpl() {
         this.tableName = "image";
     }
     /*******************************************************************/
@@ -23,14 +22,14 @@ public class ImageDao extends AbstractDBTable implements DaoPattern<Image> {
     /*******************************************************************/
     @Override
     public Image buildClass(ResultSet result) {
-        CityDao cityDao = new CityDao();
+        CityDaoImpl cityDaoImpl = new CityDaoImpl();
         try {
             if (result.next()) {
                 Image image = Image.builder()
                         .imageId(result.getString("imageId"))
                         .name(result.getString("name"))
-                        .from(cityDao.getItemById(result.getString("from")))
-                        .to(cityDao.getItemById(result.getString("to")))
+                        .from(cityDaoImpl.getItemById(result.getString("from")))
+                        .to(cityDaoImpl.getItemById(result.getString("to")))
                         .filePath(result.getString("filePath"))
                         .build();
                 this.closeStatement();
@@ -68,9 +67,9 @@ public class ImageDao extends AbstractDBTable implements DaoPattern<Image> {
             this.parameter = new String[]{
                     "" + item.getImageId(),
                     "" + item.getName(),
-                    "" + item.from.getCityId(),
-                    "" + item.to.getCityId(),
-                    "" + item.filePath
+                    "" + item.getFrom().getCityId(),
+                    "" + item.getTo().getCityId(),
+                    "" + item.getFilePath()
             };
 
             this.setStatement("INSERT INTO " + this.tableName + " (\"imageId\",\"name\",\"from\",\"to\",\"filePath\")VALUES(?,?,?,?,?);", this.parameter);
@@ -85,7 +84,7 @@ public class ImageDao extends AbstractDBTable implements DaoPattern<Image> {
             return null;
         }
 
-        item.from.getName();
+        item.getFrom().getName();
         this.parameter = new String[]{
                 "" + item.getImageId(),
                 "" + item.getName(),

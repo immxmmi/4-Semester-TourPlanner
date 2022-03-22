@@ -1,47 +1,25 @@
 package at.technikum.tourplanner.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import java.time.LocalDate;
 import java.util.Date;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder (toBuilder = true)
 public class TourLog {
 
-    @Setter
-    @Getter
-    public String tourLogId;
 
-    @Setter
-    @Getter
-    public Date date;
 
-    @Setter
-    @Getter
-    public Tour tour;
-
-    @Setter
-    @Getter
-    public String report;
-
-    @Getter
-    @Setter
-    public String comment;
-
-    @Getter
-    @Setter
+    private String tourLogId;
+    private Date date;
+    private Tour tour;
+    private String report;
+    private String comment;
     @Builder.Default
-    public Difficulty difficulty = Difficulty.Normal;
-
-    @Getter
-    @Setter
-    public int totalTime;
-
-    @Getter
-    @Setter
+    private Difficulty difficulty = Difficulty.Normal;
+    private int totalTime;
     @Builder.Default
-    public Rating rating = Rating.pointDefault;
+    private Rating rating = Rating.pointDefault;
 
 }

@@ -1,16 +1,12 @@
 package at.technikum.tourplanner.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder (toBuilder = true)
 public class City {
-
-    @Getter
-    @Setter
-    public String cityId;
-    @Getter
-    @Setter
-    public String name;
+    private String cityId;
+    private String name;
 }

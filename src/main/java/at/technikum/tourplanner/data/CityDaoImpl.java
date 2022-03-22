@@ -1,18 +1,18 @@
-package at.technikum.tourplanner.dao;
+package at.technikum.tourplanner.data;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
-import at.technikum.tourplanner.database.DaoPattern;
 import at.technikum.tourplanner.model.City;
 import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CityDao extends AbstractDBTable implements DaoPattern<City> {
+public class CityDaoImpl extends AbstractDBTable implements CityDao {
+
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
-    public CityDao() {
+    public CityDaoImpl() {
         this.tableName = "city";
     }
     /*******************************************************************/
@@ -42,8 +42,6 @@ public class CityDao extends AbstractDBTable implements DaoPattern<City> {
         return null;
     }
     /*******************************************************************/
-
-
 
 
     @Override

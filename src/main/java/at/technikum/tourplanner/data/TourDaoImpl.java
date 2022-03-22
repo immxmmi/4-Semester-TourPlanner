@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.dao;
+package at.technikum.tourplanner.data;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
 import at.technikum.tourplanner.database.DaoPattern;
@@ -9,14 +9,14 @@ import at.technikum.tourplanner.utils.TextColor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TourDao extends AbstractDBTable implements DaoPattern<Tour> {
+public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
-     static ImageDao imageDao = new ImageDao();
-     static CityDao cityDao = new CityDao();
-    public TourDao(){
+     static ImageDaoImpl imageDaoImpl = new ImageDaoImpl();
+     static CityDaoImpl cityDaoImpl = new CityDaoImpl();
+    public TourDaoImpl(){
         this.tableName = "\"tour\"";
 
     }
@@ -34,12 +34,12 @@ public class TourDao extends AbstractDBTable implements DaoPattern<Tour> {
                         .tourId(result.getString("tourid"))
                         .name(result.getString("name"))
                         .transporter(Transporter.valueOf(result.getString("transporter")))
-                        .form(cityDao.getItemById(result.getString("from")))
-                        .to(cityDao.getItemById(result.getString("to")))
+                        .form(cityDaoImpl.getItemById(result.getString("from")))
+                        .to(cityDaoImpl.getItemById(result.getString("to")))
                         .description(result.getString("description"))
                         .distance(0)
                         .time(null)
-                        .routeImage(imageDao.getItemById(result.getString("routeImage")))
+                        .routeImage(imageDaoImpl.getItemById(result.getString("routeImage")))
                         .build();
 
                 this.closeStatement();
