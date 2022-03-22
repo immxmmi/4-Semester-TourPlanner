@@ -60,14 +60,15 @@ public class ImageDao extends AbstractDBTable implements Repository<Image> {
         if (item == null) {
             return null;
         }
-        this.parameter = new String[]{
-                "" + item.getImageId(),
-        };
+        if(getItemById(item.getImageId()) == null) {
+            this.parameter = new String[]{
+                    "" + item.getImageId(),
+            };
 
-
-        this.setStatement("INSERT INTO " + this.tableName + " (\"imageId\")VALUES(?);", this.parameter);
-
-        return getItemById(item.getImageId());
+            this.setStatement("INSERT INTO " + this.tableName + " (\"imageId\")VALUES(?);", this.parameter);
+             return getItemById(item.getImageId());
+        }
+        return null;
     }
 
     @Override
@@ -95,7 +96,14 @@ public class ImageDao extends AbstractDBTable implements Repository<Image> {
 
     @Override
     public boolean delete(Image item) {
+        if(item == null){
+            return false;
+        }
 
+        if(getItemById(item.getImageId()) == null)
+        {
+            return false;
+        }
         this.parameter = new String[]{item.getImageId()};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"imageId\" = ? ;", this.parameter);
         this.closeStatement();

@@ -73,22 +73,24 @@ public class TourDao extends AbstractDBTable implements Repository<Tour> {
         if (item == null) {
             return null;
         }
-        this.parameter = new String[]{
-                "" + item.getTourId(),
-                "" + item.getName(),
-                "" + item.getForm().getCityId(),
-                "" + item.getTo().getCityId(),
-                "" + item.getDistance(),
-                "" + item.getTime(),
-                "" + item.getTransporter(),
-                "" + item.getRouteImage().getImageId(),
-                "" + item.getDescription()
-        };
+        if(getItemById(item.getTourId()) == null) {
+            this.parameter = new String[]{
+                    "" + item.getTourId(),
+                    "" + item.getName(),
+                    "" + item.getForm().getCityId(),
+                    "" + item.getTo().getCityId(),
+                    "" + item.getDistance(),
+                    "" + item.getTime(),
+                    "" + item.getTransporter(),
+                    "" + item.getRouteImage().getImageId(),
+                    "" + item.getDescription()
+            };
 
 
-        this.setStatement("INSERT INTO " + this.tableName + " (\"tourId\",name,\"from\",\"to\",\"distance\",\"time\",\"transporter\",\"routeImage\",\"description\")VALUES(?,?,?,?,?,?,?,?,?);", this.parameter);
-
-        return getItemById(item.getTourId());
+            this.setStatement("INSERT INTO " + this.tableName + " (\"tourId\",name,\"from\",\"to\",\"distance\",\"time\",\"transporter\",\"routeImage\",\"description\")VALUES(?,?,?,?,?,?,?,?,?);", this.parameter);
+            return getItemById(item.getTourId());
+        }
+        return null;
     }
 
     @Override
@@ -100,7 +102,6 @@ public class TourDao extends AbstractDBTable implements Repository<Tour> {
         this.parameter = new String[]{
                 "" + item.getName(),
                 "" + item.getForm().getCityId(),
-                "" + item.getTo().getCityId(),
                 "" + item.getDistance(),
                 "" + item.getTime(),
                 "" + item.getTransporter(),
@@ -112,15 +113,18 @@ public class TourDao extends AbstractDBTable implements Repository<Tour> {
 
         this.setStatement(
                 "UPDATE " + this.tableName +
-                        " SET name = ?, " +
-                        "from = ? " +
-                        "to = ? " +
+                        " SET " +
+                        "\"name\" = ?, " +
+                        "\"from\" = ? " +
                         "distance = ? " +
-                        "time = ? " +
-                        "transporter = ? " +
-                        "routeImage = ? " +
-                        "description = ? " +
-                        "WHERE tour_id = ? ;"
+                        "\"time\" = ? " +
+                        "\"transporter\" = ? " +
+                        "\"routeImage\" = ? " +
+                        "\"description\" = ? " +
+
+
+
+                        "WHERE \"tour_id\" = ? ;"
                 , this.parameter
         );
 
@@ -130,8 +134,16 @@ public class TourDao extends AbstractDBTable implements Repository<Tour> {
 
     @Override
     public boolean delete(Tour item) {
+        if(item == null){
+            return false;
+        }
+
+        if(getItemById(item.getTourId()) == null)
+        {
+            return false;
+        }
         this.parameter = new String[]{item.getTourId()};
-        this.setStatement("DELETE FROM "+this.tableName+" WHERE tourId = ? ;", this.parameter);
+        this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourId\" = ? ;", this.parameter);
         this.closeStatement();
         return true;
     }

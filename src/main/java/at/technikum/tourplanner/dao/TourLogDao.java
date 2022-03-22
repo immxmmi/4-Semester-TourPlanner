@@ -61,13 +61,14 @@ public class TourLogDao extends AbstractDBTable implements Repository<TourLog> {
         if (item == null) {
             return null;
         }
-        this.parameter = new String[]{
-                "" + item.getTourLogId(),
-        };
+        if(getItemById(item.getTourLogId()) == null) {
+            this.parameter = new String[]{
+                    "" + item.getTourLogId(),
+            };
 
 
-        this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogId\")VALUES(?);", this.parameter);
-
+            this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogId\")VALUES(?);", this.parameter);
+        }
         return getItemById(item.getTourLogId());
     }
 
@@ -96,6 +97,14 @@ public class TourLogDao extends AbstractDBTable implements Repository<TourLog> {
 
     @Override
     public boolean delete(TourLog item) {
+        if(item == null){
+            return false;
+        }
+
+        if(getItemById(item.getTourLogId()) == null)
+        {
+            return false;
+        }
         this.parameter = new String[]{item.getTourLogId()};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourLogId\" = ? ;", this.parameter);
         this.closeStatement();

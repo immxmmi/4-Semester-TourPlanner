@@ -60,13 +60,14 @@ public class CityDao extends AbstractDBTable implements Repository<City> {
         if (item == null) {
             return null;
         }
-        this.parameter = new String[]{
-                "" + item.getCityId(),
-        };
+        if(getItemById(item.getCityId()) == null){
+            this.parameter = new String[]{
+                    "" + item.getCityId(),
+            };
 
+            this.setStatement("INSERT INTO " + this.tableName + " (\"cityId\")VALUES(?);", this.parameter);
 
-        this.setStatement("INSERT INTO " + this.tableName + " (\"cityId\")VALUES(?);", this.parameter);
-
+        }
         return getItemById(item.getCityId());
     }
 
@@ -95,6 +96,14 @@ public class CityDao extends AbstractDBTable implements Repository<City> {
 
     @Override
     public boolean delete(City item) {
+        if(item == null){
+            return false;
+        }
+
+        if(getItemById(item.getCityId()) == null)
+        {
+            return false;
+        }
         this.parameter = new String[]{item.getCityId()};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"cityId\" = ? ;", this.parameter);
         this.closeStatement();
