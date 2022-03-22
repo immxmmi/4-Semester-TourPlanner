@@ -318,8 +318,8 @@ public class MainControl {
             inputDescription.setText(currentTour.description);
             inputDistance.setText(""+currentTour.distance);
             inputTime.setText("TIME");
-            cityStatus.setText("OK!");
-            cityStatus.setTextFill(Paint.valueOf("#13e452"));
+            tourStatus.setText("OK!");
+            tourStatus.setTextFill(Paint.valueOf("#13e452"));
         }
 
     }

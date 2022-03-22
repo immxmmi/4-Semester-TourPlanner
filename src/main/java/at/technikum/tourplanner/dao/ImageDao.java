@@ -85,15 +85,22 @@ public class ImageDao extends AbstractDBTable implements Repository<Image> {
             return null;
         }
 
+        item.from.getName();
         this.parameter = new String[]{
                 "" + item.getImageId(),
+                "" + item.getName(),
+                "" + item.getFrom().getCityId(),
+                "" + item.getTo().getCityId(),
+                "" + item.getFilePath()
         };
-
-
 
         this.setStatement(
                 "UPDATE " + this.tableName +
                         " SET \"imageId\" = ? " +
+                        "\"name\" = ?" +
+                        "\"from\" = ?" +
+                        "\"to\" = ?" +
+                        "\"filePath\" = ?" +
                         "WHERE \"imageId\" = ? ;"
                 , this.parameter
         );

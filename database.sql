@@ -23,7 +23,8 @@ create table city
 (
     "cityId" text not null
         constraint city_pk
-            primary key
+            primary key,
+    name     text not null
 );
 
 alter table city
@@ -34,9 +35,13 @@ create unique index city_cityid_uindex
 
 create table image
 (
-    "imageId" text not null
+    "imageId"  text not null
         constraint image_pk
-            primary key
+            primary key,
+    name       text not null,
+    "from"     text not null,
+    "to"       text not null,
+    "filePath" text not null
 );
 
 alter table image
