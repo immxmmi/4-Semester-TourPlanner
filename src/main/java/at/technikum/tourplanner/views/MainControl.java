@@ -16,6 +16,7 @@ import java.sql.Time;
 
 public class MainControl {
 
+    // Wird noch im BL verschoben dient nur zum Testen
     TourDao tourDao = new TourDao();
 
 
