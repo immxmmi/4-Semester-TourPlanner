@@ -9,6 +9,9 @@ import at.technikum.tourplanner.model.Tour;
 import at.technikum.tourplanner.model.Transporter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextField;
 
 import java.sql.Time;
 
@@ -76,10 +79,29 @@ public class MainControl {
     private Label deleteT;
 
     @FXML
-    private Label getT;
+    public Label getT;
 
     @FXML
     private Label updateT;
+
+    @FXML
+    private TextField inputTourID;
+    @FXML
+    private TextField inputName;
+    @FXML
+    private TextField inputFrom;
+    @FXML
+    private TextField inputTo;
+    @FXML
+    private TextField inputImage;
+    @FXML
+    private TextField inputTransporter;
+    @FXML
+    private TextField inputDistance;
+    @FXML
+    private  TextField inputTime;
+    @FXML
+    private TextField inputDescription;
 
 
     @FXML
@@ -106,10 +128,19 @@ public class MainControl {
     @FXML
     private void getTour(){
 
-        if(tourDao.getItemById(this.testTour.getTourId()) == null){
-            getT.setText("ERROR");
+        Tour currentTour = tourDao.getItemById(this.testTour.getTourId());
+        if(currentTour == null){
+            inputTourID.setText("ERROR");
         }else{
-            getT.setText("OK!");
+            inputTourID.setText(currentTour.tourId);
+            inputName.setText(currentTour.name);
+            inputFrom.setText(currentTour.form.cityId);
+            inputTo.setText(currentTour.to.cityId);
+            inputImage.setText(currentTour.routeImage.imageId);
+            inputTransporter.setText(currentTour.transporter.toString());
+            inputDescription.setText(currentTour.description);
+            inputDistance.setText(""+currentTour.distance);;
+            //inputTime.setText(""+ currentTour.time.getTime());
         }
 
     }
