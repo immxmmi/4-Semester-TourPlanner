@@ -1,8 +1,13 @@
 package at.technikum.tourplanner.views;
 
+import at.technikum.tourplanner.business.CityService;
+import at.technikum.tourplanner.business.ImageService;
+import at.technikum.tourplanner.business.TourLogService;
+import at.technikum.tourplanner.business.TourService;
 import at.technikum.tourplanner.database.sqlServer.CityDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
+import at.technikum.tourplanner.database.sqlServer.TourLogDaoImpl;
 import at.technikum.tourplanner.models.City;
 import at.technikum.tourplanner.models.Image;
 import at.technikum.tourplanner.models.Tour;
@@ -17,7 +22,12 @@ import java.sql.Time;
 public class MainControl {
 
     // Wird noch im BL verschoben dient nur zum Testen
-    TourDaoImpl tourDaoImpl = new TourDaoImpl();
+
+
+    TourService tourService;
+    CityService cityService;
+    ImageService imageService;
+    TourLogService tourLogService;
 
 
     static void createTestClass() {
@@ -34,8 +44,6 @@ public class MainControl {
     }
 
 
-    protected CityDaoImpl cityDaoImpl = new CityDaoImpl();
-    protected ImageDaoImpl imageDaoImpl = new ImageDaoImpl();
 
 
 
@@ -63,44 +71,38 @@ public class MainControl {
         Image newImage = Image.builder()
                 .imageID(inputImageId.getText())
                 .name(inputImageName.getText())
-                .from(cityDaoImpl.getItemById(inputImageFrom.getText()))
-                .to(cityDaoImpl.getItemById(inputImageTo.getText()))
+                .from(cityService.getCity(inputImageFrom.getText()))
+                .to(cityService.getCity(inputImageTo.getText()))
                 .filePath(inputImagePath.getText())
                 .build();
 
-
-        if(newImage == null){
-            imageStatus.setText("ERROR");
-            imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
-            if(imageDaoImpl.insert(newImage)!=null){
-                imageStatus.setText("OK!");
-                imageStatus.setTextFill(Paint.valueOf("#13e452"));
-            }else{
-                imageStatus.setText("ERROR");
-                imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
-            }
+        if(imageService.saveImage(newImage)) {
+            imageStatus.setText("OK!");
+            imageStatus.setTextFill(Paint.valueOf("#13e452"));
         }
+        imageStatus.setText("ERROR");
+        imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
+
+
     }
 
     @FXML
     private void deleteImage(){
 
-        Image currentImage = imageDaoImpl.getItemById(inputImageId.getText());
+        Image currentImage = imageService.getImage(inputImageId.getText());
 
-        if(imageDaoImpl.delete(currentImage) == false){
-            imageStatus.setText("ERROR");
-            imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
+        if(imageService.deleteImage(currentImage)) {
             imageStatus.setText("OK!");
             imageStatus.setTextFill(Paint.valueOf("#13e452"));
         }
+        imageStatus.setText("ERROR");
+        imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
 
     }
 
     @FXML
     private void getImage(){
-        Image currentImage = imageDaoImpl.getItemById(inputImageId.getText());
+        Image currentImage = imageService.getImage(inputImageId.getText());
 
         if(currentImage == null){
             imageStatus.setText("ERROR");
@@ -120,12 +122,12 @@ public class MainControl {
 
     @FXML
     private void updateImage(){
-        Image currentImage = imageDaoImpl.getItemById(inputImageId.getText());
+        Image currentImage = imageService.getImage(inputImageId.getText());
         Image newImage = Image.builder()
                 .imageID(inputImageId.getText())
                 .name(inputImageName.getText())
-                .from(cityDaoImpl.getItemById(inputFrom.getText()))
-                .to(cityDaoImpl.getItemById(inputTo.getText()))
+                .from(cityService.getCity(inputFrom.getText()))
+                .to(cityService.getCity(inputTo.getText()))
                 .filePath(inputImagePath.getText())
                 .build();
 
@@ -135,15 +137,12 @@ public class MainControl {
             imageStatus.setText("ERROR");
             imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            imageDaoImpl.update(newImage);
+            imageService.updateImage(newImage);
             imageStatus.setText("OK!");
             imageStatus.setTextFill(Paint.valueOf("#13e452"));
         }
 
     }
-
-
-
 
 
 
@@ -166,38 +165,32 @@ public class MainControl {
                 .name(inputCityId.getText())
                 .build();
 
-        if(newCity == null){
+        if(cityService.saveCity(newCity)) {
+            cityStatus.setText("OK!");
+            cityStatus.setTextFill(Paint.valueOf("#13e452"));
+        }
             cityStatus.setText("ERROR");
             cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
-            if(cityDaoImpl.insert(newCity)!=null){
-                cityStatus.setText("OK!");
-                cityStatus.setTextFill(Paint.valueOf("#13e452"));
-            }else{
-                cityStatus.setText("ERROR");
-                cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
-            }
-        }
     }
 
     @FXML
     private void deleteCity(){
 
-        City currentCity = cityDaoImpl.getItemById(inputCityId.getText());
+        City currentCity = cityService.getCity(inputCityId.getText());
 
-        if(cityDaoImpl.delete(currentCity) == false){
-            cityStatus.setText("ERROR");
-            cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
+        if(cityService.deleteCity(currentCity)) {
             cityStatus.setText("OK!");
             cityStatus.setTextFill(Paint.valueOf("#13e452"));
         }
+        cityStatus.setText("ERROR");
+        cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
 
     }
 
     @FXML
     private void getCity(){
-        City currentCity = cityDaoImpl.getItemById(inputCityId.getText());
+
+        City currentCity = cityService.getCity(inputCityId.getText());
 
         if(currentCity == null){
             cityStatus.setText("ERROR");
@@ -214,7 +207,7 @@ public class MainControl {
 
     @FXML
     private void updateCity(){
-        City currentCity = cityDaoImpl.getItemById(inputCityId.getText());
+        City currentCity = cityService.getCity(inputCityId.getText());
         City newCity = City.builder()
                 .cityID(inputCityName.getText())
                 .name(inputCityId.getText())
@@ -225,7 +218,7 @@ public class MainControl {
             cityStatus.setText("ERROR");
             cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            cityDaoImpl.update(newCity);
+            cityService.updateCity(newCity);
             cityStatus.setText("OK!");
             cityStatus.setTextFill(Paint.valueOf("#13e452"));
         }
@@ -266,45 +259,41 @@ public class MainControl {
         Tour newTour = Tour.builder()
                 .tourID(inputTourID.getText())
                 .name(inputName.getText())
-                .form(cityDaoImpl.getItemById(inputFrom.getText()))
-                .to(cityDaoImpl.getItemById(inputTo.getText()))
-                .routeImage(imageDaoImpl.getItemById(inputImage.getText()))
+                .form(cityService.getCity(inputFrom.getText()))
+                .to(cityService.getCity(inputTo.getText()))
+                .routeImage(imageService.getImage(inputImage.getText()))
                 .transporter(Transporter.valueOf(inputTransporter.getText()))
                 .description(inputDescription.getText())
                 .distance(10)
                 .time(new Time(2,3,4))
                 .build();
 
-        if(newTour == null){
-            tourStatus.setText("ERROR");
-            tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
-            if(tourDaoImpl.insert(newTour)!=null){
-                tourStatus.setText("OK!");
-                tourStatus.setTextFill(Paint.valueOf("#13e452"));
-            }else{
-                tourStatus.setText("ERROR");
-                tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
-            }
+        if(tourService.saveTour(newTour)) {
+            tourStatus.setText("OK!");
+            tourStatus.setTextFill(Paint.valueOf("#13e452"));
         }
+        tourStatus.setText("ERROR");
+        tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
+
     }
     @FXML
     private void deleteTour(){
 
-        Tour currentTour = tourDaoImpl.getItemById(inputTourID.getText());
+        Tour currentTour = tourService.getTour(inputTourID.getText());
 
-        if(tourDaoImpl.delete(currentTour) == false){
-            tourStatus.setText("ERROR");
-            tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
+        if(tourService.saveTour(currentTour)) {
             tourStatus.setText("OK!");
             tourStatus.setTextFill(Paint.valueOf("#13e452"));
         }
+        tourStatus.setText("ERROR");
+        tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
+
 
     }
+
     @FXML
     private void getTour(){
-        Tour currentTour = tourDaoImpl.getItemById(inputTourID.getText());
+        Tour currentTour = tourService.getTour(inputTourID.getText());
 
         if(currentTour == null){
             tourStatus.setText("ERROR");
@@ -326,13 +315,13 @@ public class MainControl {
     }
     @FXML
     private void updateTour(){
-        Tour currentTour = tourDaoImpl.getItemById(inputTourID.getId());
+        Tour currentTour = tourService.getTour(inputTourID.getId());
         Tour newTour = Tour.builder()
                 .tourID(inputTourID.getText())
                 .name(inputName.getText())
-                .form(cityDaoImpl.getItemById(inputFrom.getText()))
-                .to(cityDaoImpl.getItemById(inputTo.getText()))
-                .routeImage(imageDaoImpl.getItemById(inputImage.getId()))
+                .form(cityService.getCity(inputFrom.getText()))
+                .to(cityService.getCity(inputTo.getText()))
+                .routeImage(imageService.getImage(inputImage.getId()))
                 .transporter(Transporter.valueOf(inputTransporter.getText()))
                 .description(inputDescription.getText())
                 .distance(Integer.parseInt(inputDistance.getText()))
@@ -343,7 +332,7 @@ public class MainControl {
             tourStatus.setText("ERROR");
             tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            tourDaoImpl.update(newTour);
+            tourService.updateTour(newTour);
             tourStatus.setText("OK!");
             tourStatus.setTextFill(Paint.valueOf("#13e452"));
         }
