@@ -9,24 +9,30 @@ import java.sql.Time;
 @Builder(toBuilder = true)
 public class Tour {
 
+    private String tourID;
 
-    private String tourId;
     private String name;
+
     private String description;
+
+    private City form;
+
+    private City to;
+
+    private int distance;
+
+    private Image routeImage;
+
+    private Time time;
 
     @Builder.Default
     private Transporter transporter = Transporter.Walk;
-    private City form;
-    private City to;
-    private int distance;
-    private Time time;
-    private Image routeImage;
 
 
     @Override
     public String toString() {
         return "Tour{" +
-                "tourId='" + tourId + '\'' +
+                "tourId='" + tourID + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", form='" + form.getName() + '\'' +

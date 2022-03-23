@@ -24,7 +24,7 @@ public class MainControl {
 
         // routImage
         Image image = Image.builder()
-                .imageId("Image-1")
+                .imageID("Image-1")
                 .name("Wien-Berlin")
                 .filePath("/root")
                 .build();
@@ -61,7 +61,7 @@ public class MainControl {
     private void insertImage(){
 
         Image newImage = Image.builder()
-                .imageId(inputImageId.getText())
+                .imageID(inputImageId.getText())
                 .name(inputImageName.getText())
                 .from(cityDaoImpl.getItemById(inputImageFrom.getText()))
                 .to(cityDaoImpl.getItemById(inputImageTo.getText()))
@@ -106,10 +106,10 @@ public class MainControl {
             imageStatus.setText("ERROR");
             imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            inputImageId.setText(currentImage.getImageId());
+            inputImageId.setText(currentImage.getImageID());
             inputImageName.setText(currentImage.getName());
-            inputImageFrom.setText(currentImage.getFrom().getCityId());
-            inputImageTo.setText(currentImage.getTo().getCityId());
+            inputImageFrom.setText(currentImage.getFrom().getCityID());
+            inputImageTo.setText(currentImage.getTo().getCityID());
             inputImagePath.setText(currentImage.getFilePath());
 
             imageStatus.setText("OK!");
@@ -122,7 +122,7 @@ public class MainControl {
     private void updateImage(){
         Image currentImage = imageDaoImpl.getItemById(inputImageId.getText());
         Image newImage = Image.builder()
-                .imageId(inputImageId.getText())
+                .imageID(inputImageId.getText())
                 .name(inputImageName.getText())
                 .from(cityDaoImpl.getItemById(inputFrom.getText()))
                 .to(cityDaoImpl.getItemById(inputTo.getText()))
@@ -162,7 +162,7 @@ public class MainControl {
     private void insertCity(){
 
         City newCity = City.builder()
-                .cityId(inputCityName.getText())
+                .cityID(inputCityName.getText())
                 .name(inputCityId.getText())
                 .build();
 
@@ -203,7 +203,7 @@ public class MainControl {
             cityStatus.setText("ERROR");
             cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            inputCityId.setText(currentCity.getCityId());
+            inputCityId.setText(currentCity.getCityID());
             inputCityName.setText(currentCity.getName());
 
             cityStatus.setText("OK!");
@@ -216,7 +216,7 @@ public class MainControl {
     private void updateCity(){
         City currentCity = cityDaoImpl.getItemById(inputCityId.getText());
         City newCity = City.builder()
-                .cityId(inputCityName.getText())
+                .cityID(inputCityName.getText())
                 .name(inputCityId.getText())
                 .build();
 
@@ -264,7 +264,7 @@ public class MainControl {
     private void insertTour(){
 
         Tour newTour = Tour.builder()
-                .tourId(inputTourID.getText())
+                .tourID(inputTourID.getText())
                 .name(inputName.getText())
                 .form(cityDaoImpl.getItemById(inputFrom.getText()))
                 .to(cityDaoImpl.getItemById(inputTo.getText()))
@@ -310,11 +310,11 @@ public class MainControl {
             tourStatus.setText("ERROR");
             tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            inputTourID.setText(currentTour.getTourId());
+            inputTourID.setText(currentTour.getTourID());
             inputName.setText(currentTour.getName());
-            inputFrom.setText(currentTour.getForm().getCityId());
-            inputTo.setText(currentTour.getTo().getCityId());
-            inputImage.setText(currentTour.getRouteImage().getImageId());
+            inputFrom.setText(currentTour.getForm().getCityID());
+            inputTo.setText(currentTour.getTo().getCityID());
+            inputImage.setText(currentTour.getRouteImage().getImageID());
             inputTransporter.setText(currentTour.getTransporter().toString());
             inputDescription.setText(currentTour.getDescription());
             inputDistance.setText(""+currentTour.getDistance());
@@ -328,7 +328,7 @@ public class MainControl {
     private void updateTour(){
         Tour currentTour = tourDaoImpl.getItemById(inputTourID.getId());
         Tour newTour = Tour.builder()
-                .tourId(inputTourID.getText())
+                .tourID(inputTourID.getText())
                 .name(inputName.getText())
                 .form(cityDaoImpl.getItemById(inputFrom.getText()))
                 .to(cityDaoImpl.getItemById(inputTo.getText()))

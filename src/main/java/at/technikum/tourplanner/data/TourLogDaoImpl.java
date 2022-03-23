@@ -1,7 +1,6 @@
 package at.technikum.tourplanner.data;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
-import at.technikum.tourplanner.database.DaoPattern;
 import at.technikum.tourplanner.model.TourLog;
 import at.technikum.tourplanner.utils.TextColor;
 
@@ -27,7 +26,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         try {
             if (result.next()) {
                 TourLog tourLog = TourLog.builder()
-                        .tourLogId(result.getString("tourLogId"))
+                        .tourLogID(result.getString("tourLogId"))
                         .build();
 
                 this.closeStatement();
@@ -60,15 +59,15 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         if (item == null) {
             return null;
         }
-        if(getItemById(item.getTourLogId()) == null) {
+        if(getItemById(item.getTourLogID()) == null) {
             this.parameter = new String[]{
-                    "" + item.getTourLogId(),
+                    "" + item.getTourLogID(),
             };
 
 
             this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogId\")VALUES(?);", this.parameter);
         }
-        return getItemById(item.getTourLogId());
+        return getItemById(item.getTourLogID());
     }
 
     @Override
@@ -78,7 +77,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         }
 
         this.parameter = new String[]{
-                "" + item.getTourLogId(),
+                "" + item.getTourLogID(),
         };
 
 
@@ -91,7 +90,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         );
 
 
-        return getItemById(item.getTourLogId());
+        return getItemById(item.getTourLogID());
     }
 
     @Override
@@ -100,11 +99,11 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             return false;
         }
 
-        if(getItemById(item.getTourLogId()) == null)
+        if(getItemById(item.getTourLogID()) == null)
         {
             return false;
         }
-        this.parameter = new String[]{item.getTourLogId()};
+        this.parameter = new String[]{item.getTourLogID()};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourLogId\" = ? ;", this.parameter);
         this.closeStatement();
         return true;

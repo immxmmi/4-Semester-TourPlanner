@@ -6,7 +6,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder (toBuilder = true)
+
 public class City {
-    private String cityId;
+
+    private String cityID;
+
     private String name;
+
 }

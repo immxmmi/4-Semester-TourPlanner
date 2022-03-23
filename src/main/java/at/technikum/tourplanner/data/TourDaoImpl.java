@@ -1,7 +1,6 @@
 package at.technikum.tourplanner.data;
 
 import at.technikum.tourplanner.database.AbstractDBTable;
-import at.technikum.tourplanner.database.DaoPattern;
 import at.technikum.tourplanner.model.Tour;
 import at.technikum.tourplanner.model.Transporter;
 import at.technikum.tourplanner.utils.TextColor;
@@ -31,7 +30,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         try {
             if (result.next()) {
                 Tour tour = Tour.builder()
-                        .tourId(result.getString("tourid"))
+                        .tourID(result.getString("tourid"))
                         .name(result.getString("name"))
                         .transporter(Transporter.valueOf(result.getString("transporter")))
                         .form(cityDaoImpl.getItemById(result.getString("from")))
@@ -73,22 +72,22 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         if (item == null) {
             return null;
         }
-        if(getItemById(item.getTourId()) == null) {
+        if(getItemById(item.getTourID()) == null) {
             this.parameter = new String[]{
-                    "" + item.getTourId(),
+                    "" + item.getTourID(),
                     "" + item.getName(),
-                    "" + item.getForm().getCityId(),
-                    "" + item.getTo().getCityId(),
+                    "" + item.getForm().getCityID(),
+                    "" + item.getTo().getCityID(),
                     "" + item.getDistance(),
                     "" + item.getTime(),
                     "" + item.getTransporter(),
-                    "" + item.getRouteImage().getImageId(),
+                    "" + item.getRouteImage().getImageID(),
                     "" + item.getDescription()
             };
 
 
             this.setStatement("INSERT INTO " + this.tableName + " (\"tourId\",name,\"from\",\"to\",\"distance\",\"time\",\"transporter\",\"routeImage\",\"description\")VALUES(?,?,?,?,?,?,?,?,?);", this.parameter);
-            return getItemById(item.getTourId());
+            return getItemById(item.getTourID());
         }
         return null;
     }
@@ -101,13 +100,13 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
         this.parameter = new String[]{
                 "" + item.getName(),
-                "" + item.getForm().getCityId(),
+                "" + item.getForm().getCityID(),
                 "" + item.getDistance(),
                 "" + item.getTime(),
                 "" + item.getTransporter(),
-                "" + item.getRouteImage().getImageId(),
+                "" + item.getRouteImage().getImageID(),
                 "" + item.getDescription(),
-                "" + item.getTourId()
+                "" + item.getTourID()
         };
 
 
@@ -129,7 +128,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         );
 
 
-        return getItemById(item.getTourId());
+        return getItemById(item.getTourID());
     }
 
     @Override
@@ -138,11 +137,11 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
             return false;
         }
 
-        if(getItemById(item.getTourId()) == null)
+        if(getItemById(item.getTourID()) == null)
         {
             return false;
         }
-        this.parameter = new String[]{item.getTourId()};
+        this.parameter = new String[]{item.getTourID()};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourId\" = ? ;", this.parameter);
         this.closeStatement();
         return true;

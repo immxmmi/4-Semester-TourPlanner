@@ -26,7 +26,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
         try {
             if (result.next()) {
                 Image image = Image.builder()
-                        .imageId(result.getString("imageId"))
+                        .imageID(result.getString("imageId"))
                         .name(result.getString("name"))
                         .from(cityDaoImpl.getItemById(result.getString("from")))
                         .to(cityDaoImpl.getItemById(result.getString("to")))
@@ -63,17 +63,17 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
         if (item == null) {
             return null;
         }
-        if(getItemById(item.getImageId()) == null) {
+        if(getItemById(item.getImageID()) == null) {
             this.parameter = new String[]{
-                    "" + item.getImageId(),
+                    "" + item.getImageID(),
                     "" + item.getName(),
-                    "" + item.getFrom().getCityId(),
-                    "" + item.getTo().getCityId(),
+                    "" + item.getFrom().getCityID(),
+                    "" + item.getTo().getCityID(),
                     "" + item.getFilePath()
             };
 
             this.setStatement("INSERT INTO " + this.tableName + " (\"imageId\",\"name\",\"from\",\"to\",\"filePath\")VALUES(?,?,?,?,?);", this.parameter);
-             return getItemById(item.getImageId());
+             return getItemById(item.getImageID());
         }
         return null;
     }
@@ -86,10 +86,10 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
 
         item.getFrom().getName();
         this.parameter = new String[]{
-                "" + item.getImageId(),
+                "" + item.getImageID(),
                 "" + item.getName(),
-                "" + item.getFrom().getCityId(),
-                "" + item.getTo().getCityId(),
+                "" + item.getFrom().getCityID(),
+                "" + item.getTo().getCityID(),
                 "" + item.getFilePath()
         };
 
@@ -105,7 +105,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
         );
 
 
-        return getItemById(item.getImageId());
+        return getItemById(item.getImageID());
     }
 
     @Override
@@ -114,11 +114,11 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
             return false;
         }
 
-        if(getItemById(item.getImageId()) == null)
+        if(getItemById(item.getImageID()) == null)
         {
             return false;
         }
-        this.parameter = new String[]{item.getImageId()};
+        this.parameter = new String[]{item.getImageID()};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"imageId\" = ? ;", this.parameter);
         this.closeStatement();
         return true;

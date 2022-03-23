@@ -9,16 +9,21 @@ import java.util.Date;
 @Builder (toBuilder = true)
 public class TourLog {
 
+    private String tourLogID;
 
-
-    private String tourLogId;
     private Date date;
+
     private Tour tour;
+
     private String report;
+
     private String comment;
+
+    private int totalTime;
+
     @Builder.Default
     private Difficulty difficulty = Difficulty.Normal;
-    private int totalTime;
+
     @Builder.Default
     private Rating rating = Rating.pointDefault;
 

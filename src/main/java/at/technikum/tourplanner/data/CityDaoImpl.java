@@ -26,7 +26,7 @@ public class CityDaoImpl extends AbstractDBTable implements CityDao {
         try {
             if (result.next()) {
                 City city = City.builder()
-                        .cityId(result.getString("cityId"))
+                        .cityID(result.getString("cityId"))
                         .name(result.getString("name"))
                         .build();
 
@@ -59,16 +59,16 @@ public class CityDaoImpl extends AbstractDBTable implements CityDao {
         if (item == null) {
             return null;
         }
-        if(getItemById(item.getCityId()) == null){
+        if(getItemById(item.getCityID()) == null){
             this.parameter = new String[]{
-                    "" + item.getCityId(),
+                    "" + item.getCityID(),
                     "" + item.getName()
             };
 
             this.setStatement("INSERT INTO " + this.tableName + " (\"cityId\",\"name\")VALUES(?,?);", this.parameter);
 
         }
-        return getItemById(item.getCityId());
+        return getItemById(item.getCityID());
     }
 
     @Override
@@ -78,7 +78,7 @@ public class CityDaoImpl extends AbstractDBTable implements CityDao {
         }
 
         this.parameter = new String[]{
-                "" + item.getCityId(),
+                "" + item.getCityID(),
         };
 
 
@@ -91,7 +91,7 @@ public class CityDaoImpl extends AbstractDBTable implements CityDao {
         );
 
 
-        return getItemById(item.getCityId());
+        return getItemById(item.getCityID());
     }
 
     @Override
@@ -100,11 +100,11 @@ public class CityDaoImpl extends AbstractDBTable implements CityDao {
             return false;
         }
 
-        if(getItemById(item.getCityId()) == null)
+        if(getItemById(item.getCityID()) == null)
         {
             return false;
         }
-        this.parameter = new String[]{item.getCityId()};
+        this.parameter = new String[]{item.getCityID()};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"cityId\" = ? ;", this.parameter);
         this.closeStatement();
         return true;

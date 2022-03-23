@@ -7,31 +7,31 @@ import at.technikum.tourplanner.data.TourDaoImpl;
 import at.technikum.tourplanner.model.Image;
 import at.technikum.tourplanner.model.Tour;
 
-public class ImageServiceImpl {
+public class ImageServiceImpl implements ImageService{
     private ImageDao imageDao;
     {
         imageDao = new ImageDaoImpl();
     }
 
     @Override
-    public Boolean saveTour(Image image) {
+    public Boolean saveImage(Image image) {
         if(imageDao.insert(image) != null){
             return true;}
         return false;
     }
 
     @Override
-    public Boolean deleteTour(Image image) {
+    public Boolean deleteImage(Image image) {
         return imageDao.delete(image);
     }
 
     @Override
-    public Tour getTour(String tourID) {
-        return imageDao.getItemById(tourID);
+    public Image getImage(String imageID) {
+        return imageDao.getItemById(imageID);
     }
 
     @Override
-    public Tour updateTour(Image image) {
+    public Image updateImage(Image image) {
         return imageDao.update(image);
     }
 }

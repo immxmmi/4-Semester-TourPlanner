@@ -5,6 +5,7 @@ import at.technikum.tourplanner.data.TourDaoImpl;
 import at.technikum.tourplanner.model.Tour;
 
 public class TourServiceImpl implements TourService{
+
     private TourDao tourDao;
     {
         tourDao = new TourDaoImpl();
@@ -31,4 +32,5 @@ public class TourServiceImpl implements TourService{
     public Tour updateTour(Tour tour) {
         return tourDao.update(tour);
     }
+
 }
