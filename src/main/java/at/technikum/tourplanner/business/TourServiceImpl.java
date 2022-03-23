@@ -1,8 +1,8 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.data.TourDao;
-import at.technikum.tourplanner.data.TourDaoImpl;
-import at.technikum.tourplanner.model.Tour;
+import at.technikum.tourplanner.database.dao.TourDao;
+import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
+import at.technikum.tourplanner.models.Tour;
 
 public class TourServiceImpl implements TourService{
 

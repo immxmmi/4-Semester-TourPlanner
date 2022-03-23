@@ -1,7 +1,6 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.model.City;
-import at.technikum.tourplanner.model.Tour;
+import at.technikum.tourplanner.models.City;
 
 public interface CityService {
     Boolean saveCity(City city);

@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.model;
+package at.technikum.tourplanner.models;
 
 import lombok.*;
 

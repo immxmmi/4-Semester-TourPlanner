@@ -1,8 +1,9 @@
-package at.technikum.tourplanner.data;
+package at.technikum.tourplanner.database.sqlServer;
 
-import at.technikum.tourplanner.database.AbstractDBTable;
-import at.technikum.tourplanner.model.Tour;
-import at.technikum.tourplanner.model.Transporter;
+import at.technikum.tourplanner.database.common.AbstractDBTable;
+import at.technikum.tourplanner.database.dao.TourDao;
+import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.Transporter;
 import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.ResultSet;

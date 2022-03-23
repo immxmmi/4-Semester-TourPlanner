@@ -1,7 +1,6 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.model.Image;
-import at.technikum.tourplanner.model.Tour;
+import at.technikum.tourplanner.models.Image;
 
 public interface ImageService {
 

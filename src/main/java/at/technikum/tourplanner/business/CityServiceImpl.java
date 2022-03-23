@@ -1,10 +1,8 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.data.CityDao;
-import at.technikum.tourplanner.data.CityDaoImpl;
-import at.technikum.tourplanner.data.ImageDao;
-import at.technikum.tourplanner.data.ImageDaoImpl;
-import at.technikum.tourplanner.model.City;
+import at.technikum.tourplanner.database.dao.CityDao;
+import at.technikum.tourplanner.database.sqlServer.CityDaoImpl;
+import at.technikum.tourplanner.models.City;
 
 public class CityServiceImpl implements CityService{
 

@@ -1,12 +1,12 @@
 package at.technikum.tourplanner.views;
 
-import at.technikum.tourplanner.data.CityDaoImpl;
-import at.technikum.tourplanner.data.ImageDaoImpl;
-import at.technikum.tourplanner.data.TourDaoImpl;
-import at.technikum.tourplanner.model.City;
-import at.technikum.tourplanner.model.Image;
-import at.technikum.tourplanner.model.Tour;
-import at.technikum.tourplanner.model.Transporter;
+import at.technikum.tourplanner.database.sqlServer.CityDaoImpl;
+import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
+import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
+import at.technikum.tourplanner.models.City;
+import at.technikum.tourplanner.models.Image;
+import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.Transporter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

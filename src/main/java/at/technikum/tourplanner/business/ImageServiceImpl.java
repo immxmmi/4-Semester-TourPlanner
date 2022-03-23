@@ -1,11 +1,8 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.data.ImageDao;
-import at.technikum.tourplanner.data.ImageDaoImpl;
-import at.technikum.tourplanner.data.TourDao;
-import at.technikum.tourplanner.data.TourDaoImpl;
-import at.technikum.tourplanner.model.Image;
-import at.technikum.tourplanner.model.Tour;
+import at.technikum.tourplanner.database.dao.ImageDao;
+import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
+import at.technikum.tourplanner.models.Image;
 
 public class ImageServiceImpl implements ImageService{
     private ImageDao imageDao;

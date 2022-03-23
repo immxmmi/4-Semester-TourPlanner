@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.model.Tour;
+import at.technikum.tourplanner.models.Tour;
 
 public interface TourService {
 
