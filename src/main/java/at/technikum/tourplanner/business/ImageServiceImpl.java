@@ -18,9 +18,10 @@ public class ImageServiceImpl implements ImageService{
     }
 
     @Override
-    public Boolean deleteImage(Image image) {
-        return imageDao.delete(image);
+    public Boolean deleteImage(String imageID) {
+        return imageDao.delete(imageID);
     }
+
 
     @Override
     public Image getImage(String imageID) {

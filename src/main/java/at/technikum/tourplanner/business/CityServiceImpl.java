@@ -19,9 +19,10 @@ public class CityServiceImpl implements CityService{
     }
 
     @Override
-    public Boolean deleteCity(City city) {
-            return  cityDao.delete(city);
+    public Boolean deleteCity(String cityID) {
+        return  cityDao.delete(cityID);
     }
+
 
     @Override
     public City getCity(String cityID) {

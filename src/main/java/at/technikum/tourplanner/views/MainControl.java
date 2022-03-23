@@ -89,9 +89,7 @@ public class MainControl {
     @FXML
     private void deleteImage(){
 
-        Image currentImage = imageService.getImage(inputImageId.getText());
-
-        if(imageService.deleteImage(currentImage)) {
+        if(imageService.deleteImage(inputImageId.getText())) {
             imageStatus.setText("OK!");
             imageStatus.setTextFill(Paint.valueOf("#13e452"));
         }
@@ -145,8 +143,6 @@ public class MainControl {
     }
 
 
-
-
     // CITY MODEL
     @FXML
     private Label cityStatus;
@@ -172,13 +168,10 @@ public class MainControl {
             cityStatus.setText("ERROR");
             cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
     }
-
     @FXML
     private void deleteCity(){
 
-        City currentCity = cityService.getCity(inputCityId.getText());
-
-        if(cityService.deleteCity(currentCity)) {
+        if(cityService.deleteCity(inputCityId.getText())) {
             cityStatus.setText("OK!");
             cityStatus.setTextFill(Paint.valueOf("#13e452"));
         }
@@ -186,7 +179,6 @@ public class MainControl {
         cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
 
     }
-
     @FXML
     private void getCity(){
 
@@ -279,15 +271,12 @@ public class MainControl {
     @FXML
     private void deleteTour(){
 
-        Tour currentTour = tourService.getTour(inputTourID.getText());
-
-        if(tourService.saveTour(currentTour)) {
+        if(tourService.deleteTour(inputTourID.getText())) {
             tourStatus.setText("OK!");
             tourStatus.setTextFill(Paint.valueOf("#13e452"));
         }
         tourStatus.setText("ERROR");
         tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
-
 
     }
 

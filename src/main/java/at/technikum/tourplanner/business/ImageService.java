@@ -6,7 +6,7 @@ public interface ImageService {
 
     Boolean saveImage(Image image);
 
-    Boolean deleteImage(Image image);
+    Boolean deleteImage(String imageID);
 
     Image getImage(String imageID);
 

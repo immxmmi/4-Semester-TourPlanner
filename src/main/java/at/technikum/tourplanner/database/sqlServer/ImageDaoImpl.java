@@ -110,16 +110,9 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
     }
 
     @Override
-    public boolean delete(Image item) {
-        if(item == null){
-            return false;
-        }
+    public boolean delete(String itemID) {
+        this.parameter = new String[]{itemID};
 
-        if(getItemById(item.getImageID()) == null)
-        {
-            return false;
-        }
-        this.parameter = new String[]{item.getImageID()};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"imageId\" = ? ;", this.parameter);
         this.closeStatement();
         return true;

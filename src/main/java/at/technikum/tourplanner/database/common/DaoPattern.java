@@ -12,5 +12,5 @@ public interface DaoPattern<T> {
 
     T update(T item);
 
-    boolean delete(T item);
+    boolean delete(String itemID);
 }

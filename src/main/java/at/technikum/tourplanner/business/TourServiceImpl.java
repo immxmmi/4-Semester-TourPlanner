@@ -19,9 +19,10 @@ public class TourServiceImpl implements TourService{
     }
 
     @Override
-    public Boolean deleteTour(Tour tour) {
-        return tourDao.delete(tour);
+    public Boolean deleteTour(String tourID) {
+        return tourDao.delete(tourID);
     }
+
 
     @Override
     public Tour getTour(String tourID) {

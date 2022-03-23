@@ -20,9 +20,10 @@ public class TourLogServiceImpl implements TourLogService{
     }
 
     @Override
-    public Boolean deleteTourLog(TourLog tourLog) {
-        return tourLogDao.delete(tourLog);
+    public Boolean deleteTourLog(String tourLogID) {
+        return tourLogDao.delete(tourLogID);
     }
+
 
     @Override
     public TourLog getTourLog(String tourLogID) {
