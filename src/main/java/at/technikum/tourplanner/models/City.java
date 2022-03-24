@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder (toBuilder = true)
+@Builder(toBuilder = true)
 
 public class City {
 

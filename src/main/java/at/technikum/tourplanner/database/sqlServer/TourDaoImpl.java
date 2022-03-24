@@ -8,6 +8,8 @@ import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
@@ -16,10 +18,11 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
     /*******************************************************************/
      static ImageDaoImpl imageDaoImpl = new ImageDaoImpl();
      static CityDaoImpl cityDaoImpl = new CityDaoImpl();
+
     public TourDaoImpl(){
         this.tableName = "\"tour\"";
-
     }
+
     /*******************************************************************/
 
 
@@ -138,5 +141,34 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourId\" = ? ;", this.parameter);
         this.closeStatement();
         return true;
+    }
+
+    @Override
+    public ArrayList<Tour> getAllTourOrderByName() {
+
+        ArrayList<Tour> allTour = new ArrayList<>();
+        ArrayList<String> allTourIDs =  new ArrayList<>();
+
+        this.parameter = new String[]{};
+
+        this.setStatement("SELECT  *  FROM \"tour\" ORDER BY \"name\";", this.parameter);
+
+        try{
+
+            while (this.result.next()) {
+
+                allTourIDs.add(result.getString("tourId"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        for (int i = 0; i <= allTourIDs.size(); i++){
+            getItemById(allTourIDs.get(i));
+        }
+
+        return allTour;
     }
 }

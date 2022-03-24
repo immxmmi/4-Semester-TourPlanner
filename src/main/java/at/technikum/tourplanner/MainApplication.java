@@ -1,6 +1,11 @@
 package at.technikum.tourplanner;
 
+import at.technikum.tourplanner.business.TourService;
+import at.technikum.tourplanner.business.TourServiceImpl;
+import at.technikum.tourplanner.database.DBConnect;
 import at.technikum.tourplanner.database.DBConnectImpl;
+import at.technikum.tourplanner.database.dao.TourDao;
+import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,6 +32,11 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
+       // protected Connection connection = DBConnectImpl.getInstance().getConnection(); // BESTEHENDE VERBINDUNG WIRD VERWENDET
+
+        TourService tourService = new TourServiceImpl();
+        System.out.println(tourService.getAllTourOrderByName().get(0));
+
         launch();
     }
 }

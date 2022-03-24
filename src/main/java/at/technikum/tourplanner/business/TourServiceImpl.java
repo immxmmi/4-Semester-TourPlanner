@@ -4,6 +4,9 @@ import at.technikum.tourplanner.database.dao.TourDao;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import at.technikum.tourplanner.models.Tour;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class TourServiceImpl implements TourService{
 
     private TourDao tourDao;
@@ -32,6 +35,11 @@ public class TourServiceImpl implements TourService{
     @Override
     public Tour updateTour(Tour tour) {
         return tourDao.update(tour);
+    }
+
+    @Override
+    public ArrayList<Tour> getAllTourOrderByName() {
+        return tourDao.getAllTourOrderByName();
     }
 
 }
