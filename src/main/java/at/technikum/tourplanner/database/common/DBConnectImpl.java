@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.database.common;
 
+import at.technikum.tourplanner.business.ConfigurationManager;
 import at.technikum.tourplanner.utils.TextColor;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,11 +9,12 @@ import java.sql.SQLException;
 public class DBConnectImpl implements Cloneable, DBConnect {
 
 
-    private String databaseName;
-    private String username;
-    private String password;
-    private String port;
-    private String jdbcURL;
+    private static String databaseName;
+    private static String username;
+    private static String password;
+    private static String port;
+    private static String url;
+    private static String jdbcURL;
     protected Connection connection;
     private static DBConnectImpl instance = null;
 
@@ -49,8 +51,21 @@ public class DBConnectImpl implements Cloneable, DBConnect {
      * DEFAULT CONSTRUCTOR
      **/
     public DBConnectImpl() {
+
+        //this.init();
+
         this("swe2db", "swe2user", "swe2pw", "5432");
     }
+
+    public void init(){
+        this.username = ConfigurationManager.GetConfigPropertyValue("db_username");
+        this.databaseName = ConfigurationManager.GetConfigPropertyValue("db_database");
+        this.url = ConfigurationManager.GetConfigPropertyValue("db_url");
+        this.password = ConfigurationManager.GetConfigPropertyValue("db_password");
+        this.username = ConfigurationManager.GetConfigPropertyValue("db_port");
+        this.jdbcURL = url + port + "/" + databaseName + "";
+    }
+
 
     /**
      * START CONNECTION

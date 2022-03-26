@@ -1,6 +1,5 @@
-package at.technikum.tourplanner.database.common;
+package at.technikum.tourplanner.business;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
