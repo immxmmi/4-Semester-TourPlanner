@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.database;
+package at.technikum.tourplanner.database.common;
 
 import at.technikum.tourplanner.utils.TextColor;
 import java.sql.Connection;

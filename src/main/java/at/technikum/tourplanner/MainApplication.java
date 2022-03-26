@@ -2,17 +2,12 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.TourService;
 import at.technikum.tourplanner.business.TourServiceImpl;
-import at.technikum.tourplanner.database.DBConnect;
-import at.technikum.tourplanner.database.DBConnectImpl;
-import at.technikum.tourplanner.database.dao.TourDao;
-import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 
 public class MainApplication extends Application {
