@@ -32,7 +32,7 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) throws SQLException {
-        log.error("hjgjhghjg");
+        //log.error("hjgjhghjg");
         DBConnect.getInstance().getConnection();
 
 
