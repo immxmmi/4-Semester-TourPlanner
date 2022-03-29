@@ -94,11 +94,4 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         return getItemById(item.getTourLogID());
     }
 
-    @Override
-    public boolean delete(String itemID) {
-        this.parameter = new String[]{itemID};
-        this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourLogId\" = ? ;", this.parameter);
-        this.closeStatement();
-        return true;
-    }
 }

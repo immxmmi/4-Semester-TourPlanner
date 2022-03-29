@@ -136,14 +136,6 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
     }
 
     @Override
-    public boolean delete(String itemID) {
-        this.parameter = new String[]{itemID};
-        this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourId\" = ? ;", this.parameter);
-        this.closeStatement();
-        return true;
-    }
-
-    @Override
     public ArrayList<Tour> getAllTourOrderByName() {
 
         ArrayList<Tour> allTour = new ArrayList<>();

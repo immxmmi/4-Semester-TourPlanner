@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class AbstractDBTable {
 
-    protected Connection connection = DBConnectImpl.getInstance().getConnection(); // BESTEHENDE VERBINDUNG WIRD VERWENDET
+    protected Connection connection = DBConnect.getInstance().getConnection(); // BESTEHENDE VERBINDUNG WIRD VERWENDET
     //protected Connection connection = (Connection) new DBConnectImpl(); // ERSTELLT IMMER EINE NEUE VERBINDUNG
     protected PreparedStatement statement; // STATEMENT --> SQL ABFRAGE
     protected ResultSet result;    // RESULT DER SQL ABFRAGE
@@ -65,4 +65,11 @@ public class AbstractDBTable {
         }
     }
     /*******************************************************************/
+
+    public boolean delete(String itemID) {
+        this.parameter = new String[]{itemID};
+        this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourId\" = ? ;", this.parameter);
+        this.closeStatement();
+        return true;
+    }
 }

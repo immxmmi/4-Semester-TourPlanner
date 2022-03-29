@@ -95,11 +95,5 @@ public class CityDaoImpl extends AbstractDBTable implements CityDao {
         return getItemById(item.getCityID());
     }
 
-    @Override
-    public boolean delete(String itemID) {
-        this.parameter = new String[]{itemID};
-        this.setStatement("DELETE FROM "+this.tableName+" WHERE \"cityId\" = ? ;", this.parameter);
-        this.closeStatement();
-        return true;
-    }
+
 }

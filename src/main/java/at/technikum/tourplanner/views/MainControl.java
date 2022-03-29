@@ -227,7 +227,7 @@ public class MainControl {
     @FXML
     private TextField inputTourID;
     @FXML
-    private TextField inputName;
+    private TextField inputTitle;
     @FXML
     private TextField inputFrom;
     @FXML
@@ -250,7 +250,7 @@ public class MainControl {
 
         Tour newTour = Tour.builder()
                 .tourID(inputTourID.getText())
-                .name(inputName.getText())
+                .name(inputTitle.getText())
                 .form(cityService.getCity(inputFrom.getText()))
                 .to(cityService.getCity(inputTo.getText()))
                 .routeImage(imageService.getImage(inputImage.getText()))
@@ -289,7 +289,7 @@ public class MainControl {
             tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
             inputTourID.setText(currentTour.getTourID());
-            inputName.setText(currentTour.getName());
+            inputTitle.setText(currentTour.getName());
             inputFrom.setText(currentTour.getForm().getCityID());
             inputTo.setText(currentTour.getTo().getCityID());
             inputImage.setText(currentTour.getRouteImage().getImageID());
@@ -307,7 +307,7 @@ public class MainControl {
         Tour currentTour = tourService.getTour(inputTourID.getId());
         Tour newTour = Tour.builder()
                 .tourID(inputTourID.getText())
-                .name(inputName.getText())
+                .name(inputTitle.getText())
                 .form(cityService.getCity(inputFrom.getText()))
                 .to(cityService.getCity(inputTo.getText()))
                 .routeImage(imageService.getImage(inputImage.getId()))
