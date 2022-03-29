@@ -39,7 +39,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.1" level="project" />
     <orderEntry type="library" name="Maven: org.mortbay.jetty:jetty:6.1.25" level="project" />
-    <orderEntry type="library" name="Maven: org.mortbay.jetty:jetty-util:6.1.25" level="project" />
     <orderEntry type="library" name="Maven: org.mortbay.jetty:servlet-api:2.5-20081211" level="project" />
     <orderEntry type="library" name="Maven: c3p0:c3p0:0.9.1.2" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.18" level="project" />
@@ -50,5 +49,7 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-reload4j:2.0.0-alpha7" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:2.0.0-alpha7" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.reload4j:reload4j:1.2.19" level="project" />
+    <orderEntry type="library" name="Maven: org.mortbay.jetty:jetty-util:6.1.25" level="project" />
+    <orderEntry type="library" name="Maven: org.gaixie.json:json:1.0.0" level="project" />
   </component>
 </module>

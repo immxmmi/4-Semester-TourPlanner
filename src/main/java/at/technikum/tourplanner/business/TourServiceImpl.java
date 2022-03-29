@@ -3,9 +3,10 @@ package at.technikum.tourplanner.business;
 import at.technikum.tourplanner.database.dao.TourDao;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.utils.Tools;
+import at.technikum.tourplanner.utils.ToolsImpl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class TourServiceImpl implements TourService{
 
@@ -16,6 +17,19 @@ public class TourServiceImpl implements TourService{
 
     @Override
     public Boolean saveTour(Tour tour) {
+
+        Tools tools = new ToolsImpl();
+        // ID
+        tour.setTourID(tools.hashString(tour.getName()+tour.getDescription()));
+        // City From
+        // City to
+        // distance
+        // time
+        // transporter
+
+        // image
+
+
          if(tourDao.insert(tour) != null){
              return true;}
          return false;
