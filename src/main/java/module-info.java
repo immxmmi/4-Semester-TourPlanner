@@ -11,6 +11,9 @@ module at.technikum.tourplanner {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires lombok;
+    requires org.apache.logging.log4j;
+    requires org.slf4j;
+    requires reload4j;
 
 
     opens at.technikum.tourplanner to javafx.fxml;

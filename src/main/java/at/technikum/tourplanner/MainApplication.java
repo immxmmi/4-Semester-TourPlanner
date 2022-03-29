@@ -5,14 +5,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.sql.SQLException;
 
 
+@Slf4j
 public class MainApplication extends Application {
-
-    //static Logger logger = LogManager.getRootLogger();
 
     static int width = 970;
     static int height = 770;
@@ -33,7 +32,7 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) throws SQLException {
-
+        log.error("hjgjhghjg");
         DBConnect.getInstance().getConnection();
 
 
