@@ -1,22 +1,24 @@
 package at.technikum.tourplanner.business;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class ConfigurationManager {
 
     public static String GetConfigPropertyValue(String propertyName) {
         Properties properties = new Properties();
-        String propertyFileName = "config.properties";
-        InputStream inputStream = ConfigurationManager.class.getClassLoader().getResourceAsStream(propertyFileName);
+        final File initialFile = new File("src/config.properties");
 
+        InputStream inputStream = null;
         try {
-            if (inputStream != null) {
-                properties.load(inputStream);
-                return properties.getProperty(propertyName);
-            }
-        }catch(IOException e){
+
+            inputStream = new DataInputStream(new FileInputStream(initialFile));
+            properties.load(inputStream);
+            return properties.getProperty(propertyName);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

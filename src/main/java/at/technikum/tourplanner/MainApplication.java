@@ -34,10 +34,10 @@ public class MainApplication extends Application {
     public static void main(String[] args) throws SQLException {
 
 
-        System.out.println(ConfigurationManager.GetConfigPropertyValue("db_username"));
-  ///      Connection connect = DBConnectImpl.getInstance().getConnection();
+       // System.out.println(ConfigurationManager.GetConfigPropertyValue("db_username"));
+        Connection connect = DBConnectImpl.getInstance().getConnection();
 
-//        connect.close();
+        //connect.close();
 
 
        // TourService tourService = new TourServiceImpl();

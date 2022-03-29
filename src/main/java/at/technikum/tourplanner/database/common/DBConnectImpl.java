@@ -30,7 +30,7 @@ public class DBConnectImpl implements Cloneable, DBConnect {
     /**
      * CONSTRUCTOR
      **/
-    public DBConnectImpl(String databaseName, String username, String password, String port) {
+    public DBConnectImpl(String url,String databaseName, String username, String password, String port) {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -39,11 +39,12 @@ public class DBConnectImpl implements Cloneable, DBConnect {
             e.printStackTrace();
         }
 
+        this.url = url;
         this.databaseName = databaseName;
         this.username = username;
         this.password = password;
         this.port = port;
-        this.jdbcURL = "jdbc:postgresql://localhost:" + this.port + "/" + this.databaseName + "";
+        this.jdbcURL = this.url + this.port + "/" + this.databaseName + "";
         this.startConnect();
     }
 
@@ -51,19 +52,8 @@ public class DBConnectImpl implements Cloneable, DBConnect {
      * DEFAULT CONSTRUCTOR
      **/
     public DBConnectImpl() {
-
-        //this.init();
-
-        this("swe2db", "swe2user", "swe2pw", "5432");
-    }
-
-    public void init(){
-        this.username = ConfigurationManager.GetConfigPropertyValue("db_username");
-        this.databaseName = ConfigurationManager.GetConfigPropertyValue("db_database");
-        this.url = ConfigurationManager.GetConfigPropertyValue("db_url");
-        this.password = ConfigurationManager.GetConfigPropertyValue("db_password");
-        this.username = ConfigurationManager.GetConfigPropertyValue("db_port");
-        this.jdbcURL = url + port + "/" + databaseName + "";
+       // this("swe2db", "swe2user", "swe2pw", "5432");
+        this(ConfigurationManager.GetConfigPropertyValue("db_url"),ConfigurationManager.GetConfigPropertyValue("db_database"), ConfigurationManager.GetConfigPropertyValue("db_username"), ConfigurationManager.GetConfigPropertyValue("db_password"), ConfigurationManager.GetConfigPropertyValue("db_port"));
     }
 
 
