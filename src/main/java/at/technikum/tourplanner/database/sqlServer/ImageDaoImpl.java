@@ -29,8 +29,10 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                 Image image = Image.builder()
                         .imageID(result.getString("imageId"))
                         .name(result.getString("name"))
-                        .from(cityDaoImpl.getItemById(result.getString("from")))
-                        .to(cityDaoImpl.getItemById(result.getString("to")))
+                       // .from(cityDaoImpl.getItemById(result.getString("from")))
+                        .from(result.getString("from"))
+                        .to(result.getString("to"))
+                       // .to(cityDaoImpl.getItemById(result.getString("to")))
                         .filePath(result.getString("filePath"))
                         .build();
                 this.closeStatement();
@@ -67,8 +69,8 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
             this.parameter = new String[]{
                     "" + item.getImageID(),
                     "" + item.getName(),
-                    "" + item.getFrom().getCityID(),
-                    "" + item.getTo().getCityID(),
+                    "" + item.getFrom(),
+                    "" + item.getTo(),
                     "" + item.getFilePath()
             };
 
@@ -84,12 +86,11 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
             return null;
         }
 
-        item.getFrom().getName();
         this.parameter = new String[]{
                 "" + item.getImageID(),
                 "" + item.getName(),
-                "" + item.getFrom().getCityID(),
-                "" + item.getTo().getCityID(),
+                "" + item.getFrom(),
+                "" + item.getTo(),
                 "" + item.getFilePath()
         };
 

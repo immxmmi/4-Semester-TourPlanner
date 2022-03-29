@@ -4,10 +4,7 @@ import at.technikum.tourplanner.business.CityService;
 import at.technikum.tourplanner.business.ImageService;
 import at.technikum.tourplanner.business.TourLogService;
 import at.technikum.tourplanner.business.TourService;
-import at.technikum.tourplanner.database.sqlServer.CityDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
-import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
-import at.technikum.tourplanner.database.sqlServer.TourLogDaoImpl;
 import at.technikum.tourplanner.models.City;
 import at.technikum.tourplanner.models.Image;
 import at.technikum.tourplanner.models.Tour;
@@ -71,8 +68,8 @@ public class MainControl {
         Image newImage = Image.builder()
                 .imageID(inputImageId.getText())
                 .name(inputImageName.getText())
-                .from(cityService.getCity(inputImageFrom.getText()))
-                .to(cityService.getCity(inputImageTo.getText()))
+                //.from(cityService.getCity(inputImageFrom.getText()))
+               // .to(cityService.getCity(inputImageTo.getText()))
                 .filePath(inputImagePath.getText())
                 .build();
 
@@ -108,8 +105,8 @@ public class MainControl {
         }else{
             inputImageId.setText(currentImage.getImageID());
             inputImageName.setText(currentImage.getName());
-            inputImageFrom.setText(currentImage.getFrom().getCityID());
-            inputImageTo.setText(currentImage.getTo().getCityID());
+            //inputImageFrom.setText(currentImage.getFrom().getCityID());
+            //inputImageTo.setText(currentImage.getTo().getCityID());
             inputImagePath.setText(currentImage.getFilePath());
 
             imageStatus.setText("OK!");
@@ -124,8 +121,8 @@ public class MainControl {
         Image newImage = Image.builder()
                 .imageID(inputImageId.getText())
                 .name(inputImageName.getText())
-                .from(cityService.getCity(inputFrom.getText()))
-                .to(cityService.getCity(inputTo.getText()))
+                //.from(cityService.getCity(inputFrom.getText()))
+                //.to(cityService.getCity(inputTo.getText()))
                 .filePath(inputImagePath.getText())
                 .build();
 

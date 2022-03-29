@@ -14,6 +14,8 @@ module at.technikum.tourplanner {
     requires org.apache.logging.log4j;
     requires org.slf4j;
     requires reload4j;
+    requires java.net.http;
+    requires com.fasterxml.jackson.databind;
 
 
     opens at.technikum.tourplanner to javafx.fxml;

@@ -1,5 +1,7 @@
 package at.technikum.tourplanner.database.fileServer;
 
+import at.technikum.tourplanner.business.ConfigurationManager;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,8 +11,8 @@ import java.nio.file.Paths;
 public class FileAccessImpl implements FileAccess{
     private String root;
 
-    public FileAccessImpl(String root) {
-        this.root = root;
+    public FileAccessImpl() {
+        this.root = ConfigurationManager.GetConfigPropertyValue("root");
     }
 
     private String GetFullPath(String filename){
@@ -22,6 +24,7 @@ public class FileAccessImpl implements FileAccess{
     public File readFile(String filename){
         return new File(GetFullPath(filename));
     }
+
     @Override
     public File writeFile(String filename, byte[] text){
         File currentFile = new File(GetFullPath(filename));

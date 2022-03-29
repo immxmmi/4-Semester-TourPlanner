@@ -1,6 +1,9 @@
 package at.technikum.tourplanner.models;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -10,12 +13,13 @@ public class Image {
 
     private String imageID;
 
-    private String filePath;
+    private String from;
+
+    private String to;
 
     private String name;
 
-    private City from;
+    private byte[] image;
 
-    private City to;
-
+    private String filePath;
 }

@@ -55,14 +55,14 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TextField fx:id="search_input" layoutX="240.0" layoutY="40.0" prefHeight="25.0" prefWidth="587.0" text="Search" />
+      <TextField fx:id="search_input" layoutX="212.0" layoutY="40.0" prefHeight="25.0" prefWidth="615.0" text="Search" />
       <Button fx:id="search_btn" defaultButton="true" layoutX="842.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Submit" textFill="#1e1e1e" />
       <TableView layoutY="27.0" prefHeight="710.0" prefWidth="198.0">
         <columns>
           <TableColumn prefWidth="197.0" text="Tour" />
         </columns>
       </TableView>
-      <ImageView fitHeight="251.0" fitWidth="496.0" layoutX="206.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="254.0" fitWidth="496.0" layoutX="206.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="211.0" layoutY="83.0" prefHeight="25.0" prefWidth="47.0" text="Title:">
          <font>
             <Font name="System Bold" size="14.0" />
