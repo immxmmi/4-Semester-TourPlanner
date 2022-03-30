@@ -11,15 +11,38 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class Image {
 
-    private String imageID;
+    // Image from-to
+    private String imageName;
 
+    // Image size range [170 - 1920]
+    @Builder.Default
+    private int width = 500;
+    @Builder.Default
+    private int height = 500;
+    @Builder.Default
+    private int zoom = 5;
+
+    // start
     private String from;
 
+    // end
     private String to;
 
-    private String name;
+    // Image Download
+    private String downloadURL;
 
+    // Offline
+    @Builder.Default
+    private boolean local = false;
+
+    // Marker
+    @Builder.Default
+    private String defaultMarker = "none";
+
+    //Image in byte
     private byte[] image;
 
-    private String filePath;
+    //Path:  Tour/data/name.jpg
+    @Builder.Default
+    private String filePath="";
 }

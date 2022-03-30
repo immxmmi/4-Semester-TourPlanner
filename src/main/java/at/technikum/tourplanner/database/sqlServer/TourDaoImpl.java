@@ -9,7 +9,6 @@ import at.technikum.tourplanner.utils.TextColor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
@@ -85,7 +84,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                     "" + item.getDistance(),
                     "" + item.getTime(),
                     "" + item.getTransporter(),
-                    "" + item.getRouteImage().getImageID(),
+                    "" + item.getRouteImage().getImageName(),
                     "" + item.getDescription()
             };
 
@@ -108,7 +107,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                 "" + item.getDistance(),
                 "" + item.getTime(),
                 "" + item.getTransporter(),
-                "" + item.getRouteImage().getImageID(),
+                "" + item.getRouteImage().getImageName(),
                 "" + item.getDescription(),
                 "" + item.getTourID()
         };

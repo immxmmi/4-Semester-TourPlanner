@@ -11,16 +11,37 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 public class Route {
-    private String from;
-    private String to;
+
+    // MapQuest - KEY
     private String key;
+
+    // start
+    private String from;
+    // end
+    private String to;
+    //URL - 1 to get the route
     private String urlRoute;
-    private JsonNode body;
-    private String zoom;
+    // route Body  (info)
+    private JsonNode routeBody;
+
+    // ElementFrom routeBody -> distance from - to
     private String distance;
-    private String defaultMarker;
-    private String session;
-    private String size;
+
+    @Builder.Default
+    private String defaultMarker = "none";
+
+    private int zoom;
+    @Builder.Default
+    private String size = "640,480";
+
+    // Elements from routeBody
+    private String sessionID;
     private String boundingBox;
+
+
+    // IMAGE DOWNLOAD LINK
     private String urlMap;
+
+
+
 }

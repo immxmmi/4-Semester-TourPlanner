@@ -1,10 +1,8 @@
 package at.technikum.tourplanner;
 
-import at.technikum.tourplanner.business.MapQuestImpl;
-import at.technikum.tourplanner.database.common.DBConnect;
-import at.technikum.tourplanner.database.fileServer.FileAccess;
-import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
+import at.technikum.tourplanner.business.MapQuestServiceImpl;
 import at.technikum.tourplanner.models.Image;
+import at.technikum.tourplanner.models.Route;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -38,15 +36,20 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) throws SQLException {
         //log.error("hjgjhghjg");
-        DBConnect.getInstance().getConnection();
+       // DBConnect.getInstance().getConnection();
 
-        MapQuestImpl mapQuest = new MapQuestImpl();
+        MapQuestServiceImpl mapQuest = new MapQuestServiceImpl();
 
-        Image image = mapQuest.searchRoute("Berlin","Wien");
+        Image image = Image.builder().build();
+        Route route = mapQuest.searchRoute("Wien", "Berlin");
+        route = mapQuest.setImageSettingsToRoute(route,image);
+        image = mapQuest.copyRouteDataToImage(image,route);
+        System.out.println(image.getDownloadURL());
+        mapQuest.reloadImage(image);
+        System.out.println(image.getDownloadURL());
 
-        FileAccess fileAccess = new FileAccessImpl();
 
-        fileAccess.writeFile("tours/test.jpg", image.getImage());
+
 
 
 

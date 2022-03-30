@@ -1,20 +1,15 @@
 package at.technikum.tourplanner.views;
 
-import at.technikum.tourplanner.business.CityService;
-import at.technikum.tourplanner.business.ImageService;
 import at.technikum.tourplanner.business.TourLogService;
 import at.technikum.tourplanner.business.TourService;
 import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
 import at.technikum.tourplanner.models.City;
 import at.technikum.tourplanner.models.Image;
 import at.technikum.tourplanner.models.Tour;
-import at.technikum.tourplanner.models.Transporter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
-
-import java.sql.Time;
 
 public class MainControl {
 
@@ -22,8 +17,6 @@ public class MainControl {
 
 
     TourService tourService;
-    CityService cityService;
-    ImageService imageService;
     TourLogService tourLogService;
 
 
@@ -31,8 +24,7 @@ public class MainControl {
 
         // routImage
         Image image = Image.builder()
-                .imageID("Image-1")
-                .name("Wien-Berlin")
+                .imageName("Wien-Berlin")
                 .filePath("/root")
                 .build();
 
@@ -66,14 +58,13 @@ public class MainControl {
     private void insertImage(){
 
         Image newImage = Image.builder()
-                .imageID(inputImageId.getText())
-                .name(inputImageName.getText())
+                .imageName(inputImageId.getText())
                 //.from(cityService.getCity(inputImageFrom.getText()))
                // .to(cityService.getCity(inputImageTo.getText()))
                 .filePath(inputImagePath.getText())
                 .build();
 
-        if(imageService.saveImage(newImage)) {
+        if(false) {
             imageStatus.setText("OK!");
             imageStatus.setTextFill(Paint.valueOf("#13e452"));
         }
@@ -86,7 +77,7 @@ public class MainControl {
     @FXML
     private void deleteImage(){
 
-        if(imageService.deleteImage(inputImageId.getText())) {
+        if(false) {
             imageStatus.setText("OK!");
             imageStatus.setTextFill(Paint.valueOf("#13e452"));
         }
@@ -97,17 +88,17 @@ public class MainControl {
 
     @FXML
     private void getImage(){
-        Image currentImage = imageService.getImage(inputImageId.getText());
 
-        if(currentImage == null){
+
+        if(true){
             imageStatus.setText("ERROR");
             imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            inputImageId.setText(currentImage.getImageID());
-            inputImageName.setText(currentImage.getName());
+            inputImageId.setText("false");
+            inputImageName.setText("false");
             //inputImageFrom.setText(currentImage.getFrom().getCityID());
             //inputImageTo.setText(currentImage.getTo().getCityID());
-            inputImagePath.setText(currentImage.getFilePath());
+           // inputImagePath.setText(currentImage.getFilePath());
 
             imageStatus.setText("OK!");
             imageStatus.setTextFill(Paint.valueOf("#13e452"));
@@ -117,10 +108,9 @@ public class MainControl {
 
     @FXML
     private void updateImage(){
-        Image currentImage = imageService.getImage(inputImageId.getText());
+
         Image newImage = Image.builder()
-                .imageID(inputImageId.getText())
-                .name(inputImageName.getText())
+                .imageName(inputImageName.getText())
                 //.from(cityService.getCity(inputFrom.getText()))
                 //.to(cityService.getCity(inputTo.getText()))
                 .filePath(inputImagePath.getText())
@@ -128,11 +118,10 @@ public class MainControl {
 
 
 
-        if(currentImage == null){
+        if(true){
             imageStatus.setText("ERROR");
             imageStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            imageService.updateImage(newImage);
             imageStatus.setText("OK!");
             imageStatus.setTextFill(Paint.valueOf("#13e452"));
         }
@@ -158,20 +147,20 @@ public class MainControl {
                 .name(inputCityId.getText())
                 .build();
 
-        if(cityService.saveCity(newCity)) {
+        //if(cityService.saveCity(newCity)) {
             cityStatus.setText("OK!");
             cityStatus.setTextFill(Paint.valueOf("#13e452"));
-        }
+       // }
             cityStatus.setText("ERROR");
             cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
     }
     @FXML
     private void deleteCity(){
 
-        if(cityService.deleteCity(inputCityId.getText())) {
+      //  if(cityService.deleteCity(inputCityId.getText())) {
             cityStatus.setText("OK!");
             cityStatus.setTextFill(Paint.valueOf("#13e452"));
-        }
+        //}
         cityStatus.setText("ERROR");
         cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
 
@@ -179,38 +168,38 @@ public class MainControl {
     @FXML
     private void getCity(){
 
-        City currentCity = cityService.getCity(inputCityId.getText());
+       // City currentCity = cityService.getCity(inputCityId.getText());
 
-        if(currentCity == null){
+ //       if(currentCity == null){
             cityStatus.setText("ERROR");
             cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
-            inputCityId.setText(currentCity.getCityID());
-            inputCityName.setText(currentCity.getName());
+   //     }else{
+     //       inputCityId.setText(currentCity.getCityID());
+       //     inputCityName.setText(currentCity.getName());
 
             cityStatus.setText("OK!");
             cityStatus.setTextFill(Paint.valueOf("#13e452"));
-        }
+        //}
 
     }
 
     @FXML
     private void updateCity(){
-        City currentCity = cityService.getCity(inputCityId.getText());
-        City newCity = City.builder()
-                .cityID(inputCityName.getText())
-                .name(inputCityId.getText())
-                .build();
+       //City currentCity = cityService.getCity(inputCityId.getText());
+       //City newCity = City.builder()
+       //        .cityID(inputCityName.getText())
+       //        .name(inputCityId.getText())
+       //        .build();
 
 
-        if(currentCity == null){
-            cityStatus.setText("ERROR");
-            cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
-            cityService.updateCity(newCity);
-            cityStatus.setText("OK!");
-            cityStatus.setTextFill(Paint.valueOf("#13e452"));
-        }
+       //if(currentCity == null){
+       //    cityStatus.setText("ERROR");
+       //    cityStatus.setTextFill(Paint.valueOf("#e44f4f"));
+       //}else{
+       //    cityService.updateCity(newCity);
+       //    cityStatus.setText("OK!");
+       //    cityStatus.setTextFill(Paint.valueOf("#13e452"));
+       //}
 
     }
 
@@ -245,25 +234,25 @@ public class MainControl {
     @FXML
     private void insertTour(){
 
-        Tour newTour = Tour.builder()
-                .tourID(inputTourID.getText())
-                .name(inputTitle.getText())
-                .form(cityService.getCity(inputFrom.getText()))
-                .to(cityService.getCity(inputTo.getText()))
-                .routeImage(imageService.getImage(inputImage.getText()))
-                .transporter(Transporter.valueOf(inputTransporter.getText()))
-                .description(inputDescription.getText())
-                .distance(10)
-                .time(new Time(2,3,4))
-                .build();
-
-        if(tourService.saveTour(newTour)) {
-            tourStatus.setText("OK!");
-            tourStatus.setTextFill(Paint.valueOf("#13e452"));
-        }
-        tourStatus.setText("ERROR");
-        tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
-
+      //  Tour newTour = Tour.builder()
+      //          .tourID(inputTourID.getText())
+      //          .name(inputTitle.getText())
+      //          .form(cityService.getCity(inputFrom.getText()))
+      //          .to(cityService.getCity(inputTo.getText()))
+      //          .routeImage(imageService.getImage(inputImage.getText()))
+      //          .transporter(Transporter.valueOf(inputTransporter.getText()))
+      //          .description(inputDescription.getText())
+      //          .distance(10)
+      //          .time(new Time(2,3,4))
+      //          .build();
+//
+      //  if(tourService.saveTour(newTour)) {
+      //      tourStatus.setText("OK!");
+      //      tourStatus.setTextFill(Paint.valueOf("#13e452"));
+      //  }
+      //  tourStatus.setText("ERROR");
+      //  tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
+//
     }
     @FXML
     private void deleteTour(){
@@ -285,44 +274,42 @@ public class MainControl {
             tourStatus.setText("ERROR");
             tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
         }else{
-            inputTourID.setText(currentTour.getTourID());
-            inputTitle.setText(currentTour.getName());
-            inputFrom.setText(currentTour.getForm().getCityID());
-            inputTo.setText(currentTour.getTo().getCityID());
-            inputImage.setText(currentTour.getRouteImage().getImageID());
-            inputTransporter.setText(currentTour.getTransporter().toString());
-            inputDescription.setText(currentTour.getDescription());
-            inputDistance.setText(""+currentTour.getDistance());
-            inputTime.setText("TIME");
-            tourStatus.setText("OK!");
-            tourStatus.setTextFill(Paint.valueOf("#13e452"));
-        }
+           // inputTourID.setText(currentTour.getTourID());
+           // inputTitle.setText(currentTour.getName());
+           // inputFrom.setText(currentTour.getForm().getCityID());
+           // inputTo.setText(currentTour.getTo().getCityID());
+           // inputImage.setText(currentTour.getRouteImage().getImageID());
+           // inputTransporter.setText(currentTour.getTransporter().toString());
+           // inputDescription.setText(currentTour.getDescription());
+           // inputDistance.setText(""+currentTour.getDistance());
+           // inputTime.setText("TIME");
+           // tourStatus.setText("OK!");
+           // tourStatus.setTextFill(Paint.valueOf("#13e452"));
+        }//
 
     }
     @FXML
-    private void updateTour(){
-        Tour currentTour = tourService.getTour(inputTourID.getId());
-        Tour newTour = Tour.builder()
-                .tourID(inputTourID.getText())
-                .name(inputTitle.getText())
-                .form(cityService.getCity(inputFrom.getText()))
-                .to(cityService.getCity(inputTo.getText()))
-                .routeImage(imageService.getImage(inputImage.getId()))
-                .transporter(Transporter.valueOf(inputTransporter.getText()))
-                .description(inputDescription.getText())
-                .distance(Integer.parseInt(inputDistance.getText()))
-                .build();
+    private void updateTour() {
+        // Tour currentTour = tourService.getTour(inputTourID.getId());
+        // Tour newTour = Tour.builder()
+        //  .tourID(inputTourID.getText())
+        //  .name(inputTitle.getText())
+        //  .form(cityService.getCity(inputFrom.getText()))
+        //  .to(cityService.getCity(inputTo.getText()))
+        //  .routeImage(imageService.getImage(inputImage.getId()))
+        //  .transporter(Transporter.valueOf(inputTransporter.getText()))
+        //  .description(inputDescription.getText())
+        //  .distance(Integer.parseInt(inputDistance.getText()))
+        //  .build();
+//
 
-
-        if(currentTour == null){
-            tourStatus.setText("ERROR");
-            tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
-            tourService.updateTour(newTour);
-            tourStatus.setText("OK!");
-            tourStatus.setTextFill(Paint.valueOf("#13e452"));
-        }
-
+        //   if(currentTour == null){
+        //       tourStatus.setText("ERROR");
+        //       tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
+        //   }else{
+        //       tourService.updateTour(newTour);
+        //       tourStatus.setText("OK!");
+        //       tourStatus.setTextFill(Paint.valueOf("#13e452"));
     }
 
 }
