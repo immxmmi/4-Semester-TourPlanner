@@ -96,13 +96,13 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public Image copyRouteDataToImage(Image currentImage, Route currentRoute){
         String filename = currentRoute.getFrom()+"-"+currentRoute.getTo();
-        currentImage.setImageName(filename);
-        currentImage.setImage(loadRouteImage(currentRoute));
+        currentImage.setImageID(filename);
+        currentImage.setImageData(loadRouteImage(currentRoute));
         currentImage.setDownloadURL(currentRoute.getUrlMap());
         currentImage.setFrom(currentRoute.getFrom());
         currentImage.setTo(currentRoute.getTo());
-        currentImage.setFilePath("tours/"+currentImage.getImageName()+".jpg");
-        // imageDao.insert(currentImage);
+        currentImage.setFilePath("tours/"+currentImage.getImageID()+".jpg");
+        //imageDao.insert(currentImage);
 
         return currentImage;
     }
@@ -132,7 +132,7 @@ public class MapQuestServiceImpl implements MapQuestService {
 
         FileAccess fileAccess = new FileAccessImpl();
         fileAccess.readFile(currentImage.getFilePath());
-        fileAccess.writeFile(currentImage.getFilePath(), currentImage.getImage());
+        fileAccess.writeFile(currentImage.getFilePath(), currentImage.getImageData());
         
         currentImage.setLocal(true);
        // imageDao.update(currentImage);

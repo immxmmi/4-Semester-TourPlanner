@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Image {
 
     // Image from-to
-    private String imageName;
+    private String imageID;
 
     // Image size range [170 - 1920]
     @Builder.Default
@@ -40,7 +40,7 @@ public class Image {
     private String defaultMarker = "none";
 
     //Image in byte
-    private byte[] image;
+    private byte[] imageData;
 
     //Path:  Tour/data/name.jpg
     @Builder.Default

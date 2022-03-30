@@ -24,7 +24,7 @@ public class MainControl {
 
         // routImage
         Image image = Image.builder()
-                .imageName("Wien-Berlin")
+                .imageID("Wien-Berlin")
                 .filePath("/root")
                 .build();
 
@@ -58,7 +58,7 @@ public class MainControl {
     private void insertImage(){
 
         Image newImage = Image.builder()
-                .imageName(inputImageId.getText())
+                .imageID(inputImageId.getText())
                 //.from(cityService.getCity(inputImageFrom.getText()))
                // .to(cityService.getCity(inputImageTo.getText()))
                 .filePath(inputImagePath.getText())
@@ -110,7 +110,7 @@ public class MainControl {
     private void updateImage(){
 
         Image newImage = Image.builder()
-                .imageName(inputImageName.getText())
+                .imageID(inputImageName.getText())
                 //.from(cityService.getCity(inputFrom.getText()))
                 //.to(cityService.getCity(inputTo.getText()))
                 .filePath(inputImagePath.getText())

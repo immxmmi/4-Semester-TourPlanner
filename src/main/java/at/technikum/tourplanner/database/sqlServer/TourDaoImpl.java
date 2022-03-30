@@ -84,7 +84,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                     "" + item.getDistance(),
                     "" + item.getTime(),
                     "" + item.getTransporter(),
-                    "" + item.getRouteImage().getImageName(),
+                    "" + item.getRouteImage().getImageID(),
                     "" + item.getDescription()
             };
 
@@ -107,7 +107,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                 "" + item.getDistance(),
                 "" + item.getTime(),
                 "" + item.getTransporter(),
-                "" + item.getRouteImage().getImageName(),
+                "" + item.getRouteImage().getImageID(),
                 "" + item.getDescription(),
                 "" + item.getTourID()
         };

@@ -5,6 +5,7 @@ import at.technikum.tourplanner.database.dao.ImageDao;
 import at.technikum.tourplanner.models.Image;
 import at.technikum.tourplanner.utils.TextColor;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -23,15 +24,19 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
     /*******************************************************************/
     @Override
     public Image buildClass(ResultSet result) {
-        CityDaoImpl cityDaoImpl = new CityDaoImpl();
         try {
             if (result.next()) {
                 Image image = Image.builder()
-                        .imageName(result.getString("name"))
-                       // .from(cityDaoImpl.getItemById(result.getString("from")))
+                        .imageID(result.getString("imageID"))
+                        .width(Integer.valueOf(result.getString("width")))
+                        .height(Integer.valueOf(result.getString("height")))
+                        .zoom(Integer.valueOf(result.getString("zoom")))
                         .from(result.getString("from"))
                         .to(result.getString("to"))
-                       // .to(cityDaoImpl.getItemById(result.getString("to")))
+                        .downloadURL(result.getString("downloadURL"))
+                        .local(Boolean.valueOf(result.getString("local")))
+                        .defaultMarker(result.getString("defaultMarker"))
+                        .imageData(result.getString("imageData").getBytes(StandardCharsets.UTF_8))
                         .filePath(result.getString("filePath"))
                         .build();
                 this.closeStatement();
@@ -53,7 +58,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
     public Image getItemById(String itemID) {
         this.parameter = new String[]{itemID};
         this.setStatement(
-                "SELECT * FROM " + this.tableName + " WHERE \"name\" = ? " + ";",
+                "SELECT * FROM " + this.tableName + " WHERE \"imageID\" = ? " + ";",
                 this.parameter
         );
         return buildClass(this.result);
@@ -64,16 +69,35 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
         if (item == null) {
             return null;
         }
-        if (getItemById(item.getImageName()) == null) {
+        if (getItemById(item.getImageID()) == null) {
             this.parameter = new String[]{
-                    "" + item.getImageName(),
+                    "" + item.getImageID(),
+                    "" + item.getWidth(),
+                    "" + item.getHeight(),
+                    "" + item.getZoom(),
                     "" + item.getFrom(),
                     "" + item.getTo(),
+                    "" + item.getDownloadURL(),
+                    "" + item.isLocal(),
+                    "" + item.getDefaultMarker(),
+                    "" + item.getImageData(),
                     "" + item.getFilePath()
             };
 
-            this.setStatement("INSERT INTO " + this.tableName + " (\"name\",\"from\",\"to\",\"filePath\")VALUES(?,?,?,?,?);", this.parameter);
-            return getItemById(item.getImageName());
+            this.setStatement("INSERT INTO " + this.tableName + " (" +
+                    "\"imageID\"," +
+                    "\"width\"," +
+                    "\"height\"," +
+                    "\"zoom\"," +
+                    "\"from\"," +
+                    "\"to\"," +
+                    "\"downloadURL\"," +
+                    "\"local\"," +
+                    "\"defaultMarker\"," +
+                    "\"imageData\"," +
+                    "\"filePath\")" +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?,?);", this.parameter);
+            return getItemById(item.getImageID());
         }
         return null;
     }
@@ -85,26 +109,39 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
         }
 
         this.parameter = new String[]{
-                "" + item.getImageName(),
+                "" + item.getImageID(),
+                "" + item.getWidth(),
+                "" + item.getHeight(),
+                "" + item.getZoom(),
                 "" + item.getFrom(),
                 "" + item.getTo(),
+                "" + item.getDownloadURL(),
+                "" + item.isLocal(),
+                "" + item.getDefaultMarker(),
+                "" + item.getImageData(),
                 "" + item.getFilePath(),
-                "" + item.getImageName()
+                "" + item.getImageID()
         };
 
         this.setStatement(
                 "UPDATE " + this.tableName +
                         " SET " +
-                        "\"name\" = ?" +
+                        "\"imageID\" = ?" +
+                        "\"width\" = ?" +
+                        "\"height\" = ?" +
+                        "\"zoom\" = ?" +
                         "\"from\" = ?" +
                         "\"to\" = ?" +
-                        "\"filePath\" = ?" +
-                        "WHERE \"name\" = ? ;"
-                , this.parameter
-        );
+                        "\"downloadURL\" = ?" +
+                        "\"local\" = ?" +
+                        "\"defaultMarker\" = ?" +
+                        "\"imageData\" = ?" +
+                        "\"filePath\"= ?" +
+                        "WHERE \"imageID\" = ?",
+                this.parameter);
 
 
-        return getItemById(item.getImageName());
+        return getItemById(item.getImageID());
     }
 
 

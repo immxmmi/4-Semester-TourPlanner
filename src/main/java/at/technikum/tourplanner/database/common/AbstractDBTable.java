@@ -42,6 +42,7 @@ public class AbstractDBTable {
                 statement.setString(i + 1, parameter[i]);
             }
             if (statement.execute()) {
+
                 this.result = this.statement.executeQuery();
             }
         } catch (SQLException e) {
