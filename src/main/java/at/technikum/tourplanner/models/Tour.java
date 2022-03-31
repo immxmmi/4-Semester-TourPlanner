@@ -15,9 +15,9 @@ public class Tour {
 
     private String description;
 
-    private City form;
+    private String from;
 
-    private City to;
+    private String to;
 
     private int distance;
 
@@ -32,12 +32,15 @@ public class Tour {
     @Override
     public String toString() {
         return "Tour{" +
-                "tourId='" + tourID + '\'' +
+                "tourID='" + tourID + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", form='" + form.getName() + '\'' +
-                ", to='" + to.getName() + '\'' +
+                ", form='" + from + '\'' +
+                ", to='" + to + '\'' +
                 ", distance=" + distance +
+                ", routeImage=" + routeImage +
+                ", time=" + time +
+                ", transporter=" + transporter +
                 '}';
     }
 }

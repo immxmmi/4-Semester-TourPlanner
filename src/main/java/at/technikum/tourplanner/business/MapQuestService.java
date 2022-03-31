@@ -12,6 +12,8 @@ public interface MapQuestService {
 
     Image copyRouteDataToImage(Image image, Route currentRoute);
 
+    Image saveImageOnline(Image currentImage);
+
     Image downloadImage(Image image);
 
     Image reloadImage(Image image);

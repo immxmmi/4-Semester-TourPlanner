@@ -21,8 +21,10 @@ public class TourServiceImpl implements TourService{
         Tools tools = new ToolsImpl();
         // ID
         tour.setTourID(tools.hashString(tour.getName()+tour.getDescription()));
-        // City From
-        // City to
+        tour.setRouteImage(null);
+        tour.setFrom(tour.getFrom());
+        tour.setTo(tour.getTo());
+
         // distance
         // time
         // transporter

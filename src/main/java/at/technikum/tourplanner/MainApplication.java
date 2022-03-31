@@ -1,8 +1,6 @@
 package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.MapQuestServiceImpl;
-import at.technikum.tourplanner.database.dao.ImageDao;
-import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
 import at.technikum.tourplanner.models.Image;
 import at.technikum.tourplanner.models.Route;
 import javafx.application.Application;
@@ -42,12 +40,16 @@ public class MainApplication extends Application {
 
         MapQuestServiceImpl mapQuest = new MapQuestServiceImpl();
 
-        Image image = Image.builder().build();
-        Route route = mapQuest.searchRoute("Wien", "Berlin");
+        Image image = Image.builder()
+                .build();
+        Route route = mapQuest.searchRoute("Berlin", "Linz");
         route = mapQuest.setImageSettingsToRoute(route,image);
         image = mapQuest.copyRouteDataToImage(image,route);
-        ImageDao imageDao = new ImageDaoImpl();
-        imageDao.insert(image);
+        image = mapQuest.saveImageOnline(image);
+
+
+       // ImageDao imageDao = new ImageDaoImpl();
+
         System.out.println(image.getDownloadURL());
         mapQuest.reloadImage(image);
         System.out.println(image.getDownloadURL());
@@ -59,10 +61,11 @@ public class MainApplication extends Application {
 
 
 
+
        // TourService tourService = new TourServiceImpl();
       //  System.out.println(tourService.getAllTourOrderByName().get(0));
 
-        launch();
+        //launch();
 
     }
 }

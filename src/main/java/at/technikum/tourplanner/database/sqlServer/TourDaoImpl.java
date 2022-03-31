@@ -36,10 +36,10 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                         .tourID(result.getString("tourid"))
                         .name(result.getString("name"))
                         .transporter(Transporter.valueOf(result.getString("transporter")))
-                        .form(cityDaoImpl.getItemById(result.getString("from")))
-                        .to(cityDaoImpl.getItemById(result.getString("to")))
+                        .from(result.getString("from"))
+                        .to(result.getString("to"))
                         .description(result.getString("description"))
-                        .distance(0)
+                        .distance(Integer.valueOf(result.getString("distance")))
                         .time(null)
                         .routeImage(imageDaoImpl.getItemById(result.getString("routeImage")))
                         .build();
@@ -79,8 +79,8 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
             this.parameter = new String[]{
                     "" + item.getTourID(),
                     "" + item.getName(),
-                    "" + item.getForm().getCityID(),
-                    "" + item.getTo().getCityID(),
+                    "" + item.getFrom(),
+                    "" + item.getTo(),
                     "" + item.getDistance(),
                     "" + item.getTime(),
                     "" + item.getTransporter(),
@@ -103,7 +103,8 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
         this.parameter = new String[]{
                 "" + item.getName(),
-                "" + item.getForm().getCityID(),
+                "" + item.getFrom(),
+                "" + item.getTo(),
                 "" + item.getDistance(),
                 "" + item.getTime(),
                 "" + item.getTransporter(),
@@ -118,6 +119,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                         " SET " +
                         "\"name\" = ?, " +
                         "\"from\" = ? " +
+                        "\"to\" = ? " +
                         "distance = ? " +
                         "\"time\" = ? " +
                         "\"transporter\" = ? " +

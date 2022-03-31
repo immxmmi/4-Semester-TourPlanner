@@ -102,10 +102,14 @@ public class MapQuestServiceImpl implements MapQuestService {
         currentImage.setFrom(currentRoute.getFrom());
         currentImage.setTo(currentRoute.getTo());
         currentImage.setFilePath("tours/"+currentImage.getImageID()+".jpg");
-        //imageDao.insert(currentImage);
-
         return currentImage;
     }
+
+    @Override
+    public Image saveImageOnline(Image currentImage){
+        return imageDao.insert(currentImage);
+    }
+
     private byte[] loadRouteImage(Route currentRoute){
 
         HttpClient client = HttpClient.newHttpClient();
