@@ -11,7 +11,7 @@ public class Tour {
 
     private String tourID;
 
-    private String name;
+    private String title;
 
     private String description;
 

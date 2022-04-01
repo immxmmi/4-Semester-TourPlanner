@@ -18,7 +18,7 @@ public class Image {
     @Builder.Default
     private int width = 500;
     @Builder.Default
-    private int height = 500;
+    private int height = 280;
     @Builder.Default
     private int zoom = 5;
 

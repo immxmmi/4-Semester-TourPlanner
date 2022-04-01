@@ -2,6 +2,8 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.TourService;
 import at.technikum.tourplanner.business.TourServiceImpl;
+import at.technikum.tourplanner.database.dao.TourDao;
+import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.application.Application;
@@ -38,6 +40,7 @@ public class MainApplication extends Application {
 
     public static void main(String[] args) throws SQLException {
 
+        TourDao tourDao = new TourDaoImpl();
         TourService tourService = new TourServiceImpl();
         // GUI ABFRAGE:
         // - NAME
@@ -47,15 +50,20 @@ public class MainApplication extends Application {
         // - DESCRIPTION
         // - TIME
         Tour tour = Tour.builder()
-                .name("Alt")
-                .from("Berlin")
-                .to("Salzburg")
+                .title("TEST")
+                .from("Hamburg")
+                .to("Kairo")
                 .transporter(Transporter.Walk)
-                .description("hallo")
+                .description("nasdssdsdme")
                 .time(Time.valueOf("10:12:22"))
                 .build();
-        System.out.println(tourService.saveTour(tour));
-        System.out.println(tourService.searchTourByName("me").toString());
+
+
+        tour = tourService.saveTour(tour);
+   //     System.out.println(tour.getRouteImage().getDownloadURL());
+       // FileAccess fileAccess = new FileAccessImpl();
+      //  fileAccess.writeFile("newone.jpg",image.getImageData());
+       // System.out.println(tourService.searchTourByName("me").toString());
 
 
 

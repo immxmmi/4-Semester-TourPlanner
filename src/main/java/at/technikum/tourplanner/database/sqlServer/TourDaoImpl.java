@@ -35,7 +35,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
             if (result.next()) {
                 Tour tour = Tour.builder()
                         .tourID(result.getString("tourid"))
-                        .name(result.getString("name"))
+                        .title(result.getString("name"))
                         .transporter(Transporter.valueOf(result.getString("transporter")))
                         .from(result.getString("from"))
                         .to(result.getString("to"))
@@ -90,7 +90,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         if(getItemById(item.getTourID()) == null) {
             this.parameter = new String[]{
                     "" + item.getTourID(),
-                    "" + item.getName(),
+                    "" + item.getTitle(),
                     "" + item.getFrom(),
                     "" + item.getTo(),
                     "" + item.getDistance(),
@@ -114,7 +114,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         }
 
         this.parameter = new String[]{
-                "" + item.getName(),
+                "" + item.getTitle(),
                 "" + item.getFrom(),
                 "" + item.getTo(),
                 "" + item.getDistance(),

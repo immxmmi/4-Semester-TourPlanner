@@ -20,7 +20,7 @@ public class TourServiceImpl implements TourService{
     }
 
     @Override
-    public Boolean saveTour(Tour tour) {
+    public Tour saveTour(Tour tour) {
 
         // GUI ABFRAGE:
         // - NAME
@@ -35,21 +35,21 @@ public class TourServiceImpl implements TourService{
         ImageDao imageDao = new ImageDaoImpl();
 
         //ID - HASH-WERT
-        tour.setTourID(tools.hashString(tour.getName()+tour.getDescription()));
+        tour.setTourID(tools.hashString(tour.getTitle()+tour.getDescription()));
 
         // ROUTE
         Route currentRoute = mapQuestService.startRoute(tour.getFrom(),tour.getTo());
 
-        if(currentRoute == null){return false;}
+        if(currentRoute == null){return null;}
         // IMAGE
         Image image = imageDao.getItemById(currentRoute.getImage().getImageID());
-        if(image == null){return false;}
+        if(image == null){return null;}
         tour.setRouteImage(image);
         tour.setDistance(currentRoute.getDistance());
 
 
-         if(tourDao.insert(tour) != null){return true;}
-         return false;
+       //  if(tourDao.insert(tour) != null){return true;}
+         return tourDao.insert(tour);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class TourServiceImpl implements TourService{
     @Override
     public Tour searchTourByName(String tourName) {
         MapQuestService mapQuestService  = new MapQuestServiceImpl();
-        mapQuestService.reloadImage(tourDao.getItemByName(tourName).getRouteImage());
+       // mapQuestService.reloadImage(tourDao.getItemByName(tourName).getRouteImage());
        return tourDao.getItemByName(tourName);
     }
 

@@ -62,13 +62,13 @@
           <TableColumn prefWidth="197.0" text="Tour" />
         </columns>
       </TableView>
-      <ImageView fitHeight="254.0" fitWidth="496.0" layoutX="206.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="211.0" layoutY="83.0" prefHeight="25.0" prefWidth="47.0" text="Title:">
+      <ImageView fitHeight="280.0" fitWidth="500.0" layoutX="212.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="212.0" layoutY="77.0" prefHeight="25.0" prefWidth="47.0" text="Title:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="263.0" layoutY="83.0" prefHeight="25.0" prefWidth="107.0" text="Text">
+      <Label layoutX="265.0" layoutY="77.0" prefHeight="25.0" prefWidth="107.0" text="Text">
          <font>
             <Font size="14.0" />
          </font>
@@ -94,23 +94,21 @@
                         <Label layoutX="10.0" layoutY="64.0" text="From:" />
                         <Label layoutX="10.0" layoutY="111.0" text="Transport:" />
                         <Label layoutX="5.0" layoutY="157.0" text="Description:" />
-                        <Label layoutX="309.0" layoutY="64.0" text="To:" />
-                        <TextField fx:id="to_insert_input" layoutX="357.0" layoutY="60.0" prefHeight="25.0" prefWidth="140.0" />
+                        <Label layoutX="272.0" layoutY="64.0" text="To:" />
+                        <TextField fx:id="to_insert_input" layoutX="325.0" layoutY="60.0" prefHeight="25.0" prefWidth="140.0" />
                         <ChoiceBox fx:id="transport_insert_select" layoutX="83.0" layoutY="107.0" prefWidth="150.0" />
                         <TextArea fx:id="description_insert_input" layoutX="86.0" layoutY="157.0" prefHeight="142.0" prefWidth="416.0" />
-                        <TextField fx:id="distance_insert_input" layoutX="357.0" layoutY="107.0" prefHeight="25.0" prefWidth="139.0" />
-                        <Label layoutX="293.0" layoutY="111.0" text="Distance:" />
-                        <Label layoutX="303.0" layoutY="17.0" text="Time:" />
+                        <Label layoutX="265.0" layoutY="15.0" text="Time:" />
                         <Button fx:id="insert_btn" defaultButton="true" layoutX="577.0" layoutY="198.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="87.0" text="Submit" textFill="#1e1e1e" />
-                        <Spinner fx:id="hour_insert_input" layoutX="341.0" layoutY="13.0" prefHeight="25.0" prefWidth="63.0" />
-                        <Spinner fx:id="min_insert_input" layoutX="427.0" layoutY="13.0" prefHeight="25.0" prefWidth="75.0" />
-                        <Label layoutX="410.0" layoutY="15.0" text="h" />
-                        <Label layoutX="516.0" layoutY="17.0" text="min" />
+                        <Spinner fx:id="hour_insert_input" layoutX="325.0" layoutY="11.0" prefHeight="25.0" prefWidth="63.0" />
+                        <Label layoutX="392.0" layoutY="17.0" text="h" />
+                        <Label layoutX="481.0" layoutY="17.0" text="min" />
                         <Label fx:id="tourStatus" alignment="CENTER" contentDisplay="CENTER" layoutX="553.0" layoutY="29.0" prefHeight="105.0" prefWidth="136.0" text="STATUS">
                            <font>
                               <Font name="Leelawadee UI Bold" size="32.0" />
                            </font>
                         </Label>
+                        <Spinner fx:id="hour_insert_input1" layoutX="410.0" layoutY="13.0" prefHeight="25.0" prefWidth="63.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -143,6 +141,6 @@
          </font>
       </Label>
       <Button fx:id="delete_btn" layoutX="827.0" layoutY="310.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="Delete" textFill="#4d4d4d" />
-      <Button fx:id="update_btn" layoutX="710.0" layoutY="310.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="Update" textFill="#4d4d4d" />
+      <Button fx:id="update_btn" layoutX="727.0" layoutY="310.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="Update" textFill="#4d4d4d" />
    </children>
 </Pane>

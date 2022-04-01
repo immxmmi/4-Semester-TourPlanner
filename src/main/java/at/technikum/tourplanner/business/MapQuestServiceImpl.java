@@ -76,7 +76,7 @@ public class MapQuestServiceImpl implements MapQuestService {
     //3. SET IMAGE SETTINGS
     @Override
     public Route setImageSettingsToRoute(Route currentRoute){
-        currentRoute.setSize("&size="+currentRoute.getImage().getHeight()+","+ currentRoute.getImage().getWidth());
+        currentRoute.setSize("&size="+currentRoute.getImage().getWidth()+","+ currentRoute.getImage().getHeight());
         currentRoute.setUrlMap(createDownloadURL(currentRoute,true,false));
         return currentRoute;
     }
@@ -98,7 +98,10 @@ public class MapQuestServiceImpl implements MapQuestService {
         currentRoute.getImage().setDownloadURL(currentRoute.getUrlMap());
         currentRoute.getImage().setFrom(currentRoute.getFrom());
         currentRoute.getImage().setTo(currentRoute.getTo());
-        currentRoute.getImage().setFilePath("tours/"+filename+".jpg");
+        currentRoute.getImage().setFilePath("C:\\TourPlanner\\Data"+filename+".jpg");
+
+FileAccess fileAccess = new FileAccessImpl();
+fileAccess.writeFile(filename+".jpg",currentRoute.getImage().getImageData());
         return currentRoute;
     }
 
