@@ -57,10 +57,11 @@ public class TourServiceImpl implements TourService{
         return tourDao.delete(tourID);
     }
 
-
     @Override
-    public Tour getTour(String tourID) {
-       return tourDao.getItemById(tourID);
+    public Tour searchTourByName(String tourName) {
+        MapQuestService mapQuestService  = new MapQuestServiceImpl();
+        mapQuestService.reloadImage(tourDao.getItemByName(tourName).getRouteImage());
+       return tourDao.getItemByName(tourName);
     }
 
     @Override

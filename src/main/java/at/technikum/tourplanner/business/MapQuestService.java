@@ -14,6 +14,9 @@ public interface MapQuestService {
 
     Image saveImageOnline(Image currentImage);
 
+    //6 UPDATE
+    Image updateImageOnline(Image currentImage);
+
     // CREATE IMAGE
     Route startRoute(String from, String to);
 

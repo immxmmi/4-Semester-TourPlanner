@@ -10,5 +10,8 @@ import java.util.Collection;
 public interface TourDao extends DaoPattern<Tour> {
 
     boolean delete(String itemID);
+
+    Tour getItemByName(String name);
+
     ArrayList<Tour> getAllTourOrderByName();
 }

@@ -11,7 +11,7 @@ public interface TourService {
 
     Boolean deleteTour(String tourID);
 
-    Tour getTour(String tourID);
+    Tour searchTourByName(String tourName);
 
     Tour updateTour(Tour tour);
 

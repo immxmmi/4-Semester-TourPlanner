@@ -268,12 +268,12 @@ public class MainControl {
 
     @FXML
     private void getTour(){
-        Tour currentTour = tourService.getTour(inputTourID.getText());
+       // Tour currentTour = tourService.getTour(inputTourID.getText());
 
-        if(currentTour == null){
+       // if(currentTour == null){
             tourStatus.setText("ERROR");
             tourStatus.setTextFill(Paint.valueOf("#e44f4f"));
-        }else{
+       // }else{
            // inputTourID.setText(currentTour.getTourID());
            // inputTitle.setText(currentTour.getName());
            // inputFrom.setText(currentTour.getForm().getCityID());
@@ -285,7 +285,7 @@ public class MainControl {
            // inputTime.setText("TIME");
            // tourStatus.setText("OK!");
            // tourStatus.setTextFill(Paint.valueOf("#13e452"));
-        }//
+       //  }//
 
     }
     @FXML

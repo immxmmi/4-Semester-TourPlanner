@@ -128,6 +128,13 @@ public class MapQuestServiceImpl implements MapQuestService {
         return null;
     }
 
+    //6 UPDATE
+    @Override
+    public Image updateImageOnline(Image currentImage){
+        return imageDao.update(currentImage);
+    }
+
+
 
     // CREATE IMAGE
     @Override
@@ -169,13 +176,22 @@ public class MapQuestServiceImpl implements MapQuestService {
     //7. RELODE IMAGE
     @Override
     public Image reloadImage(Image image){
-        Route currentRoute = this.searchRoute(image.getFrom(),image.getTo());
-       // currentRoute = setImageSettingsToRoute(currentRoute,image);
-       // image = copyRouteDataToImage(image,currentRoute);
 
-       // imageDao.update(image);
+        System.out.println(image);
+        Route route = this.searchRoute(image.getFrom(), image.getTo());
+        route.setImage(image);
+        if(route == null){return null;}
+        route = this.setImageSettingsToRoute(route);
+        route = this.copyRouteDataToImage(route);
+
+
+        Image newImage = this.updateImageOnline(route.getImage());
+
+        System.out.println(newImage);
+
+        image = imageDao.getItemById(image.getImageID());
+
         //downloadImage(image);
-        //return imageDao.getItemById(image.getImageName());
         return image;
     }
 }

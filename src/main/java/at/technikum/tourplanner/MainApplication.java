@@ -1,10 +1,7 @@
 package at.technikum.tourplanner;
 
-import at.technikum.tourplanner.business.MapQuestServiceImpl;
 import at.technikum.tourplanner.business.TourService;
 import at.technikum.tourplanner.business.TourServiceImpl;
-import at.technikum.tourplanner.models.Image;
-import at.technikum.tourplanner.models.Route;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.application.Application;
@@ -50,15 +47,15 @@ public class MainApplication extends Application {
         // - DESCRIPTION
         // - TIME
         Tour tour = Tour.builder()
-                .name("test")
-                .from("Wien")
+                .name("Alt")
+                .from("Berlin")
                 .to("Salzburg")
                 .transporter(Transporter.Walk)
                 .description("hallo")
                 .time(Time.valueOf("10:12:22"))
                 .build();
         System.out.println(tourService.saveTour(tour));
-
+        System.out.println(tourService.searchTourByName("me").toString());
 
 
 

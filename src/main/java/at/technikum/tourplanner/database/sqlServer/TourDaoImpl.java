@@ -8,6 +8,7 @@ import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class TourDaoImpl extends AbstractDBTable implements TourDao {
@@ -40,7 +41,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                         .to(result.getString("to"))
                         .description(result.getString("description"))
                         .distance(Double.valueOf(result.getString("distance")))
-                        .time(null)
+                        .time(Time.valueOf(result.getString("time")))
                         .routeImage(imageDaoImpl.getItemById(result.getString("routeImage")))
                         .build();
 
@@ -69,6 +70,17 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         );
         return buildClass(this.result);
     }
+
+    @Override
+    public Tour getItemByName(String name) {
+        this.parameter = new String[]{name};
+        this.setStatement(
+                "SELECT * FROM " + this.tableName + " WHERE \"name\" = ? " + ";",
+                this.parameter
+        );
+        return buildClass(this.result);
+    }
+
 
     @Override
     public Tour insert(Tour item) {
