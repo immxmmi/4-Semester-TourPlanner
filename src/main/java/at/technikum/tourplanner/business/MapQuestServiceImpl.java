@@ -94,14 +94,11 @@ public class MapQuestServiceImpl implements MapQuestService {
     public Route copyRouteDataToImage(Route currentRoute){
         String filename = currentRoute.getFrom()+"-"+currentRoute.getTo();
         currentRoute.getImage().setImageID(filename);
-        currentRoute.getImage().setImageData(loadRouteImage(currentRoute));
         currentRoute.getImage().setDownloadURL(currentRoute.getUrlMap());
         currentRoute.getImage().setFrom(currentRoute.getFrom());
         currentRoute.getImage().setTo(currentRoute.getTo());
         currentRoute.getImage().setFilePath("C:\\TourPlanner\\Data"+filename+".jpg");
 
-FileAccess fileAccess = new FileAccessImpl();
-fileAccess.writeFile(filename+".jpg",currentRoute.getImage().getImageData());
         return currentRoute;
     }
 
@@ -112,11 +109,11 @@ fileAccess.writeFile(filename+".jpg",currentRoute.getImage().getImageData());
     }
 
     //5.2 LOAD IMAGE FROM INTERNET
-    private byte[] loadRouteImage(Route currentRoute){
+    private byte[] loadRouteImage(String downloadURL){
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(currentRoute.getUrlMap()))
+                .uri(URI.create(downloadURL))
                 .build();
         try {
             HttpResponse<byte[]> response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
@@ -166,11 +163,8 @@ fileAccess.writeFile(filename+".jpg",currentRoute.getImage().getImageData());
     // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten
     @Override
     public Image downloadImage(Image currentImage){
-
         FileAccess fileAccess = new FileAccessImpl();
-        fileAccess.readFile(currentImage.getFilePath());
-        fileAccess.writeFile(currentImage.getFilePath(), currentImage.getImageData());
-        
+        fileAccess.writeFile(currentImage.getImageID()+".jpg",loadRouteImage(currentImage.getDownloadURL()));
         currentImage.setLocal(true);
        // imageDao.update(currentImage);
         return currentImage;

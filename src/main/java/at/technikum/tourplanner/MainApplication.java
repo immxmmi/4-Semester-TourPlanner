@@ -1,5 +1,7 @@
 package at.technikum.tourplanner;
 
+import at.technikum.tourplanner.business.MapQuestService;
+import at.technikum.tourplanner.business.MapQuestServiceImpl;
 import at.technikum.tourplanner.business.TourService;
 import at.technikum.tourplanner.business.TourServiceImpl;
 import at.technikum.tourplanner.database.dao.TourDao;
@@ -42,6 +44,7 @@ public class MainApplication extends Application {
 
         TourDao tourDao = new TourDaoImpl();
         TourService tourService = new TourServiceImpl();
+        MapQuestService mapQuestService = new MapQuestServiceImpl();
         // GUI ABFRAGE:
         // - NAME
         // - FROM
@@ -50,16 +53,17 @@ public class MainApplication extends Application {
         // - DESCRIPTION
         // - TIME
         Tour tour = Tour.builder()
-                .title("TEST")
-                .from("Hamburg")
-                .to("Kairo")
+                .title("ewfrwrewrwerw")
+                .from("Wien")
+                .to("Tirol")
                 .transporter(Transporter.Walk)
-                .description("nasdssdsdme")
+                .description("adsqwdqwdqdwwerwrewqd")
                 .time(Time.valueOf("10:12:22"))
                 .build();
 
 
         tour = tourService.saveTour(tour);
+        mapQuestService.downloadImage(tour.getRouteImage());
    //     System.out.println(tour.getRouteImage().getDownloadURL());
        // FileAccess fileAccess = new FileAccessImpl();
       //  fileAccess.writeFile("newone.jpg",image.getImageData());

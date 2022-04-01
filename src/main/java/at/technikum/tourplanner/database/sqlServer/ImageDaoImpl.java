@@ -5,7 +5,6 @@ import at.technikum.tourplanner.database.dao.ImageDao;
 import at.technikum.tourplanner.models.Image;
 import at.technikum.tourplanner.utils.TextColor;
 
-import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -36,7 +35,6 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                         .downloadURL(result.getString("downloadURL"))
                         .local(Boolean.valueOf(result.getString("local")))
                         .defaultMarker(result.getString("defaultMarker"))
-                        .imageData(result.getString("imageData").getBytes(StandardCharsets.UTF_8))
                         .filePath(result.getString("filePath"))
                         .build();
                 this.closeStatement();
@@ -80,7 +78,6 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                     "" + item.getDownloadURL(),
                     "" + item.isLocal(),
                     "" + item.getDefaultMarker(),
-                    "" + item.getImageData(),
                     "" + item.getFilePath()
             };
 
@@ -94,9 +91,8 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                     "\"downloadURL\"," +
                     "\"local\"," +
                     "\"defaultMarker\"," +
-                    "\"imageData\"," +
                     "\"filePath\")" +
-                    "VALUES(?,?,?,?,?,?,?,?,?,?,?);", this.parameter);
+                    "VALUES(?,?,?,?,?,?,?,?,?,?);", this.parameter);
             return getItemById(item.getImageID());
         }
         return null;
@@ -118,7 +114,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                 "" + item.getDownloadURL(),
                 "" + item.isLocal(),
                 "" + item.getDefaultMarker(),
-                "" + item.getImageData(),
+
                 "" + item.getFilePath(),
                 "" + item.getImageID()
         };
@@ -135,7 +131,6 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                         "\"downloadURL\" = ?" +
                         "\"local\" = ?" +
                         "\"defaultMarker\" = ?" +
-                        "\"imageData\" = ?" +
                         "\"filePath\"= ?" +
                         "WHERE \"imageID\" = ?",
                 this.parameter);

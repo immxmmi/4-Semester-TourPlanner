@@ -39,9 +39,6 @@ public class Image {
     @Builder.Default
     private String defaultMarker = "none";
 
-    //Image in byte
-    private byte[] imageData;
-
     //Path:  Tour/data/name.jpg
     @Builder.Default
     private String filePath="";
