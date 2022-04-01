@@ -1,8 +1,12 @@
 package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.MapQuestServiceImpl;
+import at.technikum.tourplanner.business.TourService;
+import at.technikum.tourplanner.business.TourServiceImpl;
 import at.technikum.tourplanner.models.Image;
 import at.technikum.tourplanner.models.Route;
+import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.Transporter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Time;
 
 
 @Slf4j
@@ -35,35 +40,27 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) throws SQLException {
-        //log.error("hjgjhghjg");
-       // DBConnect.getInstance().getConnection();
 
-        MapQuestServiceImpl mapQuest = new MapQuestServiceImpl();
-
-        Image image = Image.builder()
+        TourService tourService = new TourServiceImpl();
+        // GUI ABFRAGE:
+        // - NAME
+        // - FROM
+        // - TO
+        // - TRANSPORTER
+        // - DESCRIPTION
+        // - TIME
+        Tour tour = Tour.builder()
+                .name("test")
+                .from("Wien")
+                .to("Salzburg")
+                .transporter(Transporter.Walk)
+                .description("hallo")
+                .time(Time.valueOf("10:12:22"))
                 .build();
-        Route route = mapQuest.searchRoute("Berlin", "Linz");
-        route = mapQuest.setImageSettingsToRoute(route,image);
-        image = mapQuest.copyRouteDataToImage(image,route);
-        image = mapQuest.saveImageOnline(image);
-
-
-       // ImageDao imageDao = new ImageDaoImpl();
-
-        System.out.println(image.getDownloadURL());
-        mapQuest.reloadImage(image);
-        System.out.println(image.getDownloadURL());
+        System.out.println(tourService.saveTour(tour));
 
 
 
-
-
-
-
-
-
-       // TourService tourService = new TourServiceImpl();
-      //  System.out.println(tourService.getAllTourOrderByName().get(0));
 
         //launch();
 

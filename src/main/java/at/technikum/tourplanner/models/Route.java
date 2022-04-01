@@ -25,12 +25,8 @@ public class Route {
     private JsonNode routeBody;
 
     // ElementFrom routeBody -> distance from - to
-    private String distance;
+    private double distance;
 
-    @Builder.Default
-    private String defaultMarker = "none";
-
-    private int zoom;
     @Builder.Default
     private String size = "640,480";
 
@@ -41,6 +37,11 @@ public class Route {
 
     // IMAGE DOWNLOAD LINK
     private String urlMap;
+
+    //IMAGE
+    @Builder.Default
+    private Image image = Image.builder().build();
+
 
 
 

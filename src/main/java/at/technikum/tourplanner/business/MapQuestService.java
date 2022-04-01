@@ -8,11 +8,14 @@ public interface MapQuestService {
     Route searchRoute(String from, String to);
 
     //3. SET IMAGE SETTINGS
-    Route setImageSettingsToRoute(Route currentRoute, Image emptyImage);
+    Route setImageSettingsToRoute(Route currentRoute);
 
-    Image copyRouteDataToImage(Image image, Route currentRoute);
+    Route copyRouteDataToImage(Route currentRoute);
 
     Image saveImageOnline(Image currentImage);
+
+    // CREATE IMAGE
+    Route startRoute(String from, String to);
 
     Image downloadImage(Image image);
 

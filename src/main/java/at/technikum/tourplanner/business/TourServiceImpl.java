@@ -1,7 +1,11 @@
 package at.technikum.tourplanner.business;
 
+import at.technikum.tourplanner.database.dao.ImageDao;
 import at.technikum.tourplanner.database.dao.TourDao;
+import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
+import at.technikum.tourplanner.models.Image;
+import at.technikum.tourplanner.models.Route;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.utils.Tools;
 import at.technikum.tourplanner.utils.ToolsImpl;
@@ -18,22 +22,33 @@ public class TourServiceImpl implements TourService{
     @Override
     public Boolean saveTour(Tour tour) {
 
+        // GUI ABFRAGE:
+        // - NAME
+        // - FROM
+        // - TO
+        // - TRANSPORTER
+        // - DESCRIPTION
+        // - TIME
+
         Tools tools = new ToolsImpl();
-        // ID
+        MapQuestService mapQuestService = new MapQuestServiceImpl();
+        ImageDao imageDao = new ImageDaoImpl();
+
+        //ID - HASH-WERT
         tour.setTourID(tools.hashString(tour.getName()+tour.getDescription()));
-        tour.setRouteImage(null);
-        tour.setFrom(tour.getFrom());
-        tour.setTo(tour.getTo());
 
-        // distance
-        // time
-        // transporter
+        // ROUTE
+        Route currentRoute = mapQuestService.startRoute(tour.getFrom(),tour.getTo());
 
-        // image
+        if(currentRoute == null){return false;}
+        // IMAGE
+        Image image = imageDao.getItemById(currentRoute.getImage().getImageID());
+        if(image == null){return false;}
+        tour.setRouteImage(image);
+        tour.setDistance(currentRoute.getDistance());
 
 
-         if(tourDao.insert(tour) != null){
-             return true;}
+         if(tourDao.insert(tour) != null){return true;}
          return false;
     }
 

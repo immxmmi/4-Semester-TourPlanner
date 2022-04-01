@@ -39,7 +39,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                         .from(result.getString("from"))
                         .to(result.getString("to"))
                         .description(result.getString("description"))
-                        .distance(Integer.valueOf(result.getString("distance")))
+                        .distance(Double.valueOf(result.getString("distance")))
                         .time(null)
                         .routeImage(imageDaoImpl.getItemById(result.getString("routeImage")))
                         .build();

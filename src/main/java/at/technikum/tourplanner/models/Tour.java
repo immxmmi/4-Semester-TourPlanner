@@ -19,7 +19,7 @@ public class Tour {
 
     private String to;
 
-    private int distance;
+    private double distance;
 
     private Image routeImage;
 
@@ -29,18 +29,5 @@ public class Tour {
     private Transporter transporter = Transporter.Walk;
 
 
-    @Override
-    public String toString() {
-        return "Tour{" +
-                "tourID='" + tourID + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", form='" + from + '\'' +
-                ", to='" + to + '\'' +
-                ", distance=" + distance +
-                ", routeImage=" + routeImage +
-                ", time=" + time +
-                ", transporter=" + transporter +
-                '}';
-    }
+
 }

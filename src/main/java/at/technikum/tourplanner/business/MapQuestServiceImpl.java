@@ -40,7 +40,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         try {
             String body = response.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
             currentRoute.setRouteBody(mapper.readTree(body).get("route"));
-
+            currentRoute.setDistance(Double.valueOf(mapper.readTree(body).get("route").get("distance").toString()));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -59,7 +59,6 @@ public class MapQuestServiceImpl implements MapQuestService {
         currentRoute.setBoundingBox("&boundingBox="+lr + "," + ul);
 
         return currentRoute;
-
     }
 
     //2. BUILD
@@ -76,10 +75,8 @@ public class MapQuestServiceImpl implements MapQuestService {
 
     //3. SET IMAGE SETTINGS
     @Override
-    public Route setImageSettingsToRoute(Route currentRoute, Image emptyImage){
-        currentRoute.setSize("&size="+emptyImage.getHeight()+","+ emptyImage.getWidth());
-        currentRoute.setZoom(emptyImage.getZoom());
-        currentRoute.setDefaultMarker(emptyImage.getDefaultMarker());
+    public Route setImageSettingsToRoute(Route currentRoute){
+        currentRoute.setSize("&size="+currentRoute.getImage().getHeight()+","+ currentRoute.getImage().getWidth());
         currentRoute.setUrlMap(createDownloadURL(currentRoute,true,false));
         return currentRoute;
     }
@@ -87,29 +84,31 @@ public class MapQuestServiceImpl implements MapQuestService {
     //4. CREATE URL
     private String createDownloadURL(Route currentRoute,boolean defaultMarker,boolean zoom){
         String params = currentRoute.getKey()+currentRoute.getSize()+currentRoute.getSessionID();
-                if(!defaultMarker){params+=currentRoute.getDefaultMarker();}
-                if(zoom){params+=currentRoute.getZoom();}
+                if(!defaultMarker){params+=currentRoute.getImage().getDefaultMarker();}
+                if(zoom){params+=currentRoute.getImage().getZoom();}
         return "http://www.mapquestapi.com/staticmap/v5/map"+params;
     }
 
     //5. SAVE DATA TO IMAGE
     @Override
-    public Image copyRouteDataToImage(Image currentImage, Route currentRoute){
+    public Route copyRouteDataToImage(Route currentRoute){
         String filename = currentRoute.getFrom()+"-"+currentRoute.getTo();
-        currentImage.setImageID(filename);
-        currentImage.setImageData(loadRouteImage(currentRoute));
-        currentImage.setDownloadURL(currentRoute.getUrlMap());
-        currentImage.setFrom(currentRoute.getFrom());
-        currentImage.setTo(currentRoute.getTo());
-        currentImage.setFilePath("tours/"+currentImage.getImageID()+".jpg");
-        return currentImage;
+        currentRoute.getImage().setImageID(filename);
+        currentRoute.getImage().setImageData(loadRouteImage(currentRoute));
+        currentRoute.getImage().setDownloadURL(currentRoute.getUrlMap());
+        currentRoute.getImage().setFrom(currentRoute.getFrom());
+        currentRoute.getImage().setTo(currentRoute.getTo());
+        currentRoute.getImage().setFilePath("tours/"+filename+".jpg");
+        return currentRoute;
     }
 
+    //5.1 SAVE IMAGE
     @Override
     public Image saveImageOnline(Image currentImage){
         return imageDao.insert(currentImage);
     }
 
+    //5.2 LOAD IMAGE FROM INTERNET
     private byte[] loadRouteImage(Route currentRoute){
 
         HttpClient client = HttpClient.newHttpClient();
@@ -129,6 +128,30 @@ public class MapQuestServiceImpl implements MapQuestService {
         return null;
     }
 
+
+    // CREATE IMAGE
+    @Override
+    public Route startRoute(String from, String to){
+        Image imageSettings = Image.builder()
+                //.height()
+                //.width()
+                //.zoom()
+                //.defaultMarker()
+                .build();
+        // SET ROUTE + IMAGE
+        Route route = this.searchRoute(from,to);
+        route.setImage(imageSettings);
+        if(route == null){return null;}
+        route = this.setImageSettingsToRoute(route);
+        route = this.copyRouteDataToImage(route);
+        this.saveImageOnline(route.getImage());
+        return route;
+    }
+
+
+
+
+
     //6. DOWNLOAD IMAGE 
     // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten
     @Override
@@ -147,8 +170,8 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public Image reloadImage(Image image){
         Route currentRoute = this.searchRoute(image.getFrom(),image.getTo());
-        currentRoute = setImageSettingsToRoute(currentRoute,image);
-        image = copyRouteDataToImage(image,currentRoute);
+       // currentRoute = setImageSettingsToRoute(currentRoute,image);
+       // image = copyRouteDataToImage(image,currentRoute);
 
        // imageDao.update(image);
         //downloadImage(image);
