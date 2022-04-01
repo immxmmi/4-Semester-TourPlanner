@@ -53,11 +53,11 @@ public class MainApplication extends Application {
         // - DESCRIPTION
         // - TIME
         Tour tour = Tour.builder()
-                .title("ewfrwrewrwerw")
-                .from("Wien")
-                .to("Tirol")
+                .title("wwwwwwwwwwwwwwwwwwwww")
+                .from("Linz")
+                .to("Berlin")
                 .transporter(Transporter.Walk)
-                .description("adsqwdqwdqdwwerwrewqd")
+                .description("wwwwwww essfw")
                 .time(Time.valueOf("10:12:22"))
                 .build();
 
@@ -71,7 +71,7 @@ public class MainApplication extends Application {
 
 
 
-        //launch();
+        launch();
 
     }
 }

@@ -166,7 +166,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         FileAccess fileAccess = new FileAccessImpl();
         fileAccess.writeFile(currentImage.getImageID()+".jpg",loadRouteImage(currentImage.getDownloadURL()));
         currentImage.setLocal(true);
-       // imageDao.update(currentImage);
+      //  imageDao.update(currentImage);
         return currentImage;
     }
 

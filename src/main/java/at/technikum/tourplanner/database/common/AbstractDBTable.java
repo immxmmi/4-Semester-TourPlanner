@@ -43,7 +43,7 @@ public class AbstractDBTable {
             }
             if (statement.execute()) {
 
-                this.result = this.statement.executeQuery();
+               this.result = this.statement.executeQuery();
             }
         } catch (SQLException e) {
             //e.printStackTrace();

@@ -48,6 +48,7 @@ public class TourServiceImpl implements TourService{
         tour.setDistance(currentRoute.getDistance());
 
 
+
        //  if(tourDao.insert(tour) != null){return true;}
          return tourDao.insert(tour);
     }

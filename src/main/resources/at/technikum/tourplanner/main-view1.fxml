@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="at.technikum.tourplanner.views.MainControl">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="955.0">
         <menus>
@@ -62,7 +62,7 @@
           <TableColumn prefWidth="197.0" text="Tour" />
         </columns>
       </TableView>
-      <ImageView fitHeight="280.0" fitWidth="500.0" layoutX="212.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView_test" fitHeight="280.0" fitWidth="500.0" layoutX="212.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="212.0" layoutY="77.0" prefHeight="25.0" prefWidth="47.0" text="Title:">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -141,6 +141,6 @@
          </font>
       </Label>
       <Button fx:id="delete_btn" layoutX="827.0" layoutY="310.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="Delete" textFill="#4d4d4d" />
-      <Button fx:id="update_btn" layoutX="727.0" layoutY="310.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="Update" textFill="#4d4d4d" />
+      <Button fx:id="update_btn" onAction="#test1"  layoutX="727.0" layoutY="310.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="UpdateTEST" textFill="#4d4d4d" />
    </children>
 </Pane>

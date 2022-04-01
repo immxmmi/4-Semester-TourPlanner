@@ -114,7 +114,6 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                 "" + item.getDownloadURL(),
                 "" + item.isLocal(),
                 "" + item.getDefaultMarker(),
-
                 "" + item.getFilePath(),
                 "" + item.getImageID()
         };
@@ -123,7 +122,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                 "UPDATE " + this.tableName +
                         " SET " +
                         "\"imageID\" = ?" +
-                        "\"width\" = ?" +
+                        "width = ?" +
                         "\"height\" = ?" +
                         "\"zoom\" = ?" +
                         "\"from\" = ?" +
