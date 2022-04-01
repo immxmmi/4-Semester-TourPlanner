@@ -33,23 +33,6 @@ alter table city
 create unique index city_cityid_uindex
     on city ("cityId");
 
-create table image
-(
-    "imageId"  text not null
-        constraint image_pk
-            primary key,
-    name       text not null,
-    "from"     text not null,
-    "to"       text not null,
-    "filePath" text not null
-);
-
-alter table image
-    owner to swe2user;
-
-create unique index image_imageid_uindex
-    on image ("imageId");
-
 create table "tourLog"
 (
     "tourLogId" text not null
@@ -62,5 +45,28 @@ alter table "tourLog"
 
 create unique index tourlog_tourlogid_uindex
     on "tourLog" ("tourLogId");
+
+create table image
+(
+    "imageID"       text not null
+        constraint image_pk
+            primary key,
+    width           text not null,
+    height          text not null,
+    zoom            text,
+    "from"          text not null,
+    "to"            text not null,
+    "downloadURL"   text,
+    local           text not null,
+    "defaultMarker" text not null,
+    "imageData"     text,
+    "filePath"      text
+);
+
+alter table image
+    owner to swe2user;
+
+create unique index image_imagename_uindex
+    on image ("imageID");
 
 
