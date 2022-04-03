@@ -1,15 +1,17 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.database.dao.ImageDao;
+import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.fileServer.FileAccess;
 import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
-import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
-import at.technikum.tourplanner.models.Image;
+import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
+import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Route;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.scene.image.Image;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -21,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 public class MapQuestServiceImpl implements MapQuestService {
 
-    private ImageDao imageDao = new ImageDaoImpl();
+    private RouteImageDao routeImageDao = new RouteImageDaoImpl();
 
     // 1. SEARCH
     @Override
@@ -76,7 +78,7 @@ public class MapQuestServiceImpl implements MapQuestService {
     //3. SET IMAGE SETTINGS
     @Override
     public Route setImageSettingsToRoute(Route currentRoute){
-        currentRoute.setSize("&size="+currentRoute.getImage().getWidth()+","+ currentRoute.getImage().getHeight());
+        currentRoute.setSize("&size="+currentRoute.getRouteImage().getWidth()+","+ currentRoute.getRouteImage().getHeight());
         currentRoute.setUrlMap(createDownloadURL(currentRoute,true,false));
         return currentRoute;
     }
@@ -84,8 +86,8 @@ public class MapQuestServiceImpl implements MapQuestService {
     //4. CREATE URL
     private String createDownloadURL(Route currentRoute,boolean defaultMarker,boolean zoom){
         String params = currentRoute.getKey()+currentRoute.getSize()+currentRoute.getSessionID();
-                if(!defaultMarker){params+=currentRoute.getImage().getDefaultMarker();}
-                if(zoom){params+=currentRoute.getImage().getZoom();}
+                if(!defaultMarker){params+=currentRoute.getRouteImage().getDefaultMarker();}
+                if(zoom){params+=currentRoute.getRouteImage().getZoom();}
         return "http://www.mapquestapi.com/staticmap/v5/map"+params;
     }
 
@@ -93,19 +95,19 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public Route copyRouteDataToImage(Route currentRoute){
         String filename = currentRoute.getFrom()+"-"+currentRoute.getTo();
-        currentRoute.getImage().setImageID(filename);
-        currentRoute.getImage().setDownloadURL(currentRoute.getUrlMap());
-        currentRoute.getImage().setFrom(currentRoute.getFrom());
-        currentRoute.getImage().setTo(currentRoute.getTo());
-        currentRoute.getImage().setFilePath("C:\\TourPlanner\\Data"+filename+".jpg");
+        currentRoute.getRouteImage().setImageID(filename);
+        currentRoute.getRouteImage().setDownloadURL(currentRoute.getUrlMap());
+        currentRoute.getRouteImage().setFrom(currentRoute.getFrom());
+        currentRoute.getRouteImage().setTo(currentRoute.getTo());
+        currentRoute.getRouteImage().setFilePath("C:\\TourPlanner\\Data\\"+filename+".jpg");
 
         return currentRoute;
     }
 
     //5.1 SAVE IMAGE
     @Override
-    public Image saveImageOnline(Image currentImage){
-        return imageDao.insert(currentImage);
+    public RouteImage saveImageOnline(RouteImage currentRouteImage){
+        return routeImageDao.insert(currentRouteImage);
     }
 
     //5.2 LOAD IMAGE FROM INTERNET
@@ -130,8 +132,8 @@ public class MapQuestServiceImpl implements MapQuestService {
 
     //6 UPDATE
     @Override
-    public Image updateImageOnline(Image currentImage){
-        return imageDao.update(currentImage);
+    public RouteImage updateImageOnline(RouteImage currentRouteImage){
+        return routeImageDao.update(currentRouteImage);
     }
 
 
@@ -139,7 +141,7 @@ public class MapQuestServiceImpl implements MapQuestService {
     // CREATE IMAGE
     @Override
     public Route startRoute(String from, String to){
-        Image imageSettings = Image.builder()
+        RouteImage routeImageSettings = RouteImage.builder()
                 //.height()
                 //.width()
                 //.zoom()
@@ -147,48 +149,54 @@ public class MapQuestServiceImpl implements MapQuestService {
                 .build();
         // SET ROUTE + IMAGE
         Route route = this.searchRoute(from,to);
-        route.setImage(imageSettings);
+        route.setRouteImage(routeImageSettings);
         if(route == null){return null;}
         route = this.setImageSettingsToRoute(route);
         route = this.copyRouteDataToImage(route);
-        this.saveImageOnline(route.getImage());
+        this.saveImageOnline(route.getRouteImage());
+        downloadImage(route.getRouteImage());
         return route;
     }
 
 
-
+    @Override
+    public Image showRouteImage(RouteImage routeImage){
+        FileAccess fileAccess = new FileAccessImpl();
+        File file = fileAccess.readFile(routeImage.getImageID()+".jpg");
+        return new Image(file.getAbsolutePath());
+    }
 
 
     //6. DOWNLOAD IMAGE 
     // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten
     @Override
-    public Image downloadImage(Image currentImage){
+    public RouteImage downloadImage(RouteImage currentRouteImage){
         FileAccess fileAccess = new FileAccessImpl();
-        fileAccess.writeFile(currentImage.getImageID()+".jpg",loadRouteImage(currentImage.getDownloadURL()));
-        currentImage.setLocal(true);
+        fileAccess.writeFile(currentRouteImage.getImageID()+".jpg",loadRouteImage(currentRouteImage.getDownloadURL()));
+        currentRouteImage.setLocal(true);
       //  imageDao.update(currentImage);
-        return currentImage;
+        return currentRouteImage;
     }
 
     //7. RELODE IMAGE
     @Override
-    public Image reloadImage(Image image){
+    public RouteImage reloadImage(RouteImage routeImage){
 
-        System.out.println(image);
-        Route route = this.searchRoute(image.getFrom(), image.getTo());
-        route.setImage(image);
+        System.out.println(routeImage);
+        Route route = this.searchRoute(routeImage.getFrom(), routeImage.getTo());
+        route.setRouteImage(routeImage);
         if(route == null){return null;}
         route = this.setImageSettingsToRoute(route);
         route = this.copyRouteDataToImage(route);
 
 
-        Image newImage = this.updateImageOnline(route.getImage());
+        RouteImage newRouteImage = this.updateImageOnline(route.getRouteImage());
 
-        System.out.println(newImage);
+        System.out.println(newRouteImage);
 
-        image = imageDao.getItemById(image.getImageID());
+        routeImage = routeImageDao.getItemById(routeImage.getImageID());
 
         //downloadImage(image);
-        return image;
+        return routeImage;
     }
 }

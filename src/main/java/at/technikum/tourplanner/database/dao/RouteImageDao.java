@@ -1,8 +1,8 @@
 package at.technikum.tourplanner.database.dao;
 
 import at.technikum.tourplanner.database.common.DaoPattern;
-import at.technikum.tourplanner.models.Image;
+import at.technikum.tourplanner.models.RouteImage;
 
-public interface ImageDao extends DaoPattern<Image> {
+public interface RouteImageDao extends DaoPattern<RouteImage> {
      boolean delete(String itemID);
 }

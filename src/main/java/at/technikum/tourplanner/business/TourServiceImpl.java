@@ -1,10 +1,10 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.database.dao.ImageDao;
+import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.dao.TourDao;
-import at.technikum.tourplanner.database.sqlServer.ImageDaoImpl;
+import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
-import at.technikum.tourplanner.models.Image;
+import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Route;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.utils.Tools;
@@ -32,7 +32,7 @@ public class TourServiceImpl implements TourService{
 
         Tools tools = new ToolsImpl();
         MapQuestService mapQuestService = new MapQuestServiceImpl();
-        ImageDao imageDao = new ImageDaoImpl();
+        RouteImageDao routeImageDao = new RouteImageDaoImpl();
 
         //ID - HASH-WERT
         tour.setTourID(tools.hashString(tour.getTitle()+tour.getDescription()));
@@ -42,9 +42,9 @@ public class TourServiceImpl implements TourService{
 
         if(currentRoute == null){return null;}
         // IMAGE
-        Image image = imageDao.getItemById(currentRoute.getImage().getImageID());
-        if(image == null){return null;}
-        tour.setRouteImage(image);
+        RouteImage routeImage = routeImageDao.getItemById(currentRoute.getRouteImage().getImageID());
+        if(routeImage == null){return null;}
+        tour.setRouteImage(routeImage);
         tour.setDistance(currentRoute.getDistance());
 
 

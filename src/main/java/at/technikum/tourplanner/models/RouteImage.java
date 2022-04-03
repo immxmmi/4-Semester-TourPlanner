@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.models;
 
+import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class Image {
+public class RouteImage {
 
     // Image from-to
     private String imageID;
@@ -42,4 +43,5 @@ public class Image {
     //Path:  Tour/data/name.jpg
     @Builder.Default
     private String filePath="";
+
 }

@@ -21,7 +21,7 @@ public class Tour {
 
     private double distance;
 
-    private Image routeImage;
+    private RouteImage routeImage;
 
     private Time time;
 

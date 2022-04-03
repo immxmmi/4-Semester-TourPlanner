@@ -16,7 +16,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
-     static ImageDaoImpl imageDaoImpl = new ImageDaoImpl();
+     static RouteImageDaoImpl imageDaoImpl = new RouteImageDaoImpl();
      static CityDaoImpl cityDaoImpl = new CityDaoImpl();
 
     public TourDaoImpl(){

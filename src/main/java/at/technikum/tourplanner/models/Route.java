@@ -40,7 +40,7 @@ public class Route {
 
     //IMAGE
     @Builder.Default
-    private Image image = Image.builder().build();
+    private RouteImage routeImage = RouteImage.builder().build();
 
 
 

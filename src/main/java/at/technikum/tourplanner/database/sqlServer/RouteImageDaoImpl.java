@@ -1,18 +1,18 @@
 package at.technikum.tourplanner.database.sqlServer;
 
 import at.technikum.tourplanner.database.common.AbstractDBTable;
-import at.technikum.tourplanner.database.dao.ImageDao;
-import at.technikum.tourplanner.models.Image;
+import at.technikum.tourplanner.database.dao.RouteImageDao;
+import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
+public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao {
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
-    public ImageDaoImpl() {
+    public RouteImageDaoImpl() {
         this.tableName = "image";
     }
     /*******************************************************************/
@@ -22,10 +22,10 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
     /**                            Builder                            **/
     /*******************************************************************/
     @Override
-    public Image buildClass(ResultSet result) {
+    public RouteImage buildClass(ResultSet result) {
         try {
             if (result.next()) {
-                Image image = Image.builder()
+                RouteImage routeImage = RouteImage.builder()
                         .imageID(result.getString("imageID"))
                         .width(Integer.valueOf(result.getString("width")))
                         .height(Integer.valueOf(result.getString("height")))
@@ -39,7 +39,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
                         .build();
                 this.closeStatement();
 
-                return image;
+                return routeImage;
             }
         } catch (SQLException e) {
             System.out.println(TextColor.ANSI_RED + "GETOBJECT -ERRROR: " + e + TextColor.ANSI_RESET);
@@ -53,7 +53,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
 
 
     @Override
-    public Image getItemById(String itemID) {
+    public RouteImage getItemById(String itemID) {
         this.parameter = new String[]{itemID};
         this.setStatement(
                 "SELECT * FROM " + this.tableName + " WHERE \"imageID\" = ? " + ";",
@@ -63,7 +63,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
     }
 
     @Override
-    public Image insert(Image item) {
+    public RouteImage insert(RouteImage item) {
         if (item == null) {
             return null;
         }
@@ -99,7 +99,7 @@ public class ImageDaoImpl extends AbstractDBTable implements ImageDao {
     }
 
     @Override
-    public Image update(Image item) {
+    public RouteImage update(RouteImage item) {
         if (item == null) {
             return null;
         }

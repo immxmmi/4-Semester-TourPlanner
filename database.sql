@@ -46,7 +46,7 @@ alter table "tourLog"
 create unique index tourlog_tourlogid_uindex
     on "tourLog" ("tourLogId");
 
-create table image
+create table routeImage
 (
     "imageID"       text not null
         constraint image_pk
@@ -63,10 +63,10 @@ create table image
     "filePath"      text
 );
 
-alter table image
+alter table routeImage
     owner to swe2user;
 
 create unique index image_imagename_uindex
-    on image ("imageID");
+    on routeImage ("imageID");
 
 

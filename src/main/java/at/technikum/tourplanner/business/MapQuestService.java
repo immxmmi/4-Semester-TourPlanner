@@ -1,7 +1,8 @@
 package at.technikum.tourplanner.business;
 
-import at.technikum.tourplanner.models.Image;
+import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Route;
+import javafx.scene.image.Image;
 
 public interface MapQuestService {
 
@@ -12,15 +13,18 @@ public interface MapQuestService {
 
     Route copyRouteDataToImage(Route currentRoute);
 
-    Image saveImageOnline(Image currentImage);
+    RouteImage saveImageOnline(RouteImage currentRouteImage);
 
     //6 UPDATE
-    Image updateImageOnline(Image currentImage);
+    RouteImage updateImageOnline(RouteImage currentRouteImage);
 
     // CREATE IMAGE
     Route startRoute(String from, String to);
 
-    Image downloadImage(Image image);
 
-    Image reloadImage(Image image);
+    Image showRouteImage(RouteImage routeImage);
+
+    RouteImage downloadImage(RouteImage routeImage);
+
+    RouteImage reloadImage(RouteImage routeImage);
 }
