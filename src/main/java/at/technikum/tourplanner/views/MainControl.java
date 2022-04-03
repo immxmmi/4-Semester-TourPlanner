@@ -17,8 +17,6 @@ import java.sql.Time;
 public class MainControl {
 
 
-
-
     // SEARCH
    @FXML
    private TextField search_input;
@@ -41,6 +39,9 @@ public class MainControl {
    private String tourID;
     @FXML
     private void searchTour(){
+        if(search_input == null){
+            return;
+        }
         TourService tourService = new TourServiceImpl();
         MapQuestService mapQuestService = new MapQuestServiceImpl();
         Tour searchResult = tourService.searchTourByName(search_input.getText());
