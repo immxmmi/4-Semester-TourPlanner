@@ -4,28 +4,18 @@ import at.technikum.tourplanner.business.MapQuestService;
 import at.technikum.tourplanner.business.MapQuestServiceImpl;
 import at.technikum.tourplanner.business.TourService;
 import at.technikum.tourplanner.business.TourServiceImpl;
-import at.technikum.tourplanner.database.fileServer.FileAccess;
-import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
-import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
 import java.sql.Time;
 
 public class MainControl {
 
-
-
-    @FXML
-    private ImageView routeImageView;
 
 
 
@@ -44,9 +34,11 @@ public class MainControl {
    private Label show_tour_transport;
    @FXML
    private Label show_tour_distance;
-    @FXML
-    private ImageView show_tour_image;
-
+   @FXML
+   private Label show_tour_description;
+   @FXML
+   private ImageView show_tour_image;
+   private String tourID;
     @FXML
     private void searchTour(){
         TourService tourService = new TourServiceImpl();
@@ -62,8 +54,25 @@ public class MainControl {
          show_tour_transport.setText(searchResult.getTransporter().toString());
 
          show_tour_distance.setText(""+searchResult.getDistance());
-
+         show_tour_description.setText(searchResult.getDescription());
          show_tour_image.setImage(mapQuestService.showRouteImage(searchResult.getRouteImage()));
+
+         this.tourID = searchResult.getTourID();
+    }
+
+
+    // Tour - DELETE
+    @FXML
+    private void deleteTour(){
+        TourService tourService = new TourServiceImpl();
+        tourService.deleteTour(tourID);
+        show_tour_title.setText("gelöscht");
+        show_tour_from.setText("gelöscht");
+        show_tour_to.setText("gelöscht");
+        show_tour_transport.setText("gelöscht");
+        show_tour_distance.setText("gelöscht");
+        show_tour_description.setText("gelöscht");
+        show_tour_image.setImage(null);
 
     }
 
