@@ -23,7 +23,7 @@ import java.sql.Time;
 public class MainApplication extends Application {
 
     static int width = 970;
-    static int height = 770;
+    static int height = 780;
 
 
     @Override
@@ -31,7 +31,7 @@ public class MainApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view1.fxml"));
         stage.setTitle("Tour Planner Pro (30 Days free Trial)");
-        Scene scene = new Scene(fxmlLoader.load(), height, width);
+        Scene scene = new Scene(fxmlLoader.load(), width-30, height-30);
         stage.setMinHeight(height);
         stage.setMinWidth(width);
         stage.setMaxHeight(height);
@@ -62,9 +62,12 @@ public class MainApplication extends Application {
                 .build();
 
 
-        tour = tourService.saveTour(tour);
-        mapQuestService.downloadImage(tour.getRouteImage());
-   //     System.out.println(tour.getRouteImage().getDownloadURL());
+        //tour = tourService.saveTour(tour);
+        //mapQuestService.downloadImage(tour.getRouteImage());
+
+
+
+        //     System.out.println(tour.getRouteImage().getDownloadURL());
        // FileAccess fileAccess = new FileAccessImpl();
       //  fileAccess.writeFile("newone.jpg",image.getImageData());
        // System.out.println(tourService.searchTourByName("me").toString());
