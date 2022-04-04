@@ -13,21 +13,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Time;
 
 
-@Slf4j
+
 public class MainApplication extends Application {
 
     static int width = 970;
     static int height = 780;
 
+    final Logger logger = LogManager.getRootLogger();
 
     @Override
     public void start(Stage stage) throws IOException {
+
+        logger.log(Level.ERROR,"Starting Tour Planner Pro...");
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
         stage.setTitle("Tour Planner Pro (30 Days free Trial)");
@@ -40,30 +46,44 @@ public class MainApplication extends Application {
         stage.show();
     }
 
+    @Override
+    public void stop() {
+        logger.info("Stopping Tour Planner Pro...");
+    }
+
     public static void main(String[] args) throws SQLException {
 
-        TourDao tourDao = new TourDaoImpl();
-        TourService tourService = new TourServiceImpl();
-        MapQuestService mapQuestService = new MapQuestServiceImpl();
-        // GUI ABFRAGE:
-        // - NAME
-        // - FROM
-        // - TO
-        // - TRANSPORTER
-        // - DESCRIPTION
-        // - TIME
-        Tour tour = Tour.builder()
-                .title("wwwwwwwwwwwwwwwwwwwww")
-                .from("Linz")
-                .to("Berlin")
-                .transporter(Transporter.Walk)
-                .description("wwwwwww essfw")
-                .time(Time.valueOf("10:12:22"))
-                .build();
 
 
-        //tour = tourService.saveTour(tour);
-        //mapQuestService.downloadImage(tour.getRouteImage());
+         TourDao tourDao = new TourDaoImpl();
+         TourService tourService = new TourServiceImpl();
+         MapQuestService mapQuestService = new MapQuestServiceImpl();
+         // GUI ABFRAGE:
+         // - NAME
+         // - FROM
+         // - TO
+         // - TRANSPORTER
+         // - DESCRIPTION
+         // - TIME
+         Tour tour = Tour.builder()
+                 .title("wwwwwwwwwwwwwwwwwwwww")
+                 .from("Linz")
+                 .to("Berlin")
+                 .transporter(Transporter.Walk)
+                 .description("wwwwwww essfw")
+                 .time(Time.valueOf("10:12:22"))
+                 .build();
+
+
+         tour = tourService.saveTour(tour);
+
+         if(tour == null){
+             System.out.println("errorr");
+         }else{
+
+            mapQuestService.downloadImage(tour.getRouteImage());
+         }
+
 
 
 
