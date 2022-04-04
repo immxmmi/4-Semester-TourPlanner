@@ -45,7 +45,12 @@ public class TourServiceImpl implements TourService{
         RouteImage routeImage = routeImageDao.getItemById(currentRoute.getRouteImage().getImageID());
         if(routeImage == null){return null;}
         tour.setRouteImage(routeImage);
+        //DISTANCE
         tour.setDistance(currentRoute.getDistance());
+
+        //TIME
+        tour.setTime(currentRoute.getTime());
+        System.out.println(currentRoute.getRouteBody());
 
 
 

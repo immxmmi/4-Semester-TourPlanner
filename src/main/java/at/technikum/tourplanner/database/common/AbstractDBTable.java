@@ -71,6 +71,7 @@ public class AbstractDBTable {
         this.parameter = new String[]{itemID};
         this.setStatement("DELETE FROM "+this.tableName+" WHERE \"tourId\" = ? ;", this.parameter);
         this.closeStatement();
+
         return true;
     }
 }

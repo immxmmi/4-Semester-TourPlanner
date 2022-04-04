@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +28,10 @@ public class Route {
 
     // ElementFrom routeBody -> distance from - to
     private double distance;
+    // ElementFrom routeBody -> distance formattedTime
+    private Time time;
+
+
 
     @Builder.Default
     private String size = "640,480";

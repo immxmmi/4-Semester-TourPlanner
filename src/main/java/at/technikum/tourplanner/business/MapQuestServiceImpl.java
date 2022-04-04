@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.Time;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +32,7 @@ public class MapQuestServiceImpl implements MapQuestService {
 
         Route currentRoute = this.routeBuilder(from,to);
 
+        try {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(currentRoute.getUrlRoute()))
@@ -39,10 +41,27 @@ public class MapQuestServiceImpl implements MapQuestService {
         CompletableFuture<HttpResponse<String>> response = client.sendAsync(request,HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper();
 
-        try {
+
+        if(response.get() == null){
+            return null;
+        }
+
             String body = response.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
+
+
+
+
             currentRoute.setRouteBody(mapper.readTree(body).get("route"));
             currentRoute.setDistance(Double.valueOf(mapper.readTree(body).get("route").get("distance").toString()));
+            currentRoute.setTime(Time.valueOf(mapper.readTree(body).get("route").get("formattedTime").toString().replace("\"","")));
+
+            currentRoute.setSessionID("&session="+currentRoute.getRouteBody().get("sessionId").toString().replace("\"",""));
+            String lr = currentRoute.getRouteBody().get("boundingBox").get("lr").get("lng").toString() + "," + currentRoute.getRouteBody().get("boundingBox").get("lr").get("lat").toString();
+            String ul = currentRoute.getRouteBody().get("boundingBox").get("ul").get("lng").toString() + "," + currentRoute.getRouteBody().get("boundingBox").get("lr").get("lat").toString();
+            currentRoute.setBoundingBox("&boundingBox="+lr + "," + ul);
+
+            return currentRoute;
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -55,12 +74,7 @@ public class MapQuestServiceImpl implements MapQuestService {
             e.printStackTrace();
         }
 
-        currentRoute.setSessionID("&session="+currentRoute.getRouteBody().get("sessionId").toString().replace("\"",""));
-        String lr = currentRoute.getRouteBody().get("boundingBox").get("lr").get("lng").toString() + "," + currentRoute.getRouteBody().get("boundingBox").get("lr").get("lat").toString();
-        String ul = currentRoute.getRouteBody().get("boundingBox").get("ul").get("lng").toString() + "," + currentRoute.getRouteBody().get("boundingBox").get("lr").get("lat").toString();
-        currentRoute.setBoundingBox("&boundingBox="+lr + "," + ul);
-
-        return currentRoute;
+        return null;
     }
 
     //2. BUILD
@@ -96,7 +110,7 @@ public class MapQuestServiceImpl implements MapQuestService {
     public Route copyRouteDataToImage(Route currentRoute){
         String filename = currentRoute.getFrom()+"-"+currentRoute.getTo();
         currentRoute.getRouteImage().setImageID(filename);
-        currentRoute.getRouteImage().setDownloadURL(currentRoute.getUrlMap());
+        currentRoute.getRouteImage().setDownloadURL(currentRoute.getUrlRoute());
         currentRoute.getRouteImage().setFrom(currentRoute.getFrom());
         currentRoute.getRouteImage().setTo(currentRoute.getTo());
         currentRoute.getRouteImage().setFilePath("C:\\TourPlanner\\Data\\"+filename+".jpg");
@@ -149,6 +163,11 @@ public class MapQuestServiceImpl implements MapQuestService {
                 .build();
         // SET ROUTE + IMAGE
         Route route = this.searchRoute(from,to);
+
+        if(route == null){
+            return null;
+        }
+
         route.setRouteImage(routeImageSettings);
         if(route == null){return null;}
         route = this.setImageSettingsToRoute(route);
