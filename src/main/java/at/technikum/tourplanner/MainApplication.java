@@ -81,7 +81,7 @@ public class MainApplication extends Application {
              System.out.println("errorr");
          }else{
 
-            mapQuestService.downloadImage(tour.getRouteImage());
+           // mapQuestService.downloadImage(tour.getRouteImage());
          }
 
 

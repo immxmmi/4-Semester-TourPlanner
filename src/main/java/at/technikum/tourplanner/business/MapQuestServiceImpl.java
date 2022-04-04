@@ -173,7 +173,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         route = this.setImageSettingsToRoute(route);
         route = this.copyRouteDataToImage(route);
         this.saveImageOnline(route.getRouteImage());
-        downloadImage(route.getRouteImage());
+        downloadImage(route);
         return route;
     }
 
@@ -189,12 +189,12 @@ public class MapQuestServiceImpl implements MapQuestService {
     //6. DOWNLOAD IMAGE 
     // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten
     @Override
-    public RouteImage downloadImage(RouteImage currentRouteImage){
+    public RouteImage downloadImage(Route route){
         FileAccess fileAccess = new FileAccessImpl();
-        fileAccess.writeFile(currentRouteImage.getImageID()+".jpg",loadRouteImage(currentRouteImage.getDownloadURL()));
-        currentRouteImage.setLocal(true);
+        fileAccess.writeFile(route.getRouteImage().getImageID()+".jpg",loadRouteImage(route.getUrlMap()));
+        route.getRouteImage().setLocal(true);
       //  imageDao.update(currentImage);
-        return currentRouteImage;
+        return route.getRouteImage();
     }
 
     //7. RELODE IMAGE

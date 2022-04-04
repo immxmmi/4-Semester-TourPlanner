@@ -50,9 +50,6 @@ public class TourServiceImpl implements TourService{
 
         //TIME
         tour.setTime(currentRoute.getTime());
-        System.out.println(currentRoute.getRouteBody());
-
-
 
        //  if(tourDao.insert(tour) != null){return true;}
          return tourDao.insert(tour);

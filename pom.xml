@@ -153,6 +153,12 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.13.2</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

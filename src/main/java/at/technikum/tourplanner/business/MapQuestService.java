@@ -24,7 +24,9 @@ public interface MapQuestService {
 
     Image showRouteImage(RouteImage routeImage);
 
-    RouteImage downloadImage(RouteImage routeImage);
+    //6. DOWNLOAD IMAGE
+    // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten
+    RouteImage downloadImage(Route route);
 
     RouteImage reloadImage(RouteImage routeImage);
 }
