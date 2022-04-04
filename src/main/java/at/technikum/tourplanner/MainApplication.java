@@ -29,7 +29,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view1.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
         stage.setTitle("Tour Planner Pro (30 Days free Trial)");
         Scene scene = new Scene(fxmlLoader.load(), width-30, height-30);
         stage.setMinHeight(height);

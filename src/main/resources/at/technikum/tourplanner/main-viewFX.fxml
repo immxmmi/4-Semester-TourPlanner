@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedAreaChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="1261.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
+   <children>
+      <TabPane layoutX="-2.0" layoutY="25.0" prefHeight="777.0" prefWidth="1261.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Search">
+               <content>
+                  <Pane prefHeight="748.0" prefWidth="1296.0">
+                     <children>
+                        <TextField fx:id="search_input" cache="true" layoutX="243.0" layoutY="347.0" prefHeight="53.0" prefWidth="765.0" promptText="Tour-1">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="search_btn" layoutX="1021.0" layoutY="348.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="50.0" prefWidth="101.0" text="Search">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab text="Select">
+               <content>
+                  <Pane prefHeight="748.0" prefWidth="1296.0">
+                     <children>
+                        <TableView layoutX="3.0" layoutY="1.0" prefHeight="749.0" prefWidth="1261.0">
+                          <columns>
+                            <TableColumn prefWidth="1254.0" text="Tour" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab text="Show">
+               <content>
+                  <Pane prefHeight="748.0" prefWidth="1234.0">
+                     <children>
+                        <ImageView fitHeight="544.0" fitWidth="896.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/imageView1.jpg" />
+                           </image>
+                        </ImageView>
+                        <TableView layoutX="-4.0" layoutY="502.0" prefHeight="249.0" prefWidth="901.0">
+                          <columns>
+                            <TableColumn prefWidth="126.0" text="Date:" />
+                            <TableColumn minWidth="3.0" prefWidth="160.0" text="Duration:" />
+                              <TableColumn minWidth="3.0" prefWidth="160.0" text="Distance:" />
+                              <TableColumn minWidth="3.0" prefWidth="246.0" text="Comment:" />
+                              <TableColumn minWidth="3.0" prefWidth="114.0" text="Difficulty:" />
+                              <TableColumn minWidth="3.0" prefWidth="94.0" text="Rating:" />
+                          </columns>
+                        </TableView>
+                        <TabPane layoutX="897.0" prefHeight="504.0" prefWidth="365.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Info">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="449.0" prefWidth="365.0">
+                                       <children>
+                                          <Label layoutX="15.0" layoutY="30.0" text="Title:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="12.0" layoutY="166.0" text="Distance:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="12.0" layoutY="75.0" text="From:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="12.0" layoutY="119.0" text="To:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="15.0" layoutY="253.0" text="Transporter:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="15.0" layoutY="211.0" text="Time:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="show_tour_title" layoutX="162.0" layoutY="30.0" text=".">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="show_tour_distance" layoutX="162.0" layoutY="166.0" text=".">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="show_tour_from" layoutX="162.0" layoutY="75.0" text=".">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="show_tour_to" layoutX="162.0" layoutY="119.0" text=".">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="show_tour_transport" layoutX="162.0" layoutY="253.0" text=".">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="show_tour_time" layoutX="162.0" layoutY="211.0" text=".">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="delete_btn" layoutX="35.0" layoutY="353.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="80.0" prefWidth="267.0" text="delete" />
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Description">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="365.0">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="14.0" text="Descrpition:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="show_tour_transport1" alignment="TOP_LEFT" layoutX="13.0" layoutY="49.0" prefHeight="407.0" prefWidth="339.0" text=".">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="Logs">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="365.0">
+                                       <children>
+                                          <Label layoutX="24.0" layoutY="21.0" text="Date:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="14.0" layoutY="68.0" text="Duration:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="15.0" layoutY="111.0" text="Distance:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="8.0" layoutY="254.0" text="Comment:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="13.0" layoutY="160.0" text="Difficulty:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="14.0" layoutY="203.0" text="Rating:">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker layoutX="134.0" layoutY="22.0" prefHeight="33.0" prefWidth="207.0" />
+                                          <TextArea layoutX="12.0" layoutY="295.0" prefHeight="124.0" prefWidth="345.0" />
+                                          <ChoiceBox layoutX="134.0" layoutY="204.0" prefHeight="33.0" prefWidth="215.0" />
+                                          <ChoiceBox layoutX="134.0" layoutY="161.0" prefHeight="33.0" prefWidth="215.0" />
+                                          <TextField layoutX="131.0" layoutY="113.0" prefHeight="32.0" prefWidth="213.0" />
+                                          <TextField layoutX="131.0" layoutY="70.0" prefHeight="32.0" prefWidth="213.0" />
+                                          <Button layoutX="9.0" layoutY="430.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="344.0" text="Button" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                        <StackedAreaChart layoutX="899.0" layoutY="506.0" prefHeight="242.0" prefWidth="359.0">
+                          <xAxis>
+                            <NumberAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </StackedAreaChart>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab text="Edit">
+               <content>
+                  <Pane prefHeight="748.0" prefWidth="1296.0">
+                     <children>
+                        <TextField cache="true" layoutX="30.0" layoutY="14.0" prefHeight="35.0" prefWidth="1060.0" promptText="Tour-1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Button layoutX="1102.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="91.0" text="Search">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab text="Create">
+               <content>
+                  <Pane prefHeight="748.0" prefWidth="1296.0">
+                     <children>
+                        <Button fx:id="tour_create_btn" layoutX="879.0" layoutY="522.0" mnemonicParsing="false" onAction="#createTour" prefHeight="150.0" prefWidth="291.0" text="Create">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="161.0" layoutY="148.0" text="Title:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="161.0" layoutY="218.0" text="From:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="161.0" layoutY="297.0" text="To:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="161.0" layoutY="357.0" text="Transporter:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="set_tour_title" layoutX="311.0" layoutY="147.0" prefHeight="36.0" prefWidth="326.0" text="T-1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Label layoutX="158.0" layoutY="436.0" text="Description:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="set_tour_description" layoutX="305.0" layoutY="436.0" prefHeight="200.0" prefWidth="339.0" text="Full hous">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextArea>
+                        <TextField fx:id="set_tour_from" layoutX="312.0" layoutY="216.0" prefHeight="36.0" prefWidth="326.0" text="Wien">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="set_tour_transport" layoutX="312.0" layoutY="355.0" prefHeight="36.0" prefWidth="326.0" text="Bus">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="set_tour_to" layoutX="312.0" layoutY="295.0" prefHeight="36.0" prefWidth="326.0" text="Berlin">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1261.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Search">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Tours">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Search" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</Pane>

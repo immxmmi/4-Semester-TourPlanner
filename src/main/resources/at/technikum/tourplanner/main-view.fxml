@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
    <children>
       <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="955.0">
         <menus>
@@ -63,7 +63,7 @@
       </TableView>
       <ImageView fx:id="show_tour_image" fitHeight="280.0" fitWidth="500.0" layoutX="212.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@imageView1.jpg" />
+            <Image url="@img/imageView1.jpg" />
          </image></ImageView>
       <Label layoutX="212.0" layoutY="77.0" prefHeight="25.0" prefWidth="47.0" text="Title:">
          <font>
