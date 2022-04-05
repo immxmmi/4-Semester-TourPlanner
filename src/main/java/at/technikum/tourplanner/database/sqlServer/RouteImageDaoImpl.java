@@ -121,19 +121,18 @@ public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao 
         this.setStatement(
                 "UPDATE " + this.tableName +
                         " SET " +
-                        "\"imageID\" = ?" +
-                        "width = ?" +
-                        "\"height\" = ?" +
-                        "\"zoom\" = ?" +
-                        "\"from\" = ?" +
-                        "\"to\" = ?" +
-                        "\"downloadURL\" = ?" +
-                        "\"local\" = ?" +
-                        "\"defaultMarker\" = ?" +
-                        "\"filePath\"= ?" +
-                        "WHERE \"imageID\" = ?",
+                        "\"imageID\" = ?, " +
+                        "\"width\" = ?, " +
+                        "\"height\" = ?, " +
+                        "\"zoom\" = ?, " +
+                        "\"from\" = ?, " +
+                        "\"to\" = ?, " +
+                        "\"downloadURL\" = ?, " +
+                        "\"local\" = ?, " +
+                        "\"defaultMarker\" = ?, " +
+                        "\"filePath\"= ? " +
+                        "WHERE \"imageID\" = ?; ",
                 this.parameter);
-
 
         return getItemById(item.getImageID());
     }
