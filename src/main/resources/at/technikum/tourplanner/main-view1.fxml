@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
    <children>
-      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="955.0">
+      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1010.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -54,28 +54,34 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TextField fx:id="search_input" layoutX="212.0" layoutY="40.0" prefHeight="25.0" prefWidth="615.0" text="Tour-1" />
-      <Button fx:id="search_btn" defaultButton="true" layoutX="842.0" layoutY="40.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="25.0" prefWidth="97.0" text="search" textFill="#1e1e1e" />
-      <TableView layoutY="27.0" prefHeight="710.0" prefWidth="198.0">
-        <columns>
-          <TableColumn prefWidth="197.0" text="Tour" />
-        </columns>
+      <TextField fx:id="search_input" layoutX="357.0" layoutY="40.0" prefHeight="25.0" prefWidth="615.0" text="Tour-1" />
+      <Button fx:id="search_btn" defaultButton="true" layoutX="987.0" layoutY="40.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="25.0" prefWidth="97.0" text="search" textFill="#1e1e1e" />
+      <TableView fx:id="tourView" layoutX="-2.0" layoutY="27.0" prefHeight="710.0" prefWidth="346.0">
+         <columns>
+            <TableColumn prefWidth="345.0" text="Tour">
+               <columns>
+                  <TableColumn fx:id="titleColumn" prefWidth="117.0" text="Title:" />
+                  <TableColumn fx:id="fromColumn" prefWidth="105.0" text="From:" />
+                  <TableColumn fx:id="toColumn" prefWidth="123.0" text="To:" />
+               </columns>
+            </TableColumn>
+         </columns>
       </TableView>
-      <ImageView fx:id="show_tour_image" fitHeight="280.0" fitWidth="500.0" layoutX="212.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="show_tour_image" fitHeight="280.0" fitWidth="500.0" layoutX="357.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/imageView1.jpg" />
          </image></ImageView>
-      <Label layoutX="212.0" layoutY="77.0" prefHeight="25.0" prefWidth="47.0" text="Title:">
+      <Label layoutX="357.0" layoutY="77.0" prefHeight="25.0" prefWidth="47.0" text="Title:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="show_tour_title" layoutX="265.0" layoutY="77.0" prefHeight="25.0" prefWidth="107.0" text="Text">
+      <Label fx:id="show_tour_title" layoutX="410.0" layoutY="77.0" prefHeight="25.0" prefWidth="107.0" text="Text">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TabPane layoutX="198.0" layoutY="395.0" prefHeight="342.0" prefWidth="757.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="343.0" layoutY="395.0" prefHeight="342.0" prefWidth="757.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab text="New Tour">
                <content>
@@ -89,7 +95,7 @@
                         <Label layoutX="10.0" layoutY="120.0" text="Description:" />
                         <Label layoutX="272.0" layoutY="64.0" text="To:" />
                         <TextField fx:id="set_tour_to" layoutX="325.0" layoutY="60.0" prefHeight="25.0" prefWidth="140.0" text="Berlin" />
-                        <TextArea fx:id="set_tour_description" layoutX="93.0" layoutY="105.0" prefHeight="152.0" prefWidth="416.0" text="Das ist eine Test Tour." />
+                        <TextArea fx:id="set_tour_description" layoutX="93.0" layoutY="105.0" prefHeight="188.0" prefWidth="456.0" text="Das ist eine Test Tour." />
                         <Button fx:id="create_btn" defaultButton="true" layoutX="575.0" layoutY="98.0" mnemonicParsing="false" onAction="#createTour" prefHeight="61.0" prefWidth="87.0" text="create" textFill="#1e1e1e" />
                         <TextField fx:id="set_tour_transport" layoutX="325.0" layoutY="11.0" prefHeight="26.0" prefWidth="148.0" text="Bus" />
                      </children>
@@ -103,9 +109,9 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="delete_btn" layoutX="827.0" layoutY="346.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="46.0" prefWidth="83.0" text="Delete" textFill="#4d4d4d" />
-      <Button fx:id="update_btn" layoutX="727.0" layoutY="346.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="UpdateTEST" textFill="#4d4d4d" />
-      <TabPane layoutX="727.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+      <Button fx:id="delete_btn" layoutX="972.0" layoutY="346.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="46.0" prefWidth="83.0" text="Delete" textFill="#4d4d4d" />
+      <Button fx:id="update_btn" layoutX="872.0" layoutY="346.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="UpdateTEST" textFill="#4d4d4d" />
+      <TabPane layoutX="872.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Info">
             <content>

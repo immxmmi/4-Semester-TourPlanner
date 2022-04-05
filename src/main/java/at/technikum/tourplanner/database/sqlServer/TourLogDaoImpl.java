@@ -27,7 +27,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         try {
             if (result.next()) {
                 TourLog tourLog = TourLog.builder()
-                        .tourLogID(result.getString("tourLogId"))
+                        .tourLogID(result.getString("tourLogID"))
                         .build();
 
                 this.closeStatement();
@@ -49,7 +49,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
     public TourLog getItemById(String itemID) {
         this.parameter = new String[]{itemID};
         this.setStatement(
-                "SELECT * FROM " + this.tableName + " WHERE \"tourLogId\" = ? " + ";",
+                "SELECT * FROM " + this.tableName + " WHERE \"tourLogID\" = ? " + ";",
                 this.parameter
         );
         return buildClass(this.result);
@@ -63,11 +63,18 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         if(getItemById(item.getTourLogID()) == null) {
             this.parameter = new String[]{
                     "" + item.getTourLogID(),
+                    "" + item.getTour().getTourID(),
+                    "" + item.getReport(),
+                    "" + item.getComment(),
+                    "" + item.getTotalTime(),
+                    "" + item.getDifficulty(),
+                    "" + item.getRating(),
             };
 
 
-            this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogId\")VALUES(?);", this.parameter);
+            this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogID\",tourID,\"report\",\"comment\",\"totalTime\",\"difficulty\",\"rating\")VALUES(?,?,?,?,?,?,?,?);", this.parameter);
         }
+        System.out.println(this.statement);
         return getItemById(item.getTourLogID());
     }
 

@@ -156,12 +156,11 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
         this.parameter = new String[]{};
 
-        this.setStatement("SELECT  *  FROM \"tour\" ORDER BY \"title\";", this.parameter);
+        this.setStatement("SELECT  *  FROM "+this.tableName+" ORDER BY \"title\";", this.parameter);
 
         try{
 
             while (this.result.next()) {
-
                 allTourIDs.add(result.getString("tourID"));
             }
 
@@ -170,8 +169,8 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         }
 
 
-        for (int i = 0; i <= allTourIDs.size(); i++){
-            getItemById(allTourIDs.get(i));
+        for (int i = 0; i < allTourIDs.size(); i++){
+            allTour.add(getItemById(allTourIDs.get(i)));
         }
 
         return allTour;

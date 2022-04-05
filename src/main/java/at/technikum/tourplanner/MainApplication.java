@@ -9,6 +9,9 @@ import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.application.Application;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -25,7 +28,7 @@ import java.sql.Time;
 
 public class MainApplication extends Application {
 
-    static int width = 970;
+    static int width = 1101;
     static int height = 780;
 
     final Logger logger = LogManager.getRootLogger();
@@ -35,7 +38,7 @@ public class MainApplication extends Application {
 
         logger.log(Level.ERROR,"Starting Tour Planner Pro...");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view1.fxml"));
         stage.setTitle("Tour Planner Pro (30 Days free Trial)");
         Scene scene = new Scene(fxmlLoader.load(), width-30, height-30);
         stage.setMinHeight(height);
@@ -46,6 +49,7 @@ public class MainApplication extends Application {
         stage.show();
     }
 
+
     @Override
     public void stop() {
         logger.info("Stopping Tour Planner Pro...");
@@ -54,34 +58,36 @@ public class MainApplication extends Application {
     public static void main(String[] args) throws SQLException {
 
 
+        MapQuestService mapQuestService = new MapQuestServiceImpl();
+        TourService tourService = new TourServiceImpl();
+        System.out.println("restre");
+        System.out.println(tourService.getAllTourOrderByName());
 
-         TourDao tourDao = new TourDaoImpl();
-         TourService tourService = new TourServiceImpl();
-         MapQuestService mapQuestService = new MapQuestServiceImpl();
-         // GUI ABFRAGE:
-         // - NAME
-         // - FROM
-         // - TO
-         // - TRANSPORTER
-         // - DESCRIPTION
-         // - TIME
-         Tour tour = Tour.builder()
-                 .title("wwwwwwwwwwwwwwwwwwwww")
-                 .from("Linz")
-                 .to("Berlin")
-                 .transporter(Transporter.Walk)
-                 .description("wwwwwww essfw")
-                 .build();
+        TourDao tourDao = new TourDaoImpl();
 
 
-         tour = tourService.saveTour(tour);
+        // GUI ABFRAGE:
+        // - NAME
+        // - FROM
+        // - TO
+        // - TRANSPORTER
+        // - DESCRIPTION
+        // - TIME
+        Tour tour = Tour.builder()
+                .title("Test.2")
+                .from("Wien")
+                .to("Berlin")
+                .transporter(Transporter.Walk)
+                .description("Test Tour")
+                .build();
 
-         if(tour == null){
-             System.out.println("errorr");
-         }else{
 
-           // mapQuestService.downloadImage(tour.getRouteImage());
-         }
+
+        tour = tourService.saveTour(tour);
+
+
+          //mapQuestService.downloadImage(tour.getRouteImage());
+
 
 
 

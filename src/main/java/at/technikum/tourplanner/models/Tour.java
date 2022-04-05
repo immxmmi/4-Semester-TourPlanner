@@ -29,5 +29,4 @@ public class Tour {
     private Transporter transporter = Transporter.Walk;
 
 
-
 }
