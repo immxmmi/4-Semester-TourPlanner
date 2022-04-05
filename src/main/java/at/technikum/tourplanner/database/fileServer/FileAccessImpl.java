@@ -12,7 +12,7 @@ public class FileAccessImpl implements FileAccess{
     private String root;
 
     public FileAccessImpl() {
-        this.root = ConfigurationManager.GetConfigPropertyValue("root");
+        this.root = ConfigurationManager.getConfigPropertyValue("root");
     }
 
     private String GetFullPath(String filename){

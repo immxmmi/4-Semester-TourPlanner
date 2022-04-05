@@ -17,7 +17,6 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
     /**                          Constructor                          **/
     /*******************************************************************/
      static RouteImageDaoImpl imageDaoImpl = new RouteImageDaoImpl();
-     static CityDaoImpl cityDaoImpl = new CityDaoImpl();
 
     public TourDaoImpl(){
         this.tableName = "\"tour\"";
@@ -34,8 +33,8 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         try {
             if (result.next()) {
                 Tour tour = Tour.builder()
-                        .tourID(result.getString("tourid"))
-                        .title(result.getString("name"))
+                        .tourID(result.getString("tourID"))
+                        .title(result.getString("title"))
                         .transporter(Transporter.valueOf(result.getString("transporter")))
                         .from(result.getString("from"))
                         .to(result.getString("to"))
@@ -65,17 +64,17 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
     public Tour getItemById(String itemID) {
         this.parameter = new String[]{itemID};
         this.setStatement(
-                "SELECT * FROM " + this.tableName + " WHERE \"tourId\" = ? " + ";",
+                "SELECT * FROM " + this.tableName + " WHERE \"tourID\" = ? " + ";",
                 this.parameter
         );
         return buildClass(this.result);
     }
 
     @Override
-    public Tour getItemByName(String name) {
-        this.parameter = new String[]{name};
+    public Tour getItemByName(String title) {
+        this.parameter = new String[]{title};
         this.setStatement(
-                "SELECT * FROM " + this.tableName + " WHERE \"name\" = ? " + ";",
+                "SELECT * FROM " + this.tableName + " WHERE \"title\" = ? " + ";",
                 this.parameter
         );
         return buildClass(this.result);
@@ -87,6 +86,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         if (item == null) {
             return null;
         }
+
         if(getItemById(item.getTourID()) == null) {
             this.parameter = new String[]{
                     "" + item.getTourID(),
@@ -101,7 +101,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
             };
 
 
-            this.setStatement("INSERT INTO " + this.tableName + " (\"tourId\",name,\"from\",\"to\",\"distance\",\"time\",\"transporter\",\"routeImage\",\"description\")VALUES(?,?,?,?,?,?,?,?,?);", this.parameter);
+            this.setStatement("INSERT INTO " + this.tableName + " (\"tourID\",title,\"from\",\"to\",\"distance\",\"time\",\"transporter\",\"routeImage\",\"description\")VALUES(?,?,?,?,?,?,?,?,?);", this.parameter);
             return getItemById(item.getTourID());
         }
         return null;
@@ -129,7 +129,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         this.setStatement(
                 "UPDATE " + this.tableName +
                         " SET " +
-                        "\"name\" = ?, " +
+                        "\"title\" = ?, " +
                         "\"from\" = ? " +
                         "\"to\" = ? " +
                         "distance = ? " +
@@ -140,7 +140,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
 
 
-                        "WHERE \"tour_id\" = ? ;"
+                        "WHERE \"tour_ID\" = ? ;"
                 , this.parameter
         );
 
@@ -156,13 +156,13 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
         this.parameter = new String[]{};
 
-        this.setStatement("SELECT  *  FROM \"tour\" ORDER BY \"name\";", this.parameter);
+        this.setStatement("SELECT  *  FROM \"tour\" ORDER BY \"title\";", this.parameter);
 
         try{
 
             while (this.result.next()) {
 
-                allTourIDs.add(result.getString("tourId"));
+                allTourIDs.add(result.getString("tourID"));
             }
 
         } catch (SQLException e) {

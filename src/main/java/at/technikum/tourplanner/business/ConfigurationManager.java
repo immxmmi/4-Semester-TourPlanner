@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class ConfigurationManager {
 
-    public static String GetConfigPropertyValue(String propertyName) {
+    public static String getConfigPropertyValue(String propertyName) {
         Properties properties = new Properties();
         final File initialFile = new File("src/config.properties");
 

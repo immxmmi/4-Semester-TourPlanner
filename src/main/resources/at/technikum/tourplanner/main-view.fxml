@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
    <children>
       <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="955.0">
         <menus>
@@ -85,15 +85,13 @@
                         <TextField fx:id="set_tour_from" layoutX="84.0" layoutY="60.0" text="Wien" />
                         <Label layoutX="12.0" layoutY="15.0" text="Title:" />
                         <Label layoutX="10.0" layoutY="64.0" text="From:" />
-                        <Label layoutX="10.0" layoutY="111.0" text="Transport:" />
-                        <Label layoutX="14.0" layoutY="157.0" text="Description:" />
+                        <Label layoutX="251.0" layoutY="15.0" text="Transport:" />
+                        <Label layoutX="10.0" layoutY="120.0" text="Description:" />
                         <Label layoutX="272.0" layoutY="64.0" text="To:" />
                         <TextField fx:id="set_tour_to" layoutX="325.0" layoutY="60.0" prefHeight="25.0" prefWidth="140.0" text="Berlin" />
-                        <TextArea fx:id="set_tour_description" layoutX="86.0" layoutY="157.0" prefHeight="142.0" prefWidth="416.0" text="Das ist eine Test Tour." />
-                        <Label layoutX="265.0" layoutY="15.0" text="Time:" />
+                        <TextArea fx:id="set_tour_description" layoutX="93.0" layoutY="105.0" prefHeight="152.0" prefWidth="416.0" text="Das ist eine Test Tour." />
                         <Button fx:id="create_btn" defaultButton="true" layoutX="575.0" layoutY="98.0" mnemonicParsing="false" onAction="#createTour" prefHeight="61.0" prefWidth="87.0" text="create" textFill="#1e1e1e" />
-                        <TextField fx:id="set_tour_transport" layoutX="88.0" layoutY="107.0" prefHeight="26.0" prefWidth="148.0" text="Bus" />
-                        <TextField fx:id="set_tour_time" layoutX="325.0" layoutY="11.0" prefHeight="25.0" prefWidth="140.0" text="10:22:23" />
+                        <TextField fx:id="set_tour_transport" layoutX="325.0" layoutY="11.0" prefHeight="26.0" prefWidth="148.0" text="Bus" />
                      </children>
                   </AnchorPane>
                </content>
@@ -105,34 +103,40 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="delete_btn" layoutX="827.0" layoutY="323.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="46.0" prefWidth="83.0" text="Delete" textFill="#4d4d4d" />
-      <Button fx:id="update_btn" layoutX="727.0" layoutY="323.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="UpdateTEST" textFill="#4d4d4d" />
+      <Button fx:id="delete_btn" layoutX="827.0" layoutY="346.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="46.0" prefWidth="83.0" text="Delete" textFill="#4d4d4d" />
+      <Button fx:id="update_btn" layoutX="727.0" layoutY="346.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="83.0" text="UpdateTEST" textFill="#4d4d4d" />
       <TabPane layoutX="727.0" layoutY="102.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Info">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="182.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="16.0" layoutY="22.0" text="From:" />
-                        <Label layoutX="23.0" layoutY="53.0" text="To:" />
-                        <Label layoutX="15.0" layoutY="86.0" text="Transport:" />
-                        <Label layoutX="18.0" layoutY="128.0" text="Distance:" />
-                        <Label fx:id="show_tour_from" alignment="CENTER" layoutX="83.0" layoutY="18.0" prefHeight="25.0" prefWidth="107.0" text="Text">
+                        <Label layoutX="15.0" layoutY="9.0" text="From:" />
+                        <Label layoutX="23.0" layoutY="34.0" text="To:" />
+                        <Label layoutX="11.0" layoutY="62.0" text="Transport:" />
+                        <Label layoutX="14.0" layoutY="84.0" text="Distance:" />
+                        <Label fx:id="show_tour_from" alignment="CENTER" layoutX="83.0" layoutY="6.0" prefHeight="25.0" prefWidth="107.0" text="Text">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="show_tour_to" alignment="CENTER" layoutX="83.0" layoutY="49.0" prefHeight="25.0" prefWidth="107.0" text="Text">
+                        <Label fx:id="show_tour_to" alignment="CENTER" layoutX="83.0" layoutY="31.0" prefHeight="25.0" prefWidth="107.0" text="Text">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="show_tour_transport" alignment="CENTER" layoutX="81.0" layoutY="82.0" prefHeight="25.0" prefWidth="107.0" text="Text">
+                        <Label fx:id="show_tour_transport" alignment="CENTER" layoutX="83.0" layoutY="59.0" prefHeight="25.0" prefWidth="107.0" text="Text">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="show_tour_distance" alignment="CENTER" layoutX="83.0" layoutY="124.0" prefHeight="25.0" prefWidth="107.0" text="Text">
+                        <Label fx:id="show_tour_distance" alignment="CENTER" layoutX="83.0" layoutY="81.0" prefHeight="25.0" prefWidth="107.0" text="Text">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="106.0" text="Time:" />
+                        <Label fx:id="show_tour_time" alignment="CENTER" layoutX="83.0" layoutY="103.0" prefHeight="25.0" prefWidth="107.0" text="Text">
                            <font>
                               <Font size="14.0" />
                            </font>

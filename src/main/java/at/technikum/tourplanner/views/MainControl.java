@@ -28,6 +28,10 @@ public class MainControl {
    private Label show_tour_from;
    @FXML
    private Label show_tour_to;
+
+   @FXML
+   private Label show_tour_time;
+
    @FXML
    private Label show_tour_transport;
    @FXML
@@ -36,6 +40,7 @@ public class MainControl {
    private Label show_tour_description;
    @FXML
    private ImageView show_tour_image;
+
    private String tourID;
     @FXML
     private void searchTour(){
@@ -56,6 +61,10 @@ public class MainControl {
 
          show_tour_distance.setText(""+searchResult.getDistance());
          show_tour_description.setText(searchResult.getDescription());
+
+
+         show_tour_time.setText(searchResult.getTime().toString());
+
          show_tour_image.setImage(mapQuestService.showRouteImage(searchResult.getRouteImage()));
 
          this.tourID = searchResult.getTourID();
@@ -102,7 +111,6 @@ public class MainControl {
                 .to(set_tour_to.getText())
                 .transporter(Transporter.valueOf(set_tour_transport.getText()))
                 .description(set_tour_description.getText())
-                .time(Time.valueOf(set_tour_time.getText()))
                 .build();
 
         tourService.saveTour(tour);

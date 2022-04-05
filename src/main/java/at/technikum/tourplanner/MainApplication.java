@@ -71,7 +71,6 @@ public class MainApplication extends Application {
                  .to("Berlin")
                  .transporter(Transporter.Walk)
                  .description("wwwwwww essfw")
-                 .time(Time.valueOf("10:12:22"))
                  .build();
 
 

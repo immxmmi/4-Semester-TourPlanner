@@ -32,24 +32,25 @@ public class MapQuestServiceImpl implements MapQuestService {
 
         Route currentRoute = this.routeBuilder(from,to);
 
+        if (currentRoute == null){
+            return null;
+        }
+
         try {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(currentRoute.getUrlRoute()))
-                .build();
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(currentRoute.getUrlRoute()))
+                    .build();
 
         CompletableFuture<HttpResponse<String>> response = client.sendAsync(request,HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper();
 
-
-        if(response.get() == null){
-            return null;
-        }
-
             String body = response.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
 
 
-
+            if (!mapper.readTree(body).get("route").get("routeError").get("errorCode").toString().equals("-400")){
+                return null;
+            }
 
             currentRoute.setRouteBody(mapper.readTree(body).get("route"));
             currentRoute.setDistance(Double.valueOf(mapper.readTree(body).get("route").get("distance").toString()));
@@ -80,7 +81,7 @@ public class MapQuestServiceImpl implements MapQuestService {
     //2. BUILD
     private Route routeBuilder(String from, String to){
         Route route = Route.builder()
-                .key("?key=" + ConfigurationManager.GetConfigPropertyValue("mapQuest_id"))
+                .key("?key=" + ConfigurationManager.getConfigPropertyValue("mapQuest_id"))
                 .from(from)
                 .to(to)
                 .build();

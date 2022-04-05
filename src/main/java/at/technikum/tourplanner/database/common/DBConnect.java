@@ -1,13 +1,16 @@
 package at.technikum.tourplanner.database.common;
 
 import at.technikum.tourplanner.business.ConfigurationManager;
-import at.technikum.tourplanner.utils.TextColor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnect implements Cloneable {
 
+    final Logger logger = LogManager.getLogger(DBConnect.class);
 
     private static String databaseName;
     private static String username;
@@ -53,7 +56,7 @@ public class DBConnect implements Cloneable {
      **/
     public DBConnect() {
        // this("swe2db", "swe2user", "swe2pw", "5432");
-        this(ConfigurationManager.GetConfigPropertyValue("db_url"),ConfigurationManager.GetConfigPropertyValue("db_database"), ConfigurationManager.GetConfigPropertyValue("db_username"), ConfigurationManager.GetConfigPropertyValue("db_password"), ConfigurationManager.GetConfigPropertyValue("db_port"));
+        this(ConfigurationManager.getConfigPropertyValue("db_url"),ConfigurationManager.getConfigPropertyValue("db_database"), ConfigurationManager.getConfigPropertyValue("db_username"), ConfigurationManager.getConfigPropertyValue("db_password"), ConfigurationManager.getConfigPropertyValue("db_port"));
     }
 
 
@@ -63,9 +66,11 @@ public class DBConnect implements Cloneable {
     private void startConnect() {
         try {
             this.connection = DriverManager.getConnection(this.jdbcURL, this.username, this.password);
-            System.out.println(TextColor.ANSI_GREEN + "CONNECT DB -- success" + TextColor.ANSI_RESET);
+            logger.info("CONNECT DB -- success");
+           // System.out.println(TextColor.ANSI_GREEN + "CONNECT DB -- success" + TextColor.ANSI_RESET);
         } catch (SQLException e) {
-            System.out.println(TextColor.ANSI_RED + "CONNECT DB -- failed" + TextColor.ANSI_RESET);
+            logger.error("CONNECT DB -- failed");
+            //System.out.println(TextColor.ANSI_RED + "CONNECT DB -- failed" + TextColor.ANSI_RESET);
             e.printStackTrace();
         }
     }
