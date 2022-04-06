@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.business;
+package at.technikum.tourplanner.business.tour;
 
 import at.technikum.tourplanner.models.Tour;
 

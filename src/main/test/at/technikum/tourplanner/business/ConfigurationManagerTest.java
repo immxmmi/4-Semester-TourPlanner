@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.business;
 
+import at.technikum.tourplanner.business.config.ConfigurationManager;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

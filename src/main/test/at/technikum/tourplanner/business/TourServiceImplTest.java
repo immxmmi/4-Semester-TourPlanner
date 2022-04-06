@@ -1,5 +1,7 @@
 package at.technikum.tourplanner.business;
 
+import at.technikum.tourplanner.business.tour.TourService;
+import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import org.junit.Before;

@@ -1,7 +1,5 @@
 package at.technikum.tourplanner.database.sqlServer;
 
-import at.technikum.tourplanner.business.TourService;
-import at.technikum.tourplanner.business.TourServiceImpl;
 import at.technikum.tourplanner.database.dao.TourDao;
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;

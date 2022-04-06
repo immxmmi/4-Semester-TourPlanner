@@ -16,6 +16,7 @@ module at.technikum.tourplanner {
     requires reload4j;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
+    requires org.apache.pdfbox;
 
 
     opens at.technikum.tourplanner to javafx.fxml;

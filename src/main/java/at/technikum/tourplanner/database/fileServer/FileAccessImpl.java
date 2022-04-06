@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.database.fileServer;
 
-import at.technikum.tourplanner.business.ConfigurationManager;
+import at.technikum.tourplanner.business.config.ConfigurationManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;

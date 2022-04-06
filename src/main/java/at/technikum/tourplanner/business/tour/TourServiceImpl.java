@@ -1,5 +1,7 @@
-package at.technikum.tourplanner.business;
+package at.technikum.tourplanner.business.tour;
 
+import at.technikum.tourplanner.business.mapQuest.MapQuestService;
+import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.dao.TourDao;
 import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;

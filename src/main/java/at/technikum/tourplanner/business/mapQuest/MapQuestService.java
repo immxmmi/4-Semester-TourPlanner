@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.business;
+package at.technikum.tourplanner.business.mapQuest;
 
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Route;

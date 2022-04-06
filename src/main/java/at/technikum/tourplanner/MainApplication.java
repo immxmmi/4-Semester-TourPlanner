@@ -1,29 +1,23 @@
 package at.technikum.tourplanner;
 
-import at.technikum.tourplanner.business.MapQuestService;
-import at.technikum.tourplanner.business.MapQuestServiceImpl;
-import at.technikum.tourplanner.business.TourService;
-import at.technikum.tourplanner.business.TourServiceImpl;
+import at.technikum.tourplanner.business.mapQuest.MapQuestService;
+import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
+import at.technikum.tourplanner.business.tour.TourService;
+import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.database.dao.TourDao;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.application.Application;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Time;
-
 
 
 public class MainApplication extends Application {
@@ -60,8 +54,7 @@ public class MainApplication extends Application {
 
         MapQuestService mapQuestService = new MapQuestServiceImpl();
         TourService tourService = new TourServiceImpl();
-        System.out.println("restre");
-        System.out.println(tourService.getAllTourOrderByName());
+
 
         TourDao tourDao = new TourDaoImpl();
 
@@ -84,11 +77,6 @@ public class MainApplication extends Application {
 
 
         tour = tourService.saveTour(tour);
-
-
-          //mapQuestService.downloadImage(tour.getRouteImage());
-
-
 
 
 

@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.business;
+package at.technikum.tourplanner.business.config;
 
 import java.io.*;
 import java.util.Properties;

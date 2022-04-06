@@ -1,5 +1,8 @@
-package at.technikum.tourplanner.business;
+package at.technikum.tourplanner.business.mapQuest;
 
+import at.technikum.tourplanner.business.net.NetworkCommunicationService;
+import at.technikum.tourplanner.business.net.NetworkCommunicationServiceImpl;
+import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.fileServer.FileAccess;
 import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
@@ -12,7 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -42,8 +44,8 @@ public class MapQuestServiceImpl implements MapQuestService {
                     .uri(URI.create(currentRoute.getUrlRoute()))
                     .build();
 
-        CompletableFuture<HttpResponse<String>> response = client.sendAsync(request,HttpResponse.BodyHandlers.ofString());
-        ObjectMapper mapper = new ObjectMapper();
+            CompletableFuture<HttpResponse<String>> response = client.sendAsync(request,HttpResponse.BodyHandlers.ofString());
+            ObjectMapper mapper = new ObjectMapper();
 
             String body = response.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
 
@@ -101,8 +103,8 @@ public class MapQuestServiceImpl implements MapQuestService {
     //4. CREATE URL
     private String createDownloadURL(Route currentRoute,boolean defaultMarker,boolean zoom){
         String params = currentRoute.getKey()+currentRoute.getSize()+currentRoute.getSessionID();
-                if(!defaultMarker){params+=currentRoute.getRouteImage().getDefaultMarker();}
-                if(zoom){params+=currentRoute.getRouteImage().getZoom();}
+        if(!defaultMarker){params+=currentRoute.getRouteImage().getDefaultMarker();}
+        if(zoom){params+=currentRoute.getRouteImage().getZoom();}
         return "http://www.mapquestapi.com/staticmap/v5/map"+params;
     }
 
@@ -127,22 +129,8 @@ public class MapQuestServiceImpl implements MapQuestService {
 
     //5.2 LOAD IMAGE FROM INTERNET
     private byte[] loadRouteImage(String downloadURL){
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(downloadURL))
-                .build();
-        try {
-            HttpResponse<byte[]> response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
-            return response.body();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        NetworkCommunicationService networkCommunicationService = new NetworkCommunicationServiceImpl();
+        return networkCommunicationService.loadImageByLink(downloadURL);
     }
 
     //6 UPDATE

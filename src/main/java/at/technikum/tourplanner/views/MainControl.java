@@ -1,17 +1,14 @@
 package at.technikum.tourplanner.views;
 
-import at.technikum.tourplanner.business.MapQuestService;
-import at.technikum.tourplanner.business.MapQuestServiceImpl;
-import at.technikum.tourplanner.business.TourService;
-import at.technikum.tourplanner.business.TourServiceImpl;
+import at.technikum.tourplanner.business.mapQuest.MapQuestService;
+import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
+import at.technikum.tourplanner.business.tour.TourService;
+import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-
-import java.sql.Time;
 
 public class MainControl {
 
