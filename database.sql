@@ -1,9 +1,9 @@
 create table tour
 (
-    "tourId"     text not null
+    "tourID"     text not null
         constraint tour_pk
             primary key,
-    name         text not null,
+    title        text not null,
     transporter  text not null,
     "from"       text not null,
     "to"         text not null,
@@ -17,36 +17,29 @@ alter table tour
     owner to swe2user;
 
 create unique index tour_tourid_uindex
-    on tour ("tourId");
-
-create table city
-(
-    "cityId" text not null
-        constraint city_pk
-            primary key,
-    name     text not null
-);
-
-alter table city
-    owner to swe2user;
-
-create unique index city_cityid_uindex
-    on city ("cityId");
+    on tour ("tourID");
 
 create table "tourLog"
 (
-    "tourLogId" text not null
+    "tourLogID" text      not null
         constraint tourlog_pk
-            primary key
+            primary key,
+    "tourID"    text      not null,
+    report      text,
+    comment     text,
+    "totalTime" text      not null,
+    difficulty  text      not null,
+    rating      text      not null,
+    date        timestamp not null
 );
 
 alter table "tourLog"
     owner to swe2user;
 
 create unique index tourlog_tourlogid_uindex
-    on "tourLog" ("tourLogId");
+    on "tourLog" ("tourLogID");
 
-create table routeImage
+create table image
 (
     "imageID"       text not null
         constraint image_pk
@@ -59,14 +52,13 @@ create table routeImage
     "downloadURL"   text,
     local           text not null,
     "defaultMarker" text not null,
-    "imageData"     text,
     "filePath"      text
 );
 
-alter table routeImage
+alter table image
     owner to swe2user;
 
 create unique index image_imagename_uindex
-    on routeImage ("imageID");
+    on image ("imageID");
 
 

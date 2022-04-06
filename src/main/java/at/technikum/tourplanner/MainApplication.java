@@ -2,6 +2,8 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
+import at.technikum.tourplanner.business.report.Report;
+import at.technikum.tourplanner.business.report.ReportImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.database.dao.TourDao;
@@ -30,7 +32,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        logger.log(Level.ERROR,"Starting Tour Planner Pro...");
+        logger.info("Starting Tour Planner Pro...");
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view1.fxml"));
         stage.setTitle("Tour Planner Pro (30 Days free Trial)");
@@ -67,18 +69,21 @@ public class MainApplication extends Application {
         // - DESCRIPTION
         // - TIME
         Tour tour = Tour.builder()
-                .title("Test.2")
+                .title("Test.9")
                 .from("Wien")
-                .to("Berlin")
+                .to("Linz")
                 .transporter(Transporter.Walk)
-                .description("Test Tour")
+                .description("Test Tour2")
                 .build();
-
 
 
         tour = tourService.saveTour(tour);
 
+        Report report = new ReportImpl();
+        report.createTourReport(tour);
+        tourService.deleteTour(tour.getTourID());
 
+       // System.out.println(tour.toString());
 
         //     System.out.println(tour.getRouteImage().getDownloadURL());
        // FileAccess fileAccess = new FileAccessImpl();
@@ -87,7 +92,7 @@ public class MainApplication extends Application {
 
 
 
-        launch();
+        //launch();
 
     }
 }

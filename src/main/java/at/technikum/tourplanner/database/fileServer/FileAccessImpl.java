@@ -19,6 +19,11 @@ public class FileAccessImpl implements FileAccess{
         return Paths.get(root,filename).toString();
     }
 
+    @Override
+    public void createFolder(String folder){
+        File currentFile = new File(GetFullPath(folder));
+        currentFile.mkdirs();
+    }
 
     @Override
     public File readFile(String filename){
@@ -29,6 +34,7 @@ public class FileAccessImpl implements FileAccess{
     public File writeFile(String filename, byte[] text){
         File currentFile = new File(GetFullPath(filename));
         currentFile.getParentFile().mkdirs();
+
         try(FileOutputStream fileOutputStream = new FileOutputStream(GetFullPath(filename))){
 
             fileOutputStream.write(text);

@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public interface FileAccess {
+
+    void createFolder(String folder);
     File readFile(String filename);
     File writeFile(String filename, byte[] text);
     boolean deleteFile(String filename);

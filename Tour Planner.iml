@@ -63,5 +63,9 @@
     <orderEntry type="library" name="Maven: org.apache.pdfbox:pdfbox:2.0.23" level="project" />
     <orderEntry type="library" name="Maven: org.apache.pdfbox:fontbox:2.0.23" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.jcabi:jcabi-log:0.17.1" level="project" />
+    <orderEntry type="library" name="Maven: com.jcabi:jcabi-aspects:0.22" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.8.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
   </component>
 </module>
