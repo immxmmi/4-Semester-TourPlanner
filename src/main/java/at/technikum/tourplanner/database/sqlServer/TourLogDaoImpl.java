@@ -2,9 +2,12 @@ package at.technikum.tourplanner.database.sqlServer;
 
 import at.technikum.tourplanner.database.common.AbstractDBTable;
 import at.technikum.tourplanner.database.dao.TourLogDao;
+import at.technikum.tourplanner.models.Difficulty;
+import at.technikum.tourplanner.models.Rating;
 import at.technikum.tourplanner.models.TourLog;
 import at.technikum.tourplanner.utils.TextColor;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,7 +17,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
     /**                          Constructor                          **/
     /*******************************************************************/
     public TourLogDaoImpl() {
-        this.tableName = "tourLog";
+        this.tableName = "\"tourLog\"";
     }
     /*******************************************************************/
 
@@ -28,6 +31,12 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             if (result.next()) {
                 TourLog tourLog = TourLog.builder()
                         .tourLogID(result.getString("tourLogID"))
+                        .tourID(result.getString("tourID"))
+                        .comment(result.getString("comment"))
+                        .totalTime(Double.valueOf(result.getString("totalTime")))
+                        .difficulty(Difficulty.valueOf(result.getString("difficulty")))
+                        .rating(Rating.valueOf(result.getString("rating")))
+                        .date(Date.valueOf(result.getString("date")))
                         .build();
 
                 this.closeStatement();
@@ -52,6 +61,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                 "SELECT * FROM " + this.tableName + " WHERE \"tourLogID\" = ? " + ";",
                 this.parameter
         );
+
         return buildClass(this.result);
     }
 
@@ -63,18 +73,19 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         if(getItemById(item.getTourLogID()) == null) {
             this.parameter = new String[]{
                     "" + item.getTourLogID(),
-                    "" + item.getTour().getTourID(),
-                    "" + item.getReport(),
+                    "" + item.getTourID(),
                     "" + item.getComment(),
                     "" + item.getTotalTime(),
                     "" + item.getDifficulty(),
                     "" + item.getRating(),
+                    "" + item.getDate()
             };
 
 
-            this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogID\",tourID,\"report\",\"comment\",\"totalTime\",\"difficulty\",\"rating\")VALUES(?,?,?,?,?,?,?,?);", this.parameter);
+            this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogID\",\"tourID\",\"comment\",\"totalTime\",\"difficulty\",\"rating\",\"date\")VALUES(?,?,?,?,?,?,?);", this.parameter);
         }
-        System.out.println(this.statement);
+
+
         return getItemById(item.getTourLogID());
     }
 
@@ -86,14 +97,26 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         this.parameter = new String[]{
                 "" + item.getTourLogID(),
+                "" + item.getTourID(),
+                "" + item.getComment(),
+                "" + item.getTotalTime(),
+                "" + item.getDifficulty(),
+                "" + item.getRating(),
+                "" + item.getDate(),
+                "" + item.getTourLogID(),
         };
-
 
 
         this.setStatement(
                 "UPDATE " + this.tableName +
-                        " SET \"tourLogId\" = ? " +
-                        "WHERE \"tourLogId\" = ? ;"
+                        " SET \"tourLogId\" = ?, " +
+                        "\"tourID\"= ?," +
+                        "\"comment\"= ?," +
+                        "\"totalTime\"= ?," +
+                        "\"difficulty\"= ?," +
+                        "\"rating\"= ?," +
+                        "\"date\" = ?" +
+                         "WHERE \"tourLogId\" = ? ;"
                 , this.parameter
         );
 

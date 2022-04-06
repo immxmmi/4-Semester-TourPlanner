@@ -11,15 +11,13 @@ public class TourLog {
 
     private String tourLogID;
 
+    private String tourID;
+
     private Date date;
-
-    private Tour tour;
-
-    private String report;
 
     private String comment;
 
-    private int totalTime;
+    private double totalTime;
 
     @Builder.Default
     private Difficulty difficulty = Difficulty.Normal;

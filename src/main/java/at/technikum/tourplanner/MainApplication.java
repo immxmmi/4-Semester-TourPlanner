@@ -83,6 +83,16 @@ public class MainApplication extends Application {
         report.createTourReport(tour);
         tourService.deleteTour(tour.getTourID());
 
+
+        // TourLogs
+        // - Date
+        // - comment
+        // - difficulty
+        // - total time
+        // - Rating
+
+
+
        // System.out.println(tour.toString());
 
         //     System.out.println(tour.getRouteImage().getDownloadURL());

@@ -1,56 +1,72 @@
 package at.technikum.tourplanner.database.sqlServer;
 
 import at.technikum.tourplanner.database.dao.TourLogDao;
-import at.technikum.tourplanner.models.*;
+import at.technikum.tourplanner.models.Difficulty;
+import at.technikum.tourplanner.models.Rating;
+import at.technikum.tourplanner.models.TourLog;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Time;
+import java.sql.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TourLogDaoImplTest {
+
+    private TourLogDao tourLogDao = new TourLogDaoImpl();
+
+
 
     @Before
     private TourLog initTourLog(){
 
-        RouteImage routeImage = RouteImage.builder()
-                .imageID("test")
-                .downloadURL("www.TEST")
-                .filePath("/test/test")
-                .build();
-
-        Tour tour =  Tour.builder()
-                .tourID("Test-ID")
-                .title("Test-Tour-1")
-                .from("Wien")
-                .to("Berlin")
-                .description("Das ist ein Test")
-                .routeImage(routeImage)
-                .transporter(Transporter.Walk)
-                .distance(11)
-                .time(Time.valueOf("11:11:11"))
-                .build();
-
         return TourLog.builder()
                 .tourLogID("TEST-TOURLOG")
-                .tour(tour)
+                .tourID("test")
                 .comment("Kommentar - ist da")
                 .difficulty(Difficulty.Expert)
                 .rating(Rating.point1)
                 .totalTime(10)
-                .report("test text me")
+                .date(Date.valueOf("1998-11-11"))
                 .build();
-    }
-    @Test
-    void getItemById() {
     }
 
     @Test
-    void insert() {
-        TourLog tourLog = initTourLog();
-        TourLogDao tourLogDao = new TourLogDaoImpl();
-        tourLogDao.insert(tourLog);
+    void deleteTourLogTest(){
+        assertTrue(tourLogDao.delete("ee"));
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
+        testTourLog = tourLogDao.insert(testTourLog);
+        assertNotNull(testTourLog);
+        testTourLog = tourLogDao.getItemById(testTourLog.getTourLogID());
+        assertNotNull(testTourLog);
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
+    }
+
+    @Test
+    void getTourLogByIDTest() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
+        testTourLog = tourLogDao.insert(testTourLog);
+        assertNotNull(testTourLog);
+        testTourLog = tourLogDao.getItemById(testTourLog.getTourLogID());
+        assertNotNull(testTourLog);
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
+    }
+
+    @Test
+    void insertTourLogTest() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
+        testTourLog = tourLogDao.insert(testTourLog);
+        assertNotNull(testTourLog);
+        testTourLog = tourLogDao.getItemById(testTourLog.getTourLogID());
+        assertNotNull(testTourLog);
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
     @Test
