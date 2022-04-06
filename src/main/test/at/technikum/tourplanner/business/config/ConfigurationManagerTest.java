@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.business;
+package at.technikum.tourplanner.business.config;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import org.junit.jupiter.api.Test;

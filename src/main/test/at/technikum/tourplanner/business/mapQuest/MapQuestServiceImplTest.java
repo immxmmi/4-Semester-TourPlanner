@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.business;
+package at.technikum.tourplanner.business.mapQuest;
 
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
