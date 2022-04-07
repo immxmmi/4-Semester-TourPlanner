@@ -21,16 +21,15 @@ create unique index tour_tourid_uindex
 
 create table "tourLog"
 (
-    "tourLogID" text      not null
+    "tourLogID" text not null
         constraint tourlog_pk
             primary key,
-    "tourID"    text      not null,
-    report      text,
+    "tourID"    text not null,
     comment     text,
-    "totalTime" text      not null,
-    difficulty  text      not null,
-    rating      text      not null,
-    date        timestamp not null
+    "totalTime" text not null,
+    difficulty  text not null,
+    rating      text not null,
+    date        text not null
 );
 
 alter table "tourLog"
