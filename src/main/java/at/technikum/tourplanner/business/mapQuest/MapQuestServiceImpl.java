@@ -158,6 +158,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         }
 
         route.setRouteImage(routeImageSettings);
+
         if(route == null){return null;}
         route = this.setImageSettingsToRoute(route);
         route = this.copyRouteDataToImage(route);

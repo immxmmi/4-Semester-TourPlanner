@@ -38,6 +38,9 @@ public class MainControl {
    private ImageView show_tour_image;
 
    private String tourID;
+
+
+   ///////////////////////
     @FXML
     private void searchTour(){
         if(search_input == null){
@@ -65,7 +68,6 @@ public class MainControl {
 
          this.tourID = searchResult.getTourID();
     }
-
 
     // Tour - DELETE
     @FXML

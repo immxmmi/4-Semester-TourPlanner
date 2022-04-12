@@ -5,7 +5,7 @@ public enum Transporter {
     Bus,
     Train,
     Bicycle,
-    Plain,
+    Plane,
     Boat,
     Scooter,
     Bike,

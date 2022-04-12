@@ -60,6 +60,7 @@ public class ReportImpl implements Report{
             write.showText("Tour-Report: " + reportTime);
             write.newLine();
             write.showText("Tour Name: " + tour.getTitle());
+            write.showText("Tour Name: " + tour.getTo());
             write.newLine();
 
             // STOP - TEXTING

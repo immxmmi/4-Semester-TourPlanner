@@ -68,7 +68,7 @@ public class MainApplication extends Application {
         // - TRANSPORTER
         // - DESCRIPTION
         // - TIME
-        Tour tour = Tour.builder()
+       /* Tour tour = Tour.builder()
                 .title("Test.9")
                 .from("Wien")
                 .to("Linz")
@@ -82,7 +82,7 @@ public class MainApplication extends Application {
         Report report = new ReportImpl();
         report.createTourReport(tour);
         tourService.deleteTour(tour.getTourID());
-
+*/
 
         // TourLogs
         // - Date
@@ -102,7 +102,7 @@ public class MainApplication extends Application {
 
 
 
-        //launch();
+        launch();
 
     }
 }
