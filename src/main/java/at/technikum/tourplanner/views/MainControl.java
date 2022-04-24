@@ -9,11 +9,12 @@ import at.technikum.tourplanner.models.Transporter;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import lombok.Data;
 
+@Data
 public class MainControl {
 
 
-    // SEARCH
    @FXML
    private TextField search_input;
 
@@ -43,6 +44,10 @@ public class MainControl {
    ///////////////////////
     @FXML
     private void searchTour(){
+        MainViewModel main = new MainViewModel();
+        System.out.println(getSearch_input());
+        System.out.println(main);
+        System.out.println(main.getSearch_input());
         if(search_input == null){
             return;
         }
