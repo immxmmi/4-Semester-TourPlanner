@@ -58,6 +58,11 @@ public class TourServiceImpl implements TourService{
     }
 
     @Override
+    public Tour getTourByID(String tourID) {
+        return tourDao.getItemById(tourID);
+    }
+
+    @Override
     public Boolean deleteTour(String tourID) {
         return tourDao.delete(tourID);
     }

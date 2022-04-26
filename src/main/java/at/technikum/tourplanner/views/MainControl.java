@@ -2,6 +2,8 @@ package at.technikum.tourplanner.views;
 
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
+import at.technikum.tourplanner.business.report.Report;
+import at.technikum.tourplanner.business.report.ReportImpl;
 import at.technikum.tourplanner.business.tour.TourLogService;
 import at.technikum.tourplanner.business.tour.TourLogServiceImpl;
 import at.technikum.tourplanner.business.tour.TourService;
@@ -51,6 +53,8 @@ public class MainControl {
     @FXML
     private void searchTour(){
         MainViewModel main = new MainViewModel();
+
+
      //  System.out.println(getSearch_input());
      //  System.out.println(main);
      //  System.out.println(main.getSearch_input());
@@ -77,7 +81,13 @@ public class MainControl {
 
          show_tour_image.setImage(mapQuestService.showRouteImage(searchResult.getRouteImage()));
 
+
          this.tourID = searchResult.getTourID();
+
+        Report report = new ReportImpl();
+        report.createTourReport(tourService.getTourByID(tourID));
+
+
          tourlog_tour_id.setText(tourID);
     }
 

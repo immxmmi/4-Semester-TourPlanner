@@ -83,7 +83,6 @@ public class MainApplication extends Application {
         report.createTourReport(tour);
         tourService.deleteTour(tour.getTourID());
 */
-
         // TourLogs
         // - Date
         // - comment
