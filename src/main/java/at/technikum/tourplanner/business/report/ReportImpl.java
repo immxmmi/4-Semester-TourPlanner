@@ -59,8 +59,18 @@ public class ReportImpl implements Report{
             write.newLine();
             write.showText("Tour-Report: " + reportTime);
             write.newLine();
+            write.showText("Tour Tour ID: " + tour.getTourID());
+            write.newLine();
             write.showText("Tour Name: " + tour.getTitle());
-            write.showText("Tour Name: " + tour.getTo());
+            write.newLine();
+            write.showText("Tour To: " + tour.getTo());
+            write.newLine();
+            write.showText("Tour From: " + tour.getFrom());
+            write.newLine();
+            write.showText("Tour Distance: " + tour.getDistance());
+            write.newLine();
+            write.showText("Tour Transport: " + tour.getTransporter().toString());
+            write.newLine();
             write.newLine();
 
             // STOP - TEXTING
