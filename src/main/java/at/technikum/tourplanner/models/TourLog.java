@@ -20,7 +20,7 @@ public class TourLog {
     private double totalTime;
 
     @Builder.Default
-    private Difficulty difficulty = Difficulty.Normal;
+    private Difficulty difficulty = Difficulty.normal;
 
     @Builder.Default
     private Rating rating = Rating.pointDefault;

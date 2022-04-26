@@ -62,6 +62,8 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                 this.parameter
         );
 
+        System.out.println(this.statement);
+
         return buildClass(this.result);
     }
 

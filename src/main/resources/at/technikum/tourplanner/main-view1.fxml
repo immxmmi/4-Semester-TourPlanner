@@ -19,7 +19,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
    <children>
-      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1010.0">
+      <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1101.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -104,7 +104,22 @@
             </Tab>
           <Tab text="Logs">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="29.0" layoutY="68.0" prefHeight="17.0" prefWidth="107.0" text="rating point1-5 :" />
+                        <Label layoutX="29.0" layoutY="103.0" prefHeight="17.0" prefWidth="272.0" text="difficulty (easy, normal, hard, expert) :" />
+                        <Label layoutX="33.0" layoutY="139.0" prefHeight="17.0" prefWidth="265.0" text="total time : " />
+                        <Label layoutX="31.0" layoutY="39.0" text="date :" />
+                        <Label layoutX="31.0" layoutY="169.0" text="Comment:" />
+                        <Label layoutX="423.0" layoutY="6.0" text="Tour ID " />
+                        <Label fx:id="tourlog_tour_id" layoutX="482.0" layoutY="6.0" prefHeight="17.0" prefWidth="252.0" text="---" />
+                        <Button fx:id="submit_btn" layoutX="657.0" layoutY="252.0" mnemonicParsing="false" onAction="#saveTourLog" text="submit" />
+                        <TextArea fx:id="set_tourlog_comment" layoutX="100.0" layoutY="169.0" prefHeight="126.0" prefWidth="490.0" text="Test kommentar" />
+                        <TextField fx:id="set_tourlog_rating" layoutX="250.0" layoutY="64.0" text="point5" />
+                        <TextField fx:id="set_tourlog_total_time" layoutX="250.0" layoutY="135.0" text="22" />
+                        <TextField fx:id="set_tourlog_difficulty" layoutX="250.0" layoutY="99.0" text="normal" />
+                        <TextField fx:id="set_tourlog_date" layoutX="250.0" layoutY="35.0" text="now" />
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>

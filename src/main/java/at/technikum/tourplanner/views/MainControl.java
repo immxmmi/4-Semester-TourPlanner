@@ -2,14 +2,18 @@ package at.technikum.tourplanner.views;
 
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
+import at.technikum.tourplanner.business.tour.TourLogService;
+import at.technikum.tourplanner.business.tour.TourLogServiceImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
-import at.technikum.tourplanner.models.Tour;
-import at.technikum.tourplanner.models.Transporter;
+import at.technikum.tourplanner.models.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import lombok.Data;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Data
 public class MainControl {
@@ -40,14 +44,16 @@ public class MainControl {
 
    private String tourID;
 
+   @FXML
+    private Label tourlog_tour_id;
 
    ///////////////////////
     @FXML
     private void searchTour(){
         MainViewModel main = new MainViewModel();
-        System.out.println(getSearch_input());
-        System.out.println(main);
-        System.out.println(main.getSearch_input());
+     //  System.out.println(getSearch_input());
+     //  System.out.println(main);
+     //  System.out.println(main.getSearch_input());
         if(search_input == null){
             return;
         }
@@ -72,6 +78,7 @@ public class MainControl {
          show_tour_image.setImage(mapQuestService.showRouteImage(searchResult.getRouteImage()));
 
          this.tourID = searchResult.getTourID();
+         tourlog_tour_id.setText(tourID);
     }
 
     // Tour - DELETE
@@ -117,6 +124,43 @@ public class MainControl {
                 .build();
 
         tourService.saveTour(tour);
+
+
+    }
+
+
+    // TOURLog - CREATE
+    @FXML
+    private TextField set_tourlog_date;
+    @FXML
+    private TextField set_tourlog_rating;
+    @FXML
+    private TextField set_tourlog_difficulty;
+    @FXML
+    private TextField set_tour;
+    @FXML
+    private TextField set_tourlog_total_time;
+    @FXML
+    private TextArea set_tourlog_comment;
+
+    @FXML
+    private void saveTourLog(){
+        TourLogService tourLogService = new TourLogServiceImpl();
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+       TourLog tourLog = TourLog.builder()
+               .tourID(tourID)
+               .tourLogID(tourID + set_tourlog_rating + set_tourlog_difficulty)
+               .date(date)
+               .rating(Rating.valueOf(set_tourlog_rating.getText()))
+               .difficulty(Difficulty.valueOf(set_tourlog_difficulty.getText()))
+               .comment(set_tourlog_comment.getText())
+               .totalTime(Double.parseDouble(set_tourlog_total_time.getText()))
+               .build();
+
+        if(tourID != null){
+            tourLogService.saveTourLog(tourLog);
+        }
 
 
     }

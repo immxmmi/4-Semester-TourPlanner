@@ -25,7 +25,7 @@ class TourLogDaoImplTest {
                 .tourLogID("TEST-TOURLOG")
                 .tourID("test")
                 .comment("Kommentar - ist da")
-                .difficulty(Difficulty.Expert)
+                .difficulty(Difficulty.expert)
                 .rating(Rating.point1)
                 .totalTime(10)
                 .date(Date.valueOf("1998-11-11"))
