@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.views.MainControl">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="1101.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.SceneController">
    <children>
       <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="1101.0">
         <menus>
@@ -98,6 +98,7 @@
                         <TextArea fx:id="set_tour_description" layoutX="93.0" layoutY="105.0" prefHeight="188.0" prefWidth="456.0" text="Das ist eine Test Tour." />
                         <Button fx:id="create_btn" defaultButton="true" layoutX="575.0" layoutY="98.0" mnemonicParsing="false" onAction="#createTour" prefHeight="61.0" prefWidth="87.0" text="create" textFill="#1e1e1e" />
                         <TextField fx:id="set_tour_transport" layoutX="325.0" layoutY="11.0" prefHeight="26.0" prefWidth="148.0" text="Bus" />
+                        <Button layoutX="619.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToSearchBar" text="startseite" />
                      </children>
                   </AnchorPane>
                </content>

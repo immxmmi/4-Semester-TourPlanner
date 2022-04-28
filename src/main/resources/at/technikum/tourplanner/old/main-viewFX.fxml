@@ -94,7 +94,7 @@
                      <children>
                         <ImageView fitHeight="544.0" fitWidth="896.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@img/imageView1.jpg" />
+                              <Image url="@../img/imageView1.jpg" />
                            </image>
                         </ImageView>
                         <TableView layoutX="-4.0" layoutY="502.0" prefHeight="249.0" prefWidth="901.0">
