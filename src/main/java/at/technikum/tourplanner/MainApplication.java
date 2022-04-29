@@ -52,10 +52,7 @@ public class MainApplication extends Application {
         logger.info("Stopping Tour Planner Pro...");
     }
 
-    public static void main(String[] args) throws SQLException {
-
-
+    public static void main(String[] args){
         launch();
-
     }
 }

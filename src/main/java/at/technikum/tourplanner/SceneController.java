@@ -64,4 +64,7 @@ public class SceneController {
         this.stage.setScene(scene);
         this.stage.show();
     }
+
+    public void testMe(ActionEvent actionEvent) {
+    }
 }
