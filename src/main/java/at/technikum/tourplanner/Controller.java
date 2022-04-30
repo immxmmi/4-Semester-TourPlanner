@@ -40,7 +40,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       testOutput.textProperty().bind(textValueProperty());
+       //testOutput.textProperty().bind(textValueProperty());
     }
 
 

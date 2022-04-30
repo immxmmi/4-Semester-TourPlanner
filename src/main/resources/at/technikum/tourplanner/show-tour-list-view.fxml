@@ -4,13 +4,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.SceneController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1096.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.SceneController">
    <children>
-      <MenuBar prefHeight="26.0" prefWidth="916.0">
+      <MenuBar prefHeight="26.0" prefWidth="1096.0">
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
@@ -29,12 +31,20 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Text fill="#364684" layoutX="270.0" layoutY="101.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="ShowList" textAlignment="CENTER" wrappingWidth="375.7366638183594">
+      <Text fill="#364684" layoutX="348.0" layoutY="91.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="ShowList" textAlignment="CENTER" wrappingWidth="375.7366638183594">
          <font>
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="822.0" layoutY="52.0" mnemonicParsing="false" onAction="#switchToSearchBar" text="back" />
-      <Button layoutX="817.0" layoutY="580.0" mnemonicParsing="false" text="submit" />
+      <Button layoutX="1017.0" layoutY="550.0" mnemonicParsing="false" onAction="#switchToSearchBar" text="back" />
+      <Button layoutX="937.0" layoutY="550.0" mnemonicParsing="false" text="submit" />
+      <TableView fx:id="TourList" layoutX="16.0" layoutY="117.0" prefHeight="283.0" prefWidth="1065.0">
+        <columns>
+          <TableColumn prefWidth="332.0" text="Title:" />
+          <TableColumn prefWidth="292.0" text="From:" />
+            <TableColumn prefWidth="201.0" text="To:" />
+            <TableColumn prefWidth="239.0" text="Distance:" />
+        </columns>
+      </TableView>
    </children>
 </Pane>
