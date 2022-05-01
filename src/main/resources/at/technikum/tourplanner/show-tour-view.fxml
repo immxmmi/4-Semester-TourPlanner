@@ -34,59 +34,49 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="1092.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.SceneController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="1190.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.SceneController">
    <children>
-      <MenuBar prefHeight="26.0" prefWidth="1092.0">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <Text fill="#364684" layoutX="98.0" layoutY="101.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour" textAlignment="CENTER" wrappingWidth="375.7366638183594">
+      <Text fill="#364684" layoutY="89.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour" textAlignment="CENTER" wrappingWidth="375.7366638183594">
          <font>
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="1037.0" layoutY="577.0" mnemonicParsing="false" onAction="#switchToSearchBar" text="back" />
-      <Button layoutX="966.0" layoutY="577.0" mnemonicParsing="false" text="submit" />
-      <Label fx:id="in_tour_to" layoutX="128.0" layoutY="199.0" text="Text" />
-      <Label layoutX="52.0" layoutY="199.0" text="To:" />
-      <Label layoutX="45.0" layoutY="163.0" text="From:" />
-      <Label layoutX="48.0" layoutY="274.0" text="Distance:" />
-      <Label layoutX="46.0" layoutY="368.0" text="Description:" />
-      <Label layoutX="46.0" layoutY="316.0" text="Time:" />
-      <ImageView fx:id="in_tour_image" fitHeight="442.0" fitWidth="823.0" layoutX="256.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="860.0" layoutY="52.0" mnemonicParsing="false" onAction="#switchToSearchBar" text="back" />
+      <Button layoutX="691.0" layoutY="39.0" mnemonicParsing="false" text="submit" />
+      <Label fx:id="in_tour_to" layoutX="956.0" layoutY="217.0" text="Text" />
+      <Label layoutX="880.0" layoutY="217.0" text="To:" />
+      <Label layoutX="873.0" layoutY="181.0" text="From:" />
+      <Label layoutX="876.0" layoutY="292.0" text="Distance:" />
+      <Label layoutX="874.0" layoutY="386.0" text="Description:" />
+      <Label layoutX="874.0" layoutY="334.0" text="Time:" />
+      <ImageView fx:id="in_tour_image" fitHeight="401.0" fitWidth="650.0" layoutX="63.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/imageView1.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="45.0" layoutY="239.0" text="Transport:" />
-      <Label fx:id="in_tour_from" layoutX="128.0" layoutY="163.0" text="Text" />
-      <Label fx:id="in_tour_distance" layoutX="128.0" layoutY="274.0" text="Text" />
-      <Label fx:id="in_tour_time" layoutX="128.0" layoutY="316.0" text="Text" />
-      <Label fx:id="in_tour_description" layoutX="128.0" layoutY="368.0" text="Text" />
-      <Label fx:id="in_tour_transport" layoutX="128.0" layoutY="239.0" text="Text" />
+      <Label layoutX="873.0" layoutY="257.0" text="Transport:" />
+      <Label fx:id="in_tour_from" layoutX="956.0" layoutY="181.0" text="Text" />
+      <Label fx:id="in_tour_distance" layoutX="956.0" layoutY="292.0" text="Text" />
+      <Label fx:id="in_tour_time" layoutX="956.0" layoutY="334.0" text="Text" />
+      <Label fx:id="in_tour_description" layoutX="956.0" layoutY="386.0" text="Text" />
+      <Label fx:id="in_tour_transport" layoutX="956.0" layoutY="257.0" text="Text" />
+      <TreeTableView layoutX="63.0" layoutY="492.0" prefHeight="363.0" prefWidth="1037.0">
+        <columns>
+          <TreeTableColumn prefWidth="75.0" text="Date" />
+            <TreeTableColumn prefWidth="243.0" text="totalTime" />
+            <TreeTableColumn minWidth="0.0" prefWidth="226.0" text="comment" />
+            <TreeTableColumn prefWidth="126.0" text="rating" />
+          <TreeTableColumn prefWidth="164.0" text="totalTime" />
+            <TreeTableColumn prefWidth="202.0" text="difficulty" />
+        </columns>
+      </TreeTableView>
    </children>
 </Pane>
