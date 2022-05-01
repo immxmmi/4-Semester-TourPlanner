@@ -1,5 +1,6 @@
 package at.technikum.tourplanner;
 
+import at.technikum.tourplanner.business.config.ConfigurationManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,8 +14,8 @@ import java.io.IOException;
 
 public class MainApplication extends Application {
 
-    static int width = 1199;
-    static int height = 608;
+    static int width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_width"));
+    static int height = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_height"));
 
     final Logger logger = LogManager.getRootLogger();
 
@@ -23,7 +24,7 @@ public class MainApplication extends Application {
 
         logger.info("Starting Tour Planner Pro...");
 
-        Parent root = FXMLLoader.load(getClass().getResource("error.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(ConfigurationManager.getConfigPropertyValue("main_page")));
         stage.setTitle("Tour Planner Pro (30 Days free Trial)");
         Scene scene = new Scene(root, width-30, height-30);
         stage.setMinHeight(height);
@@ -32,6 +33,7 @@ public class MainApplication extends Application {
         stage.setMaxWidth(width);
         stage.setScene(scene);
         stage.show();
+
     }
 
 

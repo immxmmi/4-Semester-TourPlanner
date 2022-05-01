@@ -1,5 +1,6 @@
 package at.technikum.tourplanner;
 
+import at.technikum.tourplanner.business.config.ConfigurationManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,15 +11,21 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneController {
-    static int width = 1199;
-    static int height = 608;
+    static int width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_width"));
+    static int height = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_height"));
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    public void switchToSearchBar(ActionEvent event) throws IOException {
 
-        this.root = FXMLLoader.load(getClass().getResource("search-main.fxml"));
+    public void switchToErrorPage(ActionEvent event) throws IOException {
+        width = 922;
+        this.root = FXMLLoader.load(getClass().getResource(ConfigurationManager.getConfigPropertyValue("error_page")));
+        createStage(event);
+    }
+
+    // Erstellt für die einzelnen Pages eine Stage
+    private void createStage(ActionEvent event) {
         this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         this.scene = new Scene(root, width, height);
         stage.setMinHeight(height);
@@ -29,42 +36,46 @@ public class SceneController {
         this.stage.show();
     }
 
+    // Main
+    public void switchToMain(ActionEvent event) throws IOException {
+        this.root = FXMLLoader.load(getClass().getResource(ConfigurationManager.getConfigPropertyValue("main_page")));
+        createStage(event);
+    }
+
+    // Tour - Suchleiste
+    public void switchToSearchBar(ActionEvent event) throws IOException {
+        this.root = FXMLLoader.load(getClass().getResource("search-main.fxml"));
+        createStage(event);
+    }
+
+    // Tour - Erstellen
     public void switchToCreateTour(ActionEvent event) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("create-tour-view.fxml"));
-        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        this.scene = new Scene(root, width, height-30);
-        stage.setMinHeight(height);
-        stage.setMinWidth(width);
-        stage.setMaxHeight(height);
-        stage.setMaxWidth(width);
-        this.stage.setScene(scene);
-        this.stage.show();
+        height = height -30;
+        createStage(event);
     }
 
+    // Tour + TourLogger Einträge - Anzeigen
     public void switchToShowTour(ActionEvent event) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("show-tour-view.fxml"));
-        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        this.scene = new Scene(root, width, height);
-        stage.setMinHeight(height);
-        stage.setMinWidth(width);
-        stage.setMaxHeight(height);
-        stage.setMaxWidth(width);
-        this.stage.setScene(scene);
-        this.stage.show();
+        createStage(event);
     }
 
+    // TourLogger - Erstellen
+    public void switchToCreateTourLog(ActionEvent event) throws IOException {
+        this.root = FXMLLoader.load(getClass().getResource("show-tour-view.fxml"));
+        createStage(event);
+    }
+
+    // TourListe + Tour Erstellen Button - Anzeigen
     public void switchToShowTourList(ActionEvent event) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("show-tour-list-view.fxml"));
-        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        this.scene = new Scene(root, width-30, height-30);
-        stage.setMinHeight(height);
-        stage.setMinWidth(width);
-        stage.setMaxHeight(height);
-        stage.setMaxWidth(width);
-        this.stage.setScene(scene);
-        this.stage.show();
+        height = height -30;
+        width = width -30;
+        createStage(event);
     }
 
     public void testMe(ActionEvent actionEvent) {
+        System.out.println("test");
     }
 }
