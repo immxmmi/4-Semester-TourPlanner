@@ -42,7 +42,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Button layoutX="273.0" layoutY="169.0" mnemonicParsing="false" onAction="#testMe" opacity="0.0" prefHeight="116.0" prefWidth="654.0" text="TourList_btn">
+      <Button layoutX="273.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchToShowTourList" opacity="0.0" prefHeight="116.0" prefWidth="654.0" text="TourList_btn">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

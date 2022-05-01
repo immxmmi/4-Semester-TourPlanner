@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.models;
 
+import javafx.beans.property.StringProperty;
 import lombok.*;
 
 import java.sql.Time;

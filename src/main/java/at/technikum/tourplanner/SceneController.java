@@ -2,10 +2,13 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -74,6 +77,15 @@ public class SceneController {
         width = width -30;
         createStage(event);
     }
+
+    @FXML
+    private TableColumn<String, String> table_date;
+
+    @FXML
+    private TableView<String> data;
+
+
+
 
     public void testMe(ActionEvent actionEvent) {
         System.out.println("test");

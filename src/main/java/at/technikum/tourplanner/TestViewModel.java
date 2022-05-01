@@ -6,22 +6,27 @@ import javafx.beans.property.StringProperty;
 public class TestViewModel {
 
 
-    final StringProperty textValue = new SimpleStringProperty("initial value");
+    final StringProperty title = new SimpleStringProperty("initial value");
     final StringProperty searchField = new SimpleStringProperty("initial value");
 
+    public void setTitle(String title) {
+        this.title.set(title);
+    }
 
-
+    public TestViewModel(String title) {
+        this.title.set(title);
+    }
 
     public String getTextValue() {
-        return textValue.get();
+        return title.get();
     }
 
     public StringProperty textValueProperty() {
-        return textValue;
+        return title;
     }
 
     public void setTextValue(String textValue) {
-        this.textValue.set(textValue);
+        this.title.set(textValue);
     }
 
     public String getSearchField() {

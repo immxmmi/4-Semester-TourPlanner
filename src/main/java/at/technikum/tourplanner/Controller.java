@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
 
-    private final TestViewModel testViewModel = new TestViewModel();
+
 
     // VIEWMODEL
     final StringProperty textValue = new SimpleStringProperty("initial value");
