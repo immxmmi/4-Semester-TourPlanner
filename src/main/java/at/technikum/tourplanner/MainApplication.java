@@ -1,6 +1,12 @@
 package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
+import at.technikum.tourplanner.business.mapQuest.MapQuestService;
+import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
+import at.technikum.tourplanner.business.tour.TourService;
+import at.technikum.tourplanner.business.tour.TourServiceImpl;
+import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.Transporter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

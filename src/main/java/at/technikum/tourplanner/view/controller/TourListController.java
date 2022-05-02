@@ -1,6 +1,6 @@
 
 package at.technikum.tourplanner.view.controller;
-import at.technikum.tourplanner.SceneController;
+import at.technikum.tourplanner.SceneControllerImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TourListController implements Initializable {
+public class TourListController extends AbstractNavBar implements Initializable{
 
     @FXML
     private TableView<TourViewModel> tourListTable;
@@ -36,7 +36,7 @@ public class TourListController implements Initializable {
     @FXML
     private TableColumn<TourViewModel, Double> col_time;
 
-    private SceneController sCon = new SceneController();
+
     private ObservableList<TourViewModel> obsTourList = FXCollections.observableArrayList();
 
 
@@ -49,6 +49,7 @@ public class TourListController implements Initializable {
         }
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadList();
@@ -59,10 +60,6 @@ public class TourListController implements Initializable {
         col_distance.setCellValueFactory(new PropertyValueFactory<>("distance"));
 
         tourListTable.setItems(obsTourList);
-    }
-
-    public void switchToMain(ActionEvent actionEvent) throws IOException {
-        sCon.switchToMain(actionEvent);
     }
 
     public void reloadList(ActionEvent actionEvent) throws IOException {

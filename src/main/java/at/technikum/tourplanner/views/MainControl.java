@@ -105,36 +105,7 @@ public class MainControl {
     }
 
 
-    // TOUR - CREATE
-    @FXML
-    private TextField set_tour_title;
-    @FXML
-    private TextField set_tour_from;
-    @FXML
-    private TextField set_tour_to;
-    @FXML
-    private TextField set_tour_transport;
-    @FXML
-    private TextArea set_tour_description;
-    @FXML
-    private TextField set_tour_time;
 
-    @FXML
-    private void createTour(){
-        TourService tourService = new TourServiceImpl();
-
-        Tour tour = Tour.builder()
-                .title(set_tour_title.getText())
-                .from(set_tour_from.getText())
-                .to(set_tour_to.getText())
-                .transporter(Transporter.valueOf(set_tour_transport.getText()))
-                .description(set_tour_description.getText())
-                .build();
-
-        tourService.saveTour(tour);
-
-
-    }
 
 
     // TOURLog - CREATE
