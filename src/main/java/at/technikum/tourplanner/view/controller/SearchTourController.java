@@ -6,6 +6,8 @@ import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -34,7 +36,12 @@ public class SearchTourController extends AbstractNavBar{
             return;
         }
 
-        sCon.switchToShowTour(actionEvent,searchResult);
+
+       //showTourController.setDa(searchResult);
+        sCon.switchToShowTour(actionEvent);
+
+
+
     }
 
     @FXML

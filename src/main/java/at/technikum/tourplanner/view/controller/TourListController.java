@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class TourListController extends AbstractNavBar implements Initializable{
@@ -61,6 +62,24 @@ public class TourListController extends AbstractNavBar implements Initializable{
         table_tourList.setItems(obsTourList);
     }
 
+    @FXML
+    public void showTour(ActionEvent actionEvent) throws IOException {
+
+        System.out.println(table_tourList.getSelectionModel().getSelectedItem()
+        );
+        sCon.switchToShowTour(actionEvent);
+    }
+
+    @FXML
+    public void deleteTour(ActionEvent actionEvent) throws IOException {
+
+        System.out.println(table_tourList.getSelectionModel());
+     table_tourList.getItems().removeAll(table_tourList.getSelectionModel().getSelectedItem());
+       // sCon.switchToShowTour(actionEvent);
+    }
+
+
+@FXML
     public void reloadList(ActionEvent actionEvent) throws IOException {
         sCon.switchToShowTourList(actionEvent);
     }

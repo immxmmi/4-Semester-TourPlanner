@@ -20,7 +20,7 @@ public interface SceneController {
 
 
     // Tour + TourLogger Einträge - Anzeigen
-     void switchToShowTour(ActionEvent event, Tour tour) throws IOException;
+     void switchToShowTour(ActionEvent event) throws IOException;
 
 
     // TourLogger - Erstellen

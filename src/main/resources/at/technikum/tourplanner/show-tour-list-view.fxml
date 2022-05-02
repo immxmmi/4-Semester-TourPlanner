@@ -14,7 +14,7 @@
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="921.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
+      <Button layoutX="804.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
       <Button layoutX="1067.0" layoutY="291.0" mnemonicParsing="false" text="submit" />
       <TableView fx:id="table_tourList" layoutX="33.0" layoutY="108.0" prefHeight="168.0" prefWidth="1093.0">
         <columns>
@@ -27,5 +27,7 @@
         </columns>
       </TableView>
       <Button layoutX="1003.0" layoutY="291.0" mnemonicParsing="false" onAction="#reloadList" text="reload" textFill="#3a00f8" />
+      <Button layoutX="867.0" layoutY="291.0" mnemonicParsing="false" onAction="#deleteTour" text="delete" />
+      <Button layoutX="934.0" layoutY="291.0" mnemonicParsing="false" onAction="#showTour" text="show" />
    </children>
 </Pane>

@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class ShowTourController extends AbstractNavBar implements Initializable {
 
-    private Tour tour = new Tour("test","test","test","test","test",2.0,null, new Time(00), Transporter.Bike);
+    private Tour tour;
     // TOUR - READ
     @FXML
     private Label show_tour_title;
@@ -38,6 +38,20 @@ public class ShowTourController extends AbstractNavBar implements Initializable 
 
     MapQuestService mapQuestService = new MapQuestServiceImpl();
 
+    public ShowTourController(Tour tour) {
+        this.tour = tour;
+    }
+
+    private void setData(Tour tour){
+        show_tour_title.setText(tour.getTitle());
+        show_tour_from.setText(tour.getTitle());
+        show_tour_to.setText(tour.getTitle());
+        show_tour_time.setText(tour.getTitle());
+        show_tour_transport.setText(tour.getTitle());
+        show_tour_distance.setText(tour.getTitle());
+        show_tour_description.setText(tour.getTitle());
+        show_tour_image.setImage(mapQuestService.showRouteImage(tour.getRouteImage()));
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,5 +63,9 @@ public class ShowTourController extends AbstractNavBar implements Initializable 
         show_tour_distance.setText(tour.getTitle());
         show_tour_description.setText(tour.getTitle());
         show_tour_image.setImage(mapQuestService.showRouteImage(tour.getRouteImage()));
+    }
+
+    public void setTour(Tour tour) {
+        this.tour = tour;
     }
 }
