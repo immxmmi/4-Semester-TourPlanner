@@ -14,9 +14,14 @@ import at.technikum.tourplanner.utils.ToolsImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class TourServiceImpl implements TourService{
+
+    SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+    Date date = new Date(System.currentTimeMillis());
 
     private TourDao tourDao;
     {
@@ -26,17 +31,20 @@ public class TourServiceImpl implements TourService{
     @Override
     public Tour saveTour(Tour tour) {
 
+        Tools tools = new ToolsImpl();
+        MapQuestService mapQuestService = new MapQuestServiceImpl();
+        RouteImageDao routeImageDao = new RouteImageDaoImpl();
+
+        //DATE
+        tour.setDate(date);
+
         // GUI ABFRAGE:
         // - NAME
         // - FROM
         // - TO
         // - TRANSPORTER
         // - DESCRIPTION
-        // - TIME
 
-        Tools tools = new ToolsImpl();
-        MapQuestService mapQuestService = new MapQuestServiceImpl();
-        RouteImageDao routeImageDao = new RouteImageDaoImpl();
 
         //ID - HASH-WERT
         tour.setTourID(tools.hashString(tour.getTitle()+tour.getDescription()));
@@ -45,15 +53,18 @@ public class TourServiceImpl implements TourService{
         Route currentRoute = mapQuestService.startRoute(tour.getFrom(),tour.getTo());
 
         if(currentRoute == null){return null;}
+
         // IMAGE
         RouteImage routeImage = routeImageDao.getItemById(currentRoute.getRouteImage().getImageID());
         if(routeImage == null){return null;}
         tour.setRouteImage(routeImage);
+
         //DISTANCE
         tour.setDistance(currentRoute.getDistance());
 
         //TIME
         tour.setTime(currentRoute.getTime());
+
 
        //  if(tourDao.insert(tour) != null){return true;}
          return tourDao.insert(tour);
@@ -78,6 +89,7 @@ public class TourServiceImpl implements TourService{
 
     @Override
     public Tour updateTour(Tour tour) {
+        tour.setDate(date);
         return tourDao.update(tour);
     }
 

@@ -10,7 +10,8 @@ create table tour
     description  text not null,
     "routeImage" text not null,
     distance     text not null,
-    time         text not null
+    time         text not null,
+    date         text
 );
 
 alter table tour

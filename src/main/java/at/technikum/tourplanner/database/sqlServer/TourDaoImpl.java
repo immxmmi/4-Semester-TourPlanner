@@ -6,6 +6,7 @@ import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import at.technikum.tourplanner.utils.TextColor;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -42,6 +43,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                         .distance(Double.valueOf(result.getString("distance")))
                         .time(Time.valueOf(result.getString("time")))
                         .routeImage(imageDaoImpl.getItemById(result.getString("routeImage")))
+                        .date(Date.valueOf(result.getString("date")))
                         .build();
 
                 this.closeStatement();
@@ -97,11 +99,12 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                     "" + item.getTime(),
                     "" + item.getTransporter(),
                     "" + item.getRouteImage().getImageID(),
-                    "" + item.getDescription()
+                    "" + item.getDescription(),
+                    "" + item.getDate()
             };
 
 
-            this.setStatement("INSERT INTO " + this.tableName + " (\"tourID\",title,\"from\",\"to\",\"distance\",\"time\",\"transporter\",\"routeImage\",\"description\")VALUES(?,?,?,?,?,?,?,?,?);", this.parameter);
+            this.setStatement("INSERT INTO " + this.tableName + " (\"tourID\",title,\"from\",\"to\",\"distance\",\"time\",\"transporter\",\"routeImage\",\"description\",\"date\")VALUES(?,?,?,?,?,?,?,?,?,?);", this.parameter);
             return getItemById(item.getTourID());
         }
         return null;
@@ -122,7 +125,8 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                 "" + item.getTransporter(),
                 "" + item.getRouteImage().getImageID(),
                 "" + item.getDescription(),
-                "" + item.getTourID()
+                "" + item.getTourID(),
+                "" + item.getDate()
         };
 
 
@@ -137,6 +141,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                         "\"transporter\" = ? " +
                         "\"routeImage\" = ? " +
                         "\"description\" = ? " +
+                        "\"date\" = ? " +
 
 
 

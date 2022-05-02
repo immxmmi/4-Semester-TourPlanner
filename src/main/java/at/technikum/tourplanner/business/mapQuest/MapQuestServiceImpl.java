@@ -116,7 +116,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         currentRoute.getRouteImage().setDownloadURL(currentRoute.getUrlRoute());
         currentRoute.getRouteImage().setFrom(currentRoute.getFrom());
         currentRoute.getRouteImage().setTo(currentRoute.getTo());
-        currentRoute.getRouteImage().setFilePath("C:\\TourPlanner\\Data\\"+filename+".jpg");
+        currentRoute.getRouteImage().setFilePath(ConfigurationManager.getConfigPropertyValue("image")+filename+".jpg");
 
         return currentRoute;
     }
