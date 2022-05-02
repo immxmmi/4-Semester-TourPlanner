@@ -52,8 +52,6 @@ public class MainControl {
    ///////////////////////
     @FXML
     private void searchTour(){
-        MainViewModel main = new MainViewModel();
-
 
      //  System.out.println(getSearch_input());
      //  System.out.println(main);

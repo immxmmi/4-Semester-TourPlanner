@@ -1,8 +1,10 @@
-package at.technikum.tourplanner;
 
+package at.technikum.tourplanner.view.controller;
+import at.technikum.tourplanner.SceneController;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,10 +19,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TableController implements Initializable {
+public class TourListController implements Initializable {
 
     @FXML
-    private TableView<TourViewModel> table;
+    private TableView<TourViewModel> tourListTable;
     @FXML
     private TableColumn<TourViewModel, String> col_date;
     @FXML
@@ -31,8 +33,12 @@ public class TableController implements Initializable {
     private TableColumn<TourViewModel, String> col_to;
     @FXML
     private TableColumn<TourViewModel, Double> col_distance;
+    @FXML
+    private TableColumn<TourViewModel, Double> col_time;
 
-    ObservableList<TourViewModel> obsTourList = FXCollections.observableArrayList();
+    private SceneController sCon = new SceneController();
+    private ObservableList<TourViewModel> obsTourList = FXCollections.observableArrayList();
+
 
     private void loadList(){
         obsTourList = FXCollections.observableArrayList();
@@ -52,16 +58,14 @@ public class TableController implements Initializable {
         col_to.setCellValueFactory(new PropertyValueFactory<>("to"));
         col_distance.setCellValueFactory(new PropertyValueFactory<>("distance"));
 
-        System.out.println(obsTourList);
-        table.setItems(obsTourList);
+        tourListTable.setItems(obsTourList);
     }
 
     public void switchToMain(ActionEvent actionEvent) throws IOException {
-        SceneController sCon = new SceneController();
         sCon.switchToMain(actionEvent);
     }
 
-    public void reloadList(){
-        loadList();
+    public void reloadList(ActionEvent actionEvent) throws IOException {
+        sCon.switchToShowTourList(actionEvent);
     }
 }

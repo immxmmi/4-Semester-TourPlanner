@@ -7,9 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import org.apache.log4j.chainsaw.Main;
 
 import java.io.IOException;
 
@@ -73,21 +75,17 @@ public class SceneController {
     // TourListe + Tour Erstellen Button - Anzeigen
     public void switchToShowTourList(ActionEvent event) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("show-tour-list-view.fxml"));
-        height = height -30;
-        width = width -30;
+       //height = height -30;
+       //width = width -30;
         createStage(event);
     }
 
-    @FXML
-    private TableColumn<String, String> table_date;
-
-    @FXML
-    private TableView<String> data;
 
 
 
 
     public void testMe(ActionEvent actionEvent) {
+
         System.out.println("test");
     }
 }

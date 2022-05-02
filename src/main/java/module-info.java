@@ -21,4 +21,8 @@ module at.technikum.tourplanner {
     exports at.technikum.tourplanner;
     exports at.technikum.tourplanner.views;
     opens at.technikum.tourplanner.views to javafx.fxml;
+    exports at.technikum.tourplanner.view.viewmodel;
+    opens at.technikum.tourplanner.view.viewmodel to javafx.fxml;
+    exports at.technikum.tourplanner.view.controller;
+    opens at.technikum.tourplanner.view.controller to javafx.fxml;
 }

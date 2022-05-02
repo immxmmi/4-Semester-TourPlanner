@@ -7,23 +7,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="753.0" prefWidth="1169.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.TableController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="753.0" prefWidth="1169.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.TourListController">
    <children>
-      <Text fill="#364684" layoutX="360.0" layoutY="79.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="ShowList" textAlignment="CENTER" wrappingWidth="375.7366638183594">
+      <Text fill="#364684" layoutX="428.0" layoutY="79.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="ShowList" textAlignment="CENTER" wrappingWidth="375.7366638183594">
          <font>
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="1023.0" layoutY="705.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
-      <Button layoutX="936.0" layoutY="705.0" mnemonicParsing="false" text="submit" />
-      <TableView fx:id="table" layoutX="49.0" layoutY="108.0" prefHeight="564.0" prefWidth="1071.0">
+      <Button layoutX="921.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
+      <Button layoutX="1067.0" layoutY="291.0" mnemonicParsing="false" text="submit" />
+      <TableView fx:id="tourListTable" layoutX="33.0" layoutY="108.0" prefHeight="168.0" prefWidth="1093.0">
         <columns>
             <TableColumn fx:id="col_date" prefWidth="143.0" text="Date:" />
-          <TableColumn fx:id="col_title" prefWidth="344.0" text="Title:" />
-          <TableColumn fx:id="col_from" prefWidth="230.0" text="From:" />
-            <TableColumn fx:id="col_to" prefWidth="224.0" text="To:" />
-            <TableColumn fx:id="col_distance" prefWidth="129.0" text="Distance:" />
+          <TableColumn fx:id="col_title" prefWidth="229.0" text="Title:" />
+          <TableColumn fx:id="col_from" prefWidth="231.0" text="From:" />
+            <TableColumn fx:id="col_to" prefWidth="197.0" text="To:" />
+            <TableColumn fx:id="col_distance" prefWidth="133.0" text="Distance:" />
+            <TableColumn fx:id="col_time" prefWidth="156.0" text="Time:" />
         </columns>
       </TableView>
+      <Button layoutX="1003.0" layoutY="291.0" mnemonicParsing="false" onAction="#reloadList" text="reload" textFill="#3a00f8" />
    </children>
 </Pane>

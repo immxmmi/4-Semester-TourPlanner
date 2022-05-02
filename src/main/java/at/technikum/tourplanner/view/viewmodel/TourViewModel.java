@@ -1,4 +1,4 @@
-package at.technikum.tourplanner;
+package at.technikum.tourplanner.view.viewmodel;
 
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
@@ -12,7 +12,6 @@ import java.sql.Timestamp;
 
 @Data
 public class TourViewModel {
-
 
 
     //private final StringProperty tourID;
