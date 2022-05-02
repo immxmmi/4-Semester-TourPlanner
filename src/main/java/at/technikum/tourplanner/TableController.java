@@ -3,9 +3,6 @@ package at.technikum.tourplanner;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
-import at.technikum.tourplanner.models.Transporter;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,44 +20,37 @@ import java.util.ResourceBundle;
 public class TableController implements Initializable {
 
     @FXML
-    private TableView<TestViewModel> table;
+    private TableView<TourViewModel> table;
     @FXML
-    private TableColumn<TestViewModel, String> col_date;
+    private TableColumn<TourViewModel, String> col_date;
     @FXML
-    private TableColumn<TestViewModel, String> col_title;
+    private TableColumn<TourViewModel, String> col_title;
     @FXML
-    private TableColumn<TestViewModel, String> col_from;
+    private TableColumn<TourViewModel, String> col_from;
     @FXML
-    private TableColumn<TestViewModel, String> col_to;
+    private TableColumn<TourViewModel, String> col_to;
     @FXML
-    private TableColumn<TestViewModel, String> col_distance;
+    private TableColumn<TourViewModel, Double> col_distance;
 
-    ObservableList<TestViewModel> obsTourList = FXCollections.observableArrayList();
+    ObservableList<TourViewModel> obsTourList = FXCollections.observableArrayList();
 
     private void loadList(){
+        obsTourList = FXCollections.observableArrayList();
         TourService tourService = new TourServiceImpl();
         ArrayList<Tour> tourList= tourService.getAllTourOrderByName();
-
-       // ArrayList<Tour> test = new ArrayList<Tour>();
-        //test.add(new Tour("test","test","test","test","test","test", 2.0,null,null, Transporter.Bike));
-
-        obsTourList.add(new TestViewModel("test"));
-
-        //for (Tour tour : test){
-       //    this.obsTourList.add(tour);
-       //}
+        for(Tour tour : tourList){
+            obsTourList.add(new TourViewModel(tour));
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadList();
-       // col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
         col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
-        //col_date.setCellValueFactory(new PropertyValueFactory<>("title"));
-        //col_from.setCellValueFactory(new PropertyValueFactory<>("from"));
-        //col_to.setCellValueFactory(new PropertyValueFactory<>("to"));
-        //col_distance.setCellValueFactory(new PropertyValueFactory<>("title"));
-
+        col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        col_from.setCellValueFactory(new PropertyValueFactory<>("from"));
+        col_to.setCellValueFactory(new PropertyValueFactory<>("to"));
+        col_distance.setCellValueFactory(new PropertyValueFactory<>("distance"));
 
         System.out.println(obsTourList);
         table.setItems(obsTourList);
@@ -69,5 +59,9 @@ public class TableController implements Initializable {
     public void switchToMain(ActionEvent actionEvent) throws IOException {
         SceneController sCon = new SceneController();
         sCon.switchToMain(actionEvent);
+    }
+
+    public void reloadList(){
+        loadList();
     }
 }
