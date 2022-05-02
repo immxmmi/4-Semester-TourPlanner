@@ -1,6 +1,5 @@
 
 package at.technikum.tourplanner.view.controller;
-import at.technikum.tourplanner.SceneControllerImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
@@ -22,7 +21,7 @@ import java.util.ResourceBundle;
 public class TourListController extends AbstractNavBar implements Initializable{
 
     @FXML
-    private TableView<TourViewModel> tourListTable;
+    private TableView<TourViewModel> table_tourList;
     @FXML
     private TableColumn<TourViewModel, String> col_date;
     @FXML
@@ -59,7 +58,7 @@ public class TourListController extends AbstractNavBar implements Initializable{
         col_to.setCellValueFactory(new PropertyValueFactory<>("to"));
         col_distance.setCellValueFactory(new PropertyValueFactory<>("distance"));
 
-        tourListTable.setItems(obsTourList);
+        table_tourList.setItems(obsTourList);
     }
 
     public void reloadList(ActionEvent actionEvent) throws IOException {

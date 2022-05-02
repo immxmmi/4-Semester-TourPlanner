@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 public class CreateTourController extends AbstractNavBar {
-    private SceneControllerImpl sCon = new SceneControllerImpl();
     // TOUR - CREATE
     @FXML
     private TextField set_tour_title;

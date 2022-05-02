@@ -16,7 +16,7 @@
       </Text>
       <Button layoutX="921.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
       <Button layoutX="1067.0" layoutY="291.0" mnemonicParsing="false" text="submit" />
-      <TableView fx:id="tourListTable" layoutX="33.0" layoutY="108.0" prefHeight="168.0" prefWidth="1093.0">
+      <TableView fx:id="table_tourList" layoutX="33.0" layoutY="108.0" prefHeight="168.0" prefWidth="1093.0">
         <columns>
             <TableColumn fx:id="col_date" prefWidth="143.0" text="Date:" />
           <TableColumn fx:id="col_title" prefWidth="229.0" text="Title:" />

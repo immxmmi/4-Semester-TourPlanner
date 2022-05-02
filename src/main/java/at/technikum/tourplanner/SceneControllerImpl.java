@@ -60,6 +60,7 @@ public class SceneControllerImpl implements SceneController {
     public void switchToShowTour(ActionEvent event, Tour tour) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("show-tour-view.fxml"));
         createStage(event);
+
         System.out.println(tour);
     }
 
