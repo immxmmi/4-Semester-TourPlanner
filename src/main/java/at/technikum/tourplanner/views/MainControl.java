@@ -83,7 +83,7 @@ public class MainControl {
          this.tourID = searchResult.getTourID();
 
         Report report = new ReportImpl();
-        report.createTourReport(tourService.getTourByID(tourID));
+       // report.createTourReport(tourService.getTourByID(tourID));
 
 
          tourlog_tour_id.setText(tourID);

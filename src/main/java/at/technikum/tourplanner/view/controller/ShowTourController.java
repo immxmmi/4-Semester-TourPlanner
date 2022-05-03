@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
 public class ShowTourController extends AbstractNavBar {
 
     private Tour tour;
+    private ArrayList<TourLog> tourLogs;
 
 
     // TOUR - READ
@@ -75,7 +76,7 @@ public class ShowTourController extends AbstractNavBar {
     @FXML
     public void createReport() {
         Report report = new ReportImpl();
-        report.createTourReport(tour);
+        report.createTourReport(tour,tourLogs);
     }
 
     @FXML

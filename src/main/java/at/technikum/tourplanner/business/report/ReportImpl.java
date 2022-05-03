@@ -5,6 +5,7 @@ import at.technikum.tourplanner.database.fileServer.FileAccess;
 import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.TourLog;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -15,14 +16,19 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.ArrayList;
 
 public class ReportImpl implements Report{
 
     @Override
-    public void createTourReport(Tour tour){
+    public void createTourReport(Tour tour, ArrayList<TourLog> tourLogs){
 
         FileAccess fileAccess = new FileAccessImpl();
         fileAccess.createFolder("report");
+
+
+
+
         // TimeStamp
         String reportTime = LocalDateTime.now().format( DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
         String saveTime = LocalDateTime.now().format( DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
@@ -72,6 +78,8 @@ public class ReportImpl implements Report{
             write.showText("Tour Transport: " + tour.getTransporter().toString());
             write.newLine();
             write.newLine();
+
+
 
             // STOP - TEXTING
             write.endText();
