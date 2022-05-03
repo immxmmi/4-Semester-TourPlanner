@@ -7,43 +7,60 @@ import javafx.beans.property.*;
 import lombok.Builder;
 import lombok.Data;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data
 public class TourViewModel {
 
-
-    //private final StringProperty tourID;
+    private final StringProperty tourID;
     private final StringProperty title;
     private final StringProperty from;
     private final StringProperty description;
     private final StringProperty to;
     private final DoubleProperty distance;
-    private final ObjectProperty<Time> date;
+    private final ObjectProperty<Date> date;
+    private final ObjectProperty<Time> time;
     private final ObjectProperty<RouteImage> routImage;
     private final ObjectProperty<Transporter> transporter;
 
     public TourViewModel() {
+        this.tourID = new SimpleStringProperty("");
         this.title = new SimpleStringProperty("");
         this.from = new SimpleStringProperty("");
         this.to = new SimpleStringProperty("");
         this.description = new SimpleStringProperty("");
         this.distance = new SimpleDoubleProperty(0.00);
-        this.date = new SimpleObjectProperty<>(new Time(000));
+        this.time = new SimpleObjectProperty<>(new Time(000));
+        this.date = new SimpleObjectProperty<>(null);
         this.routImage = new SimpleObjectProperty<>(null);
         this.transporter = new SimpleObjectProperty<>(Transporter.Walk);
     }
 
     public TourViewModel(Tour tour) {
+        this.tourID = new SimpleStringProperty(tour.getTourID());
         this.title = new SimpleStringProperty(tour.getTitle());
         this.from = new SimpleStringProperty(tour.getFrom());
         this.to = new SimpleStringProperty(tour.getTo());
         this.description = new SimpleStringProperty(tour.getDescription());
         this.distance = new SimpleDoubleProperty(tour.getDistance());
-        this.date = new SimpleObjectProperty<>(tour.getTime());
+        this.date = new SimpleObjectProperty<>(tour.getDate());
+        this.time = new SimpleObjectProperty<>(tour.getTime());
         this.routImage = new SimpleObjectProperty<>(tour.getRouteImage());
         this.transporter = new SimpleObjectProperty<>(tour.getTransporter());
+    }
+
+    public String getTourID() {
+        return tourID.get();
+    }
+
+    public StringProperty tourIDProperty() {
+        return tourID;
+    }
+
+    public void setTourID(String tourID) {
+        this.tourID.set(tourID);
     }
 
     public String getTitle() {
@@ -106,16 +123,28 @@ public class TourViewModel {
         this.distance.set(distance);
     }
 
-    public Time getDate() {
+    public Date getDate() {
         return date.get();
     }
 
-    public ObjectProperty<Time> dateProperty() {
+    public ObjectProperty<Date> dateProperty() {
         return date;
     }
 
-    public void setDate(Time date) {
+    public void setDate(Date date) {
         this.date.set(date);
+    }
+
+    public Time getTime() {
+        return time.get();
+    }
+
+    public ObjectProperty<Time> timeProperty() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time.set(time);
     }
 
     public RouteImage getRoutImage() {

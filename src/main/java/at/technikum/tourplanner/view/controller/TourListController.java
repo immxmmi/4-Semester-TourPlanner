@@ -1,5 +1,6 @@
 
 package at.technikum.tourplanner.view.controller;
+
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
-public class TourListController extends AbstractNavBar implements Initializable{
+public class TourListController extends AbstractNavBar implements Initializable {
 
     @FXML
     private TableView<TourViewModel> table_tourList;
@@ -37,14 +38,14 @@ public class TourListController extends AbstractNavBar implements Initializable{
     private TableColumn<TourViewModel, Double> col_time;
 
 
+    private TourService tourService = new TourServiceImpl();
     private ObservableList<TourViewModel> obsTourList = FXCollections.observableArrayList();
 
-
-    private void loadList(){
+    private void loadList() {
         obsTourList = FXCollections.observableArrayList();
         TourService tourService = new TourServiceImpl();
-        ArrayList<Tour> tourList= tourService.getAllTourOrderByName();
-        for(Tour tour : tourList){
+        ArrayList<Tour> tourList = tourService.getAllTourOrderByName();
+        for (Tour tour : tourList) {
             obsTourList.add(new TourViewModel(tour));
         }
     }
@@ -55,6 +56,7 @@ public class TourListController extends AbstractNavBar implements Initializable{
         loadList();
         col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
         col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
         col_from.setCellValueFactory(new PropertyValueFactory<>("from"));
         col_to.setCellValueFactory(new PropertyValueFactory<>("to"));
         col_distance.setCellValueFactory(new PropertyValueFactory<>("distance"));
@@ -64,7 +66,6 @@ public class TourListController extends AbstractNavBar implements Initializable{
 
     @FXML
     public void showTour(ActionEvent actionEvent) throws IOException {
-
         System.out.println(table_tourList.getSelectionModel().getSelectedItem()
         );
         sCon.switchToShowTour(actionEvent);
@@ -72,14 +73,13 @@ public class TourListController extends AbstractNavBar implements Initializable{
 
     @FXML
     public void deleteTour(ActionEvent actionEvent) throws IOException {
-
-        System.out.println(table_tourList.getSelectionModel());
-     table_tourList.getItems().removeAll(table_tourList.getSelectionModel().getSelectedItem());
-       // sCon.switchToShowTour(actionEvent);
+        TourViewModel tour = table_tourList.getSelectionModel().getSelectedItem();
+        tourService.deleteTour(tour.getTourID());
+        table_tourList.getItems().removeAll(tour);
     }
 
 
-@FXML
+    @FXML
     public void reloadList(ActionEvent actionEvent) throws IOException {
         sCon.switchToShowTourList(actionEvent);
     }
