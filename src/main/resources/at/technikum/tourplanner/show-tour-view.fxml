@@ -42,41 +42,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="966.0" prefWidth="1190.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.ShowTourController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.ShowTourController">
    <children>
       <Text fx:id="show_tour_title" fill="#364684" layoutY="89.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour" textAlignment="CENTER" wrappingWidth="375.7366638183594">
          <font>
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="860.0" layoutY="52.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
-      <Button layoutX="691.0" layoutY="39.0" mnemonicParsing="false" text="submit" />
-      <Label fx:id="show_tour_to" layoutX="956.0" layoutY="217.0" text="Text" />
-      <Label layoutX="880.0" layoutY="217.0" text="To:" />
-      <Label layoutX="873.0" layoutY="181.0" text="From:" />
-      <Label layoutX="876.0" layoutY="292.0" text="Distance:" />
-      <Label layoutX="874.0" layoutY="386.0" text="Description:" />
-      <Label layoutX="874.0" layoutY="334.0" text="Time:" />
-      <ImageView fx:id="show_tour_image" fitHeight="401.0" fitWidth="650.0" layoutX="63.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="796.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
+      <Label fx:id="show_tour_to" layoutX="694.0" layoutY="140.0" text="Text" />
+      <Label layoutX="618.0" layoutY="140.0" text="To:" />
+      <Label layoutX="611.0" layoutY="104.0" text="From:" />
+      <Label layoutX="614.0" layoutY="215.0" text="Distance:" />
+      <Label layoutX="612.0" layoutY="309.0" text="Description:" />
+      <Label layoutX="612.0" layoutY="257.0" text="Time:" />
+      <ImageView fx:id="show_tour_image" fitHeight="259.0" fitWidth="543.0" layoutX="63.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/imageView1.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="873.0" layoutY="257.0" text="Transport:" />
-      <Label fx:id="show_tour_from" layoutX="956.0" layoutY="181.0" text="Text" />
-      <Label fx:id="show_tour_distance" layoutX="956.0" layoutY="292.0" text="Text" />
-      <Label fx:id="show_tour_time" layoutX="956.0" layoutY="334.0" text="Text" />
-      <Label fx:id="show_tour_description" layoutX="956.0" layoutY="386.0" text="Text" />
-      <Label fx:id="show_tour_transport" layoutX="956.0" layoutY="257.0" text="Text" />
-      <TreeTableView layoutX="63.0" layoutY="492.0" prefHeight="363.0" prefWidth="1037.0">
+      <Label layoutX="611.0" layoutY="180.0" text="Transport:" />
+      <Label fx:id="show_tour_from" layoutX="694.0" layoutY="104.0" text="Text" />
+      <Label fx:id="show_tour_distance" layoutX="694.0" layoutY="215.0" text="Text" />
+      <Label fx:id="show_tour_time" layoutX="694.0" layoutY="257.0" text="Text" />
+      <Label fx:id="show_tour_description" layoutX="694.0" layoutY="309.0" text="Text" />
+      <Label fx:id="show_tour_transport" layoutX="694.0" layoutY="180.0" text="Text" />
+      <TreeTableView layoutX="38.0" layoutY="386.0" prefHeight="319.0" prefWidth="1037.0">
         <columns>
-          <TreeTableColumn prefWidth="75.0" text="Date" />
-            <TreeTableColumn prefWidth="243.0" text="totalTime" />
-            <TreeTableColumn minWidth="0.0" prefWidth="226.0" text="comment" />
-            <TreeTableColumn prefWidth="126.0" text="rating" />
-          <TreeTableColumn prefWidth="164.0" text="totalTime" />
-            <TreeTableColumn prefWidth="202.0" text="difficulty" />
+          <TreeTableColumn fx:id="col_date" prefWidth="75.0" text="Date" />
+            <TreeTableColumn fx:id="col_totalTime" prefWidth="99.20001220703125" text="Total Time" />
+            <TreeTableColumn fx:id="col_rating" prefWidth="115.20002746582031" text="rating" />
+            <TreeTableColumn fx:id="col_difficulty" prefWidth="104.79998779296875" text="difficulty" />
+            <TreeTableColumn fx:id="col_comment" minWidth="0.0" prefWidth="644.7999877929688" text="comment" />
         </columns>
       </TreeTableView>
+      <Button layoutX="857.0" layoutY="11.0" mnemonicParsing="false" onAction="#createReport" text="save" />
    </children>
 </Pane>

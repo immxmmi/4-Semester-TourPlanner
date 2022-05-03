@@ -4,12 +4,14 @@ import at.technikum.tourplanner.database.common.AbstractDBTable;
 import at.technikum.tourplanner.database.dao.TourLogDao;
 import at.technikum.tourplanner.models.Difficulty;
 import at.technikum.tourplanner.models.Rating;
+import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourLog;
 import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
@@ -53,6 +55,33 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
     /*******************************************************************/
 
 
+    @Override
+    public ArrayList<TourLog> getAllTourLog(String tourID) {
+
+        ArrayList<TourLog> allTourLogs = new ArrayList<>();
+        ArrayList<String> allTourLogIDs =  new ArrayList<>();
+
+        this.parameter = new String[]{tourID};
+
+        this.setStatement("SELECT  *  FROM "+this.tableName+" WHERE \"tourID\" = ? ORDER BY \"date\";", this.parameter);
+
+        try{
+
+            while (this.result.next()) {
+                allTourLogIDs.add(result.getString("tourLogID"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        for (int i = 0; i < allTourLogIDs.size(); i++){
+            allTourLogs.add(getItemById(allTourLogIDs.get(i)));
+        }
+
+        return allTourLogs;
+    }
 
     @Override
     public TourLog getItemById(String itemID) {

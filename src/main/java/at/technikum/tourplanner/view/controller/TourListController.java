@@ -11,8 +11,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +46,6 @@ public class TourListController extends AbstractNavBar implements Initializable 
 
     private void loadList() {
         obsTourList = FXCollections.observableArrayList();
-        TourService tourService = new TourServiceImpl();
         ArrayList<Tour> tourList = tourService.getAllTourOrderByName();
         for (Tour tour : tourList) {
             obsTourList.add(new TourViewModel(tour));
@@ -60,6 +62,21 @@ public class TourListController extends AbstractNavBar implements Initializable 
         col_to.setCellValueFactory(new PropertyValueFactory<>("to"));
         col_distance.setCellValueFactory(new PropertyValueFactory<>("distance"));
 
+        table_tourList.setRowFactory(tv -> {
+            TableRow<TourViewModel> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    TourViewModel rowData = row.getItem();
+
+                    try {
+                        sCon.switchToShowTour(event,rowData);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
         table_tourList.setItems(obsTourList);
     }
 

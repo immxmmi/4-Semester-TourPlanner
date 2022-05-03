@@ -51,6 +51,21 @@ public class TourViewModel {
         this.transporter = new SimpleObjectProperty<>(tour.getTransporter());
     }
 
+    public Tour convertTourViewModelinTourModel(TourViewModel tourViewModel){
+        return Tour.builder()
+                .tourID(tourViewModel.getTourID())
+                .title(tourViewModel.getTitle())
+                .from(tourViewModel.getFrom())
+                .to(tourViewModel.getTo())
+                .description(tourViewModel.getDescription())
+                .distance(tourViewModel.getDistance())
+                .date(tourViewModel.getDate())
+                .time(tourViewModel.getTime())
+                .routeImage(tourViewModel.getRoutImage())
+                .transporter(tourViewModel.getTransporter())
+                .build();
+    }
+
     public String getTourID() {
         return tourID.get();
     }

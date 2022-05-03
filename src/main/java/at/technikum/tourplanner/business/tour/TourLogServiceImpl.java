@@ -4,12 +4,19 @@ import at.technikum.tourplanner.database.dao.TourLogDao;
 import at.technikum.tourplanner.database.sqlServer.TourLogDaoImpl;
 import at.technikum.tourplanner.models.TourLog;
 
+import java.util.ArrayList;
+
 public class TourLogServiceImpl implements TourLogService{
 
     private TourLogDao tourLogDao;
 
     {
         tourLogDao = new TourLogDaoImpl();
+    }
+
+    @Override
+    public ArrayList<TourLog> getAllTourLogs(String tourId) {
+        return tourLogDao.getAllTourLog(tourId);
     }
 
     @Override

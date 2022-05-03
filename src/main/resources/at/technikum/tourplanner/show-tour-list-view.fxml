@@ -14,9 +14,8 @@
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="804.0" layoutY="291.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
-      <Button layoutX="1067.0" layoutY="291.0" mnemonicParsing="false" text="submit" />
-      <TableView fx:id="table_tourList" layoutX="33.0" layoutY="108.0" prefHeight="168.0" prefWidth="1093.0">
+      <Button layoutX="1080.0" layoutY="29.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
+      <TableView fx:id="table_tourList" layoutX="33.0" layoutY="108.0" prefHeight="280.0" prefWidth="1093.0">
         <columns>
             <TableColumn fx:id="col_date" prefWidth="143.0" text="Date:" />
           <TableColumn fx:id="col_title" prefWidth="229.0" text="Title:" />
@@ -26,8 +25,7 @@
             <TableColumn fx:id="col_time" prefWidth="156.0" text="Time:" />
         </columns>
       </TableView>
-      <Button layoutX="1003.0" layoutY="291.0" mnemonicParsing="false" onAction="#reloadList" text="reload" textFill="#3a00f8" />
-      <Button layoutX="867.0" layoutY="291.0" mnemonicParsing="false" onAction="#deleteTour" text="delete" />
-      <Button layoutX="934.0" layoutY="291.0" mnemonicParsing="false" onAction="#showTour" text="show" />
+      <Button layoutX="1075.0" layoutY="409.0" mnemonicParsing="false" onAction="#reloadList" text="reload" textFill="#3a00f8" />
+      <Button layoutX="1015.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteTour" text="delete" />
    </children>
 </Pane>
