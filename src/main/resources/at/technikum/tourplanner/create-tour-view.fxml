@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.CreateTourController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="1161.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.CreateTourController">
    <children>
-      <Text fill="#364684" layoutX="256.0" layoutY="117.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Create" textAlignment="CENTER" wrappingWidth="375.7366638183594">
+      <ImageView fitHeight="653.0" fitWidth="1198.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/createTour2.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="348.0" layoutY="104.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Tour" textAlignment="CENTER" wrappingWidth="502.9366149902344">
          <font>
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="843.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
-      <TextField fx:id="set_tour_title" layoutX="132.0" layoutY="221.0" text="Tour-1" />
-      <TextField fx:id="set_tour_from" layoutX="133.0" layoutY="270.0" text="Wien" />
-      <Label layoutX="61.0" layoutY="225.0" text="Title:" />
-      <Label layoutX="59.0" layoutY="274.0" text="From:" />
-      <Label layoutX="300.0" layoutY="225.0" text="Transport:" />
-      <Label layoutX="59.0" layoutY="330.0" text="Description:" />
-      <Label layoutX="321.0" layoutY="274.0" text="To:" />
-      <TextField fx:id="set_tour_to" layoutX="374.0" layoutY="270.0" prefHeight="25.0" prefWidth="140.0" text="Berlin" />
-      <TextArea fx:id="set_tour_description" layoutX="146.0" layoutY="329.0" prefHeight="188.0" prefWidth="456.0" text="Das ist eine Test Tour." />
-      <Button fx:id="create_btn" defaultButton="true" layoutX="686.0" layoutY="399.0" mnemonicParsing="false" onAction="#createTour" prefHeight="80.0" prefWidth="112.0" text="create" textFill="#1e1e1e" />
-      <TextField fx:id="set_tour_transport" layoutX="374.0" layoutY="221.0" prefHeight="26.0" prefWidth="148.0" text="Bus" />
+      <Button layoutX="14.0" layoutY="62.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="32.0" prefWidth="63.0" style="-fx-background-radius: 20;" text="Back" />
+      <TextField fx:id="set_tour_title" layoutX="500.0" layoutY="140.0" text="Tour-1" />
+      <TextField fx:id="set_tour_from" layoutX="500.0" layoutY="233.0" text="Wien" />
+      <Label layoutX="451.0" layoutY="144.0" text="Title:" textFill="WHITE" />
+      <Label layoutX="449.0" layoutY="237.0" text="From:" textFill="WHITE" />
+      <Label layoutX="424.0" layoutY="192.0" text="Transport:" textFill="WHITE" />
+      <Label layoutX="417.0" layoutY="326.0" text="Description:" textFill="WHITE" />
+      <Label layoutX="456.0" layoutY="284.0" text="To:" textFill="WHITE" />
+      <TextField fx:id="set_tour_to" layoutX="500.0" layoutY="280.0" prefHeight="25.0" prefWidth="148.0" text="Berlin" />
+      <TextArea fx:id="set_tour_description" layoutX="500.0" layoutY="326.0" prefHeight="94.0" prefWidth="301.0" text="Das ist eine Test Tour." />
+      <Button fx:id="create_btn" defaultButton="true" layoutX="498.0" layoutY="465.0" mnemonicParsing="false" onAction="#createTour" prefHeight="44.0" prefWidth="301.0" text="Create my new Tour!" textFill="#1e1e1e" />
+      <TextField fx:id="set_tour_transport" layoutX="500.0" layoutY="188.0" prefHeight="26.0" prefWidth="148.0" text="Bus" />
+      <ComboBox layoutX="648.0" layoutY="188.0" prefWidth="150.0" />
    </children>
 </Pane>

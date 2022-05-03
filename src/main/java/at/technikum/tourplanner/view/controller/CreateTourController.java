@@ -7,12 +7,16 @@ import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class CreateTourController extends AbstractNavBar {
+public class CreateTourController extends AbstractNavBar implements Initializable {
     // TOUR - CREATE
     @FXML
     private TextField set_tour_title;
@@ -24,6 +28,8 @@ public class CreateTourController extends AbstractNavBar {
     private TextField set_tour_transport;
     @FXML
     private TextArea set_tour_description;
+    @FXML
+    private ComboBox<Transporter> get_tour_transporter;
 
 
     @FXML
@@ -42,4 +48,15 @@ public class CreateTourController extends AbstractNavBar {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        transporterList();
+    }
+
+    public void transporterList(){
+        for(Transporter transporter : Transporter.values()){
+            //get_tour_transporter.getItems().add(transporter);
+            //System.out.println(transporter);
+        }
+    }
 }
