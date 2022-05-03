@@ -28,7 +28,7 @@ create table "tourLog"
     "tourID"    text not null,
     comment     text,
     "totalTime" text not null,
-    difficulty  text not null,
+    level  text not null,
     rating      text not null,
     date        text not null
 );

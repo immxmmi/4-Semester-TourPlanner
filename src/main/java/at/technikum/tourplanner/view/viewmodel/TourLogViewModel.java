@@ -4,7 +4,6 @@ import at.technikum.tourplanner.models.*;
 import javafx.beans.property.*;
 
 import java.sql.Date;
-import java.sql.Time;
 
 public class TourLogViewModel {
 
@@ -12,7 +11,7 @@ public class TourLogViewModel {
     private final StringProperty tourID;
     private final StringProperty comment;
     private final DoubleProperty totalTime;
-    private final ObjectProperty<Difficulty> difficulty;
+    private final ObjectProperty<Level> difficulty;
     private final ObjectProperty<Rating> rating;
     private final ObjectProperty<Date> date;
 
@@ -24,7 +23,7 @@ public class TourLogViewModel {
         this.tourID = new SimpleStringProperty("");
         this.comment = new SimpleStringProperty("");
         this.totalTime = new SimpleDoubleProperty(0.00);
-        this.difficulty = new SimpleObjectProperty<>(Difficulty.normal);
+        this.difficulty = new SimpleObjectProperty<>(Level.normal);
         this.rating = new SimpleObjectProperty<>(Rating.point1);
         this.date = new SimpleObjectProperty<>(null);
     }
@@ -34,7 +33,7 @@ public class TourLogViewModel {
         this.tourID = new SimpleStringProperty(tourLog.getTourID());
         this.comment = new SimpleStringProperty(tourLog.getComment());
         this.totalTime = new SimpleDoubleProperty(tourLog.getTotalTime());
-        this.difficulty = new SimpleObjectProperty<>(Difficulty.normal);
+        this.difficulty = new SimpleObjectProperty<>(Level.normal);
         this.rating = new SimpleObjectProperty<>(Rating.point1);
         this.date = new SimpleObjectProperty<>(null);
     }
@@ -87,16 +86,16 @@ public class TourLogViewModel {
         this.totalTime.set(totalTime);
     }
 
-    public Difficulty getDifficulty() {
+    public Level getDifficulty() {
         return difficulty.get();
     }
 
-    public ObjectProperty<Difficulty> difficultyProperty() {
+    public ObjectProperty<Level> difficultyProperty() {
         return difficulty;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty.set(difficulty);
+    public void setDifficulty(Level level) {
+        this.difficulty.set(level);
     }
 
     public Rating getRating() {

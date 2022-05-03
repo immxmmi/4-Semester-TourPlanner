@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.models;
 
-public enum Difficulty {
+public enum Level {
     easy,
     normal,
     hard,

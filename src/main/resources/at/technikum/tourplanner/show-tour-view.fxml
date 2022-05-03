@@ -82,10 +82,10 @@
             <TableColumn fx:id="col_comment" prefWidth="595.4000244140625" text="Comment" />
          </columns>
       </TableView>
-      <TextField layoutX="126.0" layoutY="604.0" prefHeight="25.0" prefWidth="153.0" promptText="Total Time" />
-      <DatePicker layoutX="14.0" layoutY="604.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
+      <TextField fx:id="set_tourLog_total" layoutX="126.0" layoutY="604.0" prefHeight="25.0" prefWidth="153.0" promptText="Total Time" />
+      <DatePicker fx:id="set_tourlog_date" layoutX="14.0" layoutY="604.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
       <TextArea layoutX="520.0" layoutY="604.0" prefHeight="117.0" prefWidth="567.0" />
-      <ComboBox layoutX="376.0" layoutY="604.0" prefHeight="25.0" prefWidth="124.0" promptText="Level">
+      <ComboBox fx:id="set_tourlog_level" layoutX="376.0" layoutY="604.0" prefHeight="25.0" prefWidth="124.0" promptText="Level">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></ComboBox>

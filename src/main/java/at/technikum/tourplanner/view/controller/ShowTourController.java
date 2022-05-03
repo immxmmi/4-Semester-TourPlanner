@@ -6,8 +6,7 @@ import at.technikum.tourplanner.business.report.Report;
 import at.technikum.tourplanner.business.report.ReportImpl;
 import at.technikum.tourplanner.business.tour.TourLogService;
 import at.technikum.tourplanner.business.tour.TourLogServiceImpl;
-import at.technikum.tourplanner.models.Difficulty;
-import at.technikum.tourplanner.models.Rating;
+import at.technikum.tourplanner.models.Level;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourLog;
 import at.technikum.tourplanner.view.viewmodel.TourLogViewModel;
@@ -15,16 +14,12 @@ import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class ShowTourController extends AbstractNavBar {
 
@@ -52,11 +47,10 @@ public class ShowTourController extends AbstractNavBar {
 
     //TOURLOG - READ
 
-     @FXML
-     private TableView<TourLogViewModel> table_tourLog;
-
-     @FXML
-     private TableColumn<TourLogViewModel, String> col_date;
+    @FXML
+    private TableView<TourLogViewModel> table_tourLog;
+    @FXML
+    private TableColumn<TourLogViewModel, String> col_date;
     @FXML
     private TableColumn<TourLogViewModel, Double> col_totalTime;
     @FXML
@@ -65,6 +59,12 @@ public class ShowTourController extends AbstractNavBar {
     private TableColumn<TourLogViewModel, String> col_difficulty;
     @FXML
     private TableColumn<TourLogViewModel, String> col_comment;
+
+
+    //TOURLOG - Create
+    @FXML
+    private ComboBox<Level> set_tourlog_level;
+
 
 
     //Services
@@ -78,22 +78,17 @@ public class ShowTourController extends AbstractNavBar {
         Report report = new ReportImpl();
         report.createTourReport(tour,tourLogs);
     }
-
     @FXML
     public void loadData(TourViewModel currentTour) {
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
-        show:
         show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
-        show:
         show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
-        show:
         show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
-        show:
         show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
         show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
         show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
         show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
-        show:show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
+        show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
 
         // TourLog Table
         // load List
@@ -104,7 +99,6 @@ public class ShowTourController extends AbstractNavBar {
         col_rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         col_difficulty.setCellValueFactory(new PropertyValueFactory<>("difficulty"));
         col_comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
-
         table_tourLog.setRowFactory(tv -> {
             TableRow<TourLogViewModel> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -115,10 +109,13 @@ public class ShowTourController extends AbstractNavBar {
             });
             return row ;
         });
-
         //set list
         table_tourLog.setItems(obsTourList);
 
+
+
+        //Create TourLog
+        loadLevels();
     }
 
 
@@ -132,4 +129,9 @@ public class ShowTourController extends AbstractNavBar {
     }
 
 
+    private void loadLevels(){
+        for(Level level : Level.values()){
+           set_tourlog_level.getItems().add(level);
+        }
+    }
 }

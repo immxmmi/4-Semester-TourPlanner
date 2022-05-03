@@ -132,7 +132,7 @@ public class MainControl {
                .tourLogID(tourID + set_tourlog_rating + set_tourlog_difficulty)
                .date(date)
                .rating(Rating.valueOf(set_tourlog_rating.getText()))
-               .difficulty(Difficulty.valueOf(set_tourlog_difficulty.getText()))
+               .level(Level.valueOf(set_tourlog_difficulty.getText()))
                .comment(set_tourlog_comment.getText())
                .totalTime(Double.parseDouble(set_tourlog_total_time.getText()))
                .build();

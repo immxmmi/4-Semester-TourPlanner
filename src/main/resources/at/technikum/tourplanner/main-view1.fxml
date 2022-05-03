@@ -108,7 +108,7 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="29.0" layoutY="68.0" prefHeight="17.0" prefWidth="107.0" text="rating point1-5 :" />
-                        <Label layoutX="29.0" layoutY="103.0" prefHeight="17.0" prefWidth="272.0" text="difficulty (easy, normal, hard, expert) :" />
+                        <Label layoutX="29.0" layoutY="103.0" prefHeight="17.0" prefWidth="272.0" text="level (easy, normal, hard, expert) :" />
                         <Label layoutX="33.0" layoutY="139.0" prefHeight="17.0" prefWidth="265.0" text="total time : " />
                         <Label layoutX="31.0" layoutY="39.0" text="date :" />
                         <Label layoutX="31.0" layoutY="169.0" text="Comment:" />

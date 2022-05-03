@@ -1,7 +1,7 @@
 package at.technikum.tourplanner.database.sqlServer;
 
 import at.technikum.tourplanner.database.dao.TourLogDao;
-import at.technikum.tourplanner.models.Difficulty;
+import at.technikum.tourplanner.models.Level;
 import at.technikum.tourplanner.models.Rating;
 import at.technikum.tourplanner.models.TourLog;
 import org.junit.Before;
@@ -25,7 +25,7 @@ class TourLogDaoImplTest {
                 .tourLogID("TEST-TOURLOG")
                 .tourID("test")
                 .comment("Kommentar - ist da")
-                .difficulty(Difficulty.expert)
+                .level(Level.expert)
                 .rating(Rating.point1)
                 .totalTime(10)
                 .date(Date.valueOf("1998-11-11"))

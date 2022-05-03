@@ -2,9 +2,8 @@ package at.technikum.tourplanner.database.sqlServer;
 
 import at.technikum.tourplanner.database.common.AbstractDBTable;
 import at.technikum.tourplanner.database.dao.TourLogDao;
-import at.technikum.tourplanner.models.Difficulty;
+import at.technikum.tourplanner.models.Level;
 import at.technikum.tourplanner.models.Rating;
-import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourLog;
 import at.technikum.tourplanner.utils.TextColor;
 
@@ -36,7 +35,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                         .tourID(result.getString("tourID"))
                         .comment(result.getString("comment"))
                         .totalTime(Double.valueOf(result.getString("totalTime")))
-                        .difficulty(Difficulty.valueOf(result.getString("difficulty")))
+                        .level(Level.valueOf(result.getString("difficulty")))
                         .rating(Rating.valueOf(result.getString("rating")))
                         .date(Date.valueOf(result.getString("date")))
                         .build();
@@ -107,7 +106,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                     "" + item.getTourID(),
                     "" + item.getComment(),
                     "" + item.getTotalTime(),
-                    "" + item.getDifficulty(),
+                    "" + item.getLevel(),
                     "" + item.getRating(),
                     "" + item.getDate()
             };
@@ -131,7 +130,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                 "" + item.getTourID(),
                 "" + item.getComment(),
                 "" + item.getTotalTime(),
-                "" + item.getDifficulty(),
+                "" + item.getLevel(),
                 "" + item.getRating(),
                 "" + item.getDate(),
                 "" + item.getTourLogID(),
