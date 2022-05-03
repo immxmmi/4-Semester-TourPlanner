@@ -105,11 +105,12 @@ public class ShowTourController extends AbstractNavBar {
         // TourLog Table
         // load List
         loadTourLogList(currentTour.getTourID());
+
         // Column
         col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         col_totalTime.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
-        col_rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        col_difficulty.setCellValueFactory(new PropertyValueFactory<>("difficulty"));
+        col_rating.setCellValueFactory(new PropertyValueFactory<>("stars"));
+        col_difficulty.setCellValueFactory(new PropertyValueFactory<>("level"));
         col_comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
         table_tourLog.setRowFactory(tv -> {
             TableRow<TourLogViewModel> row = new TableRow<>();
@@ -153,6 +154,13 @@ public class ShowTourController extends AbstractNavBar {
                 .build();
         tourLogService.saveTourLog(tourLog);
         reload(actionEvent);
+    }
+
+    @FXML
+    public void deleteTourLog(ActionEvent actionEvent) throws IOException {
+        TourLogViewModel tourLog = table_tourLog.getSelectionModel().getSelectedItem();
+        tourLogService.deleteTourLog(tourLog.getTourLogID());
+        table_tourLog.getItems().removeAll(tourLog);
     }
 
 

@@ -11,8 +11,8 @@ public class TourLogViewModel {
     private final StringProperty tourID;
     private final StringProperty comment;
     private final DoubleProperty totalTime;
-    private final ObjectProperty<Level> difficulty;
-    private final ObjectProperty<Stars> rating;
+    private final ObjectProperty<Level> level;
+    private final ObjectProperty<Stars> stars;
     private final ObjectProperty<Date> date;
 
 
@@ -23,8 +23,8 @@ public class TourLogViewModel {
         this.tourID = new SimpleStringProperty("");
         this.comment = new SimpleStringProperty("");
         this.totalTime = new SimpleDoubleProperty(0.00);
-        this.difficulty = new SimpleObjectProperty<>(Level.normal);
-        this.rating = new SimpleObjectProperty<>(Stars.none);
+        this.level = new SimpleObjectProperty<>(Level.normal);
+        this.stars = new SimpleObjectProperty<>(Stars.none);
         this.date = new SimpleObjectProperty<>(null);
     }
 
@@ -33,9 +33,9 @@ public class TourLogViewModel {
         this.tourID = new SimpleStringProperty(tourLog.getTourID());
         this.comment = new SimpleStringProperty(tourLog.getComment());
         this.totalTime = new SimpleDoubleProperty(tourLog.getTotalTime());
-        this.difficulty = new SimpleObjectProperty<>(Level.normal);
-        this.rating = new SimpleObjectProperty<>(Stars.none);
-        this.date = new SimpleObjectProperty<>(null);
+        this.level = new SimpleObjectProperty<>(tourLog.getLevel());
+        this.stars = new SimpleObjectProperty<Stars>(tourLog.getStars());
+        this.date = new SimpleObjectProperty<Date>((Date) tourLog.getDate());
     }
 
     public String getTourLogID() {
@@ -86,28 +86,28 @@ public class TourLogViewModel {
         this.totalTime.set(totalTime);
     }
 
-    public Level getDifficulty() {
-        return difficulty.get();
+    public Level getLevel() {
+        return level.get();
     }
 
-    public ObjectProperty<Level> difficultyProperty() {
-        return difficulty;
+    public ObjectProperty<Level> levelProperty() {
+        return level;
     }
 
-    public void setDifficulty(Level level) {
-        this.difficulty.set(level);
+    public void setLevel(Level level) {
+        this.level.set(level);
     }
 
-    public Stars getRating() {
-        return rating.get();
+    public Stars getStars() {
+        return stars.get();
     }
 
-    public ObjectProperty<Stars> ratingProperty() {
-        return rating;
+    public ObjectProperty<Stars> starsProperty() {
+        return stars;
     }
 
-    public void setRating(Stars stars) {
-        this.rating.set(stars);
+    public void setStars(Stars stars) {
+        this.stars.set(stars);
     }
 
     public Date getDate() {

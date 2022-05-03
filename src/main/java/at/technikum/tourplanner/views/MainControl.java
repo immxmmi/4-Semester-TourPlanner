@@ -53,9 +53,6 @@ public class MainControl {
     @FXML
     private void searchTour(){
 
-     //  System.out.println(getSearch_input());
-     //  System.out.println(main);
-     //  System.out.println(main.getSearch_input());
         if(search_input == null){
             return;
         }

@@ -91,5 +91,6 @@
          </opaqueInsets></ComboBox>
       <ComboBox fx:id="get_tourlog_stars" layoutX="335.0" layoutY="604.0" prefHeight="25.0" prefWidth="81.0" promptText="Stars" />
       <Button layoutX="237.0" layoutY="686.0" mnemonicParsing="false" onAction="#saveTourLog" text="save" />
+      <Button layoutX="335.0" layoutY="686.0" mnemonicParsing="false" onAction="#deleteTourLog" text="delete" />
    </children>
 </Pane>

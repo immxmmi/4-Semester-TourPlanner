@@ -19,10 +19,8 @@ public class TourLog {
 
     private double totalTime;
 
-    @Builder.Default
-    private Level level = Level.normal;
+    private Level level;
 
-    @Builder.Default
-    private Stars stars = Stars.none;
+    private Stars stars;
 
 }

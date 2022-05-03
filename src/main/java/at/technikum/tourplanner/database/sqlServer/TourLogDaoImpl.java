@@ -80,7 +80,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         for (int i = 0; i < allTourLogIDs.size(); i++){
             allTourLogs.add(getItemById(allTourLogIDs.get(i)));
         }
-
         return allTourLogs;
     }
 
@@ -97,6 +96,9 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
     @Override
     public TourLog insert(TourLog item) {
+
+        System.out.println(item);
+
         Tools tools = new ToolsImpl();
         if (item == null) {
             return null;
