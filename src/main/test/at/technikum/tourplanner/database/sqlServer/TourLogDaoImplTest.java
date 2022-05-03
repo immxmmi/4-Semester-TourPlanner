@@ -2,7 +2,7 @@ package at.technikum.tourplanner.database.sqlServer;
 
 import at.technikum.tourplanner.database.dao.TourLogDao;
 import at.technikum.tourplanner.models.Level;
-import at.technikum.tourplanner.models.Rating;
+import at.technikum.tourplanner.models.Stars;
 import at.technikum.tourplanner.models.TourLog;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ class TourLogDaoImplTest {
                 .tourID("test")
                 .comment("Kommentar - ist da")
                 .level(Level.expert)
-                .rating(Rating.point1)
+                .stars(Stars.none)
                 .totalTime(10)
                 .date(Date.valueOf("1998-11-11"))
                 .build();

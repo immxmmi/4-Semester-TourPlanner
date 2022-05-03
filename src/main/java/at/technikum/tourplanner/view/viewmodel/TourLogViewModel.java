@@ -12,7 +12,7 @@ public class TourLogViewModel {
     private final StringProperty comment;
     private final DoubleProperty totalTime;
     private final ObjectProperty<Level> difficulty;
-    private final ObjectProperty<Rating> rating;
+    private final ObjectProperty<Stars> rating;
     private final ObjectProperty<Date> date;
 
 
@@ -24,7 +24,7 @@ public class TourLogViewModel {
         this.comment = new SimpleStringProperty("");
         this.totalTime = new SimpleDoubleProperty(0.00);
         this.difficulty = new SimpleObjectProperty<>(Level.normal);
-        this.rating = new SimpleObjectProperty<>(Rating.point1);
+        this.rating = new SimpleObjectProperty<>(Stars.none);
         this.date = new SimpleObjectProperty<>(null);
     }
 
@@ -34,7 +34,7 @@ public class TourLogViewModel {
         this.comment = new SimpleStringProperty(tourLog.getComment());
         this.totalTime = new SimpleDoubleProperty(tourLog.getTotalTime());
         this.difficulty = new SimpleObjectProperty<>(Level.normal);
-        this.rating = new SimpleObjectProperty<>(Rating.point1);
+        this.rating = new SimpleObjectProperty<>(Stars.none);
         this.date = new SimpleObjectProperty<>(null);
     }
 
@@ -98,16 +98,16 @@ public class TourLogViewModel {
         this.difficulty.set(level);
     }
 
-    public Rating getRating() {
+    public Stars getRating() {
         return rating.get();
     }
 
-    public ObjectProperty<Rating> ratingProperty() {
+    public ObjectProperty<Stars> ratingProperty() {
         return rating;
     }
 
-    public void setRating(Rating rating) {
-        this.rating.set(rating);
+    public void setRating(Stars stars) {
+        this.rating.set(stars);
     }
 
     public Date getDate() {

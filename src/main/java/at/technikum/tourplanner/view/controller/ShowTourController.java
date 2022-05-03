@@ -7,18 +7,22 @@ import at.technikum.tourplanner.business.report.ReportImpl;
 import at.technikum.tourplanner.business.tour.TourLogService;
 import at.technikum.tourplanner.business.tour.TourLogServiceImpl;
 import at.technikum.tourplanner.models.Level;
+import at.technikum.tourplanner.models.Stars;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourLog;
 import at.technikum.tourplanner.view.viewmodel.TourLogViewModel;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class ShowTourController extends AbstractNavBar {
@@ -63,7 +67,15 @@ public class ShowTourController extends AbstractNavBar {
 
     //TOURLOG - Create
     @FXML
-    private ComboBox<Level> set_tourlog_level;
+    private ComboBox<Level> get_tourlog_level;
+    @FXML
+    private ComboBox<Stars> get_tourlog_stars;
+    @FXML
+    private TextField get_tourLog_total;
+    @FXML
+    private DatePicker get_tourlog_date;
+    @FXML
+    private TextArea get_tourlog_commit;
 
 
 
@@ -113,9 +125,9 @@ public class ShowTourController extends AbstractNavBar {
         table_tourLog.setItems(obsTourList);
 
 
-
         //Create TourLog
         loadLevels();
+        loadStars();
     }
 
 
@@ -129,9 +141,32 @@ public class ShowTourController extends AbstractNavBar {
     }
 
 
+    @FXML
+    public void saveTourLog(ActionEvent actionEvent) throws IOException {
+        TourLog tourLog = TourLog.builder()
+                .tourID(tour.getTourID())
+                .date(Date.valueOf(get_tourlog_date.getValue().toString()))
+                .stars(get_tourlog_stars.getValue())
+                .level(get_tourlog_level.getValue())
+                .comment(get_tourlog_commit.getText())
+                .totalTime(Double.parseDouble(get_tourLog_total.getText()))
+                .build();
+        tourLogService.saveTourLog(tourLog);
+        reload(actionEvent);
+    }
+
+
+    public void reload(ActionEvent actionEvent) throws IOException {
+        sCon.switchToShowTour(actionEvent, new TourViewModel(tour));
+    }
     private void loadLevels(){
         for(Level level : Level.values()){
-           set_tourlog_level.getItems().add(level);
+           get_tourlog_level.getItems().add(level);
+        }
+    }
+    private void loadStars(){
+        for(Stars stars : Stars.values()){
+            get_tourlog_stars.getItems().add(stars);
         }
     }
 }

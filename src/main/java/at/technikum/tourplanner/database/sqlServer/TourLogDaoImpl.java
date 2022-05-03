@@ -3,9 +3,11 @@ package at.technikum.tourplanner.database.sqlServer;
 import at.technikum.tourplanner.database.common.AbstractDBTable;
 import at.technikum.tourplanner.database.dao.TourLogDao;
 import at.technikum.tourplanner.models.Level;
-import at.technikum.tourplanner.models.Rating;
+import at.technikum.tourplanner.models.Stars;
 import at.technikum.tourplanner.models.TourLog;
 import at.technikum.tourplanner.utils.TextColor;
+import at.technikum.tourplanner.utils.Tools;
+import at.technikum.tourplanner.utils.ToolsImpl;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -36,7 +38,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                         .comment(result.getString("comment"))
                         .totalTime(Double.valueOf(result.getString("totalTime")))
                         .level(Level.valueOf(result.getString("difficulty")))
-                        .rating(Rating.valueOf(result.getString("rating")))
+                        .stars(Stars.valueOf(result.getString("rating")))
                         .date(Date.valueOf(result.getString("date")))
                         .build();
 
@@ -90,15 +92,17 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                 this.parameter
         );
 
-        System.out.println(this.statement);
-
         return buildClass(this.result);
     }
 
     @Override
     public TourLog insert(TourLog item) {
+        Tools tools = new ToolsImpl();
         if (item == null) {
             return null;
+        }
+        if(item.getTourLogID() == null){
+            item.setTourLogID(tools.hashString((java.time.LocalTime.now() + item.getTourLogID())));
         }
         if(getItemById(item.getTourLogID()) == null) {
             this.parameter = new String[]{
@@ -107,7 +111,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                     "" + item.getComment(),
                     "" + item.getTotalTime(),
                     "" + item.getLevel(),
-                    "" + item.getRating(),
+                    "" + item.getStars(),
                     "" + item.getDate()
             };
 
@@ -131,7 +135,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                 "" + item.getComment(),
                 "" + item.getTotalTime(),
                 "" + item.getLevel(),
-                "" + item.getRating(),
+                "" + item.getStars(),
                 "" + item.getDate(),
                 "" + item.getTourLogID(),
         };

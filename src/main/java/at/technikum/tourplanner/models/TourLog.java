@@ -23,6 +23,6 @@ public class TourLog {
     private Level level = Level.normal;
 
     @Builder.Default
-    private Rating rating = Rating.pointDefault;
+    private Stars stars = Stars.none;
 
 }

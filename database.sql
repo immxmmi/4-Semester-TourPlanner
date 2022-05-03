@@ -29,7 +29,7 @@ create table "tourLog"
     comment     text,
     "totalTime" text not null,
     level  text not null,
-    rating      text not null,
+    stars      text not null,
     date        text not null
 );
 
