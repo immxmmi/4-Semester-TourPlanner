@@ -50,7 +50,6 @@ public class TourListController extends AbstractNavBar implements Initializable 
         }
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadList();
@@ -66,9 +65,8 @@ public class TourListController extends AbstractNavBar implements Initializable 
 
     @FXML
     public void showTour(ActionEvent actionEvent) throws IOException {
-        System.out.println(table_tourList.getSelectionModel().getSelectedItem()
-        );
-        sCon.switchToShowTour(actionEvent);
+        TourViewModel tour = table_tourList.getSelectionModel().getSelectedItem();
+        sCon.switchToShowTour(actionEvent,tour);
     }
 
     @FXML
@@ -77,7 +75,6 @@ public class TourListController extends AbstractNavBar implements Initializable 
         tourService.deleteTour(tour.getTourID());
         table_tourList.getItems().removeAll(tour);
     }
-
 
     @FXML
     public void reloadList(ActionEvent actionEvent) throws IOException {

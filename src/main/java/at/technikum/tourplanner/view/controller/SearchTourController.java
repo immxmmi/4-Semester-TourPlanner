@@ -4,6 +4,7 @@ import at.technikum.tourplanner.SceneControllerImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,8 @@ public class SearchTourController extends AbstractNavBar{
 
 
        //showTourController.setDa(searchResult);
-        sCon.switchToShowTour(actionEvent);
+
+        sCon.switchToShowTour(actionEvent,new TourViewModel(searchResult));
 
 
 

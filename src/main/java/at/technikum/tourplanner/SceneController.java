@@ -2,6 +2,7 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 
@@ -20,7 +21,7 @@ public interface SceneController {
 
 
     // Tour + TourLogger Einträge - Anzeigen
-     void switchToShowTour(ActionEvent event) throws IOException;
+     void  switchToShowTour(ActionEvent event, TourViewModel tourViewModel)  throws IOException;
 
 
     // TourLogger - Erstellen

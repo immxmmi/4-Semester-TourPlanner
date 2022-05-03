@@ -1,8 +1,7 @@
 package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
-import at.technikum.tourplanner.models.Tour;
-import at.technikum.tourplanner.view.controller.ShowTourController;
+import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -58,8 +57,11 @@ public class SceneControllerImpl implements SceneController {
     }
 
     // Tour + TourLogger Einträge - Anzeigen
-    public void switchToShowTour(ActionEvent event) throws IOException {
-        this.root = FXMLLoader.load(getClass().getResource("show-tour-view.fxml"));
+    public void switchToShowTour(ActionEvent event, TourViewModel tourViewModel) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("show-tour-view.fxml"));
+        this.root = loader.load();
+        ShowTourController showTourController = loader.<ShowTourController>getController();
+        showTourController.loadData(tourViewModel);
         createStage(event);
 
     }

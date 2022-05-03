@@ -24,14 +24,11 @@ public class CreateTourController extends AbstractNavBar {
     private TextField set_tour_transport;
     @FXML
     private TextArea set_tour_description;
-    @FXML
-    private TextField set_tour_time;
+
 
     @FXML
     private void createTour(){
-        System.out.println(set_tour_title);
         TourService tourService = new TourServiceImpl();
-
         Tour tour = Tour.builder()
                 .title(set_tour_title.getText())
                 .from(set_tour_from.getText())
@@ -40,10 +37,7 @@ public class CreateTourController extends AbstractNavBar {
                 .description(set_tour_description.getText())
                 .build();
 
-
         tourService.saveTour(tour);
-
-
     }
 
 
