@@ -29,7 +29,7 @@
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Label accessibleRole="HYPERLINK" alignment="CENTER" contentDisplay="CENTER" layoutX="271.0" layoutY="155.0" prefHeight="143.0" prefWidth="657.0" text="TourPlaner" textAlignment="CENTER" textFill="#6b6b6b" textOverrun="CENTER_ELLIPSIS">
+      <Label accessibleRole="HYPERLINK" alignment="CENTER" contentDisplay="CENTER" layoutX="271.0" layoutY="155.0" prefHeight="143.0" prefWidth="657.0" text="TourPlanner" textAlignment="CENTER" textFill="#6b6b6b" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="Arial Black" size="96.0" />
          </font>
