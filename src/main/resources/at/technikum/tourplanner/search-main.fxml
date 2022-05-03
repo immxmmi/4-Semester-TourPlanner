@@ -3,6 +3,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -21,11 +23,11 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <Button layoutX="446.0" layoutY="371.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="35.0" prefWidth="154.0" text="Search" textAlignment="CENTER">
+      <Button layoutX="446.0" layoutY="371.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="35.0" prefWidth="154.0" style="-fx-background-radius: 190;" text="Search" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Button layoutX="1012.0" layoutY="493.0" mnemonicParsing="false" onAction="#switchToCreateTour" prefHeight="26.0" prefWidth="101.0" text="CreateTour">
+      <Button layoutX="1015.0" layoutY="496.0" mnemonicParsing="false" onAction="#switchToCreateTour" prefHeight="26.0" prefWidth="101.0" text="CreateTour">
          <font>
             <Font size="16.0" />
          </font></Button>
@@ -44,11 +46,17 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button layoutX="614.0" layoutY="371.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="35.0" prefWidth="154.0" text="Tour List" textAlignment="CENTER">
+      <Button layoutX="614.0" layoutY="371.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="35.0" prefWidth="154.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
       <Label fx:id="searchStatus" layoutX="953.0" layoutY="312.0" prefHeight="27.0" prefWidth="71.0" textFill="#ff2e2e" />
+      <MenuButton layoutX="1137.0" layoutY="22.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="38.0" text="MenuButton">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
    </children>
 </Pane>
