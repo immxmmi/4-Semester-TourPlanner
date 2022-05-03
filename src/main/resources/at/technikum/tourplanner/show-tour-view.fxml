@@ -32,10 +32,15 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -68,7 +73,7 @@
       <Label fx:id="show_tour_description" layoutX="694.0" layoutY="309.0" text="Text" />
       <Label fx:id="show_tour_transport" layoutX="694.0" layoutY="180.0" text="Text" />
       <Button layoutX="857.0" layoutY="11.0" mnemonicParsing="false" onAction="#createReport" text="save" />
-      <TableView fx:id="table_tourLog" layoutX="9.0" layoutY="393.0" prefHeight="280.0" prefWidth="1093.0">
+      <TableView fx:id="table_tourLog" layoutX="9.0" layoutY="393.0" prefHeight="193.0" prefWidth="1093.0">
          <columns>
             <TableColumn fx:id="col_date" prefWidth="105.59997272491455" text="Date:" />
             <TableColumn fx:id="col_totalTime" prefWidth="97.5999755859375" text="Total Time:" />
@@ -77,5 +82,13 @@
             <TableColumn fx:id="col_comment" prefWidth="595.4000244140625" text="Comment" />
          </columns>
       </TableView>
+      <TextField layoutX="126.0" layoutY="604.0" prefHeight="25.0" prefWidth="153.0" promptText="Total Time" />
+      <DatePicker layoutX="14.0" layoutY="604.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
+      <TextArea layoutX="520.0" layoutY="604.0" prefHeight="117.0" prefWidth="567.0" />
+      <ComboBox layoutX="376.0" layoutY="604.0" prefHeight="25.0" prefWidth="124.0" promptText="Level">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></ComboBox>
+      <ComboBox layoutX="287.0" layoutY="604.0" prefHeight="25.0" prefWidth="81.0" promptText="Stars" />
    </children>
 </Pane>

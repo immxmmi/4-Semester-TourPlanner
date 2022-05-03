@@ -27,7 +27,7 @@ public class CreateTourController extends AbstractNavBar {
 
 
     @FXML
-    private void createTour(){
+    private void createTour(ActionEvent actionEvent) throws IOException {
         TourService tourService = new TourServiceImpl();
         Tour tour = Tour.builder()
                 .title(set_tour_title.getText())
@@ -38,6 +38,7 @@ public class CreateTourController extends AbstractNavBar {
                 .build();
 
         tourService.saveTour(tour);
+        this.switchToMain(actionEvent);
     }
 
 

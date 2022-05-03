@@ -91,7 +91,7 @@ public class ShowTourController extends AbstractNavBar {
         show:
         show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
         show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
-        show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " min");
+        show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
         show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
         show:show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
 
