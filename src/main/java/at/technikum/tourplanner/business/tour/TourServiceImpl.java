@@ -36,23 +36,24 @@ public class TourServiceImpl implements TourService{
 
 
         //ID - HASH-WERT and DATE
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+      //  ThreadMaker.multiRunInBackground(new Runnable() {
+      //      @Override
+      //      public void run() {
                 //DATE
                 tour.setDate(date);
                 tour.setTourID(tools.hashString(tour.getTitle()+tour.getDescription()));
                 tour.setTitle(tour.getTitle().toLowerCase());
-            }
-        });
+      //     }
+      // });
         // ROUTE
         final Route[] currentRoute = {null};
-        ThreadMaker.runInBackground(new Runnable() {
-            @Override
-            public void run() {
-                 currentRoute[0] = mapQuestService.startRoute(tour.getFrom(),tour.getTo());
-            }
-        });
+      //  ThreadMaker.runInBackground(new Runnable() {
+      //      @Override
+      //      public void run() {
+
+                currentRoute[0] = mapQuestService.startRoute(tour.getFrom(),tour.getTo());
+      //      }
+      //  });
 
 
         if(currentRoute[0] == null){return null;}
@@ -63,23 +64,24 @@ public class TourServiceImpl implements TourService{
         if(routeImage == null){return null;}
 
         // IMAGE
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+       //ThreadMaker.multiRunInBackground(new Runnable() {
+       //    @Override
+       //    public void run() {
                  tour.setRouteImage(routeImage);
-            }
-        });
+                 tour.setRouteImage(routeImage);
+       //     }
+       // });
         //DATA
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+       // ThreadMaker.multiRunInBackground(new Runnable() {
+       //     @Override
+       //     public void run() {
                 //DISTANCE
                 tour.setDistance(currentRoute[0].getDistance());
 
                 //TIME
                 tour.setTime(currentRoute[0].getTime());
-            }
-        });
+       //     }
+       // });
 
        //  if(tourDao.insert(tour) != null){return true;}
          return tourDao.insert(tour);

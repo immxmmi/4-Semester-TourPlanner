@@ -50,18 +50,20 @@ public class ShowTourController extends AbstractNavBar {
     public void initialize(TourViewModel currentTour) {
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
 
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+       // ThreadMaker.multiRunInBackground(new Runnable() {
+       //     @Override
+       //     public void run() {
+
                 setTourTable(currentTour);
-            }
-        });
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+      //      }
+      //  });
+      //  ThreadMaker.multiRunInBackground(new Runnable() {
+      //      @Override
+      //      public void run() {
+
                 loadTourLogs(tour.getTourID());
-            }
-        });
+     //       }
+     //   });
 
     }
 
@@ -86,9 +88,9 @@ public class ShowTourController extends AbstractNavBar {
     private ImageView show_tour_image;
     private void setTourTable(TourViewModel currentTour){
         //RUN DATA
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+       // ThreadMaker.multiRunInBackground(new Runnable() {
+       //     @Override
+       //     public void run() {
                 show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
                 show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
                 show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
@@ -96,16 +98,16 @@ public class ShowTourController extends AbstractNavBar {
                 show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
                 show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
                 show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
-            }
-        });
-        //RUN IMAGE
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+     //      }
+     //  });
+     //  //RUN IMAGE
+     //  ThreadMaker.multiRunInBackground(new Runnable() {
+     //      @Override
+     //      public void run() {
                 show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
             }
-        });
-    }
+ //       });
+ //   }
 
 
 
@@ -140,39 +142,39 @@ public class ShowTourController extends AbstractNavBar {
     private void loadTourLogs(String tourID){
         // TourLog Table
         // load List
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+       // ThreadMaker.multiRunInBackground(new Runnable() {
+       //     @Override
+       //     public void run() {
                 loadTourLogList(tourID);
-            }
-        });
+       //     }
+       // });
 
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+       // ThreadMaker.multiRunInBackground(new Runnable() {
+        //    @Override
+        //    public void run() {
                 col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
                 col_totalTime.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
                 col_rating.setCellValueFactory(new PropertyValueFactory<>("stars"));
                 col_difficulty.setCellValueFactory(new PropertyValueFactory<>("level"));
                 col_comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
-            }
-        });
+         //   }
+       // });
         // Column
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+       // ThreadMaker.multiRunInBackground(new Runnable() {
+           // @Override
+           // public void run() {
                 table_tourLog.setRowFactory(tv -> {
                     TableRow<TourLogViewModel> row = new TableRow<>();
                     row.setOnMouseClicked(event -> {
                         if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                             TourLogViewModel rowData = row.getItem();
-                            System.out.println(rowData.getTourID());
+                           // System.out.println(rowData.getTourID());
                         }
                     });
                     return row ;
                 });
-            }
-        });
+            //}
+        //});
 
 
         //set list

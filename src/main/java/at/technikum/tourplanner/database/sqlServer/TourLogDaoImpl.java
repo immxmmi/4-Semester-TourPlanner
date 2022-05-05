@@ -37,8 +37,8 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                         .tourID(result.getString("tourID"))
                         .comment(result.getString("comment"))
                         .totalTime(Double.valueOf(result.getString("totalTime")))
-                        .level(Level.valueOf(result.getString("difficulty")))
-                        .stars(Stars.valueOf(result.getString("rating")))
+                        .level(Level.valueOf(result.getString("level")))
+                        .stars(Stars.valueOf(result.getString("stars")))
                         .date(Date.valueOf(result.getString("date")))
                         .build();
 
@@ -118,7 +118,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             };
 
 
-            this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogID\",\"tourID\",\"comment\",\"totalTime\",\"difficulty\",\"rating\",\"date\")VALUES(?,?,?,?,?,?,?);", this.parameter);
+            this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogID\",\"tourID\",\"comment\",\"totalTime\",\"level\",\"stars\",\"date\")VALUES(?,?,?,?,?,?,?);", this.parameter);
         }
 
 
@@ -149,8 +149,8 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                         "\"tourID\"= ?," +
                         "\"comment\"= ?," +
                         "\"totalTime\"= ?," +
-                        "\"difficulty\"= ?," +
-                        "\"rating\"= ?," +
+                        "\"level\"= ?," +
+                        "\"stars\"= ?," +
                         "\"date\" = ?" +
                          "WHERE \"tourLogId\" = ? ;"
                 , this.parameter
