@@ -83,9 +83,9 @@
             <TableColumn fx:id="col_comment" prefWidth="595.4000244140625" text="Comment" />
          </columns>
       </TableView>
-      <TextField fx:id="get_tourLog_total" layoutX="126.0" layoutY="604.0" prefHeight="25.0" prefWidth="153.0" promptText="Total Time" />
+      <TextField fx:id="get_tourLog_total" layoutX="126.0" layoutY="604.0" prefHeight="25.0" prefWidth="153.0" promptText="Total Time" text="2.3" />
       <DatePicker fx:id="get_tourlog_date" layoutX="14.0" layoutY="604.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
-      <TextArea fx:id="get_tourlog_commit" layoutX="520.0" layoutY="604.0" prefHeight="117.0" prefWidth="567.0" />
+      <TextArea fx:id="get_tourlog_commit" layoutX="520.0" layoutY="604.0" prefHeight="117.0" prefWidth="567.0" text="trest" />
       <ComboBox fx:id="get_tourlog_level" layoutX="425.0" layoutY="604.0" prefHeight="25.0" prefWidth="87.0" promptText="Level">
          <opaqueInsets>
             <Insets />

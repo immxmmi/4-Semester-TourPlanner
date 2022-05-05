@@ -38,7 +38,7 @@ public class ShowTourController extends AbstractNavBar {
     // CURRENT TOUR + TOURLOGS
     private Tour tour;
     private ArrayList<TourLog> tourLogs;
-    
+
     //Services
     private MapQuestService mapQuestService = new MapQuestServiceImpl();
     private TourLogService tourLogService = new TourLogServiceImpl();
@@ -50,20 +50,20 @@ public class ShowTourController extends AbstractNavBar {
     public void initialize(TourViewModel currentTour) {
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
 
-       // ThreadMaker.multiRunInBackground(new Runnable() {
-       //     @Override
-       //     public void run() {
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
 
                 setTourTable(currentTour);
-      //      }
-      //  });
-      //  ThreadMaker.multiRunInBackground(new Runnable() {
-      //      @Override
-      //      public void run() {
+            }
+        });
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
 
                 loadTourLogs(tour.getTourID());
-     //       }
-     //   });
+            }
+        });
 
     }
 
@@ -86,29 +86,29 @@ public class ShowTourController extends AbstractNavBar {
     private Label show_tour_description;
     @FXML
     private ImageView show_tour_image;
-    private void setTourTable(TourViewModel currentTour){
-        //RUN DATA
-       // ThreadMaker.multiRunInBackground(new Runnable() {
-       //     @Override
-       //     public void run() {
-                show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
-                show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
-                show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
-                show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
-                show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
-                show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
-                show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
-     //      }
-     //  });
-     //  //RUN IMAGE
-     //  ThreadMaker.multiRunInBackground(new Runnable() {
-     //      @Override
-     //      public void run() {
-                show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
-            }
- //       });
- //   }
 
+    private void setTourTable(TourViewModel currentTour) {
+        //RUN DATA
+         ThreadMaker.multiRunInBackground(new Runnable() {
+             @Override
+             public void run() {
+        show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
+        show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
+        show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
+        show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
+        show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
+        show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
+        show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
+             }
+         });
+         //RUN IMAGE
+         ThreadMaker.multiRunInBackground(new Runnable() {
+             @Override
+             public void run() {
+        show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
+    }
+         });
+     }
 
 
     //TOURLOGS
@@ -139,41 +139,41 @@ public class ShowTourController extends AbstractNavBar {
     private TextArea get_tourlog_commit;
 
     // LOADING TOURLOGS
-    private void loadTourLogs(String tourID){
+    private void loadTourLogs(String tourID) {
         // TourLog Table
         // load List
-       // ThreadMaker.multiRunInBackground(new Runnable() {
-       //     @Override
-       //     public void run() {
-                loadTourLogList(tourID);
-       //     }
-       // });
+        // ThreadMaker.multiRunInBackground(new Runnable() {
+        //     @Override
+        //     public void run() {
+        loadTourLogList(tourID);
+        //     }
+        // });
 
-       // ThreadMaker.multiRunInBackground(new Runnable() {
+        // ThreadMaker.multiRunInBackground(new Runnable() {
         //    @Override
         //    public void run() {
-                col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-                col_totalTime.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
-                col_rating.setCellValueFactory(new PropertyValueFactory<>("stars"));
-                col_difficulty.setCellValueFactory(new PropertyValueFactory<>("level"));
-                col_comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
-         //   }
-       // });
+        col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        col_totalTime.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
+        col_rating.setCellValueFactory(new PropertyValueFactory<>("stars"));
+        col_difficulty.setCellValueFactory(new PropertyValueFactory<>("level"));
+        col_comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
+        //   }
+        // });
         // Column
-       // ThreadMaker.multiRunInBackground(new Runnable() {
-           // @Override
-           // public void run() {
-                table_tourLog.setRowFactory(tv -> {
-                    TableRow<TourLogViewModel> row = new TableRow<>();
-                    row.setOnMouseClicked(event -> {
-                        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                            TourLogViewModel rowData = row.getItem();
-                           // System.out.println(rowData.getTourID());
-                        }
-                    });
-                    return row ;
-                });
-            //}
+        // ThreadMaker.multiRunInBackground(new Runnable() {
+        // @Override
+        // public void run() {
+        table_tourLog.setRowFactory(tv -> {
+            TableRow<TourLogViewModel> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    TourLogViewModel rowData = row.getItem();
+                    // System.out.println(rowData.getTourID());
+                }
+            });
+            return row;
+        });
+        //}
         //});
 
 
@@ -184,6 +184,7 @@ public class ShowTourController extends AbstractNavBar {
         loadLevels();
         loadStars();
     }
+
     private void loadTourLogList(String tourID) {
         obsTourList = FXCollections.observableArrayList();
         this.tourLogs = tourLogService.getAllTourLogs(tourID);
@@ -191,17 +192,18 @@ public class ShowTourController extends AbstractNavBar {
             obsTourList.add(new TourLogViewModel(tourLog));
         }
     }
-    private void loadLevels(){
-        for(Level level : Level.values()){
+
+    private void loadLevels() {
+        for (Level level : Level.values()) {
             get_tourlog_level.getItems().add(level);
         }
     }
-    private void loadStars(){
-        for(Stars stars : Stars.values()){
+
+    private void loadStars() {
+        for (Stars stars : Stars.values()) {
             get_tourlog_stars.getItems().add(stars);
         }
     }
-
 
 
     @FXML
@@ -217,6 +219,7 @@ public class ShowTourController extends AbstractNavBar {
         tourLogService.saveTourLog(tourLog);
         reloadPage(actionEvent);
     }
+
     @FXML
     private void deleteTourLog(ActionEvent actionEvent) throws IOException {
         TourLogViewModel tourLog = table_tourLog.getSelectionModel().getSelectedItem();
@@ -225,15 +228,14 @@ public class ShowTourController extends AbstractNavBar {
     }
 
 
-
-
     // REPORT SAVE - Button
     @FXML
     VBox saveStage;
+
     @FXML
     private void saveReport(ActionEvent event) throws IOException {
-        String saveTime = LocalDateTime.now().format( DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
-        String fileName = "report-"+tour.getTitle()+"-"+saveTime+".pdf";
+        String saveTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
+        String fileName = "report-" + tour.getTitle() + "-" + saveTime + ".pdf";
 
         Report report = new ReportImpl();
         Window stage = saveStage.getScene().getWindow();
@@ -245,9 +247,9 @@ public class ShowTourController extends AbstractNavBar {
         // File pdf = //new File()
 
         File file = fileChooser.showSaveDialog(stage);
-        PDDocument doc = report.saveTourReport(tour,tourLogs);
+        PDDocument doc = report.saveTourReport(tour, tourLogs);
 
-        if(file != null){
+        if (file != null) {
             doc.save(file);
         }
         doc.close();

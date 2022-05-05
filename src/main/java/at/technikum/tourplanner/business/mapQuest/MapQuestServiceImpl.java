@@ -157,40 +157,40 @@ public class MapQuestServiceImpl implements MapQuestService {
         // SET ROUTE + IMAGE
 
 
-     //   ThreadMaker.runInBackground(new Runnable() {
-     //       @Override
-     //       public void run() {
+        ThreadMaker.runInBackground(new Runnable() {
+            @Override
+            public void run() {
                 route[0] = searchRoute(from, to);
                 route[0].setRouteImage(routeImageSettings);
-     //     }
-     // });
+            }
+        });
 
         if (route[0] == null) {return null;}
 
         // copy image and set settings
-       //ThreadMaker.runInBackground(new Runnable() {
-       //    @Override
-       //    public void run() {
+        ThreadMaker.runInBackground(new Runnable() {
+            @Override
+            public void run() {
                 route[0] = setImageSettingsToRoute(route[0]);
                 route[0] = copyRouteDataToImage(route[0]);
-    //        }
-    //    });
+            }
+        });
 
         // save in DataBase
-        //ThreadMaker.multiRunInBackground(new Runnable() {
-        //    @Override
-        //    public void run() {
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
                saveImageOnline(route[0].getRouteImage());
-       //    }
-       //});
+            }
+        });
 
         // DOWNLOAD  IMAGE
-       // ThreadMaker.multiRunInBackground(new Runnable() {
-       //     @Override
-       //     public void run() {
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
                 downloadImage(route[0]);
-      //      }
-      //  });
+            }
+        });
 
         return route[0];
     }
