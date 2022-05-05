@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.business.tour;
 
+import at.technikum.tourplanner.ThreadMaker;
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
@@ -35,36 +36,52 @@ public class TourServiceImpl implements TourService{
         MapQuestService mapQuestService = new MapQuestServiceImpl();
         RouteImageDao routeImageDao = new RouteImageDaoImpl();
 
-        //DATE
-        tour.setDate(date);
 
-        // GUI ABFRAGE:
-        // - NAME
-        // - FROM
-        // - TO
-        // - TRANSPORTER
-        // - DESCRIPTION
-
-
-        //ID - HASH-WERT
-        tour.setTourID(tools.hashString(tour.getTitle()+tour.getDescription()));
-
+        //ID - HASH-WERT and DATE
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                //DATE
+                tour.setDate(date);
+                tour.setTourID(tools.hashString(tour.getTitle()+tour.getDescription()));
+                tour.setTitle(tour.getTitle().toLowerCase());
+            }
+        });
         // ROUTE
-        Route currentRoute = mapQuestService.startRoute(tour.getFrom(),tour.getTo());
+        final Route[] currentRoute = {null};
+        ThreadMaker.runInBackground(new Runnable() {
+            @Override
+            public void run() {
+                 currentRoute[0] = mapQuestService.startRoute(tour.getFrom(),tour.getTo());
+            }
+        });
 
-        if(currentRoute == null){return null;}
+
+        if(currentRoute[0] == null){return null;}
 
         // IMAGE
-        RouteImage routeImage = routeImageDao.getItemById(currentRoute.getRouteImage().getImageID());
+        RouteImage routeImage = routeImageDao.getItemById(currentRoute[0].getRouteImage().getImageID());
+
         if(routeImage == null){return null;}
-        tour.setRouteImage(routeImage);
 
-        //DISTANCE
-        tour.setDistance(currentRoute.getDistance());
+        // IMAGE
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                 tour.setRouteImage(routeImage);
+            }
+        });
+        //DATA
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                //DISTANCE
+                tour.setDistance(currentRoute[0].getDistance());
 
-        //TIME
-        tour.setTime(currentRoute.getTime());
-
+                //TIME
+                tour.setTime(currentRoute[0].getTime());
+            }
+        });
 
        //  if(tourDao.insert(tour) != null){return true;}
          return tourDao.insert(tour);
@@ -82,9 +99,7 @@ public class TourServiceImpl implements TourService{
 
     @Override
     public Tour searchTourByName(String tourName) {
-        MapQuestService mapQuestService  = new MapQuestServiceImpl();
-       // mapQuestService.reloadImage(tourDao.getItemByName(tourName).getRouteImage());
-       return tourDao.getItemByName(tourName);
+       return tourDao.getItemByName(tourName.toLowerCase());
     }
 
     @Override

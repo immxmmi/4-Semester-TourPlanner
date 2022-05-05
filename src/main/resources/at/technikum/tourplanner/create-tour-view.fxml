@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="1161.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.CreateTourController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="1159.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.CreateTourController">
    <children>
-      <ImageView fitHeight="653.0" fitWidth="1198.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="653.0" fitWidth="1232.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/createTour2.jpg" />
          </image>
@@ -34,7 +34,6 @@
       <TextField fx:id="set_tour_to" layoutX="500.0" layoutY="280.0" prefHeight="25.0" prefWidth="148.0" text="Berlin" />
       <TextArea fx:id="set_tour_description" layoutX="500.0" layoutY="326.0" prefHeight="94.0" prefWidth="301.0" text="Das ist eine Test Tour." />
       <Button fx:id="create_btn" defaultButton="true" layoutX="498.0" layoutY="465.0" mnemonicParsing="false" onAction="#createTour" prefHeight="44.0" prefWidth="301.0" text="Create my new Tour!" textFill="#1e1e1e" />
-      <TextField fx:id="set_tour_transport" layoutX="500.0" layoutY="188.0" prefHeight="26.0" prefWidth="148.0" text="Bus" />
-      <ComboBox layoutX="648.0" layoutY="188.0" prefWidth="150.0" />
+      <ComboBox fx:id="set_tour_transport" layoutX="499.0" layoutY="188.0" prefWidth="150.0" promptText="Transporter" />
    </children>
 </Pane>

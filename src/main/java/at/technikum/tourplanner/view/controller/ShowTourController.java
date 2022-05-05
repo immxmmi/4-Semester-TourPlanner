@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.view.controller;
 
+import at.technikum.tourplanner.ThreadMaker;
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.business.report.Report;
@@ -48,8 +49,20 @@ public class ShowTourController extends AbstractNavBar {
     @FXML
     public void initialize(TourViewModel currentTour) {
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
-        setTourTable(currentTour);
-        loadTourLogs(tour.getTourID());
+
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                setTourTable(currentTour);
+            }
+        });
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                loadTourLogs(tour.getTourID());
+            }
+        });
+
     }
 
 
@@ -72,14 +85,26 @@ public class ShowTourController extends AbstractNavBar {
     @FXML
     private ImageView show_tour_image;
     private void setTourTable(TourViewModel currentTour){
-        show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
-        show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
-        show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
-        show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
-        show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
-        show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
-        show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
-        show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
+        //RUN DATA
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
+                show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
+                show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
+                show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
+                show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
+                show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
+                show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
+            }
+        });
+        //RUN IMAGE
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
+            }
+        });
     }
 
 
@@ -115,23 +140,41 @@ public class ShowTourController extends AbstractNavBar {
     private void loadTourLogs(String tourID){
         // TourLog Table
         // load List
-        loadTourLogList(tourID);
-        // Column
-        col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        col_totalTime.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
-        col_rating.setCellValueFactory(new PropertyValueFactory<>("stars"));
-        col_difficulty.setCellValueFactory(new PropertyValueFactory<>("level"));
-        col_comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
-        table_tourLog.setRowFactory(tv -> {
-            TableRow<TourLogViewModel> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    TourLogViewModel rowData = row.getItem();
-                    System.out.println(rowData.getTourID());
-                }
-            });
-            return row ;
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                loadTourLogList(tourID);
+            }
         });
+
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+                col_totalTime.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
+                col_rating.setCellValueFactory(new PropertyValueFactory<>("stars"));
+                col_difficulty.setCellValueFactory(new PropertyValueFactory<>("level"));
+                col_comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
+            }
+        });
+        // Column
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                table_tourLog.setRowFactory(tv -> {
+                    TableRow<TourLogViewModel> row = new TableRow<>();
+                    row.setOnMouseClicked(event -> {
+                        if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                            TourLogViewModel rowData = row.getItem();
+                            System.out.println(rowData.getTourID());
+                        }
+                    });
+                    return row ;
+                });
+            }
+        });
+
+
         //set list
         table_tourLog.setItems(obsTourList);
 
@@ -157,8 +200,10 @@ public class ShowTourController extends AbstractNavBar {
         }
     }
 
+
+
     @FXML
-    public void saveTourLog(ActionEvent actionEvent) throws IOException {
+    private void saveTourLog(ActionEvent actionEvent) throws IOException {
         TourLog tourLog = TourLog.builder()
                 .tourID(tour.getTourID())
                 .date(Date.valueOf(get_tourlog_date.getValue().toString()))
@@ -171,7 +216,7 @@ public class ShowTourController extends AbstractNavBar {
         reloadPage(actionEvent);
     }
     @FXML
-    public void deleteTourLog(ActionEvent actionEvent) throws IOException {
+    private void deleteTourLog(ActionEvent actionEvent) throws IOException {
         TourLogViewModel tourLog = table_tourLog.getSelectionModel().getSelectedItem();
         tourLogService.deleteTourLog(tourLog.getTourLogID());
         table_tourLog.getItems().removeAll(tourLog);
@@ -196,9 +241,13 @@ public class ShowTourController extends AbstractNavBar {
         fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
         fileChooser.setTitle("Save Report");
         // File pdf = //new File()
+
         File file = fileChooser.showSaveDialog(stage);
         PDDocument doc = report.saveTourReport(tour,tourLogs);
-        doc.save(file);
+
+        if(file != null){
+            doc.save(file);
+        }
         doc.close();
     }
 

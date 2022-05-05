@@ -21,8 +21,7 @@ public class SceneControllerImpl implements SceneController {
     private Parent root;
 
     // Erstellt für die einzelnen Pages eine Stage
-    private void createStage(ActionEvent event) {
-        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    private void createStage() {
         this.scene = new Scene(root, width, height);
         stage.setMinHeight(height);
         stage.setMinWidth(width);
@@ -31,16 +30,7 @@ public class SceneControllerImpl implements SceneController {
         this.stage.setScene(scene);
         this.stage.show();
     }
-    private void createStage(MouseEvent event) {
-        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        this.scene = new Scene(root, width, height);
-        stage.setMinHeight(height);
-        stage.setMinWidth(width);
-        stage.setMaxHeight(height);
-        stage.setMaxWidth(width);
-        this.stage.setScene(scene);
-        this.stage.show();
-    }
+
 
     // Main
     @Override
@@ -48,7 +38,8 @@ public class SceneControllerImpl implements SceneController {
          width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_width"));
          height = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_height"));
         this.root = FXMLLoader.load(getClass().getResource(ConfigurationManager.getConfigPropertyValue("main_page")));
-        createStage(event);
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
     }
 
     //ERROR
@@ -56,14 +47,16 @@ public class SceneControllerImpl implements SceneController {
     public void switchToErrorPage(ActionEvent event) throws IOException {
         width = 922;
         this.root = FXMLLoader.load(getClass().getResource(ConfigurationManager.getConfigPropertyValue("error_page")));
-        createStage(event);
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
     }
 
     // Tour - Suchleiste
     @Override
     public void switchToSearchBar(ActionEvent event) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("search-main.fxml"));
-        createStage(event);
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
     }
 
     // Tour - Erstellen
@@ -71,7 +64,8 @@ public class SceneControllerImpl implements SceneController {
     public void switchToCreateTour(ActionEvent event) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("create-tour-view.fxml"));
         height = height -30;
-        createStage(event);
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
     }
 
     // Tour + TourLogger Einträge - Anzeigen
@@ -83,7 +77,8 @@ public class SceneControllerImpl implements SceneController {
         this.root = loader.load();
         ShowTourController showTourController = loader.<ShowTourController>getController();
         showTourController.initialize(tourViewModel);
-        createStage(event);
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
 
     }
     @Override
@@ -94,7 +89,8 @@ public class SceneControllerImpl implements SceneController {
         this.root = loader.load();
         ShowTourController showTourController = loader.<ShowTourController>getController();
         showTourController.initialize(tourViewModel);
-        createStage(event);
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
     }
 
     // TourLogger - Erstellen
@@ -103,7 +99,8 @@ public class SceneControllerImpl implements SceneController {
         width = 800;
         height = 638;
         this.root = FXMLLoader.load(getClass().getResource("show-tour-view.fxml"));
-        createStage(event);
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
     }
 
     // TourListe + Tour Erstellen Button - Anzeigen
@@ -111,8 +108,9 @@ public class SceneControllerImpl implements SceneController {
     public void switchToShowTourList(ActionEvent event) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("show-tour-list-view.fxml"));
         width = 1169;
-       height = 700;
-        createStage(event);
+         height = 700;
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
     }
 
 }
