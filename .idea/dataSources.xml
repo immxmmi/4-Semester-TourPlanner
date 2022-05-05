@@ -8,19 +8,5 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/swe2db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="aws - database" uuid="e610c57f-097a-4142-84c6-ece1d6e741f0">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://chunee.db.elephantsql.com:5432/mafvzkhr</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="google-database" uuid="cba0543e-a96c-4a68-9046-e2165d58bff0">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://rogue.db.elephantsql.com/zqiwlukj</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
   </component>
 </project>

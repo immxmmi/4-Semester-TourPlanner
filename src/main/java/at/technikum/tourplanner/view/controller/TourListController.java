@@ -55,6 +55,11 @@ public class TourListController extends AbstractNavBar implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadList();
+
+
+
+
+
         col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
         col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -86,14 +91,14 @@ public class TourListController extends AbstractNavBar implements Initializable 
 
 
     @FXML
-    public void deleteTour(ActionEvent actionEvent) throws IOException {
+    private void deleteTour(ActionEvent actionEvent) throws IOException {
         TourViewModel tour = table_tourList.getSelectionModel().getSelectedItem();
         tourService.deleteTour(tour.getTourID());
         table_tourList.getItems().removeAll(tour);
     }
 
     @FXML
-    public void reloadList(ActionEvent actionEvent) throws IOException {
+    private void reloadList(ActionEvent actionEvent) throws IOException {
         sCon.switchToShowTourList(actionEvent);
     }
 }

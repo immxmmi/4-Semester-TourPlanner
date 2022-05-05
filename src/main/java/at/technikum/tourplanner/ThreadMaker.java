@@ -1,4 +1,4 @@
-package at.technikum.tourplanner.business;
+package at.technikum.tourplanner;
 
 public class ThreadMaker {
     public static void runInBackground(Runnable runnable){
