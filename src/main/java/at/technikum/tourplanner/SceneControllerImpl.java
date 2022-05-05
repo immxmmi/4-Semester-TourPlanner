@@ -1,6 +1,7 @@
 package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
+import at.technikum.tourplanner.view.controller.SceneController;
 import at.technikum.tourplanner.view.controller.ShowTourController;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;

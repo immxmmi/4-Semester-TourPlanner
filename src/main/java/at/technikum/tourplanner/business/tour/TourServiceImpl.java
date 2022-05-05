@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.business.tour;
 
-import at.technikum.tourplanner.ThreadMaker;
+import at.technikum.tourplanner.business.ThreadMaker;
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
@@ -12,8 +12,6 @@ import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.utils.Tools;
 import at.technikum.tourplanner.utils.ToolsImpl;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
