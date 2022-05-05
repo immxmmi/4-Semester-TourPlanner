@@ -14,9 +14,6 @@ create table tour
     date         text
 );
 
-alter table tour
-    owner to zqiwlukj;
-
 create unique index tour_tourid_uindex
     on tour ("tourID");
 
@@ -33,8 +30,6 @@ create table "tourLog"
     date        text not null
 );
 
-alter table "tourLog"
-    owner to zqiwlukj;
 
 create unique index tourlog_tourlogid_uindex
     on "tourLog" ("tourLogID");
@@ -54,9 +49,6 @@ create table image
     "defaultMarker" text not null,
     "filePath"      text
 );
-
-alter table image
-    owner to zqiwlukj;
 
 create unique index image_imagename_uindex
     on image ("imageID");
