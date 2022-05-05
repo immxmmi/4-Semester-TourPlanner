@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.business.mapQuest;
 
-import at.technikum.tourplanner.ThreadMaker;
+import at.technikum.tourplanner.business.ThreadMaker;
 import at.technikum.tourplanner.business.net.NetworkCommunicationService;
 import at.technikum.tourplanner.business.net.NetworkCommunicationServiceImpl;
 import at.technikum.tourplanner.business.config.ConfigurationManager;

@@ -15,7 +15,7 @@ create table tour
 );
 
 alter table tour
-    owner to swe2user;
+    owner to zqiwlukj;
 
 create unique index tour_tourid_uindex
     on tour ("tourID");
@@ -34,7 +34,7 @@ create table "tourLog"
 );
 
 alter table "tourLog"
-    owner to swe2user;
+    owner to zqiwlukj;
 
 create unique index tourlog_tourlogid_uindex
     on "tourLog" ("tourLogID");
@@ -56,7 +56,7 @@ create table image
 );
 
 alter table image
-    owner to swe2user;
+    owner to zqiwlukj;
 
 create unique index image_imagename_uindex
     on image ("imageID");

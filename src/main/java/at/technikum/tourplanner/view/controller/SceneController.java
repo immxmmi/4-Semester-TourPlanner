@@ -1,4 +1,4 @@
-package at.technikum.tourplanner;
+package at.technikum.tourplanner.view.controller;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.models.Tour;
