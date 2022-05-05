@@ -4,7 +4,6 @@ import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.view.controller.ShowTourController;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -83,7 +82,7 @@ public class SceneControllerImpl implements SceneController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("show-tour-view.fxml"));
         this.root = loader.load();
         ShowTourController showTourController = loader.<ShowTourController>getController();
-        showTourController.loadData(tourViewModel);
+        showTourController.initialize(tourViewModel);
         createStage(event);
 
     }
@@ -94,7 +93,7 @@ public class SceneControllerImpl implements SceneController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("show-tour-view.fxml"));
         this.root = loader.load();
         ShowTourController showTourController = loader.<ShowTourController>getController();
-        showTourController.loadData(tourViewModel);
+        showTourController.initialize(tourViewModel);
         createStage(event);
     }
 

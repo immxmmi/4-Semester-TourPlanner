@@ -19,19 +19,42 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
+import org.apache.pdfbox.pdmodel.PDDocument;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ShowTourController extends AbstractNavBar {
 
+    // CURRENT TOUR + TOURLOGS
     private Tour tour;
     private ArrayList<TourLog> tourLogs;
+    
+    //Services
+    private MapQuestService mapQuestService = new MapQuestServiceImpl();
+    private TourLogService tourLogService = new TourLogServiceImpl();
+    private ObservableList<TourLogViewModel> obsTourList = FXCollections.observableArrayList();
 
 
-    // TOUR - READ
+    // LOAD THE PAGE
+    @FXML
+    public void initialize(TourViewModel currentTour) {
+        this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
+        setTourTable(currentTour);
+        loadTourLogs(tour.getTourID());
+    }
+
+
+    // TOUR
+    // SET TOUR
     @FXML
     private Text show_tour_title;
     @FXML
@@ -48,9 +71,21 @@ public class ShowTourController extends AbstractNavBar {
     private Label show_tour_description;
     @FXML
     private ImageView show_tour_image;
+    private void setTourTable(TourViewModel currentTour){
+        show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
+        show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
+        show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
+        show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
+        show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
+        show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
+        show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
+        show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
+    }
 
-    //TOURLOG - READ
 
+
+    //TOURLOGS
+    // SET TOURLOGS
     @FXML
     private TableView<TourLogViewModel> table_tourLog;
     @FXML
@@ -64,8 +99,7 @@ public class ShowTourController extends AbstractNavBar {
     @FXML
     private TableColumn<TourLogViewModel, String> col_comment;
 
-
-    //TOURLOG - Create
+    // CREATE TOURLOGS
     @FXML
     private ComboBox<Level> get_tourlog_level;
     @FXML
@@ -77,35 +111,11 @@ public class ShowTourController extends AbstractNavBar {
     @FXML
     private TextArea get_tourlog_commit;
 
-
-
-    //Services
-    private MapQuestService mapQuestService = new MapQuestServiceImpl();
-    private TourLogService tourLogService = new TourLogServiceImpl();
-    private ObservableList<TourLogViewModel> obsTourList = FXCollections.observableArrayList();
-
-
-    @FXML
-    public void createReport() {
-        Report report = new ReportImpl();
-        report.createTourReport(tour,tourLogs);
-    }
-    @FXML
-    public void loadData(TourViewModel currentTour) {
-        this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
-        show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
-        show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
-        show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
-        show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
-        show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
-        show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
-        show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
-        show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
-
+    // LOADING TOURLOGS
+    private void loadTourLogs(String tourID){
         // TourLog Table
         // load List
-        loadTourLogList(currentTour.getTourID());
-
+        loadTourLogList(tourID);
         // Column
         col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         col_totalTime.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
@@ -125,22 +135,27 @@ public class ShowTourController extends AbstractNavBar {
         //set list
         table_tourLog.setItems(obsTourList);
 
-
         //Create TourLog
         loadLevels();
         loadStars();
     }
-
-
-    public void loadTourLogList(String tourID) {
+    private void loadTourLogList(String tourID) {
         obsTourList = FXCollections.observableArrayList();
-        ArrayList<TourLog> tourLogList = tourLogService.getAllTourLogs(tourID);
-
-        for (TourLog tourLog : tourLogList) {
+        this.tourLogs = tourLogService.getAllTourLogs(tourID);
+        for (TourLog tourLog : tourLogs) {
             obsTourList.add(new TourLogViewModel(tourLog));
         }
     }
-
+    private void loadLevels(){
+        for(Level level : Level.values()){
+            get_tourlog_level.getItems().add(level);
+        }
+    }
+    private void loadStars(){
+        for(Stars stars : Stars.values()){
+            get_tourlog_stars.getItems().add(stars);
+        }
+    }
 
     @FXML
     public void saveTourLog(ActionEvent actionEvent) throws IOException {
@@ -153,9 +168,8 @@ public class ShowTourController extends AbstractNavBar {
                 .totalTime(Double.parseDouble(get_tourLog_total.getText()))
                 .build();
         tourLogService.saveTourLog(tourLog);
-        reload(actionEvent);
+        reloadPage(actionEvent);
     }
-
     @FXML
     public void deleteTourLog(ActionEvent actionEvent) throws IOException {
         TourLogViewModel tourLog = table_tourLog.getSelectionModel().getSelectedItem();
@@ -164,17 +178,36 @@ public class ShowTourController extends AbstractNavBar {
     }
 
 
-    public void reload(ActionEvent actionEvent) throws IOException {
+
+
+    // REPORT SAVE - Button
+    @FXML
+    VBox saveStage;
+    @FXML
+    private void saveReport(ActionEvent event) throws IOException {
+        String saveTime = LocalDateTime.now().format( DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
+        String fileName = "report-"+tour.getTitle()+"-"+saveTime+".pdf";
+
+        Report report = new ReportImpl();
+        Window stage = saveStage.getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName(fileName);
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
+        fileChooser.setTitle("Save Report");
+        // File pdf = //new File()
+        File file = fileChooser.showSaveDialog(stage);
+        PDDocument doc = report.saveTourReport(tour,tourLogs);
+        doc.save(file);
+        doc.close();
+    }
+
+    // RELOAD PAGE
+    @FXML
+    public void reloadPage(ActionEvent actionEvent) throws IOException {
         sCon.switchToShowTour(actionEvent, new TourViewModel(tour));
     }
-    private void loadLevels(){
-        for(Level level : Level.values()){
-           get_tourlog_level.getItems().add(level);
-        }
-    }
-    private void loadStars(){
-        for(Stars stars : Stars.values()){
-            get_tourlog_stars.getItems().add(stars);
-        }
-    }
+
+
 }
+

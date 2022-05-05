@@ -34,6 +34,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -44,6 +45,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -54,7 +56,7 @@
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="796.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
+      <Button layoutX="783.0" layoutY="37.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
       <Label fx:id="show_tour_to" layoutX="694.0" layoutY="140.0" text="Text" />
       <Label layoutX="618.0" layoutY="140.0" text="To:" />
       <Label layoutX="611.0" layoutY="104.0" text="From:" />
@@ -72,7 +74,6 @@
       <Label fx:id="show_tour_time" layoutX="694.0" layoutY="257.0" text="Text" />
       <Label fx:id="show_tour_description" layoutX="694.0" layoutY="309.0" text="Text" />
       <Label fx:id="show_tour_transport" layoutX="694.0" layoutY="180.0" text="Text" />
-      <Button layoutX="857.0" layoutY="11.0" mnemonicParsing="false" onAction="#createReport" text="save" />
       <TableView fx:id="table_tourLog" layoutX="9.0" layoutY="393.0" prefHeight="193.0" prefWidth="1093.0">
          <columns>
             <TableColumn fx:id="col_date" prefWidth="105.59997272491455" text="Date:" />
@@ -92,5 +93,13 @@
       <ComboBox fx:id="get_tourlog_stars" layoutX="335.0" layoutY="604.0" prefHeight="25.0" prefWidth="81.0" promptText="Stars" />
       <Button layoutX="237.0" layoutY="686.0" mnemonicParsing="false" onAction="#saveTourLog" text="save" />
       <Button layoutX="335.0" layoutY="686.0" mnemonicParsing="false" onAction="#deleteTourLog" text="delete" />
+      <VBox fx:id="saveStage" layoutX="111.0" layoutY="-74.0" prefHeight="1.0" prefWidth="8.0" />
+      <ChoiceBox layoutX="1055.0" layoutY="24.0" opacity="0.0" prefHeight="25.0" prefWidth="28.0" />
+      <ImageView fitHeight="42.0" fitWidth="36.0" layoutX="1053.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/Hamburger_icon.svg.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="925.0" layoutY="37.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="25.0" prefWidth="53.0" text="save" />
    </children>
 </Pane>
