@@ -15,17 +15,19 @@ import java.io.IOException;
 
 public class MainApplication extends Application {
 
-    static int width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_width"));
-    static int height = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_height"));
-
     final Logger logger = LogManager.getRootLogger();
+    static ConfigurationManager config = new ConfigurationManager();
+
+    static int width = Integer.parseInt(config.getStageWidth());
+    static int height = Integer.parseInt(config.getStageHeight());
+
 
     @Override
     public void start(Stage stage) throws IOException {
 
         logger.info("Starting Tour Planner Pro...");
 
-        Parent root = FXMLLoader.load(getClass().getResource(ConfigurationManager.getConfigPropertyValue("main_page")));
+        Parent root = FXMLLoader.load(getClass().getResource(config.getMainPage()));
         stage.setTitle("Tour Planner Pro (30 Days free Trial)");
         Scene scene = new Scene(root, width-30, height-30);
         stage.setMinHeight(height);
@@ -36,7 +38,6 @@ public class MainApplication extends Application {
         stage.show();
 
     }
-
 
     @Override
     public void stop() {

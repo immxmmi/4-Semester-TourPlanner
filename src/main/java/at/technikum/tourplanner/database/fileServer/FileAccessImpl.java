@@ -9,10 +9,11 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class FileAccessImpl implements FileAccess{
+    private ConfigurationManager config = new ConfigurationManager();
     private String root;
 
     public FileAccessImpl() {
-        this.root = ConfigurationManager.getConfigPropertyValue("root");
+        this.root = config.getRoot();
     }
 
     private String GetFullPath(String filename){

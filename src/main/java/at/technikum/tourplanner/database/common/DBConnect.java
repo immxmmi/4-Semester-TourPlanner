@@ -11,6 +11,7 @@ import java.sql.SQLException;
 public class DBConnect implements Cloneable {
 
     final Logger logger = LogManager.getLogger(DBConnect.class);
+    private static ConfigurationManager config = new ConfigurationManager();
 
     private String databaseName;
     private String username;
@@ -56,7 +57,11 @@ public class DBConnect implements Cloneable {
      **/
     public DBConnect() {
        // this("swe2db", "swe2user", "swe2pw", "5432");
-        this(ConfigurationManager.getConfigPropertyValue("db_url"),ConfigurationManager.getConfigPropertyValue("db_database"), ConfigurationManager.getConfigPropertyValue("db_username"), ConfigurationManager.getConfigPropertyValue("db_password"), ConfigurationManager.getConfigPropertyValue("db_port"));
+        this(   config.getDbUrl(),
+                config.getDbDatabase(),
+                config.getDbUsername(),
+                config.getDbPassword(),
+                config.getDbPort());
     }
 
 

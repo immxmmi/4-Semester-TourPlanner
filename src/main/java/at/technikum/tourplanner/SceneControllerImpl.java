@@ -17,8 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SceneControllerImpl implements SceneController {
-    static int width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_width"));
-    static int height = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_height"));
+    static ConfigurationManager config = new ConfigurationManager();
+    static int width = Integer.parseInt(config.getStageWidth());
+    static int height = Integer.parseInt(config.getStageHeight());
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -38,9 +39,9 @@ public class SceneControllerImpl implements SceneController {
     // Main
     @Override
     public void switchToMain(ActionEvent event) throws IOException {
-         width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_width"));
-         height = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_height"));
-        this.root = FXMLLoader.load(getClass().getResource(ConfigurationManager.getConfigPropertyValue("main_page")));
+         width = Integer.parseInt(config.getStageWidth());
+         height = Integer.parseInt(config.getStageHeight());
+        this.root = FXMLLoader.load(getClass().getResource(config.getMainPage()));
         this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         createStage();
     }
@@ -49,7 +50,7 @@ public class SceneControllerImpl implements SceneController {
     @Override
     public void switchToErrorPage(ActionEvent event) throws IOException {
         width = 922;
-        this.root = FXMLLoader.load(getClass().getResource(ConfigurationManager.getConfigPropertyValue("error_page")));
+        this.root = FXMLLoader.load(getClass().getResource(config.getErrorPage()));
         this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         createStage();
     }

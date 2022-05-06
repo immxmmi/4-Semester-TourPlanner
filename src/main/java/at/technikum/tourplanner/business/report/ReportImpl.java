@@ -19,97 +19,37 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class ReportImpl implements Report{
+public class ReportImpl implements Report {
+
+    ConfigurationManager config = new ConfigurationManager();
 
     @Override
-    public void createTourReport(Tour tour, ArrayList<TourLog> tourLogs){
+    public void createTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
 
-        FileAccess fileAccess = new FileAccessImpl();
-        fileAccess.createFolder("report");
-
-
-        // TimeStamp
-        String reportTime = LocalDateTime.now().format( DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-        String saveTime = LocalDateTime.now().format( DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
-
-
-
-
-
+        String saveTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
         // Create Document
-        PDDocument newReport = new PDDocument();
-        // Create Page
-        PDPage currentPage = new PDPage();
-        newReport.addPage(currentPage);
-
+        PDDocument newReport = saveTourReport(tour, tourLogs);
+        String fileName = config.getReport() + "report-" + tour.getTitle() + saveTime + ".pdf";
 
         try {
-            // Start edit File
-            PDPageContentStream write = new PDPageContentStream(newReport,currentPage);
-
-            RouteImage currentRoutImage = tour.getRouteImage();
-            // Route Image
-            PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(),newReport);
-
-            write.drawImage(imageXObject,50,100,currentRoutImage.getWidth(), currentRoutImage.getHeight());
-
-
-            // START - TEXTING
-            write.beginText();
-
-            // SETTINGS
-            write.addComment("TEST");
-            write.setFont(PDType1Font.COURIER_BOLD,13);
-            write.setLeading(10f);
-            write.newLineAtOffset(25, 700);
-
-
-            write.newLine();
-            write.showText("Tour-Report: " + reportTime);
-            write.newLine();
-            write.showText("Tour Tour ID: " + tour.getTourID());
-            write.newLine();
-            write.showText("Tour Name: " + tour.getTitle());
-            write.newLine();
-            write.showText("Tour To: " + tour.getTo());
-            write.newLine();
-            write.showText("Tour From: " + tour.getFrom());
-            write.newLine();
-            write.showText("Tour Distance: " + tour.getDistance());
-            write.newLine();
-            write.showText("Tour Transport: " + tour.getTransporter().toString());
-            write.newLine();
-            write.newLine();
-
-
-
-            // STOP - TEXTING
-            write.endText();
-            write.close();
-
-            String fileName = ConfigurationManager.getConfigPropertyValue("report")+"report-"+tour.getTitle()+saveTime+".pdf";
-
             newReport.save(fileName);
             newReport.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
+
     }
 
     @Override
-    public PDDocument saveTourReport(Tour tour, ArrayList<TourLog> tourLogs){
+    public PDDocument saveTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
 
         FileAccess fileAccess = new FileAccessImpl();
         fileAccess.createFolder("report");
 
 
         // TimeStamp
-        String reportTime = LocalDateTime.now().format( DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-        String saveTime = LocalDateTime.now().format( DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
-
-
-
+        String reportTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
+        String saveTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
 
 
         // Create Document
@@ -121,13 +61,13 @@ public class ReportImpl implements Report{
 
         try {
             // Start edit File
-            PDPageContentStream write = new PDPageContentStream(newReport,currentPage);
+            PDPageContentStream write = new PDPageContentStream(newReport, currentPage);
 
             RouteImage currentRoutImage = tour.getRouteImage();
             // Route Image
-            PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(),newReport);
+            PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
 
-            write.drawImage(imageXObject,50,100,currentRoutImage.getWidth(), currentRoutImage.getHeight());
+            write.drawImage(imageXObject, 50, 100, currentRoutImage.getWidth(), currentRoutImage.getHeight());
 
 
             // START - TEXTING
@@ -135,9 +75,10 @@ public class ReportImpl implements Report{
 
             // SETTINGS
             write.addComment("TEST");
-            write.setFont(PDType1Font.COURIER_BOLD,13);
+            write.setFont(PDType1Font.COURIER_BOLD, 13);
             write.setLeading(10f);
             write.newLineAtOffset(25, 700);
+
 
 
             write.newLine();
@@ -158,19 +99,33 @@ public class ReportImpl implements Report{
             write.newLine();
 
 
+            for (TourLog tourlog : tourLogs ){
+                write.newLine();
+                write.showText("TourLog-ID: " + tourlog.getTourLogID());
+                write.newLine();
+                write.showText("TourLog-DATE: " + tourlog.getDate());
+                write.newLine();
+                write.showText("TourLog-STARS: " + tourlog.getStars());
+                write.newLine();
+                write.showText("TourLog-LEVEL: " + tourlog.getLevel());
+                write.newLine();
+                write.showText("TourLog-COMMENT: " + tourlog.getComment());
+                write.newLine();
+                write.newLine();
+                write.newLine();
+            }
 
             // STOP - TEXTING
             write.endText();
             write.close();
 
-            String fileName = "report-"+tour.getTitle()+saveTime+".pdf";
 
-           // newReport.save(fileName);
+            // newReport.save(fileName);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-          return newReport;
+        return newReport;
     }
 
 }

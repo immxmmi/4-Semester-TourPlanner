@@ -29,6 +29,7 @@ import java.util.concurrent.TimeoutException;
 
 public class MapQuestServiceImpl implements MapQuestService {
 
+    private static ConfigurationManager config = new ConfigurationManager();
     private RouteImageDao routeImageDao = new RouteImageDaoImpl();
     private Tour currentTour;
 
@@ -54,7 +55,9 @@ public class MapQuestServiceImpl implements MapQuestService {
             String body = response.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
 
 
-            if (!mapper.readTree(body).get("route").get("routeError").get("errorCode").toString().equals("-400")) {return null;}
+            if (!mapper.readTree(body).get("route").get("routeError").get("errorCode").toString().equals("-400")) {
+                return null;
+            }
 
 
             currentRoute.setRouteBody(mapper.readTree(body).get("route"));
@@ -85,7 +88,7 @@ public class MapQuestServiceImpl implements MapQuestService {
     //2. BUILD
     private Route routeBuilder(String from, String to) {
         Route route = Route.builder()
-                .key("?key=" + ConfigurationManager.getConfigPropertyValue("mapQuest_id"))
+                .key("?key=" + config.getMapQuestID())
                 .from(from)
                 .to(to)
                 .build();
@@ -118,15 +121,15 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public Route copyRouteDataToImage(Route currentRoute) {
         String filename = currentRoute.getFrom() + "-" + currentRoute.getTo();
-        if(currentTour.getTourID() != null){
+        if (currentTour.getTourID() != null) {
             currentRoute.getRouteImage().setImageID(currentTour.getTourID());
-        }else{
+        } else {
             currentRoute.getRouteImage().setImageID(filename);
         }
         currentRoute.getRouteImage().setDownloadURL(currentRoute.getUrlRoute());
         currentRoute.getRouteImage().setFrom(currentRoute.getFrom());
         currentRoute.getRouteImage().setTo(currentRoute.getTo());
-        currentRoute.getRouteImage().setFilePath(ConfigurationManager.getConfigPropertyValue("image") + filename + ".jpg");
+        currentRoute.getRouteImage().setFilePath(config.getImage() + filename + ".jpg");
 
         return currentRoute;
     }
@@ -149,59 +152,38 @@ public class MapQuestServiceImpl implements MapQuestService {
         return routeImageDao.update(currentRouteImage);
     }
 
-
-    // CREATE IMAGE
+    //start Image
     @Override
     public Route startRoute(String from, String to) {
         final Route[] route = new Route[1];
-        RouteImage routeImageSettings = RouteImage.builder()
-                //.height()
-                //.width()
-                //.zoom()
-                //.defaultMarker()
-                .build();
+        RouteImage routeImageSettings = RouteImage.builder().build();
+
         // SET ROUTE + IMAGE
+        route[0] = searchRoute(from, to);
+        route[0].setRouteImage(routeImageSettings);
 
-
-
-                route[0] = searchRoute(from, to);
-                route[0].setRouteImage(routeImageSettings);
-
-
-        if (route[0] == null) {return null;}
+        if (route[0] == null) {
+            return null;
+        }
 
         // copy image and set settings
-
-                route[0] = setImageSettingsToRoute(route[0]);
-                route[0] = copyRouteDataToImage(route[0]);
+        route[0] = setImageSettingsToRoute(route[0]);
+        route[0] = copyRouteDataToImage(route[0]);
 
         // save in DataBase
-       // ThreadMaker.multiRunInBackground(new Runnable() {
-         //   @Override
-          //  public void run() {
-               saveImageOnline(route[0].getRouteImage());
-          //  }
-       // });
-
+        saveImageOnline(route[0].getRouteImage());
         // DOWNLOAD  IMAGE
-      //  ThreadMaker.multiRunInBackground(new Runnable() {
-      //      @Override
-      //     public void run() {
         downloadImage(route[0]);
-      //      }
-      //  });
-//
         return route[0];
     }
 
-
     @Override
     public Route startRoute(Tour tour) {
-         currentTour = tour;
-        return startRoute(tour.getFrom(),tour.getTo());
+        currentTour = tour;
+        return startRoute(tour.getFrom(), tour.getTo());
     }
 
-
+    // CREATE IMAGE
     @Override
     public Image showRouteImage(RouteImage routeImage) {
         FileAccess fileAccess = new FileAccessImpl();
