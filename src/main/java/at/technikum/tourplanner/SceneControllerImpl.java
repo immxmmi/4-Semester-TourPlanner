@@ -2,6 +2,7 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.view.controller.SceneController;
+import at.technikum.tourplanner.view.controller.SearchListController;
 import at.technikum.tourplanner.view.controller.ShowTourController;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SceneControllerImpl implements SceneController {
     static int width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("stage_width"));
@@ -110,6 +112,20 @@ public class SceneControllerImpl implements SceneController {
         this.root = FXMLLoader.load(getClass().getResource("show-tour-list-view.fxml"));
         width = 1169;
          height = 700;
+        this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        createStage();
+    }
+
+    @Override
+    public void switchToSearchList(ActionEvent event, ArrayList<TourViewModel> searchResult) throws IOException {
+        width = 1169;
+        height = 700;
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("show-search-list-view.fxml"));
+        this.root = loader.load();
+        SearchListController searchListController = loader.<SearchListController>getController();
+        searchListController.initialize(searchResult);
         this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         createStage();
     }

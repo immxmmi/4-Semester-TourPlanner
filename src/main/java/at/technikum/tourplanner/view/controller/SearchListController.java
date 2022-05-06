@@ -1,4 +1,3 @@
-
 package at.technikum.tourplanner.view.controller;
 
 import at.technikum.tourplanner.business.tour.TourService;
@@ -9,18 +8,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
-public class TourListController extends AbstractNavBar implements Initializable {
+public class SearchListController  extends AbstractNavBar {
 
     @FXML
     private TableView<TourViewModel> table_tourList;
@@ -41,17 +37,11 @@ public class TourListController extends AbstractNavBar implements Initializable 
     private TourService tourService = new TourServiceImpl();
     private ObservableList<TourViewModel> obsTourList = FXCollections.observableArrayList();
 
-    private void loadList() {
-        obsTourList = FXCollections.observableArrayList();
-        ArrayList<Tour> tourList = tourService.getAllTourOrderByName();
-        for (Tour tour : tourList) {
-            obsTourList.add(new TourViewModel(tour));
-        }
-    }
+    
+    public void initialize(ArrayList<TourViewModel> searchList){
+        loadList(searchList);
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadList();
+        System.out.println(obsTourList);
         col_title.setCellValueFactory(new PropertyValueFactory<>("title"));
         col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -86,6 +76,14 @@ public class TourListController extends AbstractNavBar implements Initializable 
 
         table_tourList.setItems(obsTourList);
     }
+
+    private void loadList(ArrayList<TourViewModel> searchList) {
+        obsTourList = FXCollections.observableArrayList();
+        for (TourViewModel tour : searchList) {
+            obsTourList.add(tour);
+        }
+    }
+
 
     @FXML
     public void deleteTour(ActionEvent actionEvent) throws IOException {

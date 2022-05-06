@@ -1,6 +1,7 @@
 package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
+import at.technikum.tourplanner.models.Tour;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

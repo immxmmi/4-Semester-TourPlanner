@@ -1,6 +1,5 @@
 package at.technikum.tourplanner.business.tour;
 
-import at.technikum.tourplanner.business.ThreadMaker;
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
@@ -94,6 +93,12 @@ public class TourServiceImpl implements TourService{
     @Override
     public Tour searchTourByName(String tourName) {
        return tourDao.getItemByName(tourName.toLowerCase());
+    }
+
+
+    @Override
+    public ArrayList<Tour> searchTourAndTourLog(String search){
+        return tourDao.search(search);
     }
 
     @Override

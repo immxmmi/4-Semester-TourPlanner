@@ -82,6 +82,34 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         return buildClass(this.result);
     }
 
+    @Override
+    public ArrayList<Tour> search(String value){
+        ArrayList<Tour> allTour = new ArrayList<>();
+        ArrayList<String> allTourIDs =  new ArrayList<>();
+        value = "%"+value+"%";
+        this.parameter = new String[]{value, value, value, value, value};
+        this.setStatement("SELECT *  FROM "  + this.tableName + " JOIN \"tourLog\" ON \"tour\".\"tourID\"=\"tourLog\".\"tourID\" WHERE " +
+                "\"title\" like ? " +
+                "OR \"description\" like ? " +
+                "OR \"comment\" like ? " +
+                "OR \"from\" like ? " +
+                "OR \"to\" like ? ;"
+                ,this.parameter);
+
+        System.out.println(statement);
+
+        try{
+            while (this.result.next()) {
+                allTourIDs.add(result.getString("tourID"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < allTourIDs.size(); i++){allTour.add(getItemById(allTourIDs.get(i)));}
+
+        return allTour;
+    }
 
     @Override
     public Tour insert(Tour item) {

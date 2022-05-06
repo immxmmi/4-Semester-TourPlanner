@@ -13,5 +13,7 @@ public interface TourDao extends DaoPattern<Tour> {
 
     Tour getItemByName(String name);
 
+    ArrayList<Tour> search(String value);
+
     ArrayList<Tour> getAllTourOrderByName();
 }

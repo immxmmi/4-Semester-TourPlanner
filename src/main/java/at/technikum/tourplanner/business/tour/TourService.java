@@ -14,6 +14,8 @@ public interface TourService {
 
     Tour searchTourByName(String tourName);
 
+    ArrayList<Tour> searchTourAndTourLog(String search);
+
     Tour updateTour(Tour tour);
 
     ArrayList<Tour> getAllTourOrderByName();
