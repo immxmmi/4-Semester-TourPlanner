@@ -11,15 +11,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class TourDaoImpl extends AbstractDBTable implements TourDao {
 
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
-     static RouteImageDaoImpl imageDaoImpl = new RouteImageDaoImpl();
+    static RouteImageDaoImpl imageDaoImpl = new RouteImageDaoImpl();
 
-    public TourDaoImpl(){
+    public TourDaoImpl() {
         this.tableName = "\"tour\"";
     }
 
@@ -57,9 +59,8 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         this.closeStatement();
         return null;
     }
+
     /*******************************************************************/
-
-
 
 
     @Override
@@ -83,22 +84,22 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
     }
 
     @Override
-    public ArrayList<Tour> search(String value){
+    public ArrayList<Tour> search(String value) {
         ArrayList<Tour> allTour = new ArrayList<>();
-        ArrayList<String> allTourIDs =  new ArrayList<>();
-        value = "%"+value+"%";
+        ArrayList<String> allTourIDs = new ArrayList<>();
+        value = "%" + value + "%";
         this.parameter = new String[]{value, value, value, value, value};
-        this.setStatement("SELECT *  FROM "  + this.tableName + " JOIN \"tourLog\" ON \"tour\".\"tourID\"=\"tourLog\".\"tourID\" WHERE " +
-                "\"title\" like ? " +
-                "OR \"description\" like ? " +
-                "OR \"comment\" like ? " +
-                "OR \"from\" like ? " +
-                "OR \"to\" like ? ;"
-                ,this.parameter);
+        this.setStatement("SELECT *  FROM " + this.tableName + "WHERE " +
+                        "\"title\" like ? " +
+                        "OR \"description\" like ? " +
+                        "OR \"transporter\" like ? " +
+                        "OR \"from\" like ? " +
+                        "OR \"to\" like ? ;"
+                , this.parameter);
 
-        System.out.println(statement);
+        System.out.println(this.statement);
 
-        try{
+        try {
             while (this.result.next()) {
                 allTourIDs.add(result.getString("tourID"));
             }
@@ -106,10 +107,40 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < allTourIDs.size(); i++){allTour.add(getItemById(allTourIDs.get(i)));}
+        if(allTourIDs.size() == 0){
+            this.parameter = new String[]{value, value, value};
+            this.setStatement("SELECT *  FROM " + this.tableName + " JOIN \"tourLog\" ON \"tour\".\"tourID\"=\"tourLog\".\"tourID\" WHERE " +
+                            "\"level\" like ? " +
+                            "OR \"stars\" like ? " +
+                            "OR \"comment\" like ? ;"
+                    , this.parameter);
+            System.out.println(this.statement);
 
+            try {
+                while (this.result.next()) {
+                    allTourIDs.add(result.getString("tourID"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
+        for (int i = 0; i < allTourIDs.size(); i++) {
+            allTour.add(getItemById(allTourIDs.get(i)));
+        }
+
+        Set<Tour> set = new LinkedHashSet<Tour>(allTour);
+        allTour = new ArrayList<Tour>(set);
         return allTour;
     }
+
+
+
+
+
 
     @Override
     public Tour insert(Tour item) {
@@ -117,7 +148,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
             return null;
         }
 
-        if(getItemById(item.getTourID()) == null) {
+        if (getItemById(item.getTourID()) == null) {
             this.parameter = new String[]{
                     "" + item.getTourID(),
                     "" + item.getTitle(),
@@ -172,7 +203,6 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                         "\"date\" = ? " +
 
 
-
                         "WHERE \"tour_ID\" = ? ;"
                 , this.parameter
         );
@@ -185,13 +215,13 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
     public ArrayList<Tour> getAllTourOrderByName() {
 
         ArrayList<Tour> allTour = new ArrayList<>();
-        ArrayList<String> allTourIDs =  new ArrayList<>();
+        ArrayList<String> allTourIDs = new ArrayList<>();
 
         this.parameter = new String[]{};
 
-        this.setStatement("SELECT  *  FROM "+this.tableName+" ORDER BY \"title\";", this.parameter);
+        this.setStatement("SELECT  *  FROM " + this.tableName + " ORDER BY \"title\";", this.parameter);
 
-        try{
+        try {
 
             while (this.result.next()) {
                 allTourIDs.add(result.getString("tourID"));
@@ -202,7 +232,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         }
 
 
-        for (int i = 0; i < allTourIDs.size(); i++){
+        for (int i = 0; i < allTourIDs.size(); i++) {
             allTour.add(getItemById(allTourIDs.get(i)));
         }
 

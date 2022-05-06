@@ -55,7 +55,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
     }
     /*******************************************************************/
 
-
     @Override
     public ArrayList<TourLog> getAllTourLog(String tourID) {
 
