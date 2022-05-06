@@ -2,6 +2,7 @@ package at.technikum.tourplanner.business.mapQuest;
 
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Route;
+import at.technikum.tourplanner.models.Tour;
 import javafx.scene.image.Image;
 
 public interface MapQuestService {
@@ -20,7 +21,7 @@ public interface MapQuestService {
 
     // CREATE IMAGE
     Route startRoute(String from, String to);
-
+    Route startRoute(Tour tour);
 
     Image showRouteImage(RouteImage routeImage);
 

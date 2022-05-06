@@ -208,11 +208,23 @@ public class ShowTourController extends AbstractNavBar {
 
     @FXML
     private void saveTourLog(ActionEvent actionEvent) throws IOException {
+
+        Stars stars = get_tourlog_stars.getValue();
+        if(stars == null){stars = Stars.none;}
+        Level level = get_tourlog_level.getValue();
+        if(level == null){level = Level.normal;}
+        Date date = Date.valueOf(get_tourlog_date.getValue().toString());
+        if(date == null){
+            date = Date.valueOf("11.11.2001");
+        }
+
+
+
         TourLog tourLog = TourLog.builder()
                 .tourID(tour.getTourID())
-                .date(Date.valueOf(get_tourlog_date.getValue().toString()))
-                .stars(get_tourlog_stars.getValue())
-                .level(get_tourlog_level.getValue())
+                .date(date)
+                .stars(stars)
+                .level(level)
                 .comment(get_tourlog_commit.getText())
                 .totalTime(Double.parseDouble(get_tourLog_total.getText()))
                 .build();

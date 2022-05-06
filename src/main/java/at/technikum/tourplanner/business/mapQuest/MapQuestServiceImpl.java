@@ -10,6 +10,7 @@ import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
 import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Route;
+import at.technikum.tourplanner.models.Tour;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +30,7 @@ import java.util.concurrent.TimeoutException;
 public class MapQuestServiceImpl implements MapQuestService {
 
     private RouteImageDao routeImageDao = new RouteImageDaoImpl();
+    private Tour currentTour;
 
     // 1. SEARCH
     @Override
@@ -116,7 +118,11 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public Route copyRouteDataToImage(Route currentRoute) {
         String filename = currentRoute.getFrom() + "-" + currentRoute.getTo();
-        currentRoute.getRouteImage().setImageID(filename);
+        if(currentTour.getTourID() != null){
+            currentRoute.getRouteImage().setImageID(currentTour.getTourID());
+        }else{
+            currentRoute.getRouteImage().setImageID(filename);
+        }
         currentRoute.getRouteImage().setDownloadURL(currentRoute.getUrlRoute());
         currentRoute.getRouteImage().setFrom(currentRoute.getFrom());
         currentRoute.getRouteImage().setTo(currentRoute.getTo());
@@ -157,42 +163,42 @@ public class MapQuestServiceImpl implements MapQuestService {
         // SET ROUTE + IMAGE
 
 
-        ThreadMaker.runInBackground(new Runnable() {
-            @Override
-            public void run() {
+
                 route[0] = searchRoute(from, to);
                 route[0].setRouteImage(routeImageSettings);
-            }
-        });
+
 
         if (route[0] == null) {return null;}
 
         // copy image and set settings
-        ThreadMaker.runInBackground(new Runnable() {
-            @Override
-            public void run() {
+
                 route[0] = setImageSettingsToRoute(route[0]);
                 route[0] = copyRouteDataToImage(route[0]);
-            }
-        });
 
         // save in DataBase
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
+       // ThreadMaker.multiRunInBackground(new Runnable() {
+         //   @Override
+          //  public void run() {
                saveImageOnline(route[0].getRouteImage());
-            }
-        });
+          //  }
+       // });
 
         // DOWNLOAD  IMAGE
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
-                downloadImage(route[0]);
-            }
-        });
-
+      //  ThreadMaker.multiRunInBackground(new Runnable() {
+      //      @Override
+      //     public void run() {
+        downloadImage(route[0]);
+      //      }
+      //  });
+//
         return route[0];
+    }
+
+
+    @Override
+    public Route startRoute(Tour tour) {
+         currentTour = tour;
+        return startRoute(tour.getFrom(),tour.getTo());
     }
 
 
@@ -221,7 +227,6 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public RouteImage reloadImage(RouteImage routeImage) {
 
-        System.out.println(routeImage);
         Route route = this.searchRoute(routeImage.getFrom(), routeImage.getTo());
         route.setRouteImage(routeImage);
         if (route == null) {
@@ -232,8 +237,6 @@ public class MapQuestServiceImpl implements MapQuestService {
 
 
         RouteImage newRouteImage = this.updateImageOnline(route.getRouteImage());
-
-        System.out.println(newRouteImage);
 
         routeImage = routeImageDao.getItemById(routeImage.getImageID());
 
