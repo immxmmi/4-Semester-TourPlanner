@@ -55,6 +55,106 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
     }
     /*******************************************************************/
 
+
+    @Override
+    public int countTourLogs(String tourID){
+        this.parameter = new String[]{tourID};
+        this.setStatement(
+                "SELECT  COUNT(*) AS total FROM " + this.tableName + " WHERE \"tourID\" = ? " + ";",
+                this.parameter
+        );
+        int value = 0;
+
+        try {
+            if (result.next()) {
+                value = this.result.getInt("total");
+                this.closeStatement();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return value;
+
+    }
+
+    @Override
+    public double avgTotalTime(String tourID){
+        this.parameter = new String[]{tourID};
+        this.setStatement(
+                "SELECT  AVG(totalTime) AS total FROM " + this.tableName + " WHERE \"tourID\" = ? " + ";",
+                this.parameter
+        );
+        double value = 0;
+
+        try {
+            if (result.next()) {
+                value = this.result.getInt("total");
+                this.closeStatement();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return value;
+
+    }
+
+
+    @Override
+    public int countStars(String tourID, Stars star){
+        this.parameter = new String[]{tourID,""+star};
+        this.setStatement(
+                "SELECT  COUNT(*) AS total FROM " + this.tableName + " WHERE \"tourID\" = ? AND \"stars\" = ?" + ";",
+                this.parameter
+        );
+        int value = 0;
+
+        try {
+            if (result.next()) {
+                value = this.result.getInt("total");
+                this.closeStatement();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return value;
+    }
+
+
+
+    @Override
+    public int countLevel(String tourID, Level level){
+        this.parameter = new String[]{tourID,""+level};
+        this.setStatement(
+                "SELECT  COUNT(*) AS total FROM " + this.tableName + " WHERE \"tourID\" = ? AND \"level\" = ?" + ";",
+                this.parameter
+        );
+        int value = 0;
+
+        try {
+            if (result.next()) {
+                value = this.result.getInt("total");
+                this.closeStatement();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return value;
+    }
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public ArrayList<TourLog> getAllTourLog(String tourID) {
 
@@ -158,5 +258,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return getItemById(item.getTourLogID());
     }
+
+
 
 }

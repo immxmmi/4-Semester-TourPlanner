@@ -6,10 +6,7 @@ import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.dao.TourDao;
 import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
-import at.technikum.tourplanner.models.Route;
-import at.technikum.tourplanner.models.RouteImage;
-import at.technikum.tourplanner.models.Tour;
-import at.technikum.tourplanner.models.TourLog;
+import at.technikum.tourplanner.models.*;
 import at.technikum.tourplanner.utils.Tools;
 import at.technikum.tourplanner.utils.ToolsImpl;
 
@@ -17,13 +14,14 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class TourServiceImpl implements TourService{
+public class TourServiceImpl implements TourService {
 
-    private SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     private Date date = new Date(System.currentTimeMillis());
     private Tour currentTour;
 
     private TourDao tourDao;
+    private TourLogService tourLogService;
 
     {
         tourDao = new TourDaoImpl();
@@ -38,39 +36,41 @@ public class TourServiceImpl implements TourService{
         RouteImageDao routeImageDao = new RouteImageDaoImpl();
 
 
-
         //ID - HASH-WERT and DATE
 
-                //DATE
-                tour.setDate(date);
-                tour.setTourID(tools.hashString(tour.getTitle()+tour.getDescription()));
-                tour.setTitle(tour.getTitle().toLowerCase());
+        //DATE
+        tour.setDate(date);
+        tour.setTourID(tools.hashString(tour.getTitle() + tour.getDescription()));
+        tour.setTitle(tour.getTitle().toLowerCase());
 
-                currentTour = tour;
+        currentTour = tour;
 
         // ROUTE
         final Route[] currentRoute = {null};
-                currentRoute[0] = mapQuestService.startRoute(tour);
+        currentRoute[0] = mapQuestService.startRoute(tour);
 
 
-
-        if(currentRoute[0] == null){return null;}
+        if (currentRoute[0] == null) {
+            return null;
+        }
 
         // IMAGE
         RouteImage routeImage = routeImageDao.getItemById(currentRoute[0].getRouteImage().getImageID());
 
-        if(routeImage == null){return null;}
+        if (routeImage == null) {
+            return null;
+        }
 
         // IMAGE
-                 tour.setRouteImage(routeImage);
-                 tour.setRouteImage(routeImage);
+        tour.setRouteImage(routeImage);
+        tour.setRouteImage(routeImage);
 
-                //DISTANCE
-                tour.setDistance(currentRoute[0].getDistance());
+        //DISTANCE
+        tour.setDistance(currentRoute[0].getDistance());
 
-                //TIME
-                tour.setTime(currentRoute[0].getTime());
-         return tourDao.insert(tour);
+        //TIME
+        tour.setTime(currentRoute[0].getTime());
+        return tourDao.insert(tour);
     }
 
     @Override
@@ -81,8 +81,8 @@ public class TourServiceImpl implements TourService{
     @Override
     public Boolean deleteTour(String tourID) {
         TourLogService tourLogService = new TourLogServiceImpl();
-        ArrayList<TourLog>  tourLogs = tourLogService.getAllTourLogs(tourID);
-        for (TourLog tourLog : tourLogs){
+        ArrayList<TourLog> tourLogs = tourLogService.getAllTourLogs(tourID);
+        for (TourLog tourLog : tourLogs) {
             tourLogService.deleteTourLog(tourLog.getTourLogID());
         }
         RouteImageDao routeImageDao = new RouteImageDaoImpl();
@@ -92,12 +92,12 @@ public class TourServiceImpl implements TourService{
 
     @Override
     public Tour searchTourByName(String tourName) {
-       return tourDao.getItemByName(tourName.toLowerCase());
+        return tourDao.getItemByName(tourName.toLowerCase());
     }
 
 
     @Override
-    public ArrayList<Tour> searchTourAndTourLog(String search){
+    public ArrayList<Tour> searchTourAndTourLog(String search) {
         return tourDao.search(search);
     }
 
@@ -110,6 +110,25 @@ public class TourServiceImpl implements TourService{
     @Override
     public ArrayList<Tour> getAllTourOrderByName() {
         return tourDao.getAllTourOrderByName();
+    }
+
+    @Override
+    public TourStatistics loadTourStatistics(String tourID) {
+        return TourStatistics.builder()
+                .numberOfTourlogs(tourLogService.countTourLogsFromTour(tourID))
+                .numberOfLevelEasy(tourLogService.countLevelEasyFromTour(tourID))
+                .numberOfLevelNormal(tourLogService.countLevelNormalFromTour(tourID))
+                .numberOfLevelHard(tourLogService.countLevelHardFromTour(tourID))
+                .numberOfLevelExpert(tourLogService.countLevelExpertFromTour(tourID))
+                .numberOfStarsNone(tourLogService.countStarsNoneFromTour(tourID))
+                .numberOfStarsOne(tourLogService.countStarsOneFromTour(tourID))
+                .numberOfStarsTwo(tourLogService.countStarsTwoFromTour(tourID))
+                .numberOfStarsThree(tourLogService.countStarsThreeFromTour(tourID))
+                .numberOfStarsFour(tourLogService.countStarsFourFromTour(tourID))
+                .numberOfStarsFive(tourLogService.countStarsFiveFromTour(tourID))
+                .avgTotalTime(tourLogService.avgTotalTimeFromTour(tourID))
+                .avgDistance(tourLogService.avgTotalTimeFromTour(tourID))
+                .build();
     }
 
 }

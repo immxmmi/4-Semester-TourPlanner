@@ -1,6 +1,7 @@
 package at.technikum.tourplanner.business.tour;
 
 import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.TourStatistics;
 
 import java.util.ArrayList;
 
@@ -20,4 +21,5 @@ public interface TourService {
 
     ArrayList<Tour> getAllTourOrderByName();
 
+    TourStatistics loadTourStatistics(String tourID);
 }

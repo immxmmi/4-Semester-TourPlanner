@@ -35,7 +35,6 @@ public class SceneControllerImpl implements SceneController {
         this.stage.show();
     }
 
-
     // Main
     @Override
     public void switchToMain(ActionEvent event) throws IOException {
@@ -45,7 +44,6 @@ public class SceneControllerImpl implements SceneController {
         this.stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         createStage();
     }
-
     //ERROR
     @Override
     public void switchToErrorPage(ActionEvent event) throws IOException {

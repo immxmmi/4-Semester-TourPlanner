@@ -7,10 +7,9 @@ import at.technikum.tourplanner.business.report.Report;
 import at.technikum.tourplanner.business.report.ReportImpl;
 import at.technikum.tourplanner.business.tour.TourLogService;
 import at.technikum.tourplanner.business.tour.TourLogServiceImpl;
-import at.technikum.tourplanner.models.Level;
-import at.technikum.tourplanner.models.Stars;
-import at.technikum.tourplanner.models.Tour;
-import at.technikum.tourplanner.models.TourLog;
+import at.technikum.tourplanner.business.tour.TourService;
+import at.technikum.tourplanner.business.tour.TourServiceImpl;
+import at.technikum.tourplanner.models.*;
 import at.technikum.tourplanner.view.viewmodel.TourLogViewModel;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.collections.FXCollections;
@@ -48,7 +47,10 @@ public class ShowTourController extends AbstractNavBar {
     // LOAD THE PAGE
     @FXML
     public void initialize(TourViewModel currentTour) {
+        TourService tourService = new TourServiceImpl();
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
+       // TourStatistics tourStatistics = tourService.loadTourStatistics(tour.getTourID());
+       // System.out.println(tourStatistics);
 
         ThreadMaker.multiRunInBackground(new Runnable() {
             @Override
