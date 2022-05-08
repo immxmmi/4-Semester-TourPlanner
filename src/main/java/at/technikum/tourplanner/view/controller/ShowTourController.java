@@ -49,8 +49,10 @@ public class ShowTourController extends AbstractNavBar {
     public void initialize(TourViewModel currentTour) {
         TourService tourService = new TourServiceImpl();
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
-       // TourStatistics tourStatistics = tourService.loadTourStatistics(tour.getTourID());
-       // System.out.println(tourStatistics);
+        TourStatistics tourStatistics = tourService.loadTourStatistics(currentTour.getTourID());
+
+        System.out.println(tourStatistics);
+
 
         ThreadMaker.multiRunInBackground(new Runnable() {
             @Override

@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.business.tour;
 
+import at.technikum.tourplanner.business.ThreadMaker;
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
@@ -21,7 +22,7 @@ public class TourServiceImpl implements TourService {
     private Tour currentTour;
 
     private TourDao tourDao;
-    private TourLogService tourLogService;
+    private TourLogService tourLogService = new TourLogServiceImpl();
 
     {
         tourDao = new TourDaoImpl();
@@ -114,21 +115,63 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public TourStatistics loadTourStatistics(String tourID) {
-        return TourStatistics.builder()
-                .numberOfTourlogs(tourLogService.countTourLogsFromTour(tourID))
-                .numberOfLevelEasy(tourLogService.countLevelEasyFromTour(tourID))
-                .numberOfLevelNormal(tourLogService.countLevelNormalFromTour(tourID))
-                .numberOfLevelHard(tourLogService.countLevelHardFromTour(tourID))
-                .numberOfLevelExpert(tourLogService.countLevelExpertFromTour(tourID))
-                .numberOfStarsNone(tourLogService.countStarsNoneFromTour(tourID))
-                .numberOfStarsOne(tourLogService.countStarsOneFromTour(tourID))
-                .numberOfStarsTwo(tourLogService.countStarsTwoFromTour(tourID))
-                .numberOfStarsThree(tourLogService.countStarsThreeFromTour(tourID))
-                .numberOfStarsFour(tourLogService.countStarsFourFromTour(tourID))
-                .numberOfStarsFive(tourLogService.countStarsFiveFromTour(tourID))
-                .avgTotalTime(tourLogService.avgTotalTimeFromTour(tourID))
-                .avgDistance(tourLogService.avgTotalTimeFromTour(tourID))
-                .build();
+
+        TourStatistics statistics = new TourStatistics();
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+               // statistics.setAvgTotalTime(loadAvgFromTotalTime(tourID));
+            }
+        });
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                //statistics.setAvgDistance(loadAvgFromDistance(tourID));
+            }
+        });
+        ThreadMaker.runInBackground(new Runnable() {
+            @Override
+            public void run() {
+                statistics.setNumberOfTourlogs(tourLogService.countTourLogsFromTour(tourID));
+                statistics.setNumberOfLevelEasy(tourLogService.countLevelEasyFromTour(tourID));
+                statistics.setNumberOfLevelNormal(tourLogService.countLevelNormalFromTour(tourID));
+                statistics.setNumberOfLevelHard(tourLogService.countLevelHardFromTour(tourID));
+                statistics.setNumberOfLevelExpert(tourLogService.countLevelExpertFromTour(tourID));
+                statistics.setNumberOfStarsNone(tourLogService.countStarsNoneFromTour(tourID));
+                statistics.setNumberOfStarsOne(tourLogService.countStarsOneFromTour(tourID));
+                statistics.setNumberOfStarsTwo(tourLogService.countStarsTwoFromTour(tourID));
+                statistics.setNumberOfStarsThree(tourLogService.countStarsThreeFromTour(tourID));
+                statistics.setNumberOfStarsFour(tourLogService.countStarsFourFromTour(tourID));
+                statistics.setNumberOfStarsFive(tourLogService.countStarsFiveFromTour(tourID));
+            }
+        });
+
+        // statistics.setAvgTotalTime(tourLogService.avgTotalTimeFromTour(tourID));
+
+
+        return statistics;
+    }
+
+    private double loadAvgFromTotalTime(String tourID) {
+        int counter = 0;
+        double sumTotalTime = 0.0;
+        System.out.println( tourLogService.getAllTourLogs(tourID));
+      //  for (TourLog tourLog : tourLogService.getAllTourLogs(tourID)) {
+      //      sumTotalTime += tourLog.getTotalTime();
+      //      counter++;
+      //  }
+        return sumTotalTime / counter;
+    }
+
+    private double loadAvgFromDistance(String tourID) {
+        int counter = 0;
+        double sumDistance = 0.0;
+        for (TourLog tourLog : tourLogService.getAllTourLogs(tourID)) {
+            sumDistance += tourLog.getTotalTime();
+            counter++;
+        }
+
+        return sumDistance / counter;
     }
 
 }

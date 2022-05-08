@@ -137,11 +137,6 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
         return allTour;
     }
 
-
-
-
-
-
     @Override
     public Tour insert(Tour item) {
         if (item == null) {

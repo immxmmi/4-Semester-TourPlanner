@@ -7,8 +7,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class NetworkCommunicationServiceImpl implements NetworkCommunicationService {
-
-
     @Override
     public byte[] loadImageByLink(String downloadURL){
 

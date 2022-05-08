@@ -68,14 +68,14 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         try {
             if (result.next()) {
                 value = this.result.getInt("total");
-                this.closeStatement();
             }
+                this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return value;
 
+        return value;
     }
 
     @Override
@@ -87,11 +87,13 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         );
         double value = 0;
 
+        System.out.println(this.statement);
+
         try {
             if (result.next()) {
                 value = this.result.getInt("total");
-                this.closeStatement();
             }
+                this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -113,16 +115,14 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         try {
             if (result.next()) {
                 value = this.result.getInt("total");
-                this.closeStatement();
             }
+                this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return value;
     }
-
-
 
     @Override
     public int countLevel(String tourID, Level level){
@@ -136,8 +136,8 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         try {
             if (result.next()) {
                 value = this.result.getInt("total");
-                this.closeStatement();
             }
+                this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
