@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.business.mapQuest;
 
+import at.technikum.tourplanner.business.ThreadMaker;
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.business.net.NetworkCommunicationService;
 import at.technikum.tourplanner.business.net.NetworkCommunicationServiceImpl;
@@ -159,21 +160,27 @@ public class MapQuestServiceImpl implements MapQuestService {
         RouteImage routeImageSettings = RouteImage.builder().build();
 
         // SET ROUTE + IMAGE
-        route[0] = searchRoute(from, to);
-        route[0].setRouteImage(routeImageSettings);
 
-        if (route[0] == null) {
-            return null;
-        }
+                route[0] = searchRoute(from, to);
+                if (route[0] == null){ return null;}
+                    route[0].setRouteImage(routeImageSettings);
+
 
         // copy image and set settings
-        route[0] = setImageSettingsToRoute(route[0]);
-        route[0] = copyRouteDataToImage(route[0]);
 
-        // save in DataBase
-        saveImageOnline(route[0].getRouteImage());
-        // DOWNLOAD  IMAGE
-        downloadImage(route[0]);
+                    route[0] = setImageSettingsToRoute(route[0]);
+                    route[0] = copyRouteDataToImage(route[0]);
+
+                    ThreadMaker.runInBackground(new Runnable() {
+                        @Override
+                        public void run() {
+                            // save in DataBase
+                            saveImageOnline(route[0].getRouteImage());
+                            // DOWNLOAD  IMAGE
+                            downloadImage(route[0]);
+                        }
+                    });
+
         return route[0];
     }
 

@@ -71,6 +71,7 @@ public class TourServiceImpl implements TourService {
 
         //TIME
         tour.setTime(currentRoute[0].getTime());
+
         return tourDao.insert(tour);
     }
 

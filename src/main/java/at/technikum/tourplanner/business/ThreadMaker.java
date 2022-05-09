@@ -14,4 +14,17 @@ public class ThreadMaker {
         Thread thread = new Thread(runnable);
         thread.start();
     }
+
+    public static void ThreadWait2000(Runnable runnable){
+        Thread thread = new Thread(runnable);
+        try {
+            thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        thread.start();
+    }
+
+
+
 }
