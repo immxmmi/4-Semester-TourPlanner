@@ -16,6 +16,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -47,11 +51,10 @@ public class ShowTourController extends AbstractNavBar {
     // LOAD THE PAGE
     @FXML
     public void initialize(TourViewModel currentTour) {
-        TourService tourService = new TourServiceImpl();
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
-        TourStatistics tourStatistics = tourService.loadTourStatistics(currentTour.getTourID());
+                loadTourStatistic(currentTour.getTourID());
 
-        System.out.println(tourStatistics);
+
 
 
         ThreadMaker.multiRunInBackground(new Runnable() {
@@ -278,5 +281,35 @@ public class ShowTourController extends AbstractNavBar {
     }
 
 
+
+    // STATISTIC
+
+    @FXML
+    private BarChart barChart;
+
+    private void loadTourStatistic(String tourID){
+        TourService tourService = new TourServiceImpl();
+        TourStatistics tourStatistics = tourService.loadTourStatistics(tourID);
+
+        XYChart.Series level = new XYChart.Series();
+        level.setName("Level");
+        level.getData().add(new XYChart.Data("none",tourStatistics.getNumberOfStarsNone()));
+        level.getData().add(new XYChart.Data("easy",tourStatistics.getNumberOfLevelEasy()));
+        level.getData().add(new XYChart.Data("normal",tourStatistics.getNumberOfLevelNormal()));
+        level.getData().add(new XYChart.Data("hard",tourStatistics.getNumberOfLevelHard()));
+        level.getData().add(new XYChart.Data("expert",tourStatistics.getNumberOfLevelExpert()));
+
+
+        XYChart.Series stars = new XYChart.Series();
+        stars.setName("Stars");
+        level.getData().add(new XYChart.Data("1-Star",tourStatistics.getNumberOfStarsOne()));
+        level.getData().add(new XYChart.Data("2-Star",tourStatistics.getNumberOfStarsTwo()));
+        level.getData().add(new XYChart.Data("3-Star",tourStatistics.getNumberOfStarsThree()));
+        level.getData().add(new XYChart.Data("4-Star",tourStatistics.getNumberOfStarsFour()));
+        level.getData().add(new XYChart.Data("5-Star",tourStatistics.getNumberOfStarsFive()));
+
+        barChart.getData().addAll(level,stars);
+
+    }
 }
 
