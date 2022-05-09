@@ -130,7 +130,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         currentRoute.getRouteImage().setDownloadURL(currentRoute.getUrlRoute());
         currentRoute.getRouteImage().setFrom(currentRoute.getFrom());
         currentRoute.getRouteImage().setTo(currentRoute.getTo());
-        currentRoute.getRouteImage().setFilePath(config.getImage() + filename + ".jpg");
+        currentRoute.getRouteImage().setFilePath(config.getImage()+currentRoute.getRouteImage().getImageID()+ ".jpg");
 
         return currentRoute;
     }

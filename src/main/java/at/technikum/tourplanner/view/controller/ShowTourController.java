@@ -239,6 +239,9 @@ public class ShowTourController extends AbstractNavBar {
     @FXML
     private void deleteTourLog(ActionEvent actionEvent) throws IOException {
         TourLogViewModel tourLog = table_tourLog.getSelectionModel().getSelectedItem();
+        if(tourLog == null){
+            return;
+        }
         tourLogService.deleteTourLog(tourLog.getTourLogID());
         table_tourLog.getItems().removeAll(tourLog);
         reloadPage(actionEvent);

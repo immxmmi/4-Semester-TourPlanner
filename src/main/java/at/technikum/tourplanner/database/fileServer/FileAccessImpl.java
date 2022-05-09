@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileAccessImpl implements FileAccess{
@@ -47,6 +49,22 @@ public class FileAccessImpl implements FileAccess{
         }
         return null;
     }
+
+    @Override
+    public File writeFile(File file, byte[] text){
+
+        Path path = Paths.get(file.getAbsolutePath());
+        try {
+            Files.write(path, text);
+            return file;
+        }
+        catch (IOException ex) {
+            System.out.print("Invalid Path");
+        }
+
+        return null;
+    }
+
     @Override
     public boolean deleteFile(String filename){
         return new File(GetFullPath(filename)).delete();

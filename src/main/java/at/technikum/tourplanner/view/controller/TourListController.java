@@ -1,6 +1,8 @@
 
 package at.technikum.tourplanner.view.controller;
 
+import at.technikum.tourplanner.business.report.Report;
+import at.technikum.tourplanner.business.report.ReportImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
@@ -14,7 +16,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
+import org.apache.pdfbox.pdmodel.PDDocument;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -90,8 +97,32 @@ public class TourListController extends AbstractNavBar implements Initializable 
     @FXML
     public void deleteTour(ActionEvent actionEvent) throws IOException {
         TourViewModel tour = table_tourList.getSelectionModel().getSelectedItem();
+        if(tour == null){
+            return;
+        }
         tourService.deleteTour(tour.getTourID());
         table_tourList.getItems().removeAll(tour);
+    }
+
+    @FXML
+    VBox saveStage;
+    @FXML
+    public void saveTour(ActionEvent actionEvent) throws IOException {
+        TourViewModel tour = table_tourList.getSelectionModel().getSelectedItem();
+        if(tour == null){
+            return;
+        }
+        Window stage = saveStage.getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName(tour.getTitle());
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JSON", "*.json"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML", "*.xml"));
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("JSON", "*.json"));
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("XML", "*.xml"));
+        fileChooser.setTitle("Save Tour");
+        File file = fileChooser.showSaveDialog(stage);
+        tourService.saveTourAsJSON(file,tour.convertTourViewModelinTourModel(tour));
+
     }
 
     @FXML

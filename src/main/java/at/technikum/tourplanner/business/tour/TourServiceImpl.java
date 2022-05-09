@@ -5,12 +5,17 @@ import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.dao.TourDao;
+import at.technikum.tourplanner.database.fileServer.FileAccess;
+import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
 import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import at.technikum.tourplanner.models.*;
 import at.technikum.tourplanner.utils.Tools;
 import at.technikum.tourplanner.utils.ToolsImpl;
+import com.google.gson.Gson;
 
+import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -151,6 +156,18 @@ public class TourServiceImpl implements TourService {
 
 
         return statistics;
+    }
+
+    @Override
+    public void saveTourAsJSON(File file,Tour tour) {
+        FileAccess fileAccess = new FileAccessImpl();
+        String jsonString = convertTourToJsonString(tour);
+        fileAccess.writeFile(file,jsonString.getBytes(StandardCharsets.UTF_8));
+    }
+
+    @Override
+    public String convertTourToJsonString(Tour tour){
+        return new Gson().toJson(tour);
     }
 
     private double loadAvgFromTotalTime(String tourID) {

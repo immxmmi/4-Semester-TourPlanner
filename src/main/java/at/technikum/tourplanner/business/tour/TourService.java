@@ -2,7 +2,10 @@ package at.technikum.tourplanner.business.tour;
 
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourStatistics;
+import at.technikum.tourplanner.view.viewmodel.TourViewModel;
+import com.google.gson.JsonObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public interface TourService {
@@ -22,4 +25,8 @@ public interface TourService {
     ArrayList<Tour> getAllTourOrderByName();
 
     TourStatistics loadTourStatistics(String tourID);
+
+    void saveTourAsJSON(File file, Tour tour);
+
+    String convertTourToJsonString(Tour tour);
 }

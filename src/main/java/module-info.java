@@ -16,6 +16,7 @@ module at.technikum.tourplanner {
     requires com.fasterxml.jackson.databind;
     requires org.apache.pdfbox;
     requires org.testng;
+    requires com.google.gson;
 
 
     opens at.technikum.tourplanner to javafx.fxml;
@@ -26,4 +27,7 @@ module at.technikum.tourplanner {
     opens at.technikum.tourplanner.view.controller to javafx.fxml;
     exports at.technikum.tourplanner.business;
     opens at.technikum.tourplanner.business to javafx.fxml;
+    opens at.technikum.tourplanner.models to com.google.gson;
+
+
 }

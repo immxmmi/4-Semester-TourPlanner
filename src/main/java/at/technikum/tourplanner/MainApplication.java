@@ -2,6 +2,10 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.Transporter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +14,11 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
 
 
 public class MainApplication extends Application {
@@ -43,6 +51,7 @@ public class MainApplication extends Application {
     public void stop() {
         logger.info("Stopping Tour Planner Pro...");
     }
+
 
     public static void main(String[] args){
         launch();
