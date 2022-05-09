@@ -82,5 +82,15 @@
          </graphic>
       </Button>
       <VBox fx:id="saveStage" layoutX="1089.0" layoutY="-41.0" prefHeight="1.0" prefWidth="8.0" />
+      <VBox fx:id="loadStage" layoutX="1099.0" layoutY="-31.0" prefHeight="1.0" prefWidth="8.0" />
+      <Button layoutX="912.0" layoutY="409.0" mnemonicParsing="false" onAction="#loadTourFromFile" prefHeight="25.0" prefWidth="30.0" style="-fx-background-radius: 75;">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icon/menu.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>

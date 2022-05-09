@@ -1,11 +1,10 @@
 package at.technikum.tourplanner.database.fileServer;
 
 import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.models.Tour;
+import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,6 +31,19 @@ public class FileAccessImpl implements FileAccess{
     public File readFile(String filename){
         return new File(GetFullPath(filename));
     }
+
+    @Override
+    public Tour readTourFile(File file){
+        Tour tour = new Tour();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+             tour = new Gson().fromJson(reader, Tour.class);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return tour;
+    }
+
 
     @Override
     public File writeFile(String filename, byte[] text){
