@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -31,31 +32,78 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
     private TextArea set_tour_description;
 
     @FXML
+    private Label error_title;
+    @FXML
+    private Label error_transport;
+    @FXML
+    private Label error_from;
+    @FXML
+    private Label error_to;
+    @FXML
+    private Label error_description;
+
+
+    @FXML
     private void createTour(ActionEvent actionEvent) throws IOException {
         TourService tourService = new TourServiceImpl();
+        boolean check = true;
 
-        Transporter transporter = Transporter.Walk;
-        if (set_tour_transport.getValue() != null){
-            transporter = Transporter.valueOf(set_tour_transport.getValue().toString());
+        if (set_tour_transport.getValue() == null) {
+            error_transport.setText("!");
+        } else {
+            error_transport.setText("");
         }
 
-        Tour tour = Tour.builder()
-                .title(set_tour_title.getText())
-                .from(set_tour_from.getText())
-                .to(set_tour_to.getText())
-                .transporter(transporter)
-                .description(set_tour_description.getText())
-                .build();
+        if (set_tour_title.getText().equals("")) {
+            error_title.setText("!");
+            check = false;
+        } else {
+            error_title.setText("");
+        }
 
-        tourService.saveTour(tour);
-        this.switchToMain(actionEvent);
+        if (set_tour_from.getText().equals("")) {
+            error_from.setText("!");
+            check = false;
+        } else {
+            error_from.setText("");
+        }
+
+        if (set_tour_to.getText().equals("")) {
+            error_to.setText("!");
+            check = false;
+        } else {
+            error_to.setText("");
+        }
+
+        if (set_tour_description.getText().equals("")) {
+            error_description.setText("!");
+            check = false;
+        } else {
+            error_description.setText("");
+        }
+
+
+        if (check) {
+            Tour tour = Tour.builder()
+                    .title(set_tour_title.getText())
+                    .from(set_tour_from.getText())
+                    .to(set_tour_to.getText())
+                    .transporter(set_tour_transport.getValue())
+                    .description(set_tour_description.getText())
+                    .build();
+
+            tourService.saveTour(tour);
+            this.switchToMain(actionEvent);
+        }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTransporter();
     }
-    private void loadTransporter(){
-        for(Transporter transporter : Transporter.values()){
+
+    private void loadTransporter() {
+        for (Transporter transporter : Transporter.values()) {
             set_tour_transport.getItems().add(transporter);
         }
     }

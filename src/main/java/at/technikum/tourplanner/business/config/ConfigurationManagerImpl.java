@@ -91,6 +91,17 @@ public class ConfigurationManagerImpl implements ConfigurationManager {
         return Integer.parseInt(getConfigPropertyValue("image-width"));
     }
 
+    //CREATE SETTINGS
+    @Override
+    public int getCreateTourHeight() {
+        return Integer.parseInt(getConfigPropertyValue("create_tour_height"));
+    }
+
+    @Override
+    public int getCreateTourWidth() {
+        return Integer.parseInt(getConfigPropertyValue("create_tour_width"));
+    }
+
     //FILE
     @Override
     public String getRoot() {

@@ -14,4 +14,10 @@ public abstract class AbstractNavBar {
         sCon.switchToMain(actionEvent);
     }
 
+    @FXML
+    private void  switchToShowTourList(ActionEvent actionEvent) throws IOException{
+        sCon.switchToShowTourList(actionEvent);
+    }
+
+
 }

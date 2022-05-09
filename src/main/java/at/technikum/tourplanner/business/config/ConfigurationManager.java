@@ -47,4 +47,8 @@ public interface ConfigurationManager {
     int getImageHeight();
 
     int getImageWidth();
+
+    int getCreateTourHeight();
+
+    int getCreateTourWidth();
 }

@@ -66,8 +66,9 @@ public class SceneControllerImpl implements SceneController {
     @Override
     public void switchToCreateTour(ActionEvent event) throws IOException {
         this.root = FXMLLoader.load(getClass().getResource("create-tour-view.fxml"));
-        height = height - 30;
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        height = config.getCreateTourHeight();
+        width = config.getCreateTourWidth();
         createStage();
     }
 

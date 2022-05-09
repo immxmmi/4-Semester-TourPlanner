@@ -62,9 +62,5 @@ public class SearchTourController extends AbstractNavBar{
         sCon.switchToCreateTour(actionEvent);
     }
 
-    @FXML
-    private void  switchToShowTourList(ActionEvent actionEvent) throws IOException{
-        sCon.switchToShowTourList(actionEvent);
-    }
 
 }
