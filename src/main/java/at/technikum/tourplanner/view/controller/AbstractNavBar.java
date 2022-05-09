@@ -9,13 +9,16 @@ import java.io.IOException;
 
 public abstract class AbstractNavBar {
     public SceneController sCon = new SceneControllerImpl();
+
+    // BACK - BUTTON
     @FXML
     public void switchToMain(ActionEvent actionEvent) throws IOException {
         sCon.switchToMain(actionEvent);
     }
 
+    // LIST TOURS - BUTTON
     @FXML
-    private void  switchToShowTourList(ActionEvent actionEvent) throws IOException{
+    private void switchToShowTourList(ActionEvent actionEvent) throws IOException {
         sCon.switchToShowTourList(actionEvent);
     }
 

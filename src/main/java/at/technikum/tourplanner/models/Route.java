@@ -31,15 +31,11 @@ public class Route {
     // ElementFrom routeBody -> distance formattedTime
     private Time time;
 
-
-
     @Builder.Default
     private String size = "640,480";
-
     // Elements from routeBody
     private String sessionID;
     private String boundingBox;
-
 
     // IMAGE DOWNLOAD LINK
     private String urlMap;

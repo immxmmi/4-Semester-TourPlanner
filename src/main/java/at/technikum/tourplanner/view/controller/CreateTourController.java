@@ -44,6 +44,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
 
 
 
+    // BUTTON - CREATE TOUR
     @FXML
     private void createTour(ActionEvent actionEvent) throws IOException {
         TourService tourService = new TourServiceImpl();
@@ -98,11 +99,14 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
         }
     }
 
+    // LOAD DATA
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         loadTransporter();
     }
 
+    // LOAD TRANSPORTER
     private void loadTransporter() {
         for (Transporter transporter : Transporter.values()) {
             set_tour_transport.getItems().add(transporter);

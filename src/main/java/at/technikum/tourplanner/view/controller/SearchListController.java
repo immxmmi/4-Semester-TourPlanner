@@ -37,7 +37,8 @@ public class SearchListController  extends AbstractNavBar {
     private TourService tourService = new TourServiceImpl();
     private ObservableList<TourViewModel> obsTourList = FXCollections.observableArrayList();
 
-    
+
+    //  INIT
     public void initialize(ArrayList<TourViewModel> searchList){
         loadList(searchList);
 
@@ -77,6 +78,7 @@ public class SearchListController  extends AbstractNavBar {
         table_tourList.setItems(obsTourList);
     }
 
+    // LOAD LIST
     private void loadList(ArrayList<TourViewModel> searchList) {
         obsTourList = FXCollections.observableArrayList();
         for (TourViewModel tour : searchList) {
@@ -84,7 +86,7 @@ public class SearchListController  extends AbstractNavBar {
         }
     }
 
-
+    // DELETE LIST
     @FXML
     public void deleteTour(ActionEvent actionEvent) throws IOException {
         TourViewModel tour = table_tourList.getSelectionModel().getSelectedItem();
@@ -92,6 +94,7 @@ public class SearchListController  extends AbstractNavBar {
         table_tourList.getItems().removeAll(tour);
     }
 
+    // RELOAD LIST
     @FXML
     public void reloadList(ActionEvent actionEvent) throws IOException {
         sCon.switchToShowTourList(actionEvent);

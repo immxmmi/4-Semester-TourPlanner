@@ -26,7 +26,7 @@ public interface TourService {
 
     TourStatistics loadTourStatistics(String tourID);
 
-    void saveTourAsJSON(File file, Tour tour);
+    //JSON
+    void saveTourLocal(File file, Tour tour);
 
-    String convertTourToJsonString(Tour tour);
 }

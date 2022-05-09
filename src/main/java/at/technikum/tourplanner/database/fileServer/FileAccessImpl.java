@@ -44,7 +44,6 @@ public class FileAccessImpl implements FileAccess{
         return tour;
     }
 
-
     @Override
     public File writeFile(String filename, byte[] text){
         File currentFile = new File(GetFullPath(filename));

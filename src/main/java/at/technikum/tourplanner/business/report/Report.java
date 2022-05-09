@@ -7,7 +7,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import java.util.ArrayList;
 
 public interface Report {
-    void createTourReport(Tour tour, ArrayList<TourLog> tourLogs);
+    void saveTourReport(Tour tour, ArrayList<TourLog> tourLogs);
 
-    PDDocument saveTourReport(Tour tour, ArrayList<TourLog> tourLogs);
+    PDDocument createTourReport(Tour tour, ArrayList<TourLog> tourLogs);
 }

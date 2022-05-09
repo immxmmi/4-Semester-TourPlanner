@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.business.config;
 
+// TODO: 09.05.2022 Finish
 public interface ConfigurationManager {
     String getVersion();
 
