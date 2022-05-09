@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.models;
 
+import at.technikum.tourplanner.business.config.ConfigurationManager;
 import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,9 +18,9 @@ public class RouteImage {
 
     // Image size range [170 - 1920]
     @Builder.Default
-    private int width = 500;
+    private int width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("image-width"));
     @Builder.Default
-    private int height = 280;
+    private int height = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("image-height"));;
     @Builder.Default
     private int zoom = 5;
 

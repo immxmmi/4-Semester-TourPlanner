@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="608.0" fitWidth="922.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/error.jpg" />
+            <Image url="@img/background/error.jpg" />
          </image>
       </ImageView>
       <Text layoutX="111.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We optimize our system for you ..." wrappingWidth="684.9303283691406">

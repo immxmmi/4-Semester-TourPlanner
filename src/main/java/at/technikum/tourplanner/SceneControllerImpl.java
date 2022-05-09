@@ -73,8 +73,8 @@ public class SceneControllerImpl implements SceneController {
     // Tour + TourLogger Einträge - Anzeigen
     @Override
     public void switchToShowTour(ActionEvent event, TourViewModel tourViewModel) throws IOException {
-        width = 1311;
-        height = 849;
+        width = 1200;
+        height = 840;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("show-tour-view.fxml"));
         this.root = loader.load();
         ShowTourController showTourController = loader.<ShowTourController>getController();
@@ -85,8 +85,8 @@ public class SceneControllerImpl implements SceneController {
     }
     @Override
     public void switchToShowTour(MouseEvent event, TourViewModel tourViewModel) throws IOException {
-        width = 1311;
-        height = 849;
+        width = 1200;
+        height = 840;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("show-tour-view.fxml"));
         this.root = loader.load();
         ShowTourController showTourController = loader.<ShowTourController>getController();

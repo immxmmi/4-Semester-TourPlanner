@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="759.0" fitWidth="1169.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/background_tour_list.jpg" />
+            <Image url="@img/background/background_tour_list.jpg" />
          </image>
       </ImageView>
       <Text fill="#364684" layoutX="428.0" layoutY="79.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="SEARCH RESULT" textAlignment="CENTER" wrappingWidth="375.7366638183594">

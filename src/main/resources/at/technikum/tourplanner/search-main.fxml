@@ -18,7 +18,7 @@
    <children>
       <ImageView fitHeight="585.0" fitWidth="949.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/background.jpg" />
+            <Image url="@img/background/background.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="searchField" layoutX="101.0" layoutY="14.0" prefHeight="36.0" prefWidth="590.0" promptText="Tour 1" style="-fx-background-radius: 70;">
@@ -66,7 +66,7 @@
       </ImageView>
       <ImageView fitHeight="36.0" fitWidth="43.0" layoutX="703.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/lupe_icon.png" />
+            <Image url="@img/icon/lupe_icon.png" />
          </image>
       </ImageView>
       <Button layoutX="702.0" layoutY="18.0" mnemonicParsing="false" onAction="#searchTour" opacity="0.0" prefHeight="21.0" prefWidth="36.0" style="-fx-background-radius: 190;" textAlignment="CENTER">
@@ -75,7 +75,7 @@
          </font></Button>
       <ImageView fitHeight="99.0" fitWidth="208.0" layoutX="357.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/pin_icon.png" />
+            <Image url="@img/icon/pin_icon.png" />
          </image>
       </ImageView>
       <Button layoutX="343.0" layoutY="203.0" mnemonicParsing="false" onAction="#switchToCreateTour" opacity="0.0" prefHeight="62.0" prefWidth="95.0" rotate="87.9" text="CreateTour">
