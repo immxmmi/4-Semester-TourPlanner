@@ -1,9 +1,9 @@
 package at.technikum.tourplanner.business.mapQuest;
 
-import at.technikum.tourplanner.business.ThreadMaker;
+import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.business.net.NetworkCommunicationService;
 import at.technikum.tourplanner.business.net.NetworkCommunicationServiceImpl;
-import at.technikum.tourplanner.business.config.ConfigurationManager;
+import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.fileServer.FileAccess;
 import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
@@ -29,7 +29,7 @@ import java.util.concurrent.TimeoutException;
 
 public class MapQuestServiceImpl implements MapQuestService {
 
-    private static ConfigurationManager config = new ConfigurationManager();
+    private static ConfigurationManager config = new ConfigurationManagerImpl();
     private RouteImageDao routeImageDao = new RouteImageDaoImpl();
     private Tour currentTour;
 

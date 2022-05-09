@@ -1,10 +1,7 @@
-package at.technikum.tourplanner.view.controller;
+package at.technikum.tourplanner;
 
-import at.technikum.tourplanner.business.config.ConfigurationManager;
-import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;

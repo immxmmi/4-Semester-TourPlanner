@@ -1,7 +1,7 @@
 package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
-import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,10 +16,10 @@ import java.io.IOException;
 public class MainApplication extends Application {
 
     final Logger logger = LogManager.getRootLogger();
-    static ConfigurationManager config = new ConfigurationManager();
+    static ConfigurationManager config = new ConfigurationManagerImpl();
 
-    static int width = Integer.parseInt(config.getStageWidth());
-    static int height = Integer.parseInt(config.getStageHeight());
+    static int width = config.getStageWidth();
+    static int height =config.getStageHeight();
 
 
     @Override

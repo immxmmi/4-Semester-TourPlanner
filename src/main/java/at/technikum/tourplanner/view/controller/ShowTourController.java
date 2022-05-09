@@ -241,6 +241,7 @@ public class ShowTourController extends AbstractNavBar {
         TourLogViewModel tourLog = table_tourLog.getSelectionModel().getSelectedItem();
         tourLogService.deleteTourLog(tourLog.getTourLogID());
         table_tourLog.getItems().removeAll(tourLog);
+        reloadPage(actionEvent);
     }
 
 

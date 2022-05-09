@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.database.fileServer;
 
-import at.technikum.tourplanner.business.config.ConfigurationManager;
+import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class FileAccessImpl implements FileAccess{
-    private ConfigurationManager config = new ConfigurationManager();
+    private ConfigurationManagerImpl config = new ConfigurationManagerImpl();
     private String root;
 
     public FileAccessImpl() {

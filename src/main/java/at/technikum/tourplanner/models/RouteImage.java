@@ -1,7 +1,7 @@
 package at.technikum.tourplanner.models;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
-import javafx.scene.image.Image;
+import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,14 +13,16 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class RouteImage {
 
+    private static ConfigurationManager config = new ConfigurationManagerImpl();
+
     // Image from-to
     private String imageID;
 
     // Image size range [170 - 1920]
     @Builder.Default
-    private int width = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("image-width"));
+    private int width = config.getImageWidth();
     @Builder.Default
-    private int height = Integer.parseInt(ConfigurationManager.getConfigPropertyValue("image-height"));;
+    private int height = config.getImageHeight();;
     @Builder.Default
     private int zoom = 5;
 

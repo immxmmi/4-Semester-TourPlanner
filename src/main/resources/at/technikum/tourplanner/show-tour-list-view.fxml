@@ -33,8 +33,15 @@
             <TableColumn fx:id="col_time" prefWidth="156.0" text="Time:" />
         </columns>
       </TableView>
-      <Button layoutX="1075.0" layoutY="409.0" mnemonicParsing="false" onAction="#reloadList" text="reload" textFill="#3a00f8" />
-      <Button layoutX="1015.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteTour">
+      <Button layoutX="1062.0" layoutY="410.0" mnemonicParsing="false" onAction="#reloadList" prefHeight="27.0" prefWidth="16.0" style="-fx-background-radius: 75;" textFill="#3a00f8">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icon/reload-icon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button layoutX="1015.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="25.0" prefWidth="32.0" style="-fx-background-radius: 75;">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

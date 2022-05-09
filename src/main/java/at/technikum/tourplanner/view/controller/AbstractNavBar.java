@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.view.controller;
 
+import at.technikum.tourplanner.SceneController;
 import at.technikum.tourplanner.SceneControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

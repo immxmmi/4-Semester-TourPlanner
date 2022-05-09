@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.database.common;
 
-import at.technikum.tourplanner.business.config.ConfigurationManager;
+import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class DBConnect implements Cloneable {
 
     final Logger logger = LogManager.getLogger(DBConnect.class);
-    private static ConfigurationManager config = new ConfigurationManager();
+    private static ConfigurationManagerImpl config = new ConfigurationManagerImpl();
 
     private String databaseName;
     private String username;

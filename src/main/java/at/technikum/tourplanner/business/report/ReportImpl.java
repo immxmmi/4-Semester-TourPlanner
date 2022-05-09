@@ -1,19 +1,18 @@
 package at.technikum.tourplanner.business.report;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
+import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
 import at.technikum.tourplanner.database.fileServer.FileAccess;
 import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourLog;
-import javafx.stage.FileChooser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 
 public class ReportImpl implements Report {
 
-    ConfigurationManager config = new ConfigurationManager();
+    ConfigurationManager config = new ConfigurationManagerImpl();
 
     @Override
     public void createTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
