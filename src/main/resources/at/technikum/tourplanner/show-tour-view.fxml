@@ -41,6 +41,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -59,43 +61,24 @@
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="783.0" layoutY="37.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
-      <Label fx:id="show_tour_to" layoutX="586.0" layoutY="182.0" text="Text" />
-      <Label layoutX="510.0" layoutY="182.0" text="To:" />
-      <Label layoutX="503.0" layoutY="146.0" text="From:" />
-      <Label layoutX="506.0" layoutY="257.0" text="Distance:" />
-      <Label layoutX="68.0" layoutY="366.0" text="Description:" />
-      <Label layoutX="504.0" layoutY="299.0" text="Time:" />
-      <ImageView fx:id="show_tour_image" fitHeight="233.0" fitWidth="427.0" layoutX="43.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="975.0" layoutY="25.0" mnemonicParsing="false" onAction="#switchToMain" text="back" />
+      <Label fx:id="show_tour_to" layoutX="127.0" layoutY="461.0" text="Text" />
+      <Label layoutX="51.0" layoutY="461.0" text="To:" />
+      <Label layoutX="44.0" layoutY="425.0" text="From:" />
+      <Label layoutX="199.0" layoutY="425.0" text="Distance:" />
+      <Label layoutX="119.0" layoutY="381.0" text="Description:" />
+      <Label layoutX="197.0" layoutY="467.0" text="Time:" />
+      <ImageView fx:id="show_tour_image" fitHeight="233.0" fitWidth="427.0" layoutX="36.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/imageView1.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="503.0" layoutY="222.0" text="Transport:" />
-      <Label fx:id="show_tour_from" layoutX="586.0" layoutY="146.0" text="Text" />
-      <Label fx:id="show_tour_distance" layoutX="586.0" layoutY="257.0" text="Text" />
-      <Label fx:id="show_tour_time" layoutX="586.0" layoutY="299.0" text="Text" />
-      <Label fx:id="show_tour_description" layoutX="148.0" layoutY="366.0" text="Text" />
-      <Label fx:id="show_tour_transport" layoutX="586.0" layoutY="222.0" text="Text" />
-      <TableView fx:id="table_tourLog" layoutX="9.0" layoutY="393.0" prefHeight="193.0" prefWidth="1087.0">
-         <columns>
-            <TableColumn fx:id="col_date" prefWidth="105.59997272491455" text="Date:" />
-            <TableColumn fx:id="col_totalTime" prefWidth="97.5999755859375" text="Total Time:" />
-            <TableColumn fx:id="col_rating" prefWidth="132.0000762939453" text="Rating:" />
-            <TableColumn fx:id="col_difficulty" prefWidth="160.79998779296875" text="Level:" />
-            <TableColumn fx:id="col_comment" prefWidth="595.4000244140625" text="Comment" />
-         </columns>
-      </TableView>
-      <TextField fx:id="get_tourLog_total" layoutX="126.0" layoutY="604.0" prefHeight="25.0" prefWidth="153.0" promptText="Total Time" text="2.3" />
-      <DatePicker fx:id="get_tourlog_date" layoutX="14.0" layoutY="604.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
-      <TextArea fx:id="get_tourlog_commit" layoutX="520.0" layoutY="604.0" prefHeight="117.0" prefWidth="567.0" text="trest" />
-      <ComboBox fx:id="get_tourlog_level" layoutX="425.0" layoutY="604.0" prefHeight="25.0" prefWidth="87.0" promptText="Level">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets></ComboBox>
-      <ComboBox fx:id="get_tourlog_stars" layoutX="335.0" layoutY="604.0" prefHeight="25.0" prefWidth="81.0" promptText="Stars" />
-      <Button layoutX="237.0" layoutY="686.0" mnemonicParsing="false" onAction="#saveTourLog" text="save" />
-      <Button layoutX="335.0" layoutY="686.0" mnemonicParsing="false" onAction="#deleteTourLog" text="delete" />
+      <Label layoutX="338.0" layoutY="425.0" text="Transport:" />
+      <Label fx:id="show_tour_from" layoutX="127.0" layoutY="425.0" text="Text" />
+      <Label fx:id="show_tour_distance" layoutX="279.0" layoutY="425.0" text="Text" />
+      <Label fx:id="show_tour_time" layoutX="279.0" layoutY="467.0" text="Text" />
+      <Label fx:id="show_tour_description" layoutX="199.0" layoutY="381.0" text="Text" />
+      <Label fx:id="show_tour_transport" layoutX="421.0" layoutY="425.0" text="Text" />
       <VBox fx:id="saveStage" layoutX="111.0" layoutY="-74.0" prefHeight="1.0" prefWidth="8.0" />
       <ChoiceBox layoutX="1055.0" layoutY="24.0" opacity="0.0" prefHeight="25.0" prefWidth="28.0" />
       <ImageView fitHeight="42.0" fitWidth="36.0" layoutX="1053.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
@@ -103,14 +86,61 @@
             <Image url="@img/Hamburger_icon.svg.png" />
          </image>
       </ImageView>
-      <Button layoutX="925.0" layoutY="37.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="25.0" prefWidth="53.0" text="save" />
-      <BarChart fx:id="barChart" layoutX="717.0" layoutY="79.0" prefHeight="304.0" prefWidth="345.0" title="Statistics">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
+      <Button layoutX="905.0" layoutY="22.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="25.0" prefWidth="30.0">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/save.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <TabPane layoutX="498.0" layoutY="76.0" prefHeight="419.0" prefWidth="589.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Statistic">
+               <content>
+                  <Pane prefHeight="381.0" prefWidth="589.0">
+                     <children>
+                        <BarChart fx:id="barChart" layoutX="24.0" layoutY="20.0" prefHeight="357.0" prefWidth="545.0" title="Statistics">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab text="TourLog">
+               <content>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="get_tourlog_commit" layoutX="43.0" layoutY="21.0" prefHeight="117.0" prefWidth="503.0" text="trest" />
+                        <TextField fx:id="get_tourLog_total" layoutX="144.0" layoutY="165.0" prefHeight="25.0" prefWidth="153.0" promptText="Total Time" text="2.3" />
+                        <DatePicker fx:id="get_tourlog_date" layoutX="32.0" layoutY="165.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
+                        <ComboBox fx:id="get_tourlog_level" layoutX="443.0" layoutY="165.0" prefHeight="25.0" prefWidth="87.0" promptText="Level">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </ComboBox>
+                        <ComboBox fx:id="get_tourlog_stars" layoutX="353.0" layoutY="165.0" prefHeight="25.0" prefWidth="81.0" promptText="Stars" />
+                        <Button layoutX="255.0" layoutY="247.0" mnemonicParsing="false" onAction="#saveTourLog" text="save" />
+                        <Button layoutX="353.0" layoutY="247.0" mnemonicParsing="false" onAction="#deleteTourLog" text="delete" />
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+      <TableView fx:id="table_tourLog" layoutX="42.0" layoutY="519.0" prefHeight="216.0" prefWidth="1027.0">
+         <columns>
+            <TableColumn fx:id="col_date" prefWidth="105.59997272491455" text="Date:" />
+            <TableColumn fx:id="col_totalTime" prefWidth="97.5999755859375" text="Total Time:" />
+            <TableColumn fx:id="col_rating" prefWidth="132.0000762939453" text="Rating:" />
+            <TableColumn fx:id="col_difficulty" prefWidth="160.79998779296875" text="Level:" />
+            <TableColumn fx:id="col_comment" prefWidth="514.0" text="Comment" />
+         </columns>
+      </TableView>
    </children>
 </Pane>

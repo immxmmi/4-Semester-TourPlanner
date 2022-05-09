@@ -54,23 +54,20 @@ public class ShowTourController extends AbstractNavBar {
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
                 loadTourStatistic(currentTour.getTourID());
 
-
-
-
         ThreadMaker.multiRunInBackground(new Runnable() {
             @Override
             public void run() {
-
                 setTourTable(currentTour);
             }
         });
+
         ThreadMaker.multiRunInBackground(new Runnable() {
             @Override
             public void run() {
-
                 loadTourLogs(tour.getTourID());
             }
         });
+
 
     }
 
@@ -283,7 +280,6 @@ public class ShowTourController extends AbstractNavBar {
 
 
     // STATISTIC
-
     @FXML
     private BarChart barChart;
 
