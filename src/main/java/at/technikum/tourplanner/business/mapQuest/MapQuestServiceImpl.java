@@ -40,10 +40,6 @@ public class MapQuestServiceImpl implements MapQuestService {
 
         Route currentRoute = this.routeBuilder(from, to);
 
-        if (currentRoute == null) {
-            return null;
-        }
-
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -200,7 +196,7 @@ public class MapQuestServiceImpl implements MapQuestService {
 
 
     //6. DOWNLOAD IMAGE 
-    // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten
+    // TODO: 30.03.2022 IF Bedingung einbauen und Datenbank updaten
     @Override
     public RouteImage downloadImage(Route route) {
 
@@ -212,22 +208,22 @@ public class MapQuestServiceImpl implements MapQuestService {
         return route.getRouteImage();
     }
 
-    //7. RELODE IMAGE
+    //7. RELOAD IMAGE
     @Override
     public RouteImage reloadImage(RouteImage routeImage) {
 
-        Route route = this.searchRoute(routeImage.getFrom(), routeImage.getTo());
-        route.setRouteImage(routeImage);
-        if (route == null) {
-            return null;
-        }
-        route = this.setImageSettingsToRoute(route);
-        route = this.copyRouteDataToImage(route);
+      // Route route = this.searchRoute(routeImage.getFrom(), routeImage.getTo());
+      // route.setRouteImage(routeImage);
+      // if (route == null) {
+      //     return null;
+      // }
+      // route = this.setImageSettingsToRoute(route);
+      // route = this.copyRouteDataToImage(route);
 
 
-        RouteImage newRouteImage = this.updateImageOnline(route.getRouteImage());
+      //// RouteImage newRouteImage = this.updateImageOnline(route.getRouteImage());
 
-        routeImage = routeImageDao.getItemById(routeImage.getImageID());
+      // routeImage = routeImageDao.getItemById(routeImage.getImageID());
 
         //downloadImage(image);
         return routeImage;
