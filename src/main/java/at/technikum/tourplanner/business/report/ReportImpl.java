@@ -25,7 +25,8 @@ public class ReportImpl implements Report {
     //erstellt Report und speichert es im Projekt
     @Override
     public void saveTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
-
+        FileAccess fileAccess = new FileAccessImpl();
+        fileAccess.createFolder("report");
         String saveTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
         // Create Document
         PDDocument newReport = createTourReport(tour, tourLogs);
@@ -43,15 +44,8 @@ public class ReportImpl implements Report {
     //erstellt ein PDF document und liefert es zurück
     @Override
     public PDDocument createTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
-
-        FileAccess fileAccess = new FileAccessImpl();
-        fileAccess.createFolder("report");
-
-
         // TimeStamp
         String reportTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-        String saveTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
-
 
         // Create Document
         PDDocument newReport = new PDDocument();
@@ -62,25 +56,23 @@ public class ReportImpl implements Report {
 
         try {
             // Start edit File
-            PDPageContentStream write = new PDPageContentStream(newReport, currentPage);
+           PDPageContentStream write = new PDPageContentStream(newReport, currentPage);
 
-            RouteImage currentRoutImage = tour.getRouteImage();
+           RouteImage currentRoutImage = tour.getRouteImage();
             // Route Image
-            PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
-
-            write.drawImage(imageXObject, 50, 100, currentRoutImage.getWidth(), currentRoutImage.getHeight());
+           // PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
+            PDImageXObject imageXObject = PDImageXObject.createFromByteArray(newReport,currentRoutImage.getData(),"IMG");
+           write.drawImage(imageXObject, 50, 100, currentRoutImage.getWidth(), currentRoutImage.getHeight());
 
 
             // START - TEXTING
             write.beginText();
 
-            // SETTINGS
+           // // SETTINGS
             write.addComment("TEST");
             write.setFont(PDType1Font.COURIER_BOLD, 13);
             write.setLeading(10f);
             write.newLineAtOffset(25, 700);
-
-
 
             write.newLine();
             write.showText("Tour-Report: " + reportTime);
@@ -99,8 +91,7 @@ public class ReportImpl implements Report {
             write.newLine();
             write.newLine();
 
-
-            for (TourLog tourlog : tourLogs ){
+         for (TourLog tourlog : tourLogs ){
                 write.newLine();
                 write.showText("TourLog-ID: " + tourlog.getTourLogID());
                 write.newLine();
@@ -114,15 +105,15 @@ public class ReportImpl implements Report {
                 write.newLine();
                 write.newLine();
                 write.newLine();
-            }
+          }
 
-            // STOP - TEXTING
+           // // STOP - TEXTING
             write.endText();
             write.close();
 
+           // // newReport.save(fileName);
 
-            // newReport.save(fileName);
-
+         //   newReport.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

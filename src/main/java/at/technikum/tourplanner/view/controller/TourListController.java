@@ -117,7 +117,9 @@ public class TourListController extends AbstractNavBar implements Initializable 
         fileChooser.setInitialFileName(tour.getTitle());
         Format(fileChooser);
         File file = fileChooser.showSaveDialog(stage);
-        tourService.saveTourLocal(file,tour.convertTourViewModelInTourModel(tour));
+        if (file != null) {
+            tourService.saveTourLocal(file, tour.convertTourViewModelInTourModel(tour));
+        }
 
     }
 
@@ -129,9 +131,12 @@ public class TourListController extends AbstractNavBar implements Initializable 
         Format(fileChooser);
         File file = fileChooser.showOpenDialog(stage);
         FileAccess fileAccess = new FileAccessImpl();
-        Tour tour = fileAccess.readTourFile(file);
-        tourService.saveTour(tour);
-        this.reloadList(actionEvent);
+
+        if (file != null){
+            Tour tour = fileAccess.readTourFile(file);
+            tourService.saveTour(tour);
+            this.reloadList(actionEvent);
+        }
 
     }
 

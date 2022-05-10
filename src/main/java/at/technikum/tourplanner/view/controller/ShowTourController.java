@@ -340,8 +340,8 @@ public class ShowTourController extends AbstractNavBar {
 
         if (file != null) {
             doc.save(file);
+            doc.close();
         }
-        doc.close();
     }
 
     // RELOAD PAGE
