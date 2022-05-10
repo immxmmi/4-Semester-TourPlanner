@@ -251,6 +251,6 @@
             <TableColumn fx:id="col_comment" prefWidth="476.0" text="Comment" />
          </columns>
       </TableView>
-      <Button layoutX="1029.0" layoutY="16.0" mnemonicParsing="false" onAction="#settings" text="Settings" />
+      <Button layoutX="1029.0" layoutY="16.0" mnemonicParsing="false" onAction="#settingsTour" text="Settings" />
    </children>
 </Pane>

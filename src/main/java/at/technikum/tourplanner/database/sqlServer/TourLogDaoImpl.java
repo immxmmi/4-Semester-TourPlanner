@@ -230,14 +230,14 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         this.setStatement(
                 "UPDATE " + this.tableName +
-                        " SET \"tourLogId\" = ?, " +
+                        " SET \"tourLogID\" = ?, " +
                         "\"tourID\"= ?," +
                         "\"comment\"= ?," +
                         "\"totalTime\"= ?," +
                         "\"level\"= ?," +
                         "\"stars\"= ?," +
                         "\"date\" = ?" +
-                         "WHERE \"tourLogId\" = ? ;"
+                         "WHERE \"tourLogID\" = ? ;"
                 , this.parameter
         );
 

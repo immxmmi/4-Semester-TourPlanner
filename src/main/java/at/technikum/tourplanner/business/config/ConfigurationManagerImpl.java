@@ -103,6 +103,26 @@ public class ConfigurationManagerImpl implements ConfigurationManager {
         return Integer.parseInt(getConfigPropertyValue("create_tour_width"));
     }
 
+    @Override
+    public int getEditTourWidth() {
+        return Integer.parseInt(getConfigPropertyValue("edit_tour_width"));
+    }
+
+    @Override
+    public int getEditTourHeight() {
+        return Integer.parseInt(getConfigPropertyValue("edit_tour_height"));
+    }
+
+    @Override
+    public int getEditTourLogWidth() {
+        return Integer.parseInt(getConfigPropertyValue("edit_tourLog_width"));
+    }
+
+    @Override
+    public int getEditTourLogHeight() {
+        return Integer.parseInt(getConfigPropertyValue("edit_tourLog_height"));
+    }
+
     //FILE
     @Override
     public String getRoot() {

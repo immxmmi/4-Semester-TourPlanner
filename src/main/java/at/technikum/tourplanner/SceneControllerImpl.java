@@ -3,7 +3,9 @@ package at.technikum.tourplanner;
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
 import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.TourLog;
 import at.technikum.tourplanner.view.controller.EditTourController;
+import at.technikum.tourplanner.view.controller.EditTourLogController;
 import at.technikum.tourplanner.view.controller.SearchListController;
 import at.technikum.tourplanner.view.controller.ShowTourController;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
@@ -104,8 +106,8 @@ public class SceneControllerImpl implements SceneController {
     // Tour + TourLogger Einträge - Anzeigen
     @Override
     public void switchToEditTour(ActionEvent event, Tour tour) throws IOException {
-        width = config.getShowTourWidth();
-        height = config.getShowTourHeight();
+        width = config.getEditTourWidth();
+        height = config.getEditTourHeight();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-tour-view.fxml"));
         this.root = loader.load();
         EditTourController editTourController = loader.<EditTourController>getController();
@@ -113,6 +115,19 @@ public class SceneControllerImpl implements SceneController {
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         createStage();
 
+    }
+
+    @Override
+    public void switchToEditTourLog(MouseEvent event, TourLog tourLog) throws IOException {
+        System.out.println(tourLog);
+       width = config.getEditTourLogWidth();
+       height = config.getEditTourLogHeight();
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-tourLog-view.fxml"));
+       this.root = loader.load();
+       EditTourLogController editTourLogController = loader.<EditTourLogController>getController();
+       editTourLogController.initialize(tourLog);
+       this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       createStage();
     }
 
 

@@ -35,6 +35,19 @@ public class TourLogViewModel {
         this.stars = new SimpleObjectProperty<Stars>(tourLog.getStars());
         this.date = new SimpleObjectProperty<Date>((Date) tourLog.getDate());
     }
+    // wandelt ViewModel in Model
+    public TourLog convertTourLogViewModelInTourLogModel(TourLogViewModel tourlogViewModel){
+        return TourLog.builder()
+                .totalTime(tourlogViewModel.getTotalTime())
+                .comment(tourlogViewModel.getComment())
+                .tourID(tourlogViewModel.getTourID())
+                .stars(tourlogViewModel.getStars())
+                .date(tourlogViewModel.getDate())
+                .level(tourlogViewModel.getLevel())
+                .tourLogID(tourlogViewModel.getTourLogID())
+                .build();
+    }
+
 
     public String getTourLogID() {
         return tourLogID.get();

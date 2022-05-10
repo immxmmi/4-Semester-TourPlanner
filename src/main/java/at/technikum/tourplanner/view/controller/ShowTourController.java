@@ -21,6 +21,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -174,7 +175,11 @@ public class ShowTourController extends AbstractNavBar {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     TourLogViewModel rowData = row.getItem();
-                    // System.out.println(rowData.getTourID());
+                    try {
+                        sCon.switchToEditTourLog(event,rowData.convertTourLogViewModelInTourLogModel(rowData));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
             return row;
@@ -376,8 +381,13 @@ public class ShowTourController extends AbstractNavBar {
 
 
     @FXML
-    public void settings(ActionEvent actionEvent) throws IOException {
+    public void settingsTour(ActionEvent actionEvent) throws IOException {
         sCon.switchToEditTour(actionEvent,tour);
+    }
+
+    @FXML
+    public void settingsTourLogs(MouseEvent actionEvent) throws IOException {
+        //sCon.switchToEditTour(actionEvent,tour);
     }
 
 }

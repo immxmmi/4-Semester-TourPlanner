@@ -82,7 +82,6 @@ public class EditTourController extends AbstractNavBar implements Initializable{
     // LOAD DATA
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         loadTransporter();
     }
 

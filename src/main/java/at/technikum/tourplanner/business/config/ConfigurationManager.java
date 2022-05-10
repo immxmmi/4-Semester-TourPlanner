@@ -52,4 +52,12 @@ public interface ConfigurationManager {
     int getCreateTourHeight();
 
     int getCreateTourWidth();
+
+    int getEditTourWidth();
+
+    int getEditTourHeight();
+
+    int getEditTourLogWidth();
+
+    int getEditTourLogHeight();
 }
