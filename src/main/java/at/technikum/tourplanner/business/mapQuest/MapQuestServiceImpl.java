@@ -195,7 +195,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         return new Image(file.getAbsolutePath());
     }
 
-<<<<<<< HEAD
+
     @Override
     public Image showOnlineRouteImage(RouteImage routeImage) {
         byte[] image = routeImage.getData();
@@ -211,6 +211,7 @@ public class MapQuestServiceImpl implements MapQuestService {
 
         byte[] currentImage = loadRouteImage(route.getUrlMap());
         route.getRouteImage().setData(currentImage);
+        route.getRouteImage().setLocal(false);
 
 
 
@@ -222,14 +223,12 @@ public class MapQuestServiceImpl implements MapQuestService {
 >>>>>>> aa71465f1e43903b6f7a1c98aca49b5abfa0951c
         FileAccess fileAccess = new FileAccessImpl();
         fileAccess.writeFile(route.getRouteImage().getImageID() + ".jpg", currentImage);
-        route.getRouteImage().setLocal(true);
+
 <<<<<<< HEAD
         */
         routeImageDao.updateImageData(route.getRouteImage());
-
-=======
         routeImageDao.update(route.getRouteImage());
->>>>>>> aa71465f1e43903b6f7a1c98aca49b5abfa0951c
+
         return route.getRouteImage();
     }
 
