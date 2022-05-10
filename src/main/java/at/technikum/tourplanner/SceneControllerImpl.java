@@ -2,6 +2,8 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.view.controller.EditTourController;
 import at.technikum.tourplanner.view.controller.SearchListController;
 import at.technikum.tourplanner.view.controller.ShowTourController;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
@@ -97,6 +99,22 @@ public class SceneControllerImpl implements SceneController {
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         createStage();
     }
+
+
+    // Tour + TourLogger Einträge - Anzeigen
+    @Override
+    public void switchToEditTour(ActionEvent event, Tour tour) throws IOException {
+        width = config.getShowTourWidth();
+        height = config.getShowTourHeight();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-tour-view.fxml"));
+        this.root = loader.load();
+        EditTourController editTourController = loader.<EditTourController>getController();
+        editTourController.initialize(tour);
+        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        createStage();
+
+    }
+
 
     // TourLogger - Erstellen
     @Override

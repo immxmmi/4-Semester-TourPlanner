@@ -373,5 +373,12 @@ public class ShowTourController extends AbstractNavBar {
         barChart.getData().addAll(level, stars);
 
     }
+
+
+    @FXML
+    public void settings(ActionEvent actionEvent) throws IOException {
+        sCon.switchToEditTour(actionEvent,tour);
+    }
+
 }
 

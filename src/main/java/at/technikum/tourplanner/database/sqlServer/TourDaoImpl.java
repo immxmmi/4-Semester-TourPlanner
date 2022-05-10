@@ -179,8 +179,8 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                 "" + item.getTransporter(),
                 "" + item.getRouteImage().getImageID(),
                 "" + item.getDescription(),
+                "" + item.getDate(),
                 "" + item.getTourID(),
-                "" + item.getDate()
         };
 
 
@@ -188,20 +188,19 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                 "UPDATE " + this.tableName +
                         " SET " +
                         "\"title\" = ?, " +
-                        "\"from\" = ? " +
-                        "\"to\" = ? " +
-                        "distance = ? " +
-                        "\"time\" = ? " +
-                        "\"transporter\" = ? " +
-                        "\"routeImage\" = ? " +
-                        "\"description\" = ? " +
+                        "\"from\" = ?, " +
+                        "\"to\" = ?, " +
+                        "\"distance\" = ?, " +
+                        "\"time\" = ?, " +
+                        "\"transporter\" = ?, " +
+                        "\"routeImage\" = ?, " +
+                        "\"description\" = ?, " +
                         "\"date\" = ? " +
 
 
-                        "WHERE \"tour_ID\" = ? ;"
+                        "WHERE \"tourID\" = ? ;"
                 , this.parameter
         );
-
 
         return getItemById(item.getTourID());
     }

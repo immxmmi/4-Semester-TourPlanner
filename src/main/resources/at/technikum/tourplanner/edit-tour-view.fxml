@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.EditTourController">
+   <children>
+      <ImageView fitHeight="508.0" fitWidth="1040.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/background/background_tour_create.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#7c7575" layoutX="136.0" layoutY="70.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Tour" textAlignment="CENTER" wrappingWidth="502.9366149902344">
+         <font>
+            <Font name="SansSerif Bold" size="60.0" />
+         </font>
+         <effect>
+            <Glow level="0.45" />
+         </effect>
+      </Text>
+      <TextField fx:id="set_tour_title" layoutX="304.0" layoutY="161.0" prefHeight="32.0" prefWidth="413.0" promptText="Tour-1" />
+      <Label layoutX="136.0" layoutY="165.0" text="Title:" textFill="#726868">
+         <font>
+            <Font name="SansSerif Bold" size="28.0" />
+         </font>
+         <effect>
+            <Glow level="0.42" />
+         </effect></Label>
+      <Label layoutX="136.0" layoutY="211.0" text="Transport:" textFill="#726868">
+         <font>
+            <Font name="SansSerif Bold" size="28.0" />
+         </font>
+         <effect>
+            <Glow level="0.42" />
+         </effect></Label>
+      <Label layoutX="136.0" layoutY="272.0" text="Description:" textFill="#726868">
+         <font>
+            <Font name="SansSerif Bold" size="28.0" />
+         </font>
+         <effect>
+            <Glow level="0.42" />
+         </effect></Label>
+      <TextArea fx:id="set_tour_description" layoutX="304.0" layoutY="273.0" prefHeight="134.0" prefWidth="413.0" promptText="Das ist meine erste Tour." />
+      <Button fx:id="create_btn" defaultButton="true" layoutX="666.0" layoutY="439.0" mnemonicParsing="false" onAction="#editTour" prefHeight="44.0" prefWidth="122.0" style="-fx-background-radius: 300;" text="edit" textFill="#1e1e1e" />
+      <ComboBox fx:id="set_tour_transport" layoutX="304.0" layoutY="211.0" prefHeight="32.0" prefWidth="140.0" promptText="Transporter" />
+      <Button layoutX="666.0" layoutY="19.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #13A735;">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icon/back-icon.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <MenuButton layoutX="35.0" layoutY="16.0" mnemonicParsing="false" style="-fx-background-radius: 75;">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icon/menu.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MenuButton>
+      <Button layoutX="717.0" layoutY="17.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="31.0" prefWidth="87.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="error_title" layoutX="736.0" layoutY="164.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
+         <font>
+            <Font name="SansSerif Regular" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="error_description" layoutX="727.0" layoutY="275.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
+         <font>
+            <Font name="SansSerif Regular" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="error_transport" layoutX="736.0" layoutY="214.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
+         <font>
+            <Font name="SansSerif Regular" size="23.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

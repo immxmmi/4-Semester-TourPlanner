@@ -166,7 +166,7 @@
                               <Font name="SansSerif Bold" size="23.0" />
                            </font>
                         </Label>
-                        <Label fx:id="error_total" layoutX="290.0" layoutY="62.0" prefHeight="27.0" prefWidth="22.0" textFill="RED">
+                        <Label fx:id="error_total" layoutX="301.0" layoutY="62.0" prefHeight="27.0" prefWidth="22.0" textFill="RED">
                            <font>
                               <Font name="SansSerif Bold" size="23.0" />
                            </font>
@@ -251,5 +251,6 @@
             <TableColumn fx:id="col_comment" prefWidth="476.0" text="Comment" />
          </columns>
       </TableView>
+      <Button layoutX="1029.0" layoutY="16.0" mnemonicParsing="false" onAction="#settings" text="Settings" />
    </children>
 </Pane>
