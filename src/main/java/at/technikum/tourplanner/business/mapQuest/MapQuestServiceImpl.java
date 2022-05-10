@@ -1,6 +1,5 @@
 package at.technikum.tourplanner.business.mapQuest;
 
-import at.technikum.tourplanner.business.ThreadMaker;
 import at.technikum.tourplanner.business.config.ConfigurationManager;
 import at.technikum.tourplanner.business.net.NetworkCommunicationService;
 import at.technikum.tourplanner.business.net.NetworkCommunicationServiceImpl;
@@ -17,6 +16,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.scene.image.Image;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -126,7 +126,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         currentRoute.getRouteImage().setDownloadURL(currentRoute.getUrlRoute());
         currentRoute.getRouteImage().setFrom(currentRoute.getFrom());
         currentRoute.getRouteImage().setTo(currentRoute.getTo());
-        currentRoute.getRouteImage().setFilePath(config.getImage()+currentRoute.getRouteImage().getImageID()+ ".jpg");
+        currentRoute.getRouteImage().setFilePath(config.getImage() + currentRoute.getRouteImage().getImageID() + ".jpg");
 
         return currentRoute;
     }
@@ -157,25 +157,24 @@ public class MapQuestServiceImpl implements MapQuestService {
 
         // SET ROUTE + IMAGE
 
-                route[0] = searchRoute(from, to);
-                if (route[0] == null){ return null;}
-                    route[0].setRouteImage(routeImageSettings);
+        route[0] = searchRoute(from, to);
+        if (route[0] == null) {
+            return null;
+        }
+        route[0].setRouteImage(routeImageSettings);
 
 
         // copy image and set settings
 
-                    route[0] = setImageSettingsToRoute(route[0]);
-                    route[0] = copyRouteDataToImage(route[0]);
+        route[0] = setImageSettingsToRoute(route[0]);
+        route[0] = copyRouteDataToImage(route[0]);
 
-                    ThreadMaker.runInBackground(new Runnable() {
-                        @Override
-                        public void run() {
-                            // save in DataBase
-                            saveImageOnline(route[0].getRouteImage());
-                            // DOWNLOAD  IMAGE
-                            downloadImage(route[0]);
-                        }
-                    });
+
+        // save in DataBase
+        saveImageOnline(route[0].getRouteImage());
+        // DOWNLOAD  IMAGE
+        downloadImage(route[0]);
+
 
         return route[0];
     }
@@ -188,11 +187,18 @@ public class MapQuestServiceImpl implements MapQuestService {
 
     // CREATE IMAGE
     @Override
-    public Image showRouteImage(RouteImage routeImage) {
+    public Image showLocalRouteImage(RouteImage routeImage) {
         FileAccess fileAccess = new FileAccessImpl();
         File file = fileAccess.readFile(routeImage.getImageID() + ".jpg");
         return new Image(file.getAbsolutePath());
     }
+
+    @Override
+    public Image showOnlineRouteImage(RouteImage routeImage) {
+        byte[] image = routeImage.getData();
+        return new Image(new ByteArrayInputStream(image));
+    }
+
 
 
     //6. DOWNLOAD IMAGE 
@@ -200,10 +206,17 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public RouteImage downloadImage(Route route) {
 
+        byte[] currentImage = loadRouteImage(route.getUrlMap());
+        route.getRouteImage().setData(currentImage);
+
+
+
+        /*
         FileAccess fileAccess = new FileAccessImpl();
-        fileAccess.writeFile(route.getRouteImage().getImageID() + ".jpg", loadRouteImage(route.getUrlMap()));
+        fileAccess.writeFile(route.getRouteImage().getImageID() + ".jpg", currentImage);
         route.getRouteImage().setLocal(true);
-        routeImageDao.update(route.getRouteImage());
+        */
+        routeImageDao.updateImageData(route.getRouteImage());
 
         return route.getRouteImage();
     }
@@ -211,19 +224,14 @@ public class MapQuestServiceImpl implements MapQuestService {
     //7. RELOAD IMAGE
     @Override
     public RouteImage reloadImage(RouteImage routeImage) {
+        //Route route = this.searchRoute(routeImage.getFrom(), routeImage.getTo());
+        //route.setRouteImage(routeImage);
+        //if (route == null) {return null;}
+        // route = this.setImageSettingsToRoute(route);
+        // route = this.copyRouteDataToImage(route);
+        // RouteImage newRouteImage = this.updateImageOnline(route.getRouteImage());
 
-      // Route route = this.searchRoute(routeImage.getFrom(), routeImage.getTo());
-      // route.setRouteImage(routeImage);
-      // if (route == null) {
-      //     return null;
-      // }
-      // route = this.setImageSettingsToRoute(route);
-      // route = this.copyRouteDataToImage(route);
-
-
-      //// RouteImage newRouteImage = this.updateImageOnline(route.getRouteImage());
-
-      // routeImage = routeImageDao.getItemById(routeImage.getImageID());
+        // routeImage = routeImageDao.getItemById(routeImage.getImageID());
 
         //downloadImage(image);
         return routeImage;

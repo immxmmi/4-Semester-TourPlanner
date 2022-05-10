@@ -36,6 +36,7 @@ public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao 
                         .local(Boolean.valueOf(result.getString("local")))
                         .defaultMarker(result.getString("defaultMarker"))
                         .filePath(result.getString("filePath"))
+                        .data(result.getBytes("data"))
                         .build();
                 this.closeStatement();
 
@@ -134,6 +135,13 @@ public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao 
                         "WHERE \"imageID\" = ?; ",
                 this.parameter);
 
+        return getItemById(item.getImageID());
+    }
+
+    @Override
+    public RouteImage updateImageData(RouteImage item){
+        if (item == null) {return null;}
+        this.setDataByte("UPDATE " + this.tableName + " SET " + "\"data\"= ? " + "WHERE \"imageID\" = ?; ", item.getData(),item.getImageID());
         return getItemById(item.getImageID());
     }
 

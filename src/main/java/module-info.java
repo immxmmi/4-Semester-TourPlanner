@@ -17,6 +17,7 @@ module at.technikum.tourplanner {
     requires org.apache.pdfbox;
     requires org.testng;
     requires com.google.gson;
+    requires java.desktop;
 
 
     opens at.technikum.tourplanner to javafx.fxml;

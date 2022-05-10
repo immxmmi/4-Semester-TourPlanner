@@ -47,4 +47,8 @@ public class RouteImage {
     @Builder.Default
     private String filePath="";
 
+    @Builder.Default
+    private byte[] data = null;
+
+
 }

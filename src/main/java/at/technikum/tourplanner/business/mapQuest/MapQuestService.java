@@ -23,7 +23,9 @@ public interface MapQuestService {
     Route startRoute(String from, String to);
     Route startRoute(Tour tour);
 
-    Image showRouteImage(RouteImage routeImage);
+    Image showLocalRouteImage(RouteImage routeImage);
+
+    Image showOnlineRouteImage(RouteImage routeImage);
 
     //6. DOWNLOAD IMAGE
     // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten

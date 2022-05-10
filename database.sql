@@ -14,6 +14,7 @@ create table tour
     date         text
 );
 
+
 create unique index tour_tourid_uindex
     on tour ("tourID");
 
@@ -25,10 +26,11 @@ create table "tourLog"
     "tourID"    text not null,
     comment     text,
     "totalTime" text not null,
-    level  text not null,
-    stars      text not null,
+    level       text not null,
+    stars       text not null,
     date        text not null
 );
+
 
 
 create unique index tourlog_tourlogid_uindex
@@ -47,8 +49,11 @@ create table image
     "downloadURL"   text,
     local           text not null,
     "defaultMarker" text not null,
-    "filePath"      text
+    "filePath"      text,
+    data            bytea
 );
+
+
 
 create unique index image_imagename_uindex
     on image ("imageID");

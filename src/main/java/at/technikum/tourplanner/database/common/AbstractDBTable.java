@@ -52,6 +52,27 @@ public class AbstractDBTable {
         }
         return true;
     }
+    protected boolean setDataByte(String sql, byte[] data, String id) {
+
+        try {
+            this.statement = connection.prepareStatement(sql);
+
+                statement.setBytes(1, data);
+                statement.setString(2,id);
+
+            if (statement.execute()) {
+                this.result = this.statement.executeQuery();
+            }
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            System.out.println("Statement ERROR " + e);
+
+        }
+        return true;
+    }
+
+
+
 
     protected void closeStatement() {
         try {

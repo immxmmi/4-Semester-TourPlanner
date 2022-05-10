@@ -17,8 +17,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -52,7 +50,7 @@ public class ShowTourController extends AbstractNavBar {
     @FXML
     public void initialize(TourViewModel currentTour) {
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
-                loadTourStatistic(currentTour.getTourID());
+        loadTourStatistic(currentTour.getTourID());
 
         ThreadMaker.multiRunInBackground(new Runnable() {
             @Override
@@ -93,26 +91,26 @@ public class ShowTourController extends AbstractNavBar {
 
     private void setTourTable(TourViewModel currentTour) {
         //RUN DATA
-         ThreadMaker.multiRunInBackground(new Runnable() {
-             @Override
-             public void run() {
-        show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
-        show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
-        show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
-        show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
-        show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
-        show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
-        show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
-             }
-         });
-         //RUN IMAGE
-         ThreadMaker.multiRunInBackground(new Runnable() {
-             @Override
-             public void run() {
-        show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                show_tour_title.textProperty().bindBidirectional(currentTour.titleProperty());
+                show_tour_from.textProperty().bindBidirectional(currentTour.fromProperty());
+                show_tour_to.textProperty().bindBidirectional(currentTour.toProperty());
+                show_tour_description.textProperty().bindBidirectional(currentTour.descriptionProperty());
+                show_tour_distance.setText(currentTour.distanceProperty().getValue().toString() + " km");
+                show_tour_time.setText(currentTour.timeProperty().getValue().toString() + " h");
+                show_tour_transport.setText(currentTour.transporterProperty().getValue().toString());
+            }
+        });
+        //RUN IMAGE
+        ThreadMaker.multiRunInBackground(new Runnable() {
+            @Override
+            public void run() {
+                show_tour_image.setImage(mapQuestService.showOnlineRouteImage(currentTour.getRoutImage()));
+            }
+        });
     }
-         });
-     }
 
 
     //TOURLOGS
@@ -214,14 +212,17 @@ public class ShowTourController extends AbstractNavBar {
     private void saveTourLog(ActionEvent actionEvent) throws IOException {
 
         Stars stars = get_tourlog_stars.getValue();
-        if(stars == null){stars = Stars.none;}
+        if (stars == null) {
+            stars = Stars.none;
+        }
         Level level = get_tourlog_level.getValue();
-        if(level == null){level = Level.normal;}
+        if (level == null) {
+            level = Level.normal;
+        }
         Date date = Date.valueOf(get_tourlog_date.getValue().toString());
-        if(date == null){
+        if (date == null) {
             date = Date.valueOf("11.11.2001");
         }
-
 
 
         TourLog tourLog = TourLog.builder()
@@ -239,7 +240,7 @@ public class ShowTourController extends AbstractNavBar {
     @FXML
     private void deleteTourLog(ActionEvent actionEvent) throws IOException {
         TourLogViewModel tourLog = table_tourLog.getSelectionModel().getSelectedItem();
-        if(tourLog == null){
+        if (tourLog == null) {
             return;
         }
         tourLogService.deleteTourLog(tourLog.getTourLogID());
@@ -282,33 +283,32 @@ public class ShowTourController extends AbstractNavBar {
     }
 
 
-
     // STATISTIC
     @FXML
     private BarChart barChart;
 
-    private void loadTourStatistic(String tourID){
+    private void loadTourStatistic(String tourID) {
         TourService tourService = new TourServiceImpl();
         TourStatistics tourStatistics = tourService.loadTourStatistics(tourID);
 
         XYChart.Series level = new XYChart.Series();
         level.setName("Level");
-        level.getData().add(new XYChart.Data("none",tourStatistics.getNumberOfStarsNone()));
-        level.getData().add(new XYChart.Data("easy",tourStatistics.getNumberOfLevelEasy()));
-        level.getData().add(new XYChart.Data("normal",tourStatistics.getNumberOfLevelNormal()));
-        level.getData().add(new XYChart.Data("hard",tourStatistics.getNumberOfLevelHard()));
-        level.getData().add(new XYChart.Data("expert",tourStatistics.getNumberOfLevelExpert()));
+        level.getData().add(new XYChart.Data("none", tourStatistics.getNumberOfStarsNone()));
+        level.getData().add(new XYChart.Data("easy", tourStatistics.getNumberOfLevelEasy()));
+        level.getData().add(new XYChart.Data("normal", tourStatistics.getNumberOfLevelNormal()));
+        level.getData().add(new XYChart.Data("hard", tourStatistics.getNumberOfLevelHard()));
+        level.getData().add(new XYChart.Data("expert", tourStatistics.getNumberOfLevelExpert()));
 
 
         XYChart.Series stars = new XYChart.Series();
         stars.setName("Stars");
-        level.getData().add(new XYChart.Data("1-Star",tourStatistics.getNumberOfStarsOne()));
-        level.getData().add(new XYChart.Data("2-Star",tourStatistics.getNumberOfStarsTwo()));
-        level.getData().add(new XYChart.Data("3-Star",tourStatistics.getNumberOfStarsThree()));
-        level.getData().add(new XYChart.Data("4-Star",tourStatistics.getNumberOfStarsFour()));
-        level.getData().add(new XYChart.Data("5-Star",tourStatistics.getNumberOfStarsFive()));
+        level.getData().add(new XYChart.Data("1-Star", tourStatistics.getNumberOfStarsOne()));
+        level.getData().add(new XYChart.Data("2-Star", tourStatistics.getNumberOfStarsTwo()));
+        level.getData().add(new XYChart.Data("3-Star", tourStatistics.getNumberOfStarsThree()));
+        level.getData().add(new XYChart.Data("4-Star", tourStatistics.getNumberOfStarsFour()));
+        level.getData().add(new XYChart.Data("5-Star", tourStatistics.getNumberOfStarsFive()));
 
-        barChart.getData().addAll(level,stars);
+        barChart.getData().addAll(level, stars);
 
     }
 }
