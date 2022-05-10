@@ -7,6 +7,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class NetworkCommunicationServiceImpl implements NetworkCommunicationService {
+
+   //Liefert IMAGE ALS DATEI ZURÜCK
     @Override
     public byte[] loadImageByLink(String downloadURL){
 

@@ -10,6 +10,8 @@ import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
 import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import at.technikum.tourplanner.models.*;
+import at.technikum.tourplanner.serializer.TourSerializer;
+import at.technikum.tourplanner.serializer.TourSerializerImpl;
 import at.technikum.tourplanner.utils.Tools;
 import at.technikum.tourplanner.utils.ToolsImpl;
 import com.google.gson.Gson;
@@ -22,18 +24,28 @@ import java.util.ArrayList;
 
 public class TourServiceImpl implements TourService {
 
+    //DATE
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     private Date date = new Date(System.currentTimeMillis());
+    //SERVICES
+    private TourLogService tourLogService = new TourLogServiceImpl();
+    //DAO
+    private TourDao tourDao;
+    //current-TOUR
     private Tour currentTour;
 
-    private TourDao tourDao;
-    private TourLogService tourLogService = new TourLogServiceImpl();
 
+    // INIT
     {
         tourDao = new TourDaoImpl();
         currentTour = new Tour();
     }
 
+    //DAO
+    @Override
+    public Tour getTourByID(String tourID) {
+        return tourDao.getItemById(tourID);
+    }
     @Override
     public Tour saveTour(Tour tour) {
 
@@ -79,12 +91,6 @@ public class TourServiceImpl implements TourService {
 
         return tourDao.insert(tour);
     }
-
-    @Override
-    public Tour getTourByID(String tourID) {
-        return tourDao.getItemById(tourID);
-    }
-
     @Override
     public Boolean deleteTour(String tourID) {
         TourLogService tourLogService = new TourLogServiceImpl();
@@ -96,29 +102,27 @@ public class TourServiceImpl implements TourService {
         routeImageDao.delete(tourID);
         return tourDao.delete(tourID);
     }
-
-    @Override
-    public Tour searchTourByName(String tourName) {
-        return tourDao.getItemByName(tourName.toLowerCase());
-    }
-
-
-    @Override
-    public ArrayList<Tour> searchTourAndTourLog(String search) {
-        return tourDao.search(search);
-    }
-
     @Override
     public Tour updateTour(Tour tour) {
         tour.setDate(date);
         return tourDao.update(tour);
     }
-
     @Override
     public ArrayList<Tour> getAllTourOrderByName() {
         return tourDao.getAllTourOrderByName();
     }
 
+    //SEARCH
+    @Override
+    public Tour searchTourByName(String tourName) {
+        return tourDao.getItemByName(tourName.toLowerCase());
+    }
+    @Override
+    public ArrayList<Tour> searchTourAndTourLog(String search) {
+        return tourDao.search(search);
+    }
+    
+    //STATISTIK
     @Override
     public TourStatistics loadTourStatistics(String tourID) {
 
@@ -158,29 +162,25 @@ public class TourServiceImpl implements TourService {
         return statistics;
     }
 
+    //JSON
     @Override
-    public void saveTourAsJSON(File file,Tour tour) {
-        FileAccess fileAccess = new FileAccessImpl();
-        String jsonString = convertTourToJsonString(tour);
-        fileAccess.writeFile(file,jsonString.getBytes(StandardCharsets.UTF_8));
+    public void saveTourLocal(File file,Tour tour){
+        TourSerializer tourSerializer = new TourSerializerImpl();
+        tourSerializer.saveTourAsJSON(file,tour);
     }
 
-    @Override
-    public String convertTourToJsonString(Tour tour){
-        return new Gson().toJson(tour);
-    }
 
+    // TODO: 09.05.2022 anpassen
     private double loadAvgFromTotalTime(String tourID) {
         int counter = 0;
         double sumTotalTime = 0.0;
-        System.out.println( tourLogService.getAllTourLogs(tourID));
+        //System.out.println( tourLogService.getAllTourLogs(tourID));
       //  for (TourLog tourLog : tourLogService.getAllTourLogs(tourID)) {
       //      sumTotalTime += tourLog.getTotalTime();
       //      counter++;
       //  }
         return sumTotalTime / counter;
     }
-
     private double loadAvgFromDistance(String tourID) {
         int counter = 0;
         double sumDistance = 0.0;
@@ -191,5 +191,4 @@ public class TourServiceImpl implements TourService {
 
         return sumDistance / counter;
     }
-
 }

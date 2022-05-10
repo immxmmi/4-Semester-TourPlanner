@@ -22,12 +22,13 @@ public class ReportImpl implements Report {
 
     ConfigurationManager config = new ConfigurationManagerImpl();
 
+    //erstellt Report und speichert es im Projekt
     @Override
-    public void createTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
+    public void saveTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
 
         String saveTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"));
         // Create Document
-        PDDocument newReport = saveTourReport(tour, tourLogs);
+        PDDocument newReport = createTourReport(tour, tourLogs);
         String fileName = config.getReport() + "report-" + tour.getTitle() + saveTime + ".pdf";
 
         try {
@@ -39,8 +40,9 @@ public class ReportImpl implements Report {
 
     }
 
+    //erstellt ein PDF document und liefert es zurück
     @Override
-    public PDDocument saveTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
+    public PDDocument createTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
 
         FileAccess fileAccess = new FileAccessImpl();
         fileAccess.createFolder("report");

@@ -126,6 +126,8 @@ public class SceneControllerImpl implements SceneController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("show-search-list-view.fxml"));
         this.root = loader.load();
+
+
         SearchListController searchListController = loader.<SearchListController>getController();
         searchListController.initialize(searchResult);
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

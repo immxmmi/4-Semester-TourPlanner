@@ -23,6 +23,7 @@ public class SearchTourController extends AbstractNavBar{
     @FXML
     private Label searchStatus;
 
+    //SEARCH RESULT
     @FXML
     private void searchTour(ActionEvent actionEvent) throws IOException {
 
@@ -57,10 +58,10 @@ public class SearchTourController extends AbstractNavBar{
 
     }
 
+    //CREATE TOUR
     @FXML
     private void  switchToCreateTour(ActionEvent actionEvent) throws IOException{
         sCon.switchToCreateTour(actionEvent);
     }
-
 
 }

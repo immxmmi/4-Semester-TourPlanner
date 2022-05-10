@@ -3,6 +3,7 @@ package at.technikum.tourplanner.business.config;
 import java.io.*;
 import java.util.Properties;
 
+// TODO: 09.05.2022 Finish
 public class ConfigurationManagerImpl implements ConfigurationManager {
 
 

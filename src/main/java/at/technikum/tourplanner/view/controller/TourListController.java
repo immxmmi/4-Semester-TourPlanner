@@ -1,8 +1,6 @@
 
 package at.technikum.tourplanner.view.controller;
 
-import at.technikum.tourplanner.business.report.Report;
-import at.technikum.tourplanner.business.report.ReportImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.database.fileServer.FileAccess;
@@ -21,7 +19,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-import org.apache.pdfbox.pdmodel.PDDocument;
 
 import java.io.File;
 import java.io.IOException;
@@ -120,7 +117,7 @@ public class TourListController extends AbstractNavBar implements Initializable 
         fileChooser.setInitialFileName(tour.getTitle());
         Format(fileChooser);
         File file = fileChooser.showSaveDialog(stage);
-        tourService.saveTourAsJSON(file,tour.convertTourViewModelinTourModel(tour));
+        tourService.saveTourLocal(file,tour.convertTourViewModelInTourModel(tour));
 
     }
 

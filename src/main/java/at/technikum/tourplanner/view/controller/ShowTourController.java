@@ -49,7 +49,11 @@ public class ShowTourController extends AbstractNavBar {
     // LOAD THE PAGE
     @FXML
     public void initialize(TourViewModel currentTour) {
+<<<<<<< HEAD
         this.tour = currentTour.convertTourViewModelinTourModel(currentTour);
+=======
+        this.tour = currentTour.convertTourViewModelInTourModel(currentTour);
+>>>>>>> aa71465f1e43903b6f7a1c98aca49b5abfa0951c
         loadTourStatistic(currentTour.getTourID());
 
         ThreadMaker.multiRunInBackground(new Runnable() {
@@ -107,7 +111,11 @@ public class ShowTourController extends AbstractNavBar {
         ThreadMaker.multiRunInBackground(new Runnable() {
             @Override
             public void run() {
+<<<<<<< HEAD
                 show_tour_image.setImage(mapQuestService.showOnlineRouteImage(currentTour.getRoutImage()));
+=======
+                show_tour_image.setImage(mapQuestService.showRouteImage(currentTour.getRoutImage()));
+>>>>>>> aa71465f1e43903b6f7a1c98aca49b5abfa0951c
             }
         });
     }
@@ -268,7 +276,7 @@ public class ShowTourController extends AbstractNavBar {
         // File pdf = //new File()
 
         File file = fileChooser.showSaveDialog(stage);
-        PDDocument doc = report.saveTourReport(tour, tourLogs);
+        PDDocument doc = report.createTourReport(tour, tourLogs);
 
         if (file != null) {
             doc.save(file);
@@ -282,7 +290,10 @@ public class ShowTourController extends AbstractNavBar {
         sCon.switchToShowTour(actionEvent, new TourViewModel(tour));
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa71465f1e43903b6f7a1c98aca49b5abfa0951c
     // STATISTIC
     @FXML
     private BarChart barChart;

@@ -28,6 +28,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+
 public class MapQuestServiceImpl implements MapQuestService {
 
     private static ConfigurationManager config = new ConfigurationManagerImpl();
@@ -82,7 +83,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         return null;
     }
 
-    //2. BUILD
+    //2. BUILD -
     private Route routeBuilder(String from, String to) {
         Route route = Route.builder()
                 .key("?key=" + config.getMapQuestID())
@@ -179,6 +180,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         return route[0];
     }
 
+    //check Route
     @Override
     public Route startRoute(Tour tour) {
         currentTour = tour;
@@ -193,6 +195,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         return new Image(file.getAbsolutePath());
     }
 
+<<<<<<< HEAD
     @Override
     public Image showOnlineRouteImage(RouteImage routeImage) {
         byte[] image = routeImage.getData();
@@ -212,15 +215,25 @@ public class MapQuestServiceImpl implements MapQuestService {
 
 
         /*
+=======
+    //6. DOWNLOAD IMAGE
+    @Override
+    public RouteImage downloadImage(Route route) {
+>>>>>>> aa71465f1e43903b6f7a1c98aca49b5abfa0951c
         FileAccess fileAccess = new FileAccessImpl();
         fileAccess.writeFile(route.getRouteImage().getImageID() + ".jpg", currentImage);
         route.getRouteImage().setLocal(true);
+<<<<<<< HEAD
         */
         routeImageDao.updateImageData(route.getRouteImage());
 
+=======
+        routeImageDao.update(route.getRouteImage());
+>>>>>>> aa71465f1e43903b6f7a1c98aca49b5abfa0951c
         return route.getRouteImage();
     }
 
+    // TODO: 09.05.2022 noch nicht in Verwendung
     //7. RELOAD IMAGE
     @Override
     public RouteImage reloadImage(RouteImage routeImage) {

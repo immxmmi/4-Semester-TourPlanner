@@ -12,17 +12,42 @@ public class TourLogServiceImpl implements TourLogService {
 
     private static TourLogDao tourLogDao = new TourLogDaoImpl();
 
+    //DAO
+    @Override
+    public Boolean saveTourLog(TourLog tourLog) {
+        if (tourLogDao.insert(tourLog) != null) {
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public Boolean deleteTourLog(String tourLogID) {
+        return tourLogDao.delete(tourLogID);
+    }
+    @Override
+    public TourLog getTourLog(String tourLogID) {
+        return tourLogDao.getItemById(tourLogID);
+    }
+    @Override
+    public TourLog updateTourLog(TourLog tourLog) {
+        return tourLogDao.update(tourLog);
+    }
 
+    //liefert eine Liste mit allen TourLogs einer Tour zurück
     @Override
     public ArrayList<TourLog> getAllTourLogs(String tourId) {
         return tourLogDao.getAllTourLog(tourId);
     }
 
+    // Statistik
+
+    // zählt alle TourLogs
     @Override
     public int countTourLogsFromTour(String tourID) {
         return tourLogDao.countTourLogs(tourID);
     }
 
+    // liefert die durchschnittliche Zeit zurück
     @Override
     public double avgTotalTimeFromTour(String tourID) {
         return tourLogDao.avgTotalTime(tourID);
@@ -68,26 +93,6 @@ public class TourLogServiceImpl implements TourLogService {
         return tourLogDao.countStars(tourID, Stars.four);
     }
     @Override
-    public int countStarsFiveFromTour(String tourID) {
-        return tourLogDao.countStars(tourID, Stars.five);
-    }
-    @Override
-    public Boolean saveTourLog(TourLog tourLog) {
-        if (tourLogDao.insert(tourLog) != null) {
-            return true;
-        }
-        return false;
-    }
-    @Override
-    public Boolean deleteTourLog(String tourLogID) {
-        return tourLogDao.delete(tourLogID);
-    }
-    @Override
-    public TourLog getTourLog(String tourLogID) {
-        return tourLogDao.getItemById(tourLogID);
-    }
-    @Override
-    public TourLog updateTourLog(TourLog tourLog) {
-        return tourLogDao.update(tourLog);
-    }
+    public int countStarsFiveFromTour(String tourID) {return tourLogDao.countStars(tourID, Stars.five);}
+
 }

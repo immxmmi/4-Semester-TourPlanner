@@ -56,6 +56,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
     /*******************************************************************/
 
 
+    //STATISTIK + COUNTER
     @Override
     public int countTourLogs(String tourID){
         this.parameter = new String[]{tourID};
@@ -77,7 +78,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return value;
     }
-
     @Override
     public double avgTotalTime(String tourID){
         this.parameter = new String[]{tourID};
@@ -101,8 +101,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         return value;
 
     }
-
-
     @Override
     public int countStars(String tourID, Stars star){
         this.parameter = new String[]{tourID,""+star};
@@ -123,7 +121,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return value;
     }
-
     @Override
     public int countLevel(String tourID, Level level){
         this.parameter = new String[]{tourID,""+level};
@@ -144,14 +141,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return value;
     }
-
-
-
-
-
-
-
-
 
 
 
@@ -181,7 +170,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         }
         return allTourLogs;
     }
-
     @Override
     public TourLog getItemById(String itemID) {
         this.parameter = new String[]{itemID};
@@ -192,7 +180,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return buildClass(this.result);
     }
-
     @Override
     public TourLog insert(TourLog item) {
 
@@ -223,7 +210,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return getItemById(item.getTourLogID());
     }
-
     @Override
     public TourLog update(TourLog item) {
         if (item == null) {

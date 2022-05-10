@@ -16,8 +16,6 @@ public class TourLogViewModel {
     private final ObjectProperty<Date> date;
 
 
-
-
     public TourLogViewModel() {
         this.tourLogID = new SimpleStringProperty("");
         this.tourID = new SimpleStringProperty("");

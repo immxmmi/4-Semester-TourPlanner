@@ -38,6 +38,7 @@ public class TourViewModel {
         this.transporter = new SimpleObjectProperty<>(Transporter.Walk);
     }
 
+    // wandelt Model in ViewModel
     public TourViewModel(Tour tour) {
         this.tourID = new SimpleStringProperty(tour.getTourID());
         this.title = new SimpleStringProperty(tour.getTitle());
@@ -51,7 +52,8 @@ public class TourViewModel {
         this.transporter = new SimpleObjectProperty<>(tour.getTransporter());
     }
 
-    public Tour convertTourViewModelinTourModel(TourViewModel tourViewModel){
+    // wandelt ViewModel in Model
+    public Tour convertTourViewModelInTourModel(TourViewModel tourViewModel){
         return Tour.builder()
                 .tourID(tourViewModel.getTourID())
                 .title(tourViewModel.getTitle())
