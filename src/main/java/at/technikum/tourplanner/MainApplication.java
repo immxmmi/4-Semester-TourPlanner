@@ -23,6 +23,7 @@ import java.time.LocalDate;
 
 public class MainApplication extends Application {
 
+
     final Logger logger = LogManager.getRootLogger();
     static ConfigurationManager config = new ConfigurationManagerImpl();
 

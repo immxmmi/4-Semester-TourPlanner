@@ -31,5 +31,7 @@ public interface MapQuestService {
     // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten
     RouteImage downloadImage(Route route);
 
+    RouteImage saveImageDataOnline(Route route);
+
     RouteImage reloadImage(RouteImage routeImage);
 }

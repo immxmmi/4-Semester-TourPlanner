@@ -174,7 +174,7 @@ public class MapQuestServiceImpl implements MapQuestService {
         // save in DataBase
         saveImageOnline(route[0].getRouteImage());
         // DOWNLOAD  IMAGE
-        downloadImage(route[0]);
+        saveImageDataOnline(route[0]);
 
 
         return route[0];
@@ -194,8 +194,6 @@ public class MapQuestServiceImpl implements MapQuestService {
         File file = fileAccess.readFile(routeImage.getImageID() + ".jpg");
         return new Image(file.getAbsolutePath());
     }
-
-
     @Override
     public Image showOnlineRouteImage(RouteImage routeImage) {
         byte[] image = routeImage.getData();
@@ -209,27 +207,27 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public RouteImage downloadImage(Route route) {
 
-        byte[] currentImage = loadRouteImage(route.getUrlMap());
-        route.getRouteImage().setData(currentImage);
-        route.getRouteImage().setLocal(false);
 
-
-
-        /*
-=======
-    //6. DOWNLOAD IMAGE
-    @Override
-    public RouteImage downloadImage(Route route) {
->>>>>>> aa71465f1e43903b6f7a1c98aca49b5abfa0951c
         FileAccess fileAccess = new FileAccessImpl();
-        fileAccess.writeFile(route.getRouteImage().getImageID() + ".jpg", currentImage);
+        //fileAccess.writeFile(route.getRouteImage().getImageID() + ".jpg", currentImage);
 
-<<<<<<< HEAD
-        */
         routeImageDao.updateImageData(route.getRouteImage());
         routeImageDao.update(route.getRouteImage());
 
         return route.getRouteImage();
+    }
+
+
+    @Override
+    public RouteImage saveImageDataOnline(Route route){
+        byte[] currentImage = loadRouteImage(route.getUrlMap());
+        route.getRouteImage().setData(currentImage);
+        route.getRouteImage().setLocal(false);
+        routeImageDao.updateImageData(route.getRouteImage());
+        routeImageDao.update(route.getRouteImage());
+
+        return route.getRouteImage();
+
     }
 
     // TODO: 09.05.2022 noch nicht in Verwendung

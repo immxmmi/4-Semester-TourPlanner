@@ -52,6 +52,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
 
         if (set_tour_transport.getValue() == null) {
             error_transport.setText("!");
+             check = false;
         } else {
             error_transport.setText("");
         }

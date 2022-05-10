@@ -63,7 +63,7 @@
          </image>
       </ImageView>
       <VBox fx:id="saveStage" layoutX="111.0" layoutY="-74.0" prefHeight="1.0" prefWidth="8.0" />
-      <MenuButton layoutX="14.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-radius: 75;">
+      <MenuButton layoutX="14.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -76,16 +76,16 @@
             </ImageView>
          </graphic>
       </MenuButton>
-      <Button layoutX="1073.0" layoutY="14.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="25.0" prefWidth="30.0" style="-fx-background-radius: 75;">
+      <Button layoutX="80.0" layoutY="11.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="36.0" prefWidth="48.0" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
          <graphic>
-            <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/icon/save.png" />
+                  <Image url="@img/icon/pdf_save_icon.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="1114.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75;">
+      <Button layoutX="1114.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #13A735;">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -94,7 +94,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <TabPane layoutX="590.0" layoutY="75.0" prefHeight="366.0" prefWidth="551.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="590.0" layoutY="75.0" prefHeight="366.0" prefWidth="551.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab text="Statistic">
                <content>
@@ -116,16 +116,71 @@
                <content>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="get_tourlog_commit" layoutX="24.0" layoutY="77.0" prefHeight="117.0" prefWidth="503.0" text="trest" />
-                        <TextField fx:id="get_tourLog_total" layoutX="123.0" layoutY="25.0" prefHeight="25.0" prefWidth="60.0" promptText="Total Time" text="2.3" />
-                        <DatePicker fx:id="get_tourlog_date" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
-                        <ComboBox fx:id="get_tourlog_level" layoutX="287.0" layoutY="25.0" prefHeight="25.0" prefWidth="87.0" promptText="Level">
+                        <TextArea fx:id="get_tourlog_commit" layoutX="25.0" layoutY="154.0" prefHeight="114.0" prefWidth="503.0" text="trest" />
+                        <TextField fx:id="get_tourLog_total" layoutX="140.0" layoutY="63.0" prefHeight="25.0" prefWidth="97.0" promptText="100.5" />
+                        <DatePicker fx:id="get_tourlog_date" layoutX="139.0" layoutY="23.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
+                        <ComboBox fx:id="get_tourlog_level" layoutX="409.0" layoutY="63.0" prefHeight="25.0" prefWidth="81.0" promptText="Level">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                         </ComboBox>
-                        <ComboBox fx:id="get_tourlog_stars" layoutX="195.0" layoutY="25.0" prefHeight="25.0" prefWidth="81.0" promptText="Stars" />
-                        <Button layoutX="387.0" layoutY="25.0" mnemonicParsing="false" onAction="#saveTourLog" text="save" />
+                        <ComboBox fx:id="get_tourlog_stars" layoutX="410.0" layoutY="23.0" prefHeight="25.0" prefWidth="81.0" promptText="Stars" />
+                        <Button layoutX="487.0" layoutY="290.0" mnemonicParsing="false" onAction="#saveTourLog" text="save" />
+                        <Label layoutX="339.0" layoutY="65.0" text="Level:">
+                           <font>
+                              <Font name="SansSerif Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="327.0" layoutY="25.0" text="Stars:">
+                           <font>
+                              <Font name="SansSerif Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="25.0" layoutY="117.0" text="Comment:">
+                           <font>
+                              <Font name="SansSerif Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="65.0" text="Total Time:">
+                           <font>
+                              <Font name="SansSerif Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="25.0" text="Date:">
+                           <font>
+                              <Font name="SansSerif Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="error_stars" layoutX="496.0" layoutY="22.0" prefHeight="27.0" prefWidth="22.0" textFill="RED">
+                           <font>
+                              <Font name="SansSerif Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="error_level" layoutX="496.0" layoutY="62.0" prefHeight="27.0" prefWidth="22.0" textFill="RED">
+                           <font>
+                              <Font name="SansSerif Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="error_comment" layoutX="139.0" layoutY="100.0" prefHeight="27.0" prefWidth="28.0" textFill="RED">
+                           <font>
+                              <Font name="SansSerif Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="error_total" layoutX="290.0" layoutY="62.0" prefHeight="27.0" prefWidth="22.0" textFill="RED">
+                           <font>
+                              <Font name="SansSerif Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="error_date" layoutX="290.0" layoutY="22.0" prefHeight="27.0" prefWidth="22.0" textFill="RED">
+                           <font>
+                              <Font name="SansSerif Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="244.0" layoutY="65.0" text="min">
+                           <font>
+                              <Font name="SansSerif Bold" size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </content>
@@ -142,7 +197,7 @@
             <Font name="SansSerif Bold" size="72.0" />
          </font>
       </Text>
-      <Button layoutX="331.0" layoutY="755.0" mnemonicParsing="false" onAction="#deleteTourLog" style="-fx-background-radius: 75; -fx-background-color: red;">
+      <Button layoutX="331.0" layoutY="755.0" mnemonicParsing="false" onAction="#deleteTourLog" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

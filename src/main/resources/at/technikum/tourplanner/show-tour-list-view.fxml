@@ -14,7 +14,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="1169.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.TourListController">
    <children>
-      <ImageView fitHeight="759.0" fitWidth="1169.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="774.0" fitWidth="1178.0" layoutX="-7.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/background/background_tour_list.jpg" />
          </image>
@@ -34,7 +34,7 @@
             <TableColumn fx:id="col_time" prefWidth="156.0" text="Time:" />
         </columns>
       </TableView>
-      <Button layoutX="1062.0" layoutY="410.0" mnemonicParsing="false" onAction="#reloadList" prefHeight="27.0" prefWidth="16.0" style="-fx-background-radius: 75;" textFill="#3a00f8">
+      <Button layoutX="1062.0" layoutY="410.0" mnemonicParsing="false" onAction="#reloadList" prefHeight="27.0" prefWidth="16.0" style="-fx-background-radius: 75; -fx-background-color: #4759DE;" textFill="#3a00f8">
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -42,15 +42,15 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="1015.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="25.0" prefWidth="32.0" style="-fx-background-radius: 75;">
+      <Button layoutX="1016.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="29.0" prefWidth="0.0" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
          <graphic>
-            <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/icon/trash.png" />
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="1073.0" layoutY="22.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75;">
+      <Button layoutX="1073.0" layoutY="22.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #13A735;">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -76,18 +76,18 @@
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/icon/save.png" />
+                  <Image url="@img/icon/download_icon.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
       <VBox fx:id="saveStage" layoutX="1089.0" layoutY="-41.0" prefHeight="1.0" prefWidth="8.0" />
       <VBox fx:id="loadStage" layoutX="1099.0" layoutY="-31.0" prefHeight="1.0" prefWidth="8.0" />
-      <Button layoutX="912.0" layoutY="409.0" mnemonicParsing="false" onAction="#loadTourFromFile" prefHeight="25.0" prefWidth="30.0" style="-fx-background-radius: 75;">
+      <Button layoutX="918.0" layoutY="409.0" mnemonicParsing="false" onAction="#loadTourFromFile" prefHeight="25.0" prefWidth="30.0" style="-fx-background-radius: 75;">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img/icon/menu.png" />
+                  <Image url="@img/icon/uplload_icon.png" />
                </image>
             </ImageView>
          </graphic>

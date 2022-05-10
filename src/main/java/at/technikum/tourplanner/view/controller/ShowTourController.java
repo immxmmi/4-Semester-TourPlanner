@@ -213,32 +213,91 @@ public class ShowTourController extends AbstractNavBar {
 
 
     @FXML
+    private Label error_date;
+    @FXML
+    private Label error_total;
+    @FXML
+    private Label error_level;
+    @FXML
+    private Label error_stars;
+    @FXML
+    private Label error_comment;
+
+    @FXML
     private void saveTourLog(ActionEvent actionEvent) throws IOException {
 
-        Stars stars = get_tourlog_stars.getValue();
-        if (stars == null) {
-            stars = Stars.none;
+        boolean check = true;
+
+        //STARS
+        if (get_tourlog_stars.getValue() == null) {
+            error_stars.setText("!");
+            check = false;
+        } else {
+            error_stars.setText("");
         }
-        Level level = get_tourlog_level.getValue();
-        if (level == null) {
-            level = Level.normal;
+
+        //LEVEL
+        if (get_tourlog_level.getValue() == null) {
+            error_level.setText("!");
+            check = false;
+        } else {
+            error_level.setText("");
         }
-        Date date = Date.valueOf(get_tourlog_date.getValue().toString());
-        if (date == null) {
-            date = Date.valueOf("11.11.2001");
+
+        //Total Time
+        if (get_tourLog_total.getText() == null) {
+            error_total.setText("!");
+            check = false;
+        } else {
+            error_total.setText("");
+        }
+
+        Double totalTime = 0.0;
+        //Total Time
+        if (get_tourLog_total.getText().equals("")) {
+            error_total.setText("!");
+            check = false;
+        } else {
+            try {
+                 totalTime = Double.parseDouble(get_tourLog_total.getText());
+            } catch (NumberFormatException e) {
+                check = false;
+                error_total.setText("!");
+            }
+            error_total.setText("");
         }
 
 
-        TourLog tourLog = TourLog.builder()
-                .tourID(tour.getTourID())
-                .date(date)
-                .stars(stars)
-                .level(level)
-                .comment(get_tourlog_commit.getText())
-                .totalTime(Double.parseDouble(get_tourLog_total.getText()))
-                .build();
-        tourLogService.saveTourLog(tourLog);
-        reloadPage(actionEvent);
+
+        //Comment
+        if (get_tourlog_commit.getText() == null) {
+            error_comment.setText("!");
+            check = false;
+        } else {
+            error_comment.setText("");
+        }
+
+        //DATE
+        if (get_tourlog_date.getValue() == null) {
+            error_date.setText("!");
+            check = false;
+        } else {
+            error_date.setText("");
+        }
+
+        if (check) {
+            TourLog tourLog = TourLog.builder()
+                    .tourID(tour.getTourID())
+                    .date(Date.valueOf(get_tourlog_date.getValue().toString()))
+                    .stars(get_tourlog_stars.getValue())
+                    .level(get_tourlog_level.getValue())
+                    .comment(get_tourlog_commit.getText())
+                    .totalTime(totalTime)
+                    .build();
+            tourLogService.saveTourLog(tourLog);
+            reloadPage(actionEvent);
+        }
+
     }
 
     @FXML
