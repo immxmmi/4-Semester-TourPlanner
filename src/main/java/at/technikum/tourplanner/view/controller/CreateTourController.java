@@ -31,6 +31,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
     @FXML
     private TextArea set_tour_description;
 
+    //ERROR
     @FXML
     private Label error_title;
     @FXML
@@ -42,8 +43,12 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
     @FXML
     private Label error_description;
 
+    //INIT
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
+        loadTransporter();
+    }
     // BUTTON - CREATE TOUR
     @FXML
     private void createTour(ActionEvent actionEvent) throws IOException {
@@ -52,7 +57,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
 
         if (set_tour_transport.getValue() == null) {
             error_transport.setText("!");
-             check = false;
+            check = false;
         } else {
             error_transport.setText("");
         }
@@ -99,14 +104,6 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
             this.switchToMain(actionEvent);
         }
     }
-
-    // LOAD DATA
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        loadTransporter();
-    }
-
     // LOAD TRANSPORTER
     private void loadTransporter() {
         for (Transporter transporter : Transporter.values()) {

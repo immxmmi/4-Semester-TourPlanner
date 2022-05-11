@@ -28,6 +28,7 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
     @FXML
     private TextArea set_tour_comment;
 
+    //ERROR
     @FXML
     private Label error_total;
     @FXML
@@ -41,6 +42,12 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
 
     private TourLog currentTourLog;
 
+    //INIT
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadLevels();
+        loadStars();
+    }
     public void initialize(TourLog tourlog) {
         currentTourLog = tourlog;
         set_tour_total_time.setText(""+tourlog.getTotalTime());
@@ -48,7 +55,7 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
 
     }
 
-
+    //EDIT
     @FXML
     private void editTourLog(ActionEvent actionEvent) throws IOException {
 
@@ -111,18 +118,12 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
        }
     }
 
-    // LOAD DATA
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadLevels();
-        loadStars();
-    }
+    // LOAD
     private void loadLevels() {
         for (Level level : Level.values()) {
             set_tourlog_level.getItems().add(level);
         }
     }
-
     private void loadStars() {
         for (Stars stars : Stars.values()) {
             set_tourlog_stars.getItems().add(stars);

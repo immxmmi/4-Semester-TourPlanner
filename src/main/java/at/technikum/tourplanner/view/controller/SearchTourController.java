@@ -16,7 +16,7 @@ import javafx.stage.FileChooser;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SearchTourController extends AbstractNavBar{
+public class SearchTourController extends AbstractNavBar {
 
     @FXML
     private TextField searchField;
@@ -26,42 +26,22 @@ public class SearchTourController extends AbstractNavBar{
     //SEARCH RESULT
     @FXML
     private void searchTour(ActionEvent actionEvent) throws IOException {
+        TourService tourService = new TourServiceImpl();
+        ArrayList<TourViewModel> searchList = new ArrayList<>();
 
-        if(searchField == null){
+        if (searchField.getText().equals("")) {
             searchStatus.setText("Not Found!");
             return;
         }
-
-        TourService tourService = new TourServiceImpl();
-        //Tour searchResult = tourService.searchTourByName(searchField.getText());
 
         ArrayList<Tour> searchResult = tourService.searchTourAndTourLog(searchField.getText());
-        ArrayList<TourViewModel> searchList = new ArrayList<>();
-        
-        for (Tour tour : searchResult){
+        for (Tour tour : searchResult) {
             searchList.add(new TourViewModel(tour));
         }
+        if (searchResult == null) {searchStatus.setText("Not Found!");return;}
 
-        if(searchResult == null){
-            searchStatus.setText("Not Found!");
-            return;
-        }
-
-
-       // System.out.println(searchResult);
-       //showTourController.setDa(searchResult);
-        
-        sCon.switchToSearchList(actionEvent,searchList);
-        //sCon.switchToShowTour(actionEvent,new TourViewModel(searchResult));
-
-
-
+        sCon.switchToSearchList(actionEvent, searchList);
     }
 
-    //CREATE TOUR
-    @FXML
-    private void  switchToCreateTour(ActionEvent actionEvent) throws IOException{
-        sCon.switchToCreateTour(actionEvent);
-    }
 
 }

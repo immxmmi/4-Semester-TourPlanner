@@ -87,8 +87,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         );
         double value = 0;
 
-        System.out.println(this.statement);
-
         try {
             if (result.next()) {
                 value = this.result.getInt("total");
@@ -182,8 +180,6 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
     }
     @Override
     public TourLog insert(TourLog item) {
-
-        System.out.println(item);
 
         Tools tools = new ToolsImpl();
         if (item == null) {

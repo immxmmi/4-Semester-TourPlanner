@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -34,7 +32,7 @@
             <TableColumn fx:id="col_time" prefWidth="156.0" text="Time:" />
         </columns>
       </TableView>
-      <Button layoutX="1062.0" layoutY="410.0" mnemonicParsing="false" onAction="#reloadList" prefHeight="27.0" prefWidth="16.0" style="-fx-background-radius: 75; -fx-background-color: #4759DE;" textFill="#3a00f8">
+      <Button layoutX="1091.0" layoutY="404.0" mnemonicParsing="false" onAction="#reloadList" prefHeight="27.0" prefWidth="16.0" style="-fx-background-radius: 75; -fx-background-color: #4759DE;" textFill="#3a00f8">
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -42,7 +40,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="1016.0" layoutY="409.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="29.0" prefWidth="0.0" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
+      <Button layoutX="1045.0" layoutY="403.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="29.0" prefWidth="0.0" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -59,20 +57,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <MenuButton layoutX="24.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-radius: 75;">
-         <items>
-            <MenuItem mnemonicParsing="false" text="Action 1" />
-            <MenuItem mnemonicParsing="false" text="Action 2" />
-         </items>
-         <graphic>
-            <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/icon/menu.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </MenuButton>
-      <Button layoutX="967.0" layoutY="409.0" mnemonicParsing="false" onAction="#saveTour" prefHeight="25.0" prefWidth="30.0" style="-fx-background-radius: 75;">
+      <Button layoutX="996.0" layoutY="403.0" mnemonicParsing="false" onAction="#saveTour" prefHeight="25.0" prefWidth="30.0" style="-fx-background-radius: 75;">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -83,11 +68,29 @@
       </Button>
       <VBox fx:id="saveStage" layoutX="1089.0" layoutY="-41.0" prefHeight="1.0" prefWidth="8.0" />
       <VBox fx:id="loadStage" layoutX="1099.0" layoutY="-31.0" prefHeight="1.0" prefWidth="8.0" />
-      <Button layoutX="918.0" layoutY="409.0" mnemonicParsing="false" onAction="#loadTourFromFile" prefHeight="25.0" prefWidth="30.0" style="-fx-background-radius: 75;">
+      <Button layoutX="947.0" layoutY="403.0" mnemonicParsing="false" onAction="#loadTourFromFile" prefHeight="25.0" prefWidth="30.0" style="-fx-background-radius: 75;">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/icon/uplload_icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="1024.0" layoutY="21.0" mnemonicParsing="false" onAction="#settingsTour" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 100;">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icon/settings_icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="24.0" layoutY="20.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="36.0" prefWidth="48.0" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icon/pdf_save_icon.png" />
                </image>
             </ImageView>
          </graphic>

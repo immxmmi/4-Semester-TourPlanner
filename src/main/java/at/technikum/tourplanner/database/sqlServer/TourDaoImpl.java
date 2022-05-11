@@ -97,7 +97,6 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                         "OR \"to\" like ? ;"
                 , this.parameter);
 
-        System.out.println(this.statement);
 
         try {
             while (this.result.next()) {
@@ -114,7 +113,6 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
                             "OR \"stars\" like ? " +
                             "OR \"comment\" like ? ;"
                     , this.parameter);
-            System.out.println(this.statement);
 
             try {
                 while (this.result.next()) {

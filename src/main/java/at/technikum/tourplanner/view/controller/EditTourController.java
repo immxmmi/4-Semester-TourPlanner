@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditTourController extends AbstractNavBar implements Initializable{
-    // TOUR - CREATE
+public class EditTourController extends AbstractNavBar implements Initializable {
+    // TOUR - EDIT
     @FXML
     private TextField set_tour_title;
     @FXML
@@ -27,6 +27,7 @@ public class EditTourController extends AbstractNavBar implements Initializable{
     @FXML
     private TextArea set_tour_description;
 
+    //ERROR
     @FXML
     private Label error_title;
     @FXML
@@ -34,24 +35,28 @@ public class EditTourController extends AbstractNavBar implements Initializable{
     @FXML
     private Label error_description;
 
-    TourService tourService = new TourServiceImpl();
 
     private Tour currentTour;
 
+    //INIT
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadTransporter();
+    }
     public void initialize(Tour tour) {
         currentTour = tour;
         set_tour_title.setText(tour.getTitle());
         set_tour_description.setText(tour.getDescription());
     }
 
-
+    //EDIT
     @FXML
     private void editTour(ActionEvent actionEvent) throws IOException {
-
+        TourService tourService = new TourServiceImpl();
         boolean check = true;
         if (set_tour_transport.getValue() == null) {
             error_transport.setText("!");
-             check = false;
+            check = false;
         } else {
             error_transport.setText("");
         }
@@ -77,12 +82,6 @@ public class EditTourController extends AbstractNavBar implements Initializable{
             tourService.updateTour(currentTour);
             this.switchToMain(actionEvent);
         }
-    }
-
-    // LOAD DATA
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadTransporter();
     }
 
     // LOAD TRANSPORTER

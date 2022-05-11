@@ -40,8 +40,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -63,20 +61,7 @@
          </image>
       </ImageView>
       <VBox fx:id="saveStage" layoutX="111.0" layoutY="-74.0" prefHeight="1.0" prefWidth="8.0" />
-      <MenuButton layoutX="14.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-         <graphic>
-            <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/icon/menu.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </MenuButton>
-      <Button layoutX="80.0" layoutY="11.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="36.0" prefWidth="48.0" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
+      <Button layoutX="15.0" layoutY="11.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="36.0" prefWidth="48.0" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
          <graphic>
             <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -116,7 +101,7 @@
                <content>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextArea fx:id="get_tourlog_commit" layoutX="25.0" layoutY="154.0" prefHeight="114.0" prefWidth="503.0" text="trest" />
+                        <TextArea fx:id="get_tourlog_commit" layoutX="25.0" layoutY="154.0" prefHeight="114.0" prefWidth="503.0" promptText="War nicht so gut!" />
                         <TextField fx:id="get_tourLog_total" layoutX="140.0" layoutY="63.0" prefHeight="25.0" prefWidth="97.0" promptText="100.5" />
                         <DatePicker fx:id="get_tourlog_date" layoutX="139.0" layoutY="23.0" prefHeight="25.0" prefWidth="99.0" promptText="01.01.2000" />
                         <ComboBox fx:id="get_tourlog_level" layoutX="409.0" layoutY="63.0" prefHeight="25.0" prefWidth="81.0" promptText="Level">
@@ -125,7 +110,7 @@
                            </opaqueInsets>
                         </ComboBox>
                         <ComboBox fx:id="get_tourlog_stars" layoutX="410.0" layoutY="23.0" prefHeight="25.0" prefWidth="81.0" promptText="Stars" />
-                        <Button layoutX="487.0" layoutY="290.0" mnemonicParsing="false" onAction="#saveTourLog" text="save" />
+                        <Button layoutX="487.0" layoutY="290.0" mnemonicParsing="false" onAction="#saveTourLog" text="create" />
                         <Label layoutX="339.0" layoutY="65.0" text="Level:">
                            <font>
                               <Font name="SansSerif Bold" size="18.0" />
@@ -251,6 +236,13 @@
             <TableColumn fx:id="col_comment" prefWidth="476.0" text="Comment" />
          </columns>
       </TableView>
-      <Button layoutX="1029.0" layoutY="16.0" mnemonicParsing="false" onAction="#settingsTour" text="Settings" />
+      <Button layoutX="1060.0" layoutY="12.0" mnemonicParsing="false" onAction="#settingsTour" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 100;">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icon/settings_icon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </Pane>
