@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
+// TODO: 11.05.2022 @Checked - TEST IMPL
 public class ReportImpl implements Report {
 
     ConfigurationManager config = new ConfigurationManagerImpl();

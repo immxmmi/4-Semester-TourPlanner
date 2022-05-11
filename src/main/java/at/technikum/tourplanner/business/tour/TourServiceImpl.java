@@ -22,6 +22,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+// TODO: 11.05.2022 @Checked - TEST IMPL
 public class TourServiceImpl implements TourService {
 
     //DATE
@@ -30,22 +31,17 @@ public class TourServiceImpl implements TourService {
     //SERVICES
     private TourLogService tourLogService = new TourLogServiceImpl();
     //DAO
-    private TourDao tourDao;
+    private TourDao tourDao = new TourDaoImpl();
     //current-TOUR
-    private Tour currentTour;
+    private Tour currentTour = new Tour();
 
-
-    // INIT
-    {
-        tourDao = new TourDaoImpl();
-        currentTour = new Tour();
-    }
 
     //DAO
     @Override
     public Tour getTourByID(String tourID) {
         return tourDao.getItemById(tourID);
     }
+
     @Override
     public Tour saveTour(Tour tour) {
 
@@ -91,6 +87,7 @@ public class TourServiceImpl implements TourService {
 
         return tourDao.insert(tour);
     }
+
     @Override
     public Boolean deleteTour(String tourID) {
         TourLogService tourLogService = new TourLogServiceImpl();
@@ -102,11 +99,13 @@ public class TourServiceImpl implements TourService {
         routeImageDao.delete(tourID);
         return tourDao.delete(tourID);
     }
+
     @Override
     public Tour updateTour(Tour tour) {
         tour.setDate(date);
         return tourDao.update(tour);
     }
+
     @Override
     public ArrayList<Tour> getAllTourOrderByName() {
         return tourDao.getAllTourOrderByName();
@@ -117,11 +116,12 @@ public class TourServiceImpl implements TourService {
     public Tour searchTourByName(String tourName) {
         return tourDao.getItemByName(tourName.toLowerCase());
     }
+
     @Override
     public ArrayList<Tour> searchTourAndTourLog(String search) {
         return tourDao.search(search);
     }
-    
+
     //STATISTIK
     @Override
     public TourStatistics loadTourStatistics(String tourID) {
@@ -130,7 +130,7 @@ public class TourServiceImpl implements TourService {
         ThreadMaker.multiRunInBackground(new Runnable() {
             @Override
             public void run() {
-               // statistics.setAvgTotalTime(loadAvgFromTotalTime(tourID));
+                // statistics.setAvgTotalTime(loadAvgFromTotalTime(tourID));
             }
         });
         ThreadMaker.multiRunInBackground(new Runnable() {
@@ -155,18 +155,15 @@ public class TourServiceImpl implements TourService {
                 statistics.setNumberOfStarsFive(tourLogService.countStarsFiveFromTour(tourID));
             }
         });
-
         // statistics.setAvgTotalTime(tourLogService.avgTotalTimeFromTour(tourID));
-
-
         return statistics;
     }
 
     //JSON
     @Override
-    public void saveTourLocal(File file,Tour tour){
+    public void saveTourLocal(File file, Tour tour) {
         TourSerializer tourSerializer = new TourSerializerImpl();
-        tourSerializer.saveTourAsJSON(file,tour);
+        tourSerializer.saveTourAsJSON(file, tour);
     }
 
 
@@ -175,12 +172,13 @@ public class TourServiceImpl implements TourService {
         int counter = 0;
         double sumTotalTime = 0.0;
         //System.out.println( tourLogService.getAllTourLogs(tourID));
-      //  for (TourLog tourLog : tourLogService.getAllTourLogs(tourID)) {
-      //      sumTotalTime += tourLog.getTotalTime();
-      //      counter++;
-      //  }
+        //  for (TourLog tourLog : tourLogService.getAllTourLogs(tourID)) {
+        //      sumTotalTime += tourLog.getTotalTime();
+        //      counter++;
+        //  }
         return sumTotalTime / counter;
     }
+
     private double loadAvgFromDistance(String tourID) {
         int counter = 0;
         double sumDistance = 0.0;
@@ -191,4 +189,5 @@ public class TourServiceImpl implements TourService {
 
         return sumDistance / counter;
     }
+
 }

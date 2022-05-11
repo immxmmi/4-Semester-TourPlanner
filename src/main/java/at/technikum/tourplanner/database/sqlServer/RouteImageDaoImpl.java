@@ -7,7 +7,7 @@ import at.technikum.tourplanner.utils.TextColor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+// TODO: 11.05.2022 @Checked - TEST IMPL
 public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao {
     /*******************************************************************/
     /**                          Constructor                          **/

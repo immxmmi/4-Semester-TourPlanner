@@ -61,4 +61,31 @@ public class TourDaoImplTest {
         assertTrue(tourDao.delete(testTour.getTourID()));
     }
 
+    @Test
+    void buildClass() {
+    }
+
+    @Test
+    void getItemById() {
+    }
+
+    @Test
+    void getItemByName() {
+    }
+
+    @Test
+    void search() {
+    }
+
+    @Test
+    void insert() {
+    }
+
+    @Test
+    void update() {
+    }
+
+    @Test
+    void getAllTourOrderByName() {
+    }
 }

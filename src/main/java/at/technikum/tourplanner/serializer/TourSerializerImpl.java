@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-
+// TODO: 11.05.2022 @Checked
 public class TourSerializerImpl implements TourSerializer{
 
     @Override

@@ -58,13 +58,13 @@ public class TourDaoTest {
 
     @Test
     public void insertTourTest(){
-       this.tour = initTour();
+        this.tour = initTour();
         tourDao.insert(tour);
-       assertNull(tourDao.getItemById(this.tour.getTourID()));
-       assertNotNull(tourDao.insert(this.tour));
-       assertNotNull(tourDao.getItemById(this.tour.getTourID()));
-       assertTrue(tourDao.delete(this.tour.getTourID()));
-       assertNull(tourDao.getItemById(this.tour.getTourID()));
+        assertNull(tourDao.getItemById(this.tour.getTourID()));
+        assertNotNull(tourDao.insert(this.tour));
+        assertNotNull(tourDao.getItemById(this.tour.getTourID()));
+        assertTrue(tourDao.delete(this.tour.getTourID()));
+        assertNull(tourDao.getItemById(this.tour.getTourID()));
     }
 
     @Test
@@ -86,18 +86,18 @@ public class TourDaoTest {
         assertNull(tourDao.getItemById(this.tour.getTourID()));
     }
 
-  //  @Test
-   //public void updateTourTest(){
-   //    assertNull(tourDao.getItemById(this.tour.getTourID()));
-   //    assertNotNull(tourDao.insert(this.tour));
-   //    Tour updateTour = tourDao.getItemById(this.tour.getTourID());
-   //    assertNotNull(updateTour);
-   //    String title = this.tour.getTitle();
-   //    updateTour.setTitle("UPDATE-TEST");
-   //    assertNotNull(tourDao.update(updateTour));
-   //    assertTrue(updateTour.getTitle().equals("UPDATE-TEST"));
-   //    assertTrue(tourDao.delete(updateTour.getTourID()));
-   //    assertNull(tourDao.getItemById(updateTour.getTourID()));
-   //}
+    //  @Test
+    //public void updateTourTest(){
+    //    assertNull(tourDao.getItemById(this.tour.getTourID()));
+    //    assertNotNull(tourDao.insert(this.tour));
+    //    Tour updateTour = tourDao.getItemById(this.tour.getTourID());
+    //    assertNotNull(updateTour);
+    //    String title = this.tour.getTitle();
+    //    updateTour.setTitle("UPDATE-TEST");
+    //    assertNotNull(tourDao.update(updateTour));
+    //    assertTrue(updateTour.getTitle().equals("UPDATE-TEST"));
+    //    assertTrue(tourDao.delete(updateTour.getTourID()));
+    //    assertNull(tourDao.getItemById(updateTour.getTourID()));
+    //}
 
 }

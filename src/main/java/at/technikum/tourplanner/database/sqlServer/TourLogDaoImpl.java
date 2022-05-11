@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+// TODO: 11.05.2022 @Checked - TEST IMPL
 public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
     /*******************************************************************/
@@ -53,12 +54,13 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         this.closeStatement();
         return null;
     }
+
     /*******************************************************************/
 
 
     //STATISTIK + COUNTER
     @Override
-    public int countTourLogs(String tourID){
+    public int countTourLogs(String tourID) {
         this.parameter = new String[]{tourID};
         this.setStatement(
                 "SELECT  COUNT(*) AS total FROM " + this.tableName + " WHERE \"tourID\" = ? " + ";",
@@ -70,7 +72,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             if (result.next()) {
                 value = this.result.getInt("total");
             }
-                this.closeStatement();
+            this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,8 +80,9 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return value;
     }
+
     @Override
-    public double avgTotalTime(String tourID){
+    public double avgTotalTime(String tourID) {
         this.parameter = new String[]{tourID};
         this.setStatement(
                 "SELECT  AVG(totalTime) AS total FROM " + this.tableName + " WHERE \"tourID\" = ? " + ";",
@@ -91,7 +94,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             if (result.next()) {
                 value = this.result.getInt("total");
             }
-                this.closeStatement();
+            this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -99,9 +102,10 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         return value;
 
     }
+
     @Override
-    public int countStars(String tourID, Stars star){
-        this.parameter = new String[]{tourID,""+star};
+    public int countStars(String tourID, Stars star) {
+        this.parameter = new String[]{tourID, "" + star};
         this.setStatement(
                 "SELECT  COUNT(*) AS total FROM " + this.tableName + " WHERE \"tourID\" = ? AND \"stars\" = ?" + ";",
                 this.parameter
@@ -112,16 +116,17 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             if (result.next()) {
                 value = this.result.getInt("total");
             }
-                this.closeStatement();
+            this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return value;
     }
+
     @Override
-    public int countLevel(String tourID, Level level){
-        this.parameter = new String[]{tourID,""+level};
+    public int countLevel(String tourID, Level level) {
+        this.parameter = new String[]{tourID, "" + level};
         this.setStatement(
                 "SELECT  COUNT(*) AS total FROM " + this.tableName + " WHERE \"tourID\" = ? AND \"level\" = ?" + ";",
                 this.parameter
@@ -132,7 +137,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             if (result.next()) {
                 value = this.result.getInt("total");
             }
-                this.closeStatement();
+            this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -141,18 +146,17 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
     }
 
 
-
     @Override
     public ArrayList<TourLog> getAllTourLog(String tourID) {
 
         ArrayList<TourLog> allTourLogs = new ArrayList<>();
-        ArrayList<String> allTourLogIDs =  new ArrayList<>();
+        ArrayList<String> allTourLogIDs = new ArrayList<>();
 
         this.parameter = new String[]{tourID};
 
-        this.setStatement("SELECT  *  FROM "+this.tableName+" WHERE \"tourID\" = ? ORDER BY \"date\";", this.parameter);
+        this.setStatement("SELECT  *  FROM " + this.tableName + " WHERE \"tourID\" = ? ORDER BY \"date\";", this.parameter);
 
-        try{
+        try {
 
             while (this.result.next()) {
                 allTourLogIDs.add(result.getString("tourLogID"));
@@ -163,11 +167,12 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         }
 
 
-        for (int i = 0; i < allTourLogIDs.size(); i++){
+        for (int i = 0; i < allTourLogIDs.size(); i++) {
             allTourLogs.add(getItemById(allTourLogIDs.get(i)));
         }
         return allTourLogs;
     }
+
     @Override
     public TourLog getItemById(String itemID) {
         this.parameter = new String[]{itemID};
@@ -178,6 +183,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return buildClass(this.result);
     }
+
     @Override
     public TourLog insert(TourLog item) {
 
@@ -185,10 +191,10 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
         if (item == null) {
             return null;
         }
-        if(item.getTourLogID() == null){
+        if (item.getTourLogID() == null) {
             item.setTourLogID(tools.hashString((java.time.LocalTime.now() + item.getTourLogID())));
         }
-        if(getItemById(item.getTourLogID()) == null) {
+        if (getItemById(item.getTourLogID()) == null) {
             this.parameter = new String[]{
                     "" + item.getTourLogID(),
                     "" + item.getTourID(),
@@ -206,6 +212,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         return getItemById(item.getTourLogID());
     }
+
     @Override
     public TourLog update(TourLog item) {
         if (item == null) {
@@ -233,14 +240,13 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                         "\"level\"= ?," +
                         "\"stars\"= ?," +
                         "\"date\" = ?" +
-                         "WHERE \"tourLogID\" = ? ;"
+                        "WHERE \"tourLogID\" = ? ;"
                 , this.parameter
         );
 
 
         return getItemById(item.getTourLogID());
     }
-
 
 
 }

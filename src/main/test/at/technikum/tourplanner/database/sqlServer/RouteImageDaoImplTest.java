@@ -64,4 +64,12 @@ class RouteImageDaoImplTest {
          assertTrue(imageDao.delete(image.getImageID()));
          assertNull(imageDao.getItemById(image.getImageID()));
     }
+
+    @Test
+    void buildClass() {
+    }
+
+    @Test
+    void updateImageData() {
+    }
 }

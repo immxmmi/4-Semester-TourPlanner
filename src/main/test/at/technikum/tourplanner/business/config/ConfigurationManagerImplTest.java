@@ -13,68 +13,139 @@ class ConfigurationManagerImplTest {
         assertFalse(config.getVersion().equals("t"));
     }
 
+
     @Test
-    void getDbUrl() {
+    void getVersion() {
+        assertNotNull(config.getVersion());
+    }
+
+    @Test
+    void testGetDbUrl() {
         assertNotNull(config.getDbUrl());
     }
 
     @Test
-    void getDbDatabase() {
+    void testGetDbDatabase() {
         assertNotNull(config.getDbDatabase());
     }
 
     @Test
-    void getDbUsername() {
+    void testGetDbUsername() {
         assertNotNull(config.getDbUsername());
     }
 
     @Test
-    void getDbPassword() {
+    void testGetDbPassword() {
         assertNotNull(config.getDbPassword());
     }
 
     @Test
-    void getDbPort() {
+    void testGetDbPort() {
         assertNotNull(config.getDbPort());
     }
 
     @Test
-    void getStageWidth() {
-        assertNotNull(config.getStageWidth());
-    }
-
-    @Test
-    void getStageHeight() {
-        assertNotNull(config.getStageHeight());
-    }
-
-    @Test
-    void getMainPage() {
+    void testGetMainPage() {
         assertNotNull(config.getMainPage());
     }
 
     @Test
-    void getErrorPage(){
-    assertNotNull(config.getErrorPage());
+    void testGetErrorPage() {
+        assertNotNull(config.getErrorPage());
     }
 
     @Test
-    void getMapQuestID() {
+    void testGetMapQuestID() {
         assertNotNull(config.getMapQuestID());
     }
 
     @Test
-    void getRoot() {
-        assertNotNull(config.getRoot());
-    }
-
-    @Test
-    void getImage() {
+    void testGetImage() {
         assertNotNull(config.getImage());
     }
 
     @Test
-    void getReport() {
+    void getImageHeight() {
+        assertNotNull(config.getImageHeight());
+    }
+
+    @Test
+    void getImageWidth() {
+        assertNotNull(config.getImageWidth());
+    }
+
+    @Test
+    void getCreateTourHeight() {
+        assertNotNull(config.getEditTourHeight());
+    }
+
+    @Test
+    void getCreateTourWidth() {
+        assertNotNull(config.getCreateTourWidth());
+    }
+
+    @Test
+    void getEditTourWidth() {
+        assertNotNull(config.getEditTourWidth());
+    }
+
+    @Test
+    void getEditTourHeight() {
+        assertNotNull(config.getEditTourHeight());
+    }
+
+    @Test
+    void getEditTourLogWidth() {
+        assertNotNull(config.getEditTourLogWidth());
+    }
+
+    @Test
+    void getEditTourLogHeight() {
+        assertNotNull(config.getEditTourHeight());
+    }
+
+    @Test
+    void testGetRoot() {
+        assertNotNull(config.getRoot());
+    }
+
+    @Test
+    void testGetReport() {
         assertNotNull(config.getReport());
+    }
+
+    @Test
+    void getShowTourHeight() {
+        assertNotNull(config.getShowTourHeight());
+    }
+
+    @Test
+    void getShowTourWidth() {
+        assertNotNull(config.getShowTourWidth());
+    }
+
+    @Test
+    void getListTourHeight() {
+        assertNotNull(config.getListTourHeight());
+    }
+
+    @Test
+    void getListTourWidth() {
+        assertNotNull(config.getListTourWidth());
+    }
+
+    @Test
+    void getErrorWidth() {
+        assertNotNull(config.getErrorWidth());
+    }
+
+    @Test
+    void testGetStageWidth() {
+        assertNotNull(config.getStageWidth());
+    }
+
+    @Test
+    void testGetStageHeight() {
+        assertNotNull(config.getStageHeight());
     }
 }

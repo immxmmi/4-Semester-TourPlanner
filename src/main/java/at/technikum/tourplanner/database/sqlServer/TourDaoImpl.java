@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+// TODO: 11.05.2022 @Checked - TEST IMPL
 public class TourDaoImpl extends AbstractDBTable implements TourDao {
+
 
     /*******************************************************************/
     /**                          Constructor                          **/
@@ -106,7 +108,7 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
             e.printStackTrace();
         }
 
-        if(allTourIDs.size() == 0){
+        if (allTourIDs.size() == 0) {
             this.parameter = new String[]{value, value, value};
             this.setStatement("SELECT *  FROM " + this.tableName + " JOIN \"tourLog\" ON \"tour\".\"tourID\"=\"tourLog\".\"tourID\" WHERE " +
                             "\"level\" like ? " +
@@ -123,7 +125,6 @@ public class TourDaoImpl extends AbstractDBTable implements TourDao {
             }
 
         }
-
 
 
         for (int i = 0; i < allTourIDs.size(); i++) {

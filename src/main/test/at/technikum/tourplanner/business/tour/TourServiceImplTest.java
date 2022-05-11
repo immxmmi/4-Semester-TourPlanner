@@ -51,14 +51,33 @@ class TourServiceImplTest {
 
     @Test
     void updateTour() {
-        // Tour updateTour = this.tour;
-        // assertNotNull(tourService.saveTour(this.tour));
-        // assertNotNull(tourService.searchTourByName("Test"));
-        // updateTour.setDescription("Test - UPDATE");
-        // assertTrue(tourService.deleteTour(this.tour.getTourID()));
+         Tour updateTour = this.tour;
+         assertNotNull(tourService.saveTour(this.tour));
+         assertNotNull(tourService.searchTourByName("Test"));
+         updateTour.setDescription("Test - UPDATE");
+         assertTrue(tourService.deleteTour(this.tour.getTourID()));
     }
+
+
+    @Test
+    void getTourByID() {
+    }
+
 
     @Test
     void getAllTourOrderByName() {
+    }
+
+
+    @Test
+    void searchTourAndTourLog() {
+    }
+
+    @Test
+    void loadTourStatistics() {
+    }
+
+    @Test
+    void saveTourLocal() {
     }
 }

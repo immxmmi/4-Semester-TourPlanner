@@ -6,11 +6,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+// TODO: 11.05.2022 @Checked
 public class NetworkCommunicationServiceImpl implements NetworkCommunicationService {
 
-   //Liefert IMAGE ALS DATEI ZURÜCK
+    //Load IMAGE FROM NET
     @Override
-    public byte[] loadImageByLink(String downloadURL){
+    public byte[] loadImageByLink(String downloadURL) {
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

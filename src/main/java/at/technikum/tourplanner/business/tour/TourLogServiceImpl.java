@@ -7,7 +7,7 @@ import at.technikum.tourplanner.models.Stars;
 import at.technikum.tourplanner.models.TourLog;
 
 import java.util.ArrayList;
-
+// TODO: 11.05.2022 @Checked - TEST IMPL
 public class TourLogServiceImpl implements TourLogService {
 
     private static TourLogDao tourLogDao = new TourLogDaoImpl();

@@ -72,4 +72,38 @@ class TourLogDaoImplTest {
     @Test
     void update() {
     }
+
+    @Test
+    void buildClass() {
+    }
+
+    @Test
+    void countTourLogs() {
+    }
+
+    @Test
+    void avgTotalTime() {
+    }
+
+    @Test
+    void countStars() {
+    }
+
+    @Test
+    void countLevel() {
+    }
+
+    @Test
+    void getAllTourLog() {
+    }
+
+    @Test
+    void getItemById() {
+    }
+
+    @Test
+    void insert() {
+    }
+
+
 }
