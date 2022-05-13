@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
+// TODO: 13.05.2022 @Checked
 public abstract class AbstractNavBar {
 
     public SceneController sCon = new SceneControllerImpl();
@@ -16,12 +17,14 @@ public abstract class AbstractNavBar {
     public void switchToMain(ActionEvent actionEvent) throws IOException {
         sCon.switchToMain(actionEvent);
     }
+
     // LIST TOURS - BUTTON
     @FXML
     private void switchToShowTourList(ActionEvent actionEvent) throws IOException {
         sCon.switchToShowTourList(actionEvent);
     }
 
+    //CREATE NEW TOUR - BUTTON
     @FXML
     private void switchToCreateTour(ActionEvent actionEvent) throws IOException {
         sCon.switchToCreateTour(actionEvent);

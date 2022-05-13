@@ -1,9 +1,7 @@
 package at.technikum.tourplanner.view.controller;
 
-import at.technikum.tourplanner.SceneControllerImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
-import at.technikum.tourplanner.models.Level;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.event.ActionEvent;
@@ -18,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// TODO: 13.05.2022 @Checked
 public class CreateTourController extends AbstractNavBar implements Initializable {
     // TOUR - CREATE
     @FXML
@@ -46,9 +45,9 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
     //INIT
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         loadTransporter();
     }
+
     // BUTTON - CREATE TOUR
     @FXML
     private void createTour(ActionEvent actionEvent) throws IOException {
@@ -104,6 +103,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
             this.switchToMain(actionEvent);
         }
     }
+
     // LOAD TRANSPORTER
     private void loadTransporter() {
         for (Transporter transporter : Transporter.values()) {

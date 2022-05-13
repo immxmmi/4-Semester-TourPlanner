@@ -4,13 +4,11 @@ import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import javafx.beans.property.*;
-import lombok.Builder;
 import lombok.Data;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
-
+// TODO: 13.05.2022 @Checked
 @Data
 public class TourViewModel {
 
@@ -53,7 +51,7 @@ public class TourViewModel {
     }
 
     // wandelt ViewModel in Model
-    public Tour convertTourViewModelInTourModel(TourViewModel tourViewModel){
+    public Tour convertTourViewModelInTourModel(TourViewModel tourViewModel) {
         return Tour.builder()
                 .tourID(tourViewModel.getTourID())
                 .title(tourViewModel.getTitle())

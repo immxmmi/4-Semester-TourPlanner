@@ -16,6 +16,7 @@ class ConfigurationManagerImplTest {
 
     @Test
     void getVersion() {
+
         assertNotNull(config.getVersion());
     }
 

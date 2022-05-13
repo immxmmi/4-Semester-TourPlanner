@@ -379,7 +379,6 @@ public class ShowTourController extends AbstractNavBar {
 
     }
 
-
     @FXML
     public void settingsTour(ActionEvent actionEvent) throws IOException {
         sCon.switchToEditTour(actionEvent,tour);

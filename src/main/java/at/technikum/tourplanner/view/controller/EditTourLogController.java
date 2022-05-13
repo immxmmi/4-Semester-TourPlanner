@@ -2,9 +2,9 @@ package at.technikum.tourplanner.view.controller;
 
 import at.technikum.tourplanner.business.tour.TourLogService;
 import at.technikum.tourplanner.business.tour.TourLogServiceImpl;
-import at.technikum.tourplanner.business.tour.TourService;
-import at.technikum.tourplanner.business.tour.TourServiceImpl;
-import at.technikum.tourplanner.models.*;
+import at.technikum.tourplanner.models.Level;
+import at.technikum.tourplanner.models.Stars;
+import at.technikum.tourplanner.models.TourLog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,12 +12,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// TODO: 11.05.2022 @Checked
 public class EditTourLogController extends AbstractNavBar implements Initializable{
     @FXML
     private TextField set_tour_total_time;
@@ -38,7 +38,7 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
     @FXML
     private Label error_comment;
 
-    TourLogService tourLogService = new TourLogServiceImpl();
+    private TourLogService tourLogService = new TourLogServiceImpl();
 
     private TourLog currentTourLog;
 

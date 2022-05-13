@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+// TODO: 13.05.2022 @Checked
 public class SceneControllerImpl implements SceneController {
     static ConfigurationManager config = new ConfigurationManagerImpl();
     static int width = config.getStageWidth();
@@ -45,23 +46,6 @@ public class SceneControllerImpl implements SceneController {
         width = config.getStageWidth();
         height = config.getStageHeight();
         this.root = FXMLLoader.load(getClass().getResource(config.getMainPage()));
-        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        createStage();
-    }
-
-    //ERROR
-    @Override
-    public void switchToErrorPage(ActionEvent event) throws IOException {
-        width = config.getErrorWidth();;
-        this.root = FXMLLoader.load(getClass().getResource(config.getErrorPage()));
-        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        createStage();
-    }
-
-    // Tour - Suchleiste
-    @Override
-    public void switchToSearchBar(ActionEvent event) throws IOException {
-        this.root = FXMLLoader.load(getClass().getResource("search-main.fxml"));
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         createStage();
     }
@@ -102,7 +86,6 @@ public class SceneControllerImpl implements SceneController {
         createStage();
     }
 
-
     // Tour + TourLogger Einträge - Anzeigen
     @Override
     public void switchToEditTour(ActionEvent event, Tour tour) throws IOException {
@@ -120,23 +103,12 @@ public class SceneControllerImpl implements SceneController {
     @Override
     public void switchToEditTourLog(MouseEvent event, TourLog tourLog) throws IOException {
         System.out.println(tourLog);
-       width = config.getEditTourLogWidth();
-       height = config.getEditTourLogHeight();
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-tourLog-view.fxml"));
-       this.root = loader.load();
-       EditTourLogController editTourLogController = loader.<EditTourLogController>getController();
-       editTourLogController.initialize(tourLog);
-       this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       createStage();
-    }
-
-
-    // TourLogger - Erstellen
-    @Override
-    public void switchToCreateTourLog(ActionEvent event) throws IOException {
-        width = 800;
-        height = 638;
-        this.root = FXMLLoader.load(getClass().getResource("show-tour-view.fxml"));
+        width = config.getEditTourLogWidth();
+        height = config.getEditTourLogHeight();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("edit-tourLog-view.fxml"));
+        this.root = loader.load();
+        EditTourLogController editTourLogController = loader.<EditTourLogController>getController();
+        editTourLogController.initialize(tourLog);
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         createStage();
     }
@@ -156,13 +128,36 @@ public class SceneControllerImpl implements SceneController {
         width = 1169;
         height = 700;
 
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("show-search-list-view.fxml"));
         this.root = loader.load();
 
-
         SearchListController searchListController = loader.<SearchListController>getController();
         searchListController.initialize(searchResult);
+        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        createStage();
+    }
+
+    // TourLogger - Erstellen
+    private void switchToCreateTourLog(ActionEvent event) throws IOException {
+        width = 800;
+        height = 638;
+        this.root = FXMLLoader.load(getClass().getResource("show-tour-view.fxml"));
+        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        createStage();
+    }
+
+    //ERROR
+    private void switchToErrorPage(ActionEvent event) throws IOException {
+        width = config.getErrorWidth();
+        ;
+        this.root = FXMLLoader.load(getClass().getResource(config.getErrorPage()));
+        this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        createStage();
+    }
+
+    // Tour - Suchleiste
+    private void switchToSearchBar(ActionEvent event) throws IOException {
+        this.root = FXMLLoader.load(getClass().getResource("search-main.fxml"));
         this.stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         createStage();
     }

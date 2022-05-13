@@ -5,8 +5,7 @@ import java.util.Properties;
 
 // TODO: 11.05.2022 @Checked 
 public class ConfigurationManagerImpl implements ConfigurationManager {
-
-
+    
     private static String getConfigPropertyValue(String propertyName) {
         Properties properties = new Properties();
         final File initialFile = new File("src/config.properties");
@@ -29,7 +28,7 @@ public class ConfigurationManagerImpl implements ConfigurationManager {
 
     //VERSION
     @Override
-    public String getVersion(){
+    public String getVersion() {
         return getConfigPropertyValue("version");
     }
 

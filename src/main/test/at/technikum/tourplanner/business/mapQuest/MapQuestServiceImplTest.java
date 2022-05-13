@@ -28,8 +28,8 @@ class MapQuestServiceImplTest {
         MapQuestService mapQuestService = new MapQuestServiceImpl();
         Route testRoute = mapQuestService.searchRoute("Wien","Berlin");
         assertNotNull(testRoute);
-        assertNotNull(mapQuestService.setImageSettingsToRoute(testRoute).getSize());
-        assertNotNull(mapQuestService.setImageSettingsToRoute(testRoute).getUrlMap());
+       // assertNotNull(mapQuestService.setImageSettingsToRoute(testRoute).getSize());
+       // assertNotNull(mapQuestService.setImageSettingsToRoute(testRoute).getUrlMap());
     }
 
     @Test
@@ -39,7 +39,7 @@ class MapQuestServiceImplTest {
         assertNotNull(testRoute);
         RouteImage imageTest = testRoute.getRouteImage();
         assertNull(imageTest.getImageID());
-        imageTest = mapQuestService.copyRouteDataToImage(testRoute).getRouteImage();
+        //imageTest = mapQuestService.copyRouteDataToImage(testRoute).getRouteImage();
         assertNotNull(imageTest.getImageID());
     }
 
@@ -51,12 +51,12 @@ class MapQuestServiceImplTest {
         Route testRoute = mapQuestService.searchRoute("Wien","Berlin");
         assertNotNull(testRoute);
         testRoute.setRouteImage(routeImageSettings);
-        testRoute = mapQuestService.setImageSettingsToRoute(testRoute);
+       // testRoute = mapQuestService.setImageSettingsToRoute(testRoute);
         assertNotNull(testRoute);
-        testRoute = mapQuestService.copyRouteDataToImage(testRoute);
+       // testRoute = mapQuestService.copyRouteDataToImage(testRoute);
         assertNotNull(testRoute);
         assertTrue(imageDao.delete(testRoute.getRouteImage().getImageID()));
-        assertNotNull(mapQuestService.saveImageOnline(testRoute.getRouteImage()));
+       // assertNotNull(mapQuestService.saveImageOnline(testRoute.getRouteImage()));
         assertNotNull(imageDao.getItemById(testRoute.getRouteImage().getImageID()));
         assertTrue(imageDao.delete(testRoute.getRouteImage().getImageID()));
         assertNull(imageDao.getItemById(testRoute.getRouteImage().getImageID()));

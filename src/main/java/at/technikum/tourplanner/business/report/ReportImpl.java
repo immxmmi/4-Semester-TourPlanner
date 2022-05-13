@@ -62,7 +62,7 @@ public class ReportImpl implements Report {
             // Route Image
            // PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
             PDImageXObject imageXObject = PDImageXObject.createFromByteArray(newReport,currentRoutImage.getData(),"IMG");
-           write.drawImage(imageXObject, 50, 100, currentRoutImage.getWidth(), currentRoutImage.getHeight());
+           write.drawImage(imageXObject, 200, 100, currentRoutImage.getWidth(), currentRoutImage.getHeight());
 
 
             // START - TEXTING
@@ -73,35 +73,37 @@ public class ReportImpl implements Report {
             write.setFont(PDType1Font.COURIER_BOLD, 13);
             write.setLeading(10f);
             write.newLineAtOffset(25, 700);
-
             write.newLine();
-            write.showText("Tour-Report: " + reportTime);
+            write.showText("Create Report Date: " + reportTime);
             write.newLine();
-            write.showText("Tour Tour ID: " + tour.getTourID());
+            write.showText("Tour ID: " + tour.getTourID());
             write.newLine();
-            write.showText("Tour Name: " + tour.getTitle());
+            write.showText("Date: " + tour.getDate());
             write.newLine();
-            write.showText("Tour To: " + tour.getTo());
+            write.showText("Title: " + tour.getTitle());
             write.newLine();
-            write.showText("Tour From: " + tour.getFrom());
+            write.showText("From: " + tour.getFrom());
             write.newLine();
-            write.showText("Tour Distance: " + tour.getDistance());
+            write.showText("To: " + tour.getTo());
             write.newLine();
-            write.showText("Tour Transport: " + tour.getTransporter().toString());
+            write.showText("Distance: " + tour.getDistance());
             write.newLine();
+            write.showText("Transport: " + tour.getTransporter().toString());
+            write.newLine();
+            write.showText("Description: " + tour.getDescription());
             write.newLine();
 
          for (TourLog tourlog : tourLogs ){
                 write.newLine();
                 write.showText("TourLog-ID: " + tourlog.getTourLogID());
                 write.newLine();
-                write.showText("TourLog-DATE: " + tourlog.getDate());
+                write.showText("Date: " + tourlog.getDate());
                 write.newLine();
-                write.showText("TourLog-STARS: " + tourlog.getStars());
+                write.showText("Stars: " + tourlog.getStars());
                 write.newLine();
-                write.showText("TourLog-LEVEL: " + tourlog.getLevel());
+                write.showText("Level: " + tourlog.getLevel());
                 write.newLine();
-                write.showText("TourLog-COMMENT: " + tourlog.getComment());
+                write.showText("Comment: " + tourlog.getComment());
                 write.newLine();
                 write.newLine();
                 write.newLine();

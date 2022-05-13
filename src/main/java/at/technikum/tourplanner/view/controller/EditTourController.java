@@ -1,11 +1,9 @@
 package at.technikum.tourplanner.view.controller;
 
-import at.technikum.tourplanner.business.ThreadMaker;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
-import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+// TODO: 11.05.2022 @Checked
 public class EditTourController extends AbstractNavBar implements Initializable {
     // TOUR - EDIT
     @FXML
@@ -35,7 +34,6 @@ public class EditTourController extends AbstractNavBar implements Initializable 
     @FXML
     private Label error_description;
 
-
     private Tour currentTour;
 
     //INIT
@@ -43,6 +41,7 @@ public class EditTourController extends AbstractNavBar implements Initializable 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTransporter();
     }
+
     public void initialize(Tour tour) {
         currentTour = tour;
         set_tour_title.setText(tour.getTitle());

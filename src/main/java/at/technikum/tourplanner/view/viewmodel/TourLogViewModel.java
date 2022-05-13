@@ -4,7 +4,7 @@ import at.technikum.tourplanner.models.*;
 import javafx.beans.property.*;
 
 import java.sql.Date;
-
+// TODO: 13.05.2022 @Checked
 public class TourLogViewModel {
 
     private final StringProperty tourLogID;
@@ -35,8 +35,9 @@ public class TourLogViewModel {
         this.stars = new SimpleObjectProperty<Stars>(tourLog.getStars());
         this.date = new SimpleObjectProperty<Date>((Date) tourLog.getDate());
     }
+
     // wandelt ViewModel in Model
-    public TourLog convertTourLogViewModelInTourLogModel(TourLogViewModel tourlogViewModel){
+    public TourLog convertTourLogViewModelInTourLogModel(TourLogViewModel tourlogViewModel) {
         return TourLog.builder()
                 .totalTime(tourlogViewModel.getTotalTime())
                 .comment(tourlogViewModel.getComment())

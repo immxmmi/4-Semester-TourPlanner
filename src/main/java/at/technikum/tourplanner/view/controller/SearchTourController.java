@@ -1,21 +1,17 @@
 package at.technikum.tourplanner.view.controller;
 
-import at.technikum.tourplanner.SceneControllerImpl;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.view.viewmodel.TourViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
+// TODO: 13.05.2022 @Checked
 public class SearchTourController extends AbstractNavBar {
 
     @FXML

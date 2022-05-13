@@ -33,57 +33,18 @@ public class MapQuestServiceImpl implements MapQuestService {
 
     private static ConfigurationManager config = new ConfigurationManagerImpl();
     private RouteImageDao routeImageDao = new RouteImageDaoImpl();
+    private NetworkCommunicationService net = new NetworkCommunicationServiceImpl();
     private Tour currentTour;
+
 
     // 1. SEARCH
     @Override
     public Route searchRoute(String from, String to) {
-
+        // Create a new Route - with Builder
         Route currentRoute = this.routeBuilder(from, to);
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(currentRoute.getUrlRoute()))
-                    .build();
-
-            CompletableFuture<HttpResponse<String>> response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-            ObjectMapper mapper = new ObjectMapper();
-
-            String body = response.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
-
-
-            if (!mapper.readTree(body).get("route").get("routeError").get("errorCode").toString().equals("-400")) {
-                return null;
-            }
-
-
-            currentRoute.setRouteBody(mapper.readTree(body).get("route"));
-            currentRoute.setDistance(Double.valueOf(mapper.readTree(body).get("route").get("distance").toString()));
-            currentRoute.setTime(Time.valueOf(mapper.readTree(body).get("route").get("formattedTime").toString().replace("\"", "")));
-            currentRoute.setSessionID("&session=" + currentRoute.getRouteBody().get("sessionId").toString().replace("\"", ""));
-            String lr = currentRoute.getRouteBody().get("boundingBox").get("lr").get("lng").toString() + "," + currentRoute.getRouteBody().get("boundingBox").get("lr").get("lat").toString();
-            String ul = currentRoute.getRouteBody().get("boundingBox").get("ul").get("lng").toString() + "," + currentRoute.getRouteBody().get("boundingBox").get("lr").get("lat").toString();
-            currentRoute.setBoundingBox("&boundingBox=" + lr + "," + ul);
-
-            return currentRoute;
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return RouteMapper(currentRoute);
     }
-
-    //2. BUILD -
+    //1.1 BUILD - KEY  + FROM, TO
     private Route routeBuilder(String from, String to) {
         Route route = Route.builder()
                 .key("?key=" + config.getMapQuestID())
@@ -94,16 +55,44 @@ public class MapQuestServiceImpl implements MapQuestService {
         route.setUrlRoute("http://www.mapquestapi.com/directions/v2/route" + route.getKey() + "&from=" + route.getFrom() + "&to=" + route.getTo());
         return route;
     }
+    // 1.2 Mapper --> search in the INTERNET
+    private Route RouteMapper(Route currentRoute){
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String body = net.getResponseBodyByURL(currentRoute.getUrlRoute());
 
-    //3. SET IMAGE SETTINGS
-    @Override
-    public Route setImageSettingsToRoute(Route currentRoute) {
-        currentRoute.setSize("&size=" + currentRoute.getRouteImage().getWidth() + "," + currentRoute.getRouteImage().getHeight());
-        currentRoute.setUrlMap(createDownloadURL(currentRoute, true, false));
-        return currentRoute;
+            if (body.equals("")) {
+                return null;
+            }
+
+            if (!mapper.readTree(body).get("route").get("routeError").get("errorCode").toString().equals("-400")) {
+                return null;
+            }
+            currentRoute.setRouteBody(mapper.readTree(body).get("route"));
+            currentRoute.setDistance(Double.valueOf(mapper.readTree(body).get("route").get("distance").toString()));
+            currentRoute.setTime(Time.valueOf(mapper.readTree(body).get("route").get("formattedTime").toString().replace("\"", "")));
+            currentRoute.setSessionID("&session=" + currentRoute.getRouteBody().get("sessionId").toString().replace("\"", ""));
+            String lr = currentRoute.getRouteBody().get("boundingBox").get("lr").get("lng").toString() + "," + currentRoute.getRouteBody().get("boundingBox").get("lr").get("lat").toString();
+            String ul = currentRoute.getRouteBody().get("boundingBox").get("ul").get("lng").toString() + "," + currentRoute.getRouteBody().get("boundingBox").get("lr").get("lat").toString();
+            currentRoute.setBoundingBox("&boundingBox=" + lr + "," + ul);
+
+            return currentRoute;
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    //4. CREATE URL
+    //2. SET IMAGE SETTINGS
+    private Route setImageSettingsToRoute(Route currentRoute) {
+        currentRoute.setSize("&size=" + currentRoute.getRouteImage().getWidth() + "," + currentRoute.getRouteImage().getHeight());
+        currentRoute.setUrlMap(createDownloadURL(currentRoute, true, false));
+       // currentRoute = copyRouteDataToImage(currentRoute);
+        return copyRouteDataToImage(currentRoute);
+    }
+    //2.1 CREATE IMG-URL
     private String createDownloadURL(Route currentRoute, boolean defaultMarker, boolean zoom) {
         String params = currentRoute.getKey() + currentRoute.getSize() + currentRoute.getSessionID();
         if (!defaultMarker) {
@@ -114,10 +103,8 @@ public class MapQuestServiceImpl implements MapQuestService {
         }
         return "http://www.mapquestapi.com/staticmap/v5/map" + params;
     }
-
-    //5. SAVE DATA TO IMAGE
-    @Override
-    public Route copyRouteDataToImage(Route currentRoute) {
+    //2.2 SAVE DATA TO IMAGE
+    private Route copyRouteDataToImage(Route currentRoute) {
         String filename = currentRoute.getFrom() + "-" + currentRoute.getTo();
         if (currentTour.getTourID() != null) {
             currentRoute.getRouteImage().setImageID(currentTour.getTourID());
@@ -132,21 +119,17 @@ public class MapQuestServiceImpl implements MapQuestService {
         return currentRoute;
     }
 
-    //5.1 SAVE IMAGE
-    @Override
-    public RouteImage saveImageOnline(RouteImage currentRouteImage) {
+    //3 SAVE IMAGE in DATABASE
+    private RouteImage saveImageOnline(RouteImage currentRouteImage) {
         return routeImageDao.insert(currentRouteImage);
     }
-
-    //5.2 LOAD IMAGE FROM INTERNET
+    //4.1 LOAD IMAGE FROM INTERNET
     private byte[] loadRouteImage(String downloadURL) {
-        NetworkCommunicationService networkCommunicationService = new NetworkCommunicationServiceImpl();
-        return networkCommunicationService.loadImageByLink(downloadURL);
+        return net.loadImageByLink(downloadURL);
     }
 
-    //6 UPDATE
-    @Override
-    public RouteImage updateImageOnline(RouteImage currentRouteImage) {
+    //5 UPDATE
+    private RouteImage updateImage(RouteImage currentRouteImage) {
         return routeImageDao.update(currentRouteImage);
     }
 
@@ -154,32 +137,17 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public Route startRoute(String from, String to) {
         final Route[] route = new Route[1];
-        RouteImage routeImageSettings = RouteImage.builder().build();
-
         // SET ROUTE + IMAGE
-
         route[0] = searchRoute(from, to);
-        if (route[0] == null) {
-            return null;
-        }
-        route[0].setRouteImage(routeImageSettings);
-
-
-        // copy image and set settings
-
+        if (route[0] == null) {return null;}
+        //  set image setting
         route[0] = setImageSettingsToRoute(route[0]);
-        route[0] = copyRouteDataToImage(route[0]);
-
-
         // save in DataBase
         saveImageOnline(route[0].getRouteImage());
         // DOWNLOAD  IMAGE
         saveImageDataOnline(route[0]);
-
-
         return route[0];
     }
-
     //check Route
     @Override
     public Route startRoute(Tour tour) {
@@ -187,18 +155,29 @@ public class MapQuestServiceImpl implements MapQuestService {
         return startRoute(tour.getFrom(), tour.getTo());
     }
 
+
     // CREATE IMAGE
-    @Override
-    public Image showLocalRouteImage(RouteImage routeImage) {
+    private Image showLocalRouteImage(RouteImage routeImage) {
         FileAccess fileAccess = new FileAccessImpl();
         File file = fileAccess.readFile(routeImage.getImageID() + ".jpg");
         return new Image(file.getAbsolutePath());
     }
+
     @Override
     public Image showOnlineRouteImage(RouteImage routeImage) {
         byte[] image = routeImage.getData();
         return new Image(new ByteArrayInputStream(image));
     }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -227,7 +206,6 @@ public class MapQuestServiceImpl implements MapQuestService {
         routeImageDao.update(route.getRouteImage());
 
         return route.getRouteImage();
-
     }
 
     // TODO: 09.05.2022 noch nicht in Verwendung
