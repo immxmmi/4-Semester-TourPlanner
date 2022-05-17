@@ -1,4 +1,4 @@
-# 4-Semester-TourPlaner
+# 4-Semester-TourPlanner
 Links:
 - Docker:  https://hub.docker.com/r/immxmmi/4-semester-tour-planer
 - Git: https://github.com/immxmmi/4-Semester-SWEN2-TourPlanner.git 
