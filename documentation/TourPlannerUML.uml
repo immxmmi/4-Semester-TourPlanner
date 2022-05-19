@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Schako/Desktop/Desktop/Uni/Computer Science Sem 4/Software Engineering 2/4-Semester-TourPlanner/src/main/java</OriginalElement>
+  <nodes>
+    <node x="454.0" y="447.0">at.technikum.tourplanner.view.controller.SearchTourController</node>
+    <node x="1813.0" y="1888.0">at.technikum.tourplanner.business.report.Report</node>
+    <node x="1538.0" y="1888.0">at.technikum.tourplanner.database.fileServer.FileAccess</node>
+    <node x="384.0" y="2266.0">at.technikum.tourplanner.business.net.NetworkCommunicationServiceImpl</node>
+    <node x="308.0" y="928.0">at.technikum.tourplanner.view.controller.TourListController</node>
+    <node x="1982.0" y="1501.0">at.technikum.tourplanner.utils.TextColor</node>
+    <node x="1757.0" y="1501.0">at.technikum.tourplanner.SceneController</node>
+    <node x="0.0" y="2187.0">at.technikum.tourplanner.MainApplication</node>
+    <node x="594.9431818181818" y="1390.0">at.technikum.tourplanner.database.sqlServer.TourLogDaoImpl</node>
+    <node x="675.5" y="1208.5">at.technikum.tourplanner.database.dao.TourLogDao</node>
+    <node x="1239.0" y="2266.0">at.technikum.tourplanner.serializer.TourSerializerImpl</node>
+    <node x="529.0" y="1501.0">at.technikum.tourplanner.models.Tour</node>
+    <node x="425.0" y="1888.0">at.technikum.tourplanner.models.TourLog</node>
+    <node x="1076.0" y="1501.0">at.technikum.tourplanner.database.common.DBConnect</node>
+    <node x="1473.0" y="2187.0">at.technikum.tourplanner.utils.Tools</node>
+    <node x="816.0" y="1888.0">at.technikum.tourplanner.view.viewmodel.TourLogViewModel</node>
+    <node x="335.94318181818187" y="1378.0">at.technikum.tourplanner.database.sqlServer.TourDaoImpl</node>
+    <node x="1255.0" y="2187.0">at.technikum.tourplanner.serializer.TourSerializer</node>
+    <node x="735.0" y="2187.0">at.technikum.tourplanner.business.config.ConfigurationManager</node>
+    <node x="666.0" y="128.0">at.technikum.tourplanner.view.controller.ShowTourController</node>
+    <node x="0.0" y="1501.0">at.technikum.tourplanner.models.RouteImage</node>
+    <node x="250.0" y="2187.0">at.technikum.tourplanner.models.Level</node>
+    <node x="1043.0" y="359.0">at.technikum.tourplanner.view.controller.EditTourLogController</node>
+    <node x="719.0" y="2266.0">at.technikum.tourplanner.business.config.ConfigurationManagerImpl</node>
+    <node x="0.0" y="1208.5">at.technikum.tourplanner.database.dao.RouteImageDao</node>
+    <node x="111.19318181818181" y="1390.0">at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl</node>
+    <node x="1306.0" y="392.0">at.technikum.tourplanner.view.controller.EditTourController</node>
+    <node x="1325.5" y="1039.0">at.technikum.tourplanner.models.Route</node>
+    <node x="1481.0" y="1967.0">at.technikum.tourplanner.database.fileServer.FileAccessImpl</node>
+    <node x="996.0" y="2266.0">at.technikum.tourplanner.serializer.TourLogSerializerImpl</node>
+    <node x="1351.0" y="1888.0">at.technikum.tourplanner.models.Stars</node>
+    <node x="513.75" y="1208.5">at.technikum.tourplanner.database.dao.TourDao</node>
+    <node x="103.0" y="359.0">at.technikum.tourplanner.view.controller.AbstractTourList</node>
+    <node x="923.0" y="0.0">at.technikum.tourplanner.view.controller.AbstractNavBar</node>
+    <node x="1620.0" y="2187.0">at.technikum.tourplanner.business.ThreadMaker</node>
+    <node x="853.5" y="1039.0">at.technikum.tourplanner.models.TourStatistics</node>
+    <node x="1457.0" y="2266.0">at.technikum.tourplanner.utils.ToolsImpl</node>
+    <node x="178.99999999999994" y="1118.0">at.technikum.tourplanner.database.common.AbstractDBTable</node>
+    <node x="400.0" y="2187.0">at.technikum.tourplanner.business.net.NetworkCommunicationService</node>
+    <node x="491.25" y="1039.0">at.technikum.tourplanner.database.common.DaoPattern</node>
+    <node x="1609.0" y="359.0">at.technikum.tourplanner.view.controller.CreateTourController</node>
+    <node x="1104.5" y="1888.0">at.technikum.tourplanner.business.mapQuest.MapQuestService</node>
+    <node x="2009.0" y="1967.0">at.technikum.tourplanner.business.tour.TourLogServiceImpl</node>
+    <node x="168.0" y="1967.0">at.technikum.tourplanner.business.tour.TourServiceImpl</node>
+    <node x="0.0" y="916.0">at.technikum.tourplanner.view.controller.SearchListController</node>
+    <node x="1732.0" y="1580.0">at.technikum.tourplanner.SceneControllerImpl</node>
+    <node x="1757.0" y="1967.0">at.technikum.tourplanner.business.report.ReportImpl</node>
+    <node x="2025.0" y="1888.0">at.technikum.tourplanner.business.tour.TourLogService</node>
+    <node x="1012.0" y="2187.0">at.technikum.tourplanner.serializer.TourLogSerializer</node>
+    <node x="210.5" y="1888.0">at.technikum.tourplanner.business.tour.TourService</node>
+    <node x="1420.0" y="1501.0">at.technikum.tourplanner.view.viewmodel.TourViewModel</node>
+    <node x="0.0" y="1888.0">at.technikum.tourplanner.models.Transporter</node>
+    <node x="1068.0" y="1967.0">at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="at.technikum.tourplanner.serializer.TourLogSerializerImpl" target="at.technikum.tourplanner.serializer.TourLogSerializer" relationship="REALIZATION">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.sqlServer.TourLogDaoImpl" target="at.technikum.tourplanner.database.dao.TourLogDao" relationship="REALIZATION">
+      <point x="41.25" y="-27.0" />
+      <point x="718.6931818181818" y="1358.0" />
+      <point x="742.0" y="1358.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.business.net.NetworkCommunicationServiceImpl" target="at.technikum.tourplanner.business.net.NetworkCommunicationService" relationship="REALIZATION">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.business.report.ReportImpl" target="at.technikum.tourplanner.business.report.Report" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.dao.TourLogDao" target="at.technikum.tourplanner.database.common.DaoPattern" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="742.0" y="1093.0" />
+      <point x="567.75" y="1093.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.fileServer.FileAccessImpl" target="at.technikum.tourplanner.database.fileServer.FileAccess" relationship="REALIZATION">
+      <point x="0.0" y="-50.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.dao.RouteImageDao" target="at.technikum.tourplanner.database.common.DaoPattern" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="79.5" y="1093.0" />
+      <point x="567.75" y="1093.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl" target="at.technikum.tourplanner.database.common.AbstractDBTable" relationship="GENERALIZATION">
+      <point x="47.75" y="-27.0" />
+      <point x="254.4431818181818" y="1358.0" />
+      <point x="329.99999999999994" y="1358.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.view.controller.TourListController" target="at.technikum.tourplanner.view.controller.AbstractTourList" relationship="GENERALIZATION">
+      <point x="0.0" y="-27.0" />
+      <point x="393.0" y="891.0" />
+      <point x="268.5" y="891.0" />
+      <point x="0.0" y="138.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.view.controller.EditTourLogController" target="at.technikum.tourplanner.view.controller.AbstractNavBar" relationship="GENERALIZATION">
+      <point x="0.0" y="-138.0" />
+      <point x="1164.5" y="103.0" />
+      <point x="1004.5" y="103.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.view.controller.ShowTourController" target="at.technikum.tourplanner.view.controller.AbstractNavBar" relationship="GENERALIZATION">
+      <point x="0.0" y="-369.0" />
+      <point x="844.5" y="103.0" />
+      <point x="1004.5" y="103.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl" target="at.technikum.tourplanner.database.dao.RouteImageDao" relationship="REALIZATION">
+      <point x="-47.75" y="-27.0" />
+      <point x="158.9431818181818" y="1358.0" />
+      <point x="79.5" y="1358.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.view.controller.SearchListController" target="at.technikum.tourplanner.view.controller.AbstractTourList" relationship="GENERALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="144.0" y="891.0" />
+      <point x="268.5" y="891.0" />
+      <point x="0.0" y="138.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.serializer.TourSerializerImpl" target="at.technikum.tourplanner.serializer.TourSerializer" relationship="REALIZATION">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.sqlServer.TourDaoImpl" target="at.technikum.tourplanner.database.dao.TourDao" relationship="REALIZATION">
+      <point x="59.74999999999994" y="-39.0" />
+      <point x="515.1931818181818" y="1348.0" />
+      <point x="567.75" y="1348.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.dao.TourDao" target="at.technikum.tourplanner.database.common.DaoPattern" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.utils.ToolsImpl" target="at.technikum.tourplanner.utils.Tools" relationship="REALIZATION">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.view.controller.EditTourController" target="at.technikum.tourplanner.view.controller.AbstractNavBar" relationship="GENERALIZATION">
+      <point x="0.0" y="-105.0" />
+      <point x="1447.5" y="103.0" />
+      <point x="1004.5" y="103.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.business.tour.TourServiceImpl" target="at.technikum.tourplanner.business.tour.TourService" relationship="REALIZATION">
+      <point x="0.0" y="-83.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.sqlServer.TourDaoImpl" target="at.technikum.tourplanner.database.common.AbstractDBTable" relationship="GENERALIZATION">
+      <point x="-59.75000000000006" y="-39.0" />
+      <point x="395.69318181818176" y="1358.0" />
+      <point x="329.99999999999994" y="1358.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.view.controller.SearchTourController" target="at.technikum.tourplanner.view.controller.AbstractNavBar" relationship="GENERALIZATION">
+      <point x="0.0" y="-50.0" />
+      <point x="550.0" y="103.0" />
+      <point x="1004.5" y="103.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.database.sqlServer.TourLogDaoImpl" target="at.technikum.tourplanner.database.common.AbstractDBTable" relationship="GENERALIZATION">
+      <point x="-41.25" y="-27.0" />
+      <point x="636.1931818181818" y="1358.0" />
+      <point x="329.99999999999994" y="1358.0" />
+      <point x="0.0" y="105.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.view.controller.AbstractTourList" target="at.technikum.tourplanner.view.controller.AbstractNavBar" relationship="GENERALIZATION">
+      <point x="0.0" y="-138.0" />
+      <point x="268.5" y="103.0" />
+      <point x="1004.5" y="103.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.SceneControllerImpl" target="at.technikum.tourplanner.SceneController" relationship="REALIZATION">
+      <point x="0.0" y="-94.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.business.tour.TourLogServiceImpl" target="at.technikum.tourplanner.business.tour.TourLogService" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.business.config.ConfigurationManagerImpl" target="at.technikum.tourplanner.business.config.ConfigurationManager" relationship="REALIZATION">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="at.technikum.tourplanner.view.controller.CreateTourController" target="at.technikum.tourplanner.view.controller.AbstractNavBar" relationship="GENERALIZATION">
+      <point x="0.0" y="-138.0" />
+      <point x="1750.5" y="103.0" />
+      <point x="1004.5" y="103.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl" target="at.technikum.tourplanner.business.mapQuest.MapQuestService" relationship="REALIZATION">
+      <point x="0.0" y="-72.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.37303275202041686" showDependencies="false" x="1096.5" y="1165.5" />
+  <SelectedNodes>
+    <node>at.technikum.tourplanner.database.dao.TourDao</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
