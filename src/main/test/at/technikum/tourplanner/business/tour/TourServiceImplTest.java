@@ -22,7 +22,7 @@ class TourServiceImplTest {
                 .from("Wien")
                 .to("Berlin")
                 .description("Das ist ein Test")
-                .transporter(Transporter.Walk)
+                .transporter(Transporter.fastest)
                 .build();
     }
 

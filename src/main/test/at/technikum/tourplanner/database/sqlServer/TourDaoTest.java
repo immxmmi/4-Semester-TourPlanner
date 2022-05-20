@@ -39,7 +39,7 @@ public class TourDaoTest {
                 .date(date)
                 .description("Das ist ein Test")
                 .routeImage(routeImage)
-                .transporter(Transporter.Walk)
+                .transporter(Transporter.fastest)
                 .distance(11.0)
                 .time(Time.valueOf("11:11:11"))
                 .build();

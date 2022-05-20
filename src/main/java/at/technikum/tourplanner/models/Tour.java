@@ -33,7 +33,7 @@ public class Tour {
     private Time time;
     @SerializedName("transport")
     @Builder.Default
-    private Transporter transporter = Transporter.Walk;
+    private Transporter transporter = Transporter.fastest;
     @SerializedName("tour-date")
     private Date date;
 

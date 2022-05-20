@@ -129,8 +129,8 @@ public abstract class AbstractTourList extends AbstractNavBar {
 
         if (file != null) {
             doc.save(file);
-            doc.close();
         }
+            doc.close();
     }
 
     //SAVE - FORMAT

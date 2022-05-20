@@ -33,7 +33,7 @@ public class TourViewModel {
         this.time = new SimpleObjectProperty<>(new Time(000));
         this.date = new SimpleObjectProperty<>(null);
         this.routImage = new SimpleObjectProperty<>(null);
-        this.transporter = new SimpleObjectProperty<>(Transporter.Walk);
+        this.transporter = new SimpleObjectProperty<>(Transporter.fastest);
     }
 
     // wandelt Model in ViewModel

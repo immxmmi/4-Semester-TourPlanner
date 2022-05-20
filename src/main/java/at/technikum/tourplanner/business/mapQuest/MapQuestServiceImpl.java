@@ -11,6 +11,7 @@ import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Route;
 import at.technikum.tourplanner.models.Tour;
+import at.technikum.tourplanner.models.Transporter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,20 +40,22 @@ public class MapQuestServiceImpl implements MapQuestService {
 
     // 1. SEARCH
     @Override
-    public Route searchRoute(String from, String to) {
+    public Route searchRoute(String from, String to, Transporter transporter) {
         // Create a new Route - with Builder
-        Route currentRoute = this.routeBuilder(from, to);
+        Route currentRoute = this.routeBuilder(from, to, transporter);
         return RouteMapper(currentRoute);
     }
     //1.1 BUILD - KEY  + FROM, TO
-    private Route routeBuilder(String from, String to) {
+    private Route routeBuilder(String from, String to, Transporter transporter) {
         Route route = Route.builder()
                 .key("?key=" + config.getMapQuestID())
                 .from(from)
                 .to(to)
                 .build();
 
-        route.setUrlRoute("http://www.mapquestapi.com/directions/v2/route" + route.getKey() + "&from=" + route.getFrom() + "&to=" + route.getTo());
+        route.setUrlRoute("http://www.mapquestapi.com/directions/v2/route" + route.getKey() + "&from=" + route.getFrom() + "&to=" + route.getTo() + "&routeType=" + transporter.toString());
+
+      //  System.out.println(route.getUrlRoute());
         return route;
     }
     // 1.2 Mapper --> search in the INTERNET
@@ -135,10 +138,10 @@ public class MapQuestServiceImpl implements MapQuestService {
 
     //start Image
     @Override
-    public Route startRoute(String from, String to) {
+    public Route startRoute(String from, String to, Transporter transporter) {
         final Route[] route = new Route[1];
         // SET ROUTE + IMAGE
-        route[0] = searchRoute(from, to);
+        route[0] = searchRoute(from, to, transporter);
         if (route[0] == null) {return null;}
         //  set image setting
         route[0] = setImageSettingsToRoute(route[0]);
@@ -152,7 +155,7 @@ public class MapQuestServiceImpl implements MapQuestService {
     @Override
     public Route startRoute(Tour tour) {
         currentTour = tour;
-        return startRoute(tour.getFrom(), tour.getTo());
+        return startRoute(tour.getFrom(), tour.getTo(), tour.getTransporter());
     }
 
 

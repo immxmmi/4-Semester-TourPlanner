@@ -6,6 +6,7 @@ import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
 import at.technikum.tourplanner.models.Route;
 import at.technikum.tourplanner.models.RouteImage;
+import at.technikum.tourplanner.models.Transporter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,18 +16,18 @@ class MapQuestServiceImplTest {
     @Test
     void searchRoute() {
         MapQuestService mapQuestService = new MapQuestServiceImpl();
-        Route testRoute = mapQuestService.searchRoute("Wien","Berlin");
+        Route testRoute = mapQuestService.searchRoute("Wien","Berlin", Transporter.fastest);
         assertNotNull(testRoute);
         assertNotNull(testRoute.getRouteBody());
 
-        Route failRoute = mapQuestService.searchRoute("Gsdadasdw","Berlin");
+        Route failRoute = mapQuestService.searchRoute("Gsdadasdw","Berlin", Transporter.fastest);
         assertNull(failRoute);
     }
 
     @Test
     void setImageSettingsToRoute() {
         MapQuestService mapQuestService = new MapQuestServiceImpl();
-        Route testRoute = mapQuestService.searchRoute("Wien","Berlin");
+        Route testRoute = mapQuestService.searchRoute("Wien","Berlin", Transporter.fastest);
         assertNotNull(testRoute);
        // assertNotNull(mapQuestService.setImageSettingsToRoute(testRoute).getSize());
        // assertNotNull(mapQuestService.setImageSettingsToRoute(testRoute).getUrlMap());
@@ -35,7 +36,7 @@ class MapQuestServiceImplTest {
     @Test
     void copyRouteDataToImage() {
         MapQuestService mapQuestService = new MapQuestServiceImpl();
-        Route testRoute = mapQuestService.searchRoute("Wien","Berlin");
+        Route testRoute = mapQuestService.searchRoute("Wien","Berlin", Transporter.fastest);
         assertNotNull(testRoute);
         RouteImage imageTest = testRoute.getRouteImage();
         assertNull(imageTest.getImageID());
@@ -48,7 +49,7 @@ class MapQuestServiceImplTest {
         RouteImage routeImageSettings = RouteImage.builder().build();
         MapQuestService mapQuestService = new MapQuestServiceImpl();
         RouteImageDao imageDao = new RouteImageDaoImpl();
-        Route testRoute = mapQuestService.searchRoute("Wien","Berlin");
+        Route testRoute = mapQuestService.searchRoute("Wien","Berlin", Transporter.fastest);
         assertNotNull(testRoute);
         testRoute.setRouteImage(routeImageSettings);
        // testRoute = mapQuestService.setImageSettingsToRoute(testRoute);

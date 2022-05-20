@@ -29,7 +29,7 @@ public class TourDaoImplTest {
         return Tour.builder()
                 .tourID("Test-T1")
                 .title("Test-Tour-1")
-                .transporter(Transporter.Walk)
+                .transporter(Transporter.fastest)
                 .from("Wien")
                 .to("Berlin")
                 .routeImage(image)
