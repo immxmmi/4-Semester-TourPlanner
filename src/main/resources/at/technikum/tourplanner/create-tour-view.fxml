@@ -85,27 +85,27 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Label fx:id="error_title" layoutX="736.0" layoutY="166.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
+      <Label fx:id="error_title" layoutX="736.0" layoutY="166.0" prefHeight="27.0" prefWidth="288.0" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="error_to" layoutX="736.0" layoutY="313.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
+      <Label fx:id="error_to" layoutX="727.0" layoutY="313.0" prefHeight="27.0" prefWidth="288.0" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="error_from" layoutX="736.0" layoutY="261.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
+      <Label fx:id="error_from" layoutX="727.0" layoutY="261.0" prefHeight="27.0" prefWidth="297.0" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="error_description" layoutX="732.0" layoutY="376.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
+      <Label fx:id="error_description" layoutX="732.0" layoutY="376.0" prefHeight="27.0" prefWidth="288.0" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="error_transport" layoutX="736.0" layoutY="214.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
+      <Label fx:id="error_transport" layoutX="461.0" layoutY="214.0" prefHeight="27.0" prefWidth="563.0" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="23.0" />
          </font>

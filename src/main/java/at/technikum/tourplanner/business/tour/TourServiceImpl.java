@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -82,6 +83,10 @@ public class TourServiceImpl implements TourService {
 
         //TIME
         tour.setTime(currentRoute[0].getTime());
+
+        if(tour.getDistance() == 0.0){
+            return null;
+        }
 
         return tourDao.insert(tour);
     }

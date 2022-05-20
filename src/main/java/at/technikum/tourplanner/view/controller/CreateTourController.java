@@ -90,6 +90,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
         }
 
 
+
         if (check) {
             Tour tour = Tour.builder()
                     .title(set_tour_title.getText())
@@ -100,8 +101,13 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
                     .build();
 
             tourService.saveTour(tour);
-            if(tourService.getTourByID(tour.getTourID()) == null){
-                // ------->>check = false;
+
+            if(tourService.getTourByID(tour.getTourID())==null){
+                error_from.setText("! - Place may not exit");
+                error_to.setText("! - Place may not exit");
+                if(set_tour_transport.getValue().equals(Transporter.pedestrian)) {
+                    error_transport.setText("! - Maybe too far to walk (limit: 200 miles / 320 km)");
+                }
             }else{
                 this.switchToMain(actionEvent);
             }
