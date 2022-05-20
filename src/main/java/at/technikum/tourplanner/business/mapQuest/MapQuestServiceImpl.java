@@ -53,9 +53,9 @@ public class MapQuestServiceImpl implements MapQuestService {
                 .to(to)
                 .build();
 
-        route.setUrlRoute("http://www.mapquestapi.com/directions/v2/route" + route.getKey() + "&from=" + route.getFrom() + "&to=" + route.getTo() + "&routeType=" + transporter.toString());
+        route.setUrlRoute("http://www.mapquestapi.com/directions/v2/route" + route.getKey() + "&from=" + route.getFrom() + "&to=" + route.getTo() + "&routeType=" + transporter.toString() + "&unit=k");
 
-      //  System.out.println(route.getUrlRoute());
+        //System.out.println(route.getUrlRoute());
         return route;
     }
     // 1.2 Mapper --> search in the INTERNET

@@ -34,6 +34,9 @@ public class TourServiceImpl implements TourService {
     private TourDao tourDao = new TourDaoImpl();
     //current-TOUR
     private Tour currentTour = new Tour();
+    //INSTANCE
+    MapQuestService mapQuestService = new MapQuestServiceImpl();
+    RouteImageDao routeImageDao = new RouteImageDaoImpl();
 
 
     //DAO
@@ -46,10 +49,6 @@ public class TourServiceImpl implements TourService {
     public Tour saveTour(Tour tour) {
 
         Tools tools = new ToolsImpl();
-        MapQuestService mapQuestService = new MapQuestServiceImpl();
-        RouteImageDao routeImageDao = new RouteImageDaoImpl();
-
-
         //ID - HASH-WERT and DATE
 
         //DATE
@@ -77,7 +76,6 @@ public class TourServiceImpl implements TourService {
 
         // IMAGE
         tour.setRouteImage(routeImage);
-        tour.setRouteImage(routeImage);
 
         //DISTANCE
         tour.setDistance(currentRoute[0].getDistance());
@@ -102,6 +100,27 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public Tour updateTour(Tour tour) {
+
+        //delete IMG
+        routeImageDao.delete(tour.getRouteImage().getImageID());
+
+        // ROUTE
+        final Route[] currentRoute = {null};
+        currentRoute[0] = mapQuestService.startRoute(tour);
+
+        if (currentRoute[0] == null) {return null;}
+
+        // IMAGE
+        RouteImage routeImage = routeImageDao.getItemById(currentRoute[0].getRouteImage().getImageID());
+        if (routeImage == null) {return null;}
+        tour.setRouteImage(routeImage);
+
+        //DISTANCE
+        tour.setDistance(currentRoute[0].getDistance());
+
+        //TIME
+        tour.setTime(currentRoute[0].getTime());
+
         tour.setDate(date);
         return tourDao.update(tour);
     }

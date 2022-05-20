@@ -28,7 +28,7 @@
           <TableColumn fx:id="col_title" prefWidth="229.0" text="Title:" />
           <TableColumn fx:id="col_from" prefWidth="231.0" text="From:" />
             <TableColumn fx:id="col_to" prefWidth="197.0" text="To:" />
-            <TableColumn fx:id="col_distance" prefWidth="133.0" text="Distance:" />
+            <TableColumn fx:id="col_distance" prefWidth="133.0" text="Distance in km :" />
             <TableColumn fx:id="col_time" prefWidth="156.0" text="Time:" />
         </columns>
       </TableView>

@@ -42,7 +42,7 @@ public class NetworkCommunicationServiceImpl implements NetworkCommunicationServ
                 .build();
         CompletableFuture<HttpResponse<String>> response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
         try {
-            return response.thenApply(HttpResponse::body).get(5, TimeUnit.SECONDS);
+            return response.thenApply(HttpResponse::body).get(40, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

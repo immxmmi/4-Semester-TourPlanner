@@ -100,7 +100,11 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
                     .build();
 
             tourService.saveTour(tour);
-            this.switchToMain(actionEvent);
+            if(tourService.getTourByID(tour.getTourID()) == null){
+                // ------->>check = false;
+            }else{
+                this.switchToMain(actionEvent);
+            }
         }
     }
 
