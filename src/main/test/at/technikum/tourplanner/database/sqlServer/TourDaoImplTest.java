@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Date;
 import java.sql.Time;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,8 +19,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TourDaoImplTest {
 
 
-    private Tour tour;
+    private Tour tour = this.initTour();;
     private TourDao tourDao = new TourDaoImpl();
+
+    Date date = new Date(System.currentTimeMillis());
+
 
     @Before
     public Tour initTour(){
@@ -39,27 +43,6 @@ public class TourDaoImplTest {
                 .build();
     }
 
-    @Test
-    public void insertTourTest(){
-        Tour testTour = this.initTour();
-        assertNotNull(testTour);
-        assertTrue(tourDao.delete(testTour.getTourID()));
-        tourDao.insert(testTour);
-        assertNotNull(tourDao.getItemById(testTour.getTourID()));
-        assertTrue(tourDao.delete(testTour.getTourID()));
-    }
-
-
-    @Test
-    public void deleteTourTest(){
-        assertTrue(tourDao.delete("test"));
-        Tour testTour = this.initTour();
-        assertNotNull(testTour);
-        assertTrue(tourDao.delete(testTour.getTourID()));
-        tourDao.insert(testTour);
-        assertNotNull(tourDao.getItemById(testTour.getTourID()));
-        assertTrue(tourDao.delete(testTour.getTourID()));
-    }
 
     @Test
     void buildClass() {
@@ -80,6 +63,37 @@ public class TourDaoImplTest {
     @Test
     void insert() {
     }
+
+    @Test
+    public void insertTourTest(){
+        this.tour = initTour();
+        tourDao.insert(tour);
+        assertNull(tourDao.getItemById(this.tour.getTourID()));
+        assertNotNull(tourDao.insert(this.tour));
+        assertNotNull(tourDao.getItemById(this.tour.getTourID()));
+        assertTrue(tourDao.delete(this.tour.getTourID()));
+        assertNull(tourDao.getItemById(this.tour.getTourID()));
+    }
+
+    @Test
+    public void getTourByIDTest(){
+        Tour tour = initTour();
+        //assertNull(tourDao.getItemById("TEST-ERROR"));
+        //assertNull(tourDao.getItemById(this.tour.getTourID()));
+        //assertNotNull(tourDao.insert(this.tour));
+        //assertNotNull(tourDao.getItemById(this.tour.getTourID()));
+        //assertTrue(tourDao.delete(this.tour.getTourID()));
+        //assertNull(tourDao.getItemById(this.tour.getTourID()));
+    }
+
+    @Test
+    public void deleteTourTest(){
+        this.tour = initTour();
+        assertNotNull(tourDao.insert(this.tour));
+        assertTrue(tourDao.delete(this.tour.getTourID()));
+        assertNull(tourDao.getItemById(this.tour.getTourID()));
+    }
+
 
     @Test
     void update() {

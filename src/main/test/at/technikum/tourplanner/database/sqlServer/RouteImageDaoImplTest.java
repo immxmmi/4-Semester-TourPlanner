@@ -5,12 +5,13 @@ import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.Transporter;
 import org.junit.Before;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Time;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@DisplayName("RouteImageDaoImplTest")
 class RouteImageDaoImplTest {
 
         RouteImageDao imageDao = new RouteImageDaoImpl();
@@ -56,20 +57,10 @@ class RouteImageDaoImplTest {
         image = imageDao.getItemById(image.getImageID());
         assertNotNull(image);
         image.setFrom("Wien");
-        //assertTrue(image.getFrom().equals("TEST1"));
         image = imageDao.update(image);
-        // assertFalse(image.getFrom().equals("TEST1"));
-        // assertTrue(image.getFrom().equals("Wien"));
-
          assertTrue(imageDao.delete(image.getImageID()));
          assertNull(imageDao.getItemById(image.getImageID()));
     }
 
-    @Test
-    void buildClass() {
-    }
 
-    @Test
-    void updateImageData() {
-    }
 }

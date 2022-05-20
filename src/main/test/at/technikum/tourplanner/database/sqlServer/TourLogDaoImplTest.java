@@ -16,8 +16,6 @@ class TourLogDaoImplTest {
 
     private TourLogDao tourLogDao = new TourLogDaoImpl();
 
-
-
     @Before
     private TourLog initTourLog(){
 

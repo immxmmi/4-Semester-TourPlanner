@@ -29,8 +29,11 @@ class TourServiceImplTest {
 
     @Test
     void saveTour() {
-        assertNotNull(tourService.saveTour(this.tour));
-        assertTrue(tourService.deleteTour(this.tour.getTourID()));
+        Tour currentTour = this.tour;
+        assertNotNull(tourService.saveTour(currentTour));
+        assertTrue(tourService.deleteTour(currentTour.getTourID()));
+        currentTour.setFrom("testddddd");
+        assertNull(tourService.saveTour(currentTour));
     }
 
     @Test
@@ -52,10 +55,10 @@ class TourServiceImplTest {
     @Test
     void updateTour() {
          Tour updateTour = this.tour;
-         assertNotNull(tourService.saveTour(this.tour));
-         assertNotNull(tourService.searchTourByName("Test"));
+         assertNotNull(tourService.saveTour(updateTour));
+         assertNotNull(tourService.searchTourByName(updateTour.getTitle()));
          updateTour.setDescription("Test - UPDATE");
-         assertTrue(tourService.deleteTour(this.tour.getTourID()));
+         assertTrue(tourService.deleteTour(updateTour.getTourID()));
     }
 
 
