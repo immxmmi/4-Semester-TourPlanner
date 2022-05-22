@@ -18,7 +18,7 @@ class TourServiceImplTest {
     private Tour tour = this.initTour();
 
     @Before
-    private Tour initTour(){
+    private Tour initTour() {
         return Tour.builder()
                 .title("Test-Tour-1")
                 .from("Wien")
@@ -27,7 +27,6 @@ class TourServiceImplTest {
                 .transporter(Transporter.fastest)
                 .build();
     }
-
 
     @Test
     void saveTour() {
@@ -40,67 +39,60 @@ class TourServiceImplTest {
 
     @Test
     void deleteTour() {
+        Tour currentTour = this.tour;
+        currentTour.setTourID("DELETE ME");
         assertTrue(tourService.deleteTour("TestDelete"));
-        assertNotNull(tourService.saveTour(this.tour));
-        assertTrue(tourService.deleteTour(this.tour.getTourID()));
+        assertNotNull(tourService.saveTour(currentTour));
+        assertTrue(tourService.deleteTour(currentTour.getTourID()));
     }
 
     @Test
     void searchTourByName() {
+        Tour currentTour = this.tour;
+        currentTour.setTourID("SEARCH BY NAME TEST");
         assertNull(tourService.searchTourByName("TEST-FALSE-NAME"));
-        assertNotNull(tourService.saveTour(this.tour));
-        assertNotNull(tourService.searchTourByName(this.tour.getTitle()));
-        assertTrue(tourService.deleteTour(this.tour.getTourID()));
-        assertNull(tourService.searchTourByName(this.tour.getTitle()));
+        assertNotNull(tourService.saveTour(currentTour));
+        assertNotNull(tourService.searchTourByName(currentTour.getTitle()));
+        assertTrue(tourService.deleteTour(currentTour.getTourID()));
+        assertNull(tourService.searchTourByName(currentTour.getTitle()));
     }
 
     @Test
     void updateTour() {
-         Tour updateTour = this.tour;
-         assertNotNull(tourService.saveTour(updateTour));
-         assertNotNull(tourService.searchTourByName(updateTour.getTitle()));
-         updateTour.setDescription("Test - UPDATE");
-         assertTrue(tourService.deleteTour(updateTour.getTourID()));
+        Tour updateTour = this.tour;
+        updateTour.setTourID("UPDATE TOUR TEST");
+        assertNotNull(tourService.saveTour(updateTour));
+        assertNotNull(tourService.getTourByID(updateTour.getTourID()));
+        assertFalse(updateTour.getDescription().equals("Test - UPDATE"));
+        updateTour.setDescription("Test - UPDATE");
+        assertTrue(tourService.deleteTour(updateTour.getTourID()));
     }
-
 
     @Test
     void getTourByID() {
-        assertNotNull(tourService.saveTour(this.tour));
-        assertNotNull(tourService.getTourByID(this.tour.getTourID()));
+        Tour currentTour = this.tour;
+        currentTour.setTourID("GET TOUR TEST");
+        assertNotNull(tourService.saveTour(currentTour));
+        assertNotNull(tourService.getTourByID(currentTour.getTourID()));
         assertTrue(tourService.deleteTour(this.tour.getTourID()));
         assertNull(tourService.getTourByID(this.tour.getTourID()));
     }
 
-
-    @Test
-    void getAllTourOrderByName() {
-        assertNotNull(tourService.saveTour(this.tour));
-        //assertNotNull(tourService.getAllTourOrderByName(this.tour.getTitle()));
-    }
-
-
     @Test
     void searchTourAndTourLog() {
-        assertNull(tourService.searchTourAndTourLog("WRONG-SEARCH"));
-        assertNotNull(tourService.saveTour(this.tour));
-        assertNotNull(tourService.searchTourAndTourLog(this.tour.getTitle()));
-        assertTrue(tourService.deleteTour(this.tour.getTourID()));
-        assertNull(tourService.searchTourAndTourLog(this.tour.getTitle()));
+        Tour currentTour = this.tour;
+        assertNotNull(tourService.saveTour(currentTour));
+        assertNotNull(tourService.searchTourAndTourLog(currentTour.getTitle()));
+        assertTrue(tourService.deleteTour(currentTour.getTourID()));
+        assertNull(tourService.getTourByID(currentTour.getTourID()));
     }
 
     @Test
     void loadTourStatistics() {
-        assertNotNull(tourService.saveTour(this.tour));
-        assertNotNull(tourService.loadTourStatistics(this.tour.getTourID()));
-        assertTrue(tourService.deleteTour(this.tour.getTourID()));
-        assertNull(tourService.loadTourStatistics(this.tour.getTourID()));
+        Tour currentTour = this.tour;
+        assertNotNull(tourService.saveTour(currentTour));
+        assertNotNull(tourService.loadTourStatistics(currentTour.getTourID()));
+        assertTrue(tourService.deleteTour(currentTour.getTourID()));
     }
 
-    @Test
-    void saveTourLocal() {
-        //assertNull(tourService.saveTourLocal(file, this.tour.getTourID));
-        //File file = new File();
-        //assertNotNull(tourService.saveTourLocal(file, this.tour.getTourID()));
-    }
 }

@@ -151,18 +151,6 @@ public class TourServiceImpl implements TourService {
     public TourStatistics loadTourStatistics(String tourID) {
 
         TourStatistics statistics = new TourStatistics();
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
-                // statistics.setAvgTotalTime(loadAvgFromTotalTime(tourID));
-            }
-        });
-        ThreadMaker.multiRunInBackground(new Runnable() {
-            @Override
-            public void run() {
-                //statistics.setAvgDistance(loadAvgFromDistance(tourID));
-            }
-        });
         ThreadMaker.runInBackground(new Runnable() {
             @Override
             public void run() {
@@ -179,7 +167,6 @@ public class TourServiceImpl implements TourService {
                 statistics.setNumberOfStarsFive(tourLogService.countStarsFiveFromTour(tourID));
             }
         });
-        // statistics.setAvgTotalTime(tourLogService.avgTotalTimeFromTour(tourID));
         return statistics;
     }
 

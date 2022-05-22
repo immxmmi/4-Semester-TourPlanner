@@ -39,24 +39,25 @@ public class TourDaoImplTest {
                 .routeImage(image)
                 .distance(10)
                 .time(Time.valueOf("11:11:11"))
+                .date(Date.valueOf("1998-11-11"))
                 .description("Das ist ein Test")
                 .build();
     }
 
 
     @Test
-    void buildClass() {
-    }
-
-    @Test
     void getItemById() {
-        assertNotNull(tourDao.getItemById(this.tour.getTourID()));
-        assertTrue(tourDao.delete(this.tour.getTourID()));
-        assertNull(tourDao.getItemById(this.tour.getTourID()));
+        Tour currentTour = this.tour;
+        currentTour.setTourID("gettourdaotest");
+        assertNotNull(tourDao.insert(currentTour));
+        assertNotNull(tourDao.getItemById(currentTour.getTourID()));
+        tourDao.delete(currentTour.getTourID());
+        assertNull(tourDao.getItemById(currentTour.getTourID()));
     }
 
     @Test
     void getItemByName() {
+
         assertNotNull(tourDao.getItemByName(this.tour.getTitle()));
         assertTrue(tourDao.delete(this.tour.getTourID()));
         assertNull(tourDao.getItemByName(this.tour.getTitle()));
