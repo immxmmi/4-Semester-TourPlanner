@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -69,6 +70,13 @@ class TourLogDaoImplTest {
 
     @Test
     void update() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertNotNull(tourLogDao.getItemById(testTourLog.getComment()));
+        testTourLog.setComment("TEST-COMMENT");
+        assertNotNull(tourLogDao.update(testTourLog));
+        assertEquals("TEST-COMMENT", testTourLog.getComment());
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
     @Test
@@ -77,30 +85,54 @@ class TourLogDaoImplTest {
 
     @Test
     void countTourLogs() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertNotNull(tourLogDao.countTourLogs(testTourLog.getTourLogID()));
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
     @Test
     void avgTotalTime() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertNotNull(tourLogDao.avgTotalTime(testTourLog.getTourLogID()));
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
     @Test
     void countStars() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertNotNull(tourLogDao.countStars(testTourLog.getTourLogID(), testTourLog.getStars()));
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
     @Test
     void countLevel() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertNotNull(tourLogDao.countLevel(testTourLog.getTourLogID(), testTourLog.getLevel()));
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
     @Test
     void getAllTourLog() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(tourLogDao.getAllTourLog(testTourLog.getTourLogID()));
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
     @Test
     void getItemById() {
+        TourLog testTourLog = initTourLog();
+        assertNotNull(testTourLog);
+        assertNotNull(tourLogDao.getItemById(testTourLog.getTourLogID()));
+        assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
     @Test
     void insert() {
+        //save as above?
     }
 
 

@@ -7,6 +7,8 @@ import at.technikum.tourplanner.models.Transporter;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TourServiceImplTest {
@@ -64,23 +66,41 @@ class TourServiceImplTest {
 
     @Test
     void getTourByID() {
+        assertNotNull(tourService.saveTour(this.tour));
+        assertNotNull(tourService.getTourByID(this.tour.getTourID()));
+        assertTrue(tourService.deleteTour(this.tour.getTourID()));
+        assertNull(tourService.getTourByID(this.tour.getTourID()));
     }
 
 
     @Test
     void getAllTourOrderByName() {
+        assertNotNull(tourService.saveTour(this.tour));
+        //assertNotNull(tourService.getAllTourOrderByName(this.tour.getTitle()));
     }
 
 
     @Test
     void searchTourAndTourLog() {
+        assertNull(tourService.searchTourAndTourLog("WRONG-SEARCH"));
+        assertNotNull(tourService.saveTour(this.tour));
+        assertNotNull(tourService.searchTourAndTourLog(this.tour.getTitle()));
+        assertTrue(tourService.deleteTour(this.tour.getTourID()));
+        assertNull(tourService.searchTourAndTourLog(this.tour.getTitle()));
     }
 
     @Test
     void loadTourStatistics() {
+        assertNotNull(tourService.saveTour(this.tour));
+        assertNotNull(tourService.loadTourStatistics(this.tour.getTourID()));
+        assertTrue(tourService.deleteTour(this.tour.getTourID()));
+        assertNull(tourService.loadTourStatistics(this.tour.getTourID()));
     }
 
     @Test
     void saveTourLocal() {
+        //assertNull(tourService.saveTourLocal(file, this.tour.getTourID));
+        //File file = new File();
+        //assertNotNull(tourService.saveTourLocal(file, this.tour.getTourID()));
     }
 }
