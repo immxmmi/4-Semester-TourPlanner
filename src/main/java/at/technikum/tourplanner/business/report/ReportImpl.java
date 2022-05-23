@@ -67,7 +67,7 @@ public class ReportImpl implements Report {
             // Route Image
             // PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
             PDImageXObject imageXObject = PDImageXObject.createFromByteArray(newReport, currentRoutImage.getData(), "IMG");
-            write.drawImage(imageXObject, 200, 100, currentRoutImage.getWidth(), currentRoutImage.getHeight());
+            write.drawImage(imageXObject, 50, 400, currentRoutImage.getWidth(), currentRoutImage.getHeight());
 
 
             // START - TEXTING
@@ -77,7 +77,7 @@ public class ReportImpl implements Report {
             write.addComment("TEST");
             write.setFont(PDType1Font.COURIER_BOLD, 13);
             write.setLeading(10f);
-            write.newLineAtOffset(25, 700);
+            write.newLineAtOffset(25, 300);
             write.newLine();
             write.showText("Create Report Date: " + reportTime);
             write.newLine();
