@@ -14,7 +14,7 @@ Links:
 - https://download2.gluonhq.com/openjfx/18.0.1/openjfx-18.0.1_windows-x64_bin-sdk.zip
 - Java SE Development Kit 18.0.1.1
 - https://www.oracle.com/java/technologies/downloads/
-###################
+
 
 ### CONFIGURATIONS ###
 - MainApplication -> modify options -> add VM options (ALT + V)
