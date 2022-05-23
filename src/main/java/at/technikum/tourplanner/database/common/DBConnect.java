@@ -69,7 +69,7 @@ public class DBConnect implements Cloneable {
     /**
      * START CONNECTION
      **/
-    private void startConnect() {
+    public void startConnect() {
         log.debug("START CONNECTION");
         try {
             this.connection = DriverManager.getConnection(this.jdbcURL, this.username, this.password);
@@ -99,6 +99,7 @@ public class DBConnect implements Cloneable {
             }
             this.connection = null;
         }
+        instance = null;
     }
 
     /**
