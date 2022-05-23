@@ -46,6 +46,13 @@ class RouteImageDaoImplTest {
 
     @Test
     void insert() {
+        RouteImage image = initImage();
+        assertNotNull(image);
+        assertTrue(imageDao.delete(image.getImageID()));
+        assertNull(imageDao.getItemById(image.getImageID()));
+        image = imageDao.insert(image);
+        assertNotNull(image);
+        assertTrue(imageDao.delete(image.getImageID()));
     }
 
     @Test

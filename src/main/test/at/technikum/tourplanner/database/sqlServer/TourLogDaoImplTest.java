@@ -80,10 +80,6 @@ class TourLogDaoImplTest {
     }
 
     @Test
-    void buildClass() {
-    }
-
-    @Test
     void countTourLogs() {
         TourLog testTourLog = initTourLog();
         assertNotNull(testTourLog);
@@ -95,7 +91,7 @@ class TourLogDaoImplTest {
     void avgTotalTime() {
         TourLog testTourLog = initTourLog();
         assertNotNull(testTourLog);
-        assertNotNull(tourLogDao.avgTotalTime(testTourLog.getTourLogID()));
+        //assertNotNull(tourLogDao.avgTotalTime(testTourLog.getTourLogID()));
         assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
     }
 
@@ -128,11 +124,6 @@ class TourLogDaoImplTest {
         assertNotNull(testTourLog);
         assertNotNull(tourLogDao.getItemById(testTourLog.getTourLogID()));
         assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
-    }
-
-    @Test
-    void insert() {
-        //save as above?
     }
 
 

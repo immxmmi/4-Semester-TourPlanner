@@ -72,11 +72,6 @@ public class TourDaoImplTest {
     }
 
     @Test
-    void insert() {
-        //same as below?
-    }
-
-    @Test
     public void insertTourTest(){
         this.tour = initTour();
         tourDao.insert(tour);
