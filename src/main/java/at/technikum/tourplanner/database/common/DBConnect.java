@@ -10,7 +10,8 @@ import java.sql.SQLException;
 
 public class DBConnect implements Cloneable {
 
-    final Logger logger = LogManager.getLogger(DBConnect.class);
+    //LOGGER
+    private final static Logger log = LogManager.getLogger(DBConnect.class.getName());
     private static ConfigurationManagerImpl config = new ConfigurationManagerImpl();
 
     private String databaseName;
@@ -69,12 +70,14 @@ public class DBConnect implements Cloneable {
      * START CONNECTION
      **/
     private void startConnect() {
+        log.debug("START CONNECTION");
         try {
             this.connection = DriverManager.getConnection(this.jdbcURL, this.username, this.password);
-            logger.info("CONNECT DB -- success");
+            log.debug("CONNECT DB -- success");
            // System.out.println(TextColor.ANSI_GREEN + "CONNECT DB -- success" + TextColor.ANSI_RESET);
         } catch (SQLException e) {
-            logger.error("CONNECT DB -- failed");
+            log.error("CONNECT DB -- failed" );
+            log.error(e);
             //System.out.println(TextColor.ANSI_RED + "CONNECT DB -- failed" + TextColor.ANSI_RESET);
             e.printStackTrace();
         }
@@ -85,10 +88,12 @@ public class DBConnect implements Cloneable {
      **/
 
     public void stopConnect() {
+        log.debug("STOP CONNECTION");
         if (this.connection != null) {
             try {
                 this.connection.close();
             } catch (SQLException throwables) {
+                log.error(throwables);
                 throwables.printStackTrace();
             }
             this.connection = null;

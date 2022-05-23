@@ -3,12 +3,18 @@ package at.technikum.tourplanner.database.sqlServer;
 import at.technikum.tourplanner.database.common.AbstractDBTable;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.models.RouteImage;
-import at.technikum.tourplanner.utils.TextColor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-// TODO: 11.05.2022 @Checked - TEST IMPL
+
 public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao {
+
+    //LOGGER
+    private final static Logger log = LogManager.getLogger(RouteImageDaoImpl.class.getName());
+
+
     /*******************************************************************/
     /**                          Constructor                          **/
     /*******************************************************************/
@@ -43,7 +49,9 @@ public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao 
                 return routeImage;
             }
         } catch (SQLException e) {
-            System.out.println(TextColor.ANSI_RED + "GETOBJECT -ERRROR: " + e + TextColor.ANSI_RESET);
+            log.error("GETOBJECT -ERRROR: ");
+            log.error(e);
+            //System.out.println(TextColor.ANSI_RED + "GETOBJECT -ERRROR: " + e + TextColor.ANSI_RESET);
             e.printStackTrace();
         }
         this.closeStatement();
@@ -66,6 +74,7 @@ public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao 
     @Override
     public RouteImage insert(RouteImage item) {
         if (item == null) {
+            log.error("INSERT ROUTEIMAGE - NULL");
             return null;
         }
         if (getItemById(item.getImageID()) == null) {
@@ -96,12 +105,14 @@ public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao 
                     "VALUES(?,?,?,?,?,?,?,?,?,?);", this.parameter);
             return getItemById(item.getImageID());
         }
+        log.error("INSERT ITEM - NOT SUCCESSFUL");
         return null;
     }
 
     @Override
     public RouteImage update(RouteImage item) {
         if (item == null) {
+            log.error("UPDATE ITEM - NULL");
             return null;
         }
 
@@ -139,9 +150,12 @@ public class RouteImageDaoImpl extends AbstractDBTable implements RouteImageDao 
     }
 
     @Override
-    public RouteImage updateImageData(RouteImage item){
-        if (item == null) {return null;}
-        this.setDataByte("UPDATE " + this.tableName + " SET " + "\"data\"= ? " + "WHERE \"imageID\" = ?; ", item.getData(),item.getImageID());
+    public RouteImage updateImageData(RouteImage item) {
+        if (item == null) {
+            log.error("UPDATE IMAGE DATA - NULL");
+            return null;
+        }
+        this.setDataByte("UPDATE " + this.tableName + " SET " + "\"data\"= ? " + "WHERE \"imageID\" = ?; ", item.getData(), item.getImageID());
         return getItemById(item.getImageID());
     }
 

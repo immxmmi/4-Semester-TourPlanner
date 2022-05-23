@@ -3,13 +3,11 @@ package at.technikum.tourplanner.database.fileServer;
 import at.technikum.tourplanner.models.Tour;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public interface FileAccess {
 
     void createFolder(String folder);
+
     File readFile(String filename);
 
     Tour readTourFile(File file);

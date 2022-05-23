@@ -2,6 +2,7 @@ package at.technikum.tourplanner;
 
 import at.technikum.tourplanner.config.ConfigurationManager;
 import at.technikum.tourplanner.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.database.common.DBConnect;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,6 +38,7 @@ public class MainApplication extends Application {
 
     @Override
     public void stop() {
+        DBConnect.getInstance().stopConnect();
         log.info("Stopping Tour Planner Pro...");
     }
 

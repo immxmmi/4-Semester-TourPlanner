@@ -8,13 +8,12 @@ import at.technikum.tourplanner.models.TourLog;
 import java.util.ArrayList;
 
 public interface TourLogDao extends DaoPattern<TourLog> {
-    boolean delete(String itemID);
 
+    boolean delete(String itemID);
 
     int countTourLogs(String tourID);
 
     double avgTotalTime(String tourID);
-
 
     int countStars(String tourID, Stars star);
 

@@ -5,17 +5,21 @@ import at.technikum.tourplanner.database.dao.TourLogDao;
 import at.technikum.tourplanner.models.Level;
 import at.technikum.tourplanner.models.Stars;
 import at.technikum.tourplanner.models.TourLog;
-import at.technikum.tourplanner.utils.TextColor;
 import at.technikum.tourplanner.utils.Tools;
 import at.technikum.tourplanner.utils.ToolsImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-// TODO: 11.05.2022 @Checked - TEST IMPL
+
 public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
+
+    //LOGGER
+    private final static Logger log = LogManager.getLogger(TourLogDaoImpl.class.getName());
 
     /*******************************************************************/
     /**                          Constructor                          **/
@@ -48,7 +52,9 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
                 return tourLog;
             }
         } catch (SQLException e) {
-            System.out.println(TextColor.ANSI_RED + "GETOBJECT -ERRROR: " + e + TextColor.ANSI_RESET);
+            log.error("GETOBJECT -ERRROR: ");
+            log.error(e);
+            //System.out.println(TextColor.ANSI_RED + "GETOBJECT -ERRROR: " + e + TextColor.ANSI_RESET);
             e.printStackTrace();
         }
         this.closeStatement();
@@ -75,6 +81,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
+            log.error(e);
         }
 
 
@@ -97,6 +104,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
+            log.error(e);
         }
 
         return value;
@@ -119,6 +127,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
+            log.error(e);
         }
 
         return value;
@@ -140,6 +149,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             this.closeStatement();
         } catch (SQLException e) {
             e.printStackTrace();
+            log.error(e);
         }
 
         return value;
@@ -164,6 +174,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            log.error(e);
         }
 
 
@@ -189,6 +200,7 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
 
         Tools tools = new ToolsImpl();
         if (item == null) {
+            log.error("INSERT TOURLOG - NULL");
             return null;
         }
         if (item.getTourLogID() == null) {
@@ -209,13 +221,13 @@ public class TourLogDaoImpl extends AbstractDBTable implements TourLogDao {
             this.setStatement("INSERT INTO " + this.tableName + " (\"tourLogID\",\"tourID\",\"comment\",\"totalTime\",\"level\",\"stars\",\"date\")VALUES(?,?,?,?,?,?,?);", this.parameter);
         }
 
-
         return getItemById(item.getTourLogID());
     }
 
     @Override
     public TourLog update(TourLog item) {
         if (item == null) {
+            log.error("UPDATE TOURLOG - NULL");
             return null;
         }
 
