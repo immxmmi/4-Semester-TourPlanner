@@ -20,8 +20,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-// TODO: 13.05.2022 @Checked
+
 public class SceneControllerImpl implements SceneController {
+
     static ConfigurationManager config = new ConfigurationManagerImpl();
     static int width = config.getStageWidth();
     static int height = config.getStageHeight();

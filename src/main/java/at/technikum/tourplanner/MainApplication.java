@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class MainApplication extends Application {
 
-
     private final static Logger log = LogManager.getLogger(MainApplication.class.getName());
     static ConfigurationManager config = new ConfigurationManagerImpl();
 
