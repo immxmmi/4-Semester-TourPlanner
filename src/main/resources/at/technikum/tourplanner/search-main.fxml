@@ -19,7 +19,7 @@
             <Image url="@img/background/background.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="searchField" layoutX="50.0" layoutY="14.0" prefHeight="36.0" prefWidth="882.0" promptText="Tour 1" style="-fx-background-radius: 70;">
+      <TextField fx:id="searchField" layoutX="31.0" layoutY="14.0" prefHeight="36.0" prefWidth="849.0" promptText="Tour 1" style="-fx-background-radius: 70;">
          <font>
             <Font size="14.0" />
          </font></TextField>
@@ -49,9 +49,12 @@
          <font>
             <Font size="16.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Label fx:id="searchStatus" layoutX="39.0" layoutY="75.0" prefHeight="27.0" prefWidth="71.0" textFill="#ff2e2e" />
-      <Button layoutX="941.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="17.0" prefWidth="21.0" style="-fx-background-radius: 190;" textAlignment="CENTER">
+      <Button layoutX="891.0" layoutY="15.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="17.0" prefWidth="21.0" style="-fx-background-radius: 190;" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
@@ -61,7 +64,10 @@
                   <Image url="@img/icon/lupe_icon.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <ImageView fitHeight="136.0" fitWidth="120.0" layoutX="454.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/icon/pin_icon.png" />
@@ -74,5 +80,14 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Button layoutX="945.0" layoutY="15.0" mnemonicParsing="false" onAction="#switchToCreateTour" style="-fx-background-radius: 300;">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icon/add_icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>

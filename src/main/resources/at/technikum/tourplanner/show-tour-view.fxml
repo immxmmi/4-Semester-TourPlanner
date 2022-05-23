@@ -61,7 +61,7 @@
          </image>
       </ImageView>
       <VBox fx:id="saveStage" layoutX="111.0" layoutY="-74.0" prefHeight="1.0" prefWidth="8.0" />
-      <Button layoutX="15.0" layoutY="11.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="36.0" prefWidth="48.0" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
+      <Button layoutX="1117.0" layoutY="11.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="36.0" prefWidth="48.0" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
          <graphic>
             <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -70,7 +70,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="1114.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #13A735;">
+      <Button layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #13A735;">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -85,7 +85,7 @@
                <content>
                   <Pane prefHeight="358.0" prefWidth="551.0">
                      <children>
-                        <BarChart fx:id="barChart" layoutX="19.0" layoutY="29.0" prefHeight="305.0" prefWidth="507.0" title="Statistics">
+                        <BarChart fx:id="barChart" layoutX="28.0" layoutY="14.0" prefHeight="294.0" prefWidth="495.0" title="Statistics">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
@@ -151,7 +151,7 @@
                               <Font name="SansSerif Bold" size="23.0" />
                            </font>
                         </Label>
-                        <Label fx:id="error_total" layoutX="301.0" layoutY="62.0" prefHeight="27.0" prefWidth="22.0" textFill="RED">
+                        <Label fx:id="error_total" layoutX="290.0" layoutY="62.0" prefHeight="27.0" prefWidth="22.0" textFill="RED">
                            <font>
                               <Font name="SansSerif Bold" size="23.0" />
                            </font>
@@ -177,12 +177,12 @@
             <Image url="@img/background/imageView1.jpg" />
          </image>
       </ImageView>
-      <Text fx:id="show_tour_title" fill="#497864" layoutX="17.0" layoutY="132.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour" textAlignment="CENTER" wrappingWidth="375.7366638183594">
+      <Text fx:id="show_tour_title" fill="#497864" layoutX="19.0" layoutY="99.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Tour" textAlignment="CENTER" wrappingWidth="551.0">
          <font>
-            <Font name="SansSerif Bold" size="72.0" />
+            <Font name="SansSerif Bold" size="50.0" />
          </font>
       </Text>
-      <Button layoutX="331.0" layoutY="755.0" mnemonicParsing="false" onAction="#deleteTourLog" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
+      <Button layoutX="1123.0" layoutY="764.0" mnemonicParsing="false" onAction="#deleteTourLog" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -227,7 +227,7 @@
       <Label fx:id="show_tour_distance" layoutX="290.0" layoutY="480.0" text="Text" />
       <Label fx:id="show_tour_time" layoutX="290.0" layoutY="517.0" text="Text" />
       <Label fx:id="show_tour_transport" layoutX="139.0" layoutY="553.0" text="Text" />
-      <TableView fx:id="table_tourLog" layoutX="393.0" layoutY="476.0" prefHeight="318.0" prefWidth="769.0">
+      <TableView fx:id="table_tourLog" layoutX="348.0" layoutY="474.0" prefHeight="318.0" prefWidth="769.0">
          <columns>
             <TableColumn fx:id="col_date" prefWidth="88.0" text="Date:" />
             <TableColumn fx:id="col_totalTime" prefWidth="76.0" text="Total Time:" />
