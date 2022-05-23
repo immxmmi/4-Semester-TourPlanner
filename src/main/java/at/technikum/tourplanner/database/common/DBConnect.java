@@ -74,7 +74,6 @@ public class DBConnect implements Cloneable {
         try {
             this.connection = DriverManager.getConnection(this.jdbcURL, this.username, this.password);
             log.debug("CONNECT DB -- success");
-            log.info("CONNECT DB -- success");
            // System.out.println(TextColor.ANSI_GREEN + "CONNECT DB -- success" + TextColor.ANSI_RESET);
         } catch (SQLException e) {
             DBOnline = false;

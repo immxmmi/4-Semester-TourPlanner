@@ -32,7 +32,7 @@
             <TableColumn fx:id="col_time" prefWidth="156.0" text="Time:" />
         </columns>
       </TableView>
-      <Button layoutX="44.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #13A735;">
+      <Button layoutX="44.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #b4b3b1;">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -41,7 +41,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="1071.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="31.0" prefWidth="87.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
+      <Button layoutX="993.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="31.0" prefWidth="87.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
@@ -91,7 +91,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="1017.0" layoutY="23.0" mnemonicParsing="false" onAction="#settingsTour" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 100;">
+      <Button layoutX="1086.0" layoutY="22.0" mnemonicParsing="false" onAction="#settingsTour" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 100;">
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>

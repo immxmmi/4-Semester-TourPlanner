@@ -71,14 +71,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="684.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="31.0" prefWidth="87.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
-         <font>
-            <Font size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="MOVE" />
-         </cursor>
-      </Button>
       <Label fx:id="error_stars" layoutX="453.0" layoutY="228.0" prefHeight="27.0" prefWidth="67.0" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="23.0" />

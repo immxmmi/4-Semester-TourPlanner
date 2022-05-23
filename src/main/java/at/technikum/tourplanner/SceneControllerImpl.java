@@ -50,7 +50,6 @@ public class SceneControllerImpl implements SceneController {
     // Main
     @Override
     public void switchToMain(ActionEvent event) throws IOException {
-        DBConnect.getInstance().stopConnect();
         if (checkDB()) {
             width = config.getStageWidth();
             height = config.getStageHeight();

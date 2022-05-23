@@ -61,16 +61,16 @@
          </image>
       </ImageView>
       <VBox fx:id="saveStage" layoutX="111.0" layoutY="-74.0" prefHeight="1.0" prefWidth="8.0" />
-      <Button layoutX="1117.0" layoutY="11.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="36.0" prefWidth="48.0" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
+      <Button layoutX="1068.0" layoutY="13.0" mnemonicParsing="false" onAction="#saveReport" prefHeight="34.0" prefWidth="42.0" style="-fx-background-radius: 75; -fx-border-image-width: 0;">
          <graphic>
-            <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/icon/pdf_save_icon.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #13A735;">
+      <Button layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #b4b3b1;">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -182,7 +182,7 @@
             <Font name="SansSerif Bold" size="50.0" />
          </font>
       </Text>
-      <Button layoutX="1123.0" layoutY="764.0" mnemonicParsing="false" onAction="#deleteTourLog" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
+      <Button layoutX="1123.0" layoutY="757.0" mnemonicParsing="false" onAction="#deleteTourLog" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -227,16 +227,16 @@
       <Label fx:id="show_tour_distance" layoutX="290.0" layoutY="480.0" text="Text" />
       <Label fx:id="show_tour_time" layoutX="290.0" layoutY="517.0" text="Text" />
       <Label fx:id="show_tour_transport" layoutX="139.0" layoutY="553.0" text="Text" />
-      <TableView fx:id="table_tourLog" layoutX="348.0" layoutY="474.0" prefHeight="318.0" prefWidth="769.0">
+      <TableView fx:id="table_tourLog" layoutX="441.0" layoutY="474.0" prefHeight="318.0" prefWidth="676.0">
          <columns>
-            <TableColumn fx:id="col_date" prefWidth="88.0" text="Date:" />
-            <TableColumn fx:id="col_totalTime" prefWidth="76.0" text="Total Time:" />
-            <TableColumn fx:id="col_rating" prefWidth="54.0" text="Stars:" />
-            <TableColumn fx:id="col_difficulty" prefWidth="72.0" text="Level:" />
-            <TableColumn fx:id="col_comment" prefWidth="476.0" text="Comment" />
+            <TableColumn fx:id="col_date" prefWidth="107.20001220703125" text="Date:" />
+            <TableColumn fx:id="col_totalTime" prefWidth="85.60003662109375" text="Total Time:" />
+            <TableColumn fx:id="col_rating" prefWidth="66.4000244140625" text="Stars:" />
+            <TableColumn fx:id="col_difficulty" prefWidth="99.20001220703125" text="Level:" />
+            <TableColumn fx:id="col_comment" prefWidth="409.59991455078125" text="Comment" />
          </columns>
       </TableView>
-      <Button layoutX="1060.0" layoutY="12.0" mnemonicParsing="false" onAction="#settingsTour" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 100;">
+      <Button layoutX="1120.0" layoutY="13.0" mnemonicParsing="false" onAction="#settingsTour" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 100;">
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
