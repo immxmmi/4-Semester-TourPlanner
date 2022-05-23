@@ -1,12 +1,14 @@
 package at.technikum.tourplanner.business.report;
 
-import at.technikum.tourplanner.business.config.ConfigurationManager;
-import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.config.ConfigurationManager;
+import at.technikum.tourplanner.config.ConfigurationManagerImpl;
 import at.technikum.tourplanner.database.fileServer.FileAccess;
 import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourLog;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -17,12 +19,15 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-// TODO: 11.05.2022 @Checked - TEST IMPL
+
 public class ReportImpl implements Report {
 
+    //LOGGER
+    private final static Logger log = LogManager.getLogger(ReportImpl.class.getName());
+    //CONFIG
     ConfigurationManager config = new ConfigurationManagerImpl();
 
-    //erstellt Report und speichert es im Projekt
+    //CREATE AND SAVE Report IN PROJECT FOLDER
     @Override
     public void saveTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
         FileAccess fileAccess = new FileAccessImpl();
@@ -41,7 +46,7 @@ public class ReportImpl implements Report {
 
     }
 
-    //erstellt ein PDF document und liefert es zurück
+    //CREATE PDF DOC AND RETURN IT
     @Override
     public PDDocument createTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
         // TimeStamp
@@ -56,19 +61,19 @@ public class ReportImpl implements Report {
 
         try {
             // Start edit File
-           PDPageContentStream write = new PDPageContentStream(newReport, currentPage);
+            PDPageContentStream write = new PDPageContentStream(newReport, currentPage);
 
-           RouteImage currentRoutImage = tour.getRouteImage();
+            RouteImage currentRoutImage = tour.getRouteImage();
             // Route Image
-           // PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
-            PDImageXObject imageXObject = PDImageXObject.createFromByteArray(newReport,currentRoutImage.getData(),"IMG");
-           write.drawImage(imageXObject, 200, 100, currentRoutImage.getWidth(), currentRoutImage.getHeight());
+            // PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
+            PDImageXObject imageXObject = PDImageXObject.createFromByteArray(newReport, currentRoutImage.getData(), "IMG");
+            write.drawImage(imageXObject, 200, 100, currentRoutImage.getWidth(), currentRoutImage.getHeight());
 
 
             // START - TEXTING
             write.beginText();
 
-           // // SETTINGS
+            // // SETTINGS
             write.addComment("TEST");
             write.setFont(PDType1Font.COURIER_BOLD, 13);
             write.setLeading(10f);
@@ -93,7 +98,7 @@ public class ReportImpl implements Report {
             write.showText("Description: " + tour.getDescription());
             write.newLine();
 
-         for (TourLog tourlog : tourLogs ){
+            for (TourLog tourlog : tourLogs) {
                 write.newLine();
                 write.showText("TourLog-ID: " + tourlog.getTourLogID());
                 write.newLine();
@@ -107,15 +112,15 @@ public class ReportImpl implements Report {
                 write.newLine();
                 write.newLine();
                 write.newLine();
-          }
+            }
 
-           // // STOP - TEXTING
+            // // STOP - TEXTING
             write.endText();
             write.close();
 
-           // // newReport.save(fileName);
+            // // newReport.save(fileName);
 
-         //   newReport.close();
+            //   newReport.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

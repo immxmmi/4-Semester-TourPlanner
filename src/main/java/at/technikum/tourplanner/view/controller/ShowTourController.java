@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.view.controller;
 
-import at.technikum.tourplanner.business.ThreadMaker;
+import at.technikum.tourplanner.business.handler.ThreadMaker;
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.business.report.Report;

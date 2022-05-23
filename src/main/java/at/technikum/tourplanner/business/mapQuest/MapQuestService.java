@@ -8,20 +8,17 @@ import javafx.scene.image.Image;
 
 public interface MapQuestService {
 
+    // SEARCH ROUTE WITHOUT SAVE IN DATABASE
     Route searchRoute(String from, String to, Transporter transporter);
-    // CREATE IMAGE
+
+    // SEARCH AND SAVE ROUTE IN DATABASE
     Route startRoute(String from, String to, Transporter transporter);
+
     Route startRoute(Tour tour);
 
-
-
+    // LOAD IMAGE FROM DATABASE
     Image showOnlineRouteImage(RouteImage routeImage);
 
-    //6. DOWNLOAD IMAGE
-    // TODO: 30.03.2022 IF Bedingung einbauen und Dataenbank updaten
+    // SAVE IMAGE LOCAL
     RouteImage downloadImage(Route route);
-
-    RouteImage saveImageDataOnline(Route route);
-
-    RouteImage reloadImage(RouteImage routeImage);
 }

@@ -35,7 +35,10 @@ public interface TourLogService {
     int countStarsFiveFromTour(String tourID);
 
     Boolean saveTourLog(TourLog tourLog);
+
     Boolean deleteTourLog(String tourLogID);
+
     TourLog getTourLog(String tourLogID);
+
     TourLog updateTourLog(TourLog tourLog);
 }

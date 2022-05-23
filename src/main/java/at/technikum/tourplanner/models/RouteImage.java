@@ -1,7 +1,7 @@
 package at.technikum.tourplanner.models;
 
-import at.technikum.tourplanner.business.config.ConfigurationManager;
-import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.config.ConfigurationManager;
+import at.technikum.tourplanner.config.ConfigurationManagerImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

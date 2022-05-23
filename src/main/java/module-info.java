@@ -29,6 +29,8 @@ module at.technikum.tourplanner {
     exports at.technikum.tourplanner.business;
     opens at.technikum.tourplanner.business to javafx.fxml;
     opens at.technikum.tourplanner.models to com.google.gson;
+    exports at.technikum.tourplanner.business.handler;
+    opens at.technikum.tourplanner.business.handler to javafx.fxml;
 
 
 }

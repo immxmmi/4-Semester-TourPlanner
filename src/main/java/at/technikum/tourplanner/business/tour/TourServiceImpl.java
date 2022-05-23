@@ -1,12 +1,9 @@
 package at.technikum.tourplanner.business.tour;
 
-import at.technikum.tourplanner.business.ThreadMaker;
 import at.technikum.tourplanner.business.mapQuest.MapQuestService;
 import at.technikum.tourplanner.business.mapQuest.MapQuestServiceImpl;
 import at.technikum.tourplanner.database.dao.RouteImageDao;
 import at.technikum.tourplanner.database.dao.TourDao;
-import at.technikum.tourplanner.database.fileServer.FileAccess;
-import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
 import at.technikum.tourplanner.database.sqlServer.RouteImageDaoImpl;
 import at.technikum.tourplanner.database.sqlServer.TourDaoImpl;
 import at.technikum.tourplanner.models.*;
@@ -14,29 +11,32 @@ import at.technikum.tourplanner.serializer.TourSerializer;
 import at.technikum.tourplanner.serializer.TourSerializerImpl;
 import at.technikum.tourplanner.utils.Tools;
 import at.technikum.tourplanner.utils.ToolsImpl;
-import com.google.gson.Gson;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.sql.Date;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-// TODO: 11.05.2022 @Checked - TEST IMPL
+
 public class TourServiceImpl implements TourService {
 
+    //LOGGER
+    private final static Logger log = LogManager.getLogger(TourServiceImpl.class.getName());
+
     //DATE
-    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
     private Date date = new Date(System.currentTimeMillis());
+
     //SERVICES
     private TourLogService tourLogService = new TourLogServiceImpl();
+    MapQuestService mapQuestService = new MapQuestServiceImpl();
+
     //DAO
     private TourDao tourDao = new TourDaoImpl();
+
     //current-TOUR
     private Tour currentTour = new Tour();
+
     //INSTANCE
-    MapQuestService mapQuestService = new MapQuestServiceImpl();
     RouteImageDao routeImageDao = new RouteImageDaoImpl();
 
 
@@ -48,23 +48,21 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public Tour saveTour(Tour tour) {
-
+        log.debug("SAVE TOUR");
         Tools tools = new ToolsImpl();
-        //ID - HASH-WERT and DATE
-
         //DATE
         tour.setDate(date);
+        //ID - HASH-WERT and DATE
         tour.setTourID(tools.hashString(tour.getTitle() + tour.getDescription()));
         tour.setTitle(tour.getTitle().toLowerCase());
 
         currentTour = tour;
-
         // ROUTE
         final Route[] currentRoute = {null};
         currentRoute[0] = mapQuestService.startRoute(tour);
 
-
         if (currentRoute[0] == null) {
+            log.error("SAVE TOUR ROUTE=" + currentRoute);
             return null;
         }
 
@@ -72,6 +70,7 @@ public class TourServiceImpl implements TourService {
         RouteImage routeImage = routeImageDao.getItemById(currentRoute[0].getRouteImage().getImageID());
 
         if (routeImage == null) {
+            log.error("SAVE IMAGE =" + routeImage);
             return null;
         }
 
@@ -84,7 +83,8 @@ public class TourServiceImpl implements TourService {
         //TIME
         tour.setTime(currentRoute[0].getTime());
 
-        if(tour.getDistance() == 0.0){
+        if (tour.getDistance() == 0.0) {
+            log.error("Distance : " + tour.getDistance());
             return null;
         }
 
@@ -93,7 +93,6 @@ public class TourServiceImpl implements TourService {
 
     @Override
     public Boolean deleteTour(String tourID) {
-        TourLogService tourLogService = new TourLogServiceImpl();
         ArrayList<TourLog> tourLogs = tourLogService.getAllTourLogs(tourID);
         for (TourLog tourLog : tourLogs) {
             tourLogService.deleteTourLog(tourLog.getTourLogID());
@@ -106,24 +105,29 @@ public class TourServiceImpl implements TourService {
     @Override
     public Tour updateTour(Tour tour) {
 
-        //delete IMG
+        // DELETE IMG
         routeImageDao.delete(tour.getRouteImage().getImageID());
 
         // ROUTE
         final Route[] currentRoute = {null};
         currentRoute[0] = mapQuestService.startRoute(tour);
 
-        if (currentRoute[0] == null) {return null;}
+        if (currentRoute[0] == null) {
+            return null;
+        }
 
         // IMAGE
         RouteImage routeImage = routeImageDao.getItemById(currentRoute[0].getRouteImage().getImageID());
-        if (routeImage == null) {return null;}
+        if (routeImage == null) {
+            log.error("ROUTE IMAGE = " + routeImage);
+            return null;
+        }
         tour.setRouteImage(routeImage);
 
-        //DISTANCE
+        // DISTANCE
         tour.setDistance(currentRoute[0].getDistance());
 
-        //TIME
+        // TIME
         tour.setTime(currentRoute[0].getTime());
 
         tour.setDate(date);
@@ -149,24 +153,18 @@ public class TourServiceImpl implements TourService {
     //STATISTIK
     @Override
     public TourStatistics loadTourStatistics(String tourID) {
-
         TourStatistics statistics = new TourStatistics();
-        ThreadMaker.runInBackground(new Runnable() {
-            @Override
-            public void run() {
-                statistics.setNumberOfTourlogs(tourLogService.countTourLogsFromTour(tourID));
-                statistics.setNumberOfLevelEasy(tourLogService.countLevelEasyFromTour(tourID));
-                statistics.setNumberOfLevelNormal(tourLogService.countLevelNormalFromTour(tourID));
-                statistics.setNumberOfLevelHard(tourLogService.countLevelHardFromTour(tourID));
-                statistics.setNumberOfLevelExpert(tourLogService.countLevelExpertFromTour(tourID));
-                statistics.setNumberOfStarsNone(tourLogService.countStarsNoneFromTour(tourID));
-                statistics.setNumberOfStarsOne(tourLogService.countStarsOneFromTour(tourID));
-                statistics.setNumberOfStarsTwo(tourLogService.countStarsTwoFromTour(tourID));
-                statistics.setNumberOfStarsThree(tourLogService.countStarsThreeFromTour(tourID));
-                statistics.setNumberOfStarsFour(tourLogService.countStarsFourFromTour(tourID));
-                statistics.setNumberOfStarsFive(tourLogService.countStarsFiveFromTour(tourID));
-            }
-        });
+        statistics.setNumberOfTourlogs(tourLogService.countTourLogsFromTour(tourID));
+        statistics.setNumberOfLevelEasy(tourLogService.countLevelEasyFromTour(tourID));
+        statistics.setNumberOfLevelNormal(tourLogService.countLevelNormalFromTour(tourID));
+        statistics.setNumberOfLevelHard(tourLogService.countLevelHardFromTour(tourID));
+        statistics.setNumberOfLevelExpert(tourLogService.countLevelExpertFromTour(tourID));
+        statistics.setNumberOfStarsNone(tourLogService.countStarsNoneFromTour(tourID));
+        statistics.setNumberOfStarsOne(tourLogService.countStarsOneFromTour(tourID));
+        statistics.setNumberOfStarsTwo(tourLogService.countStarsTwoFromTour(tourID));
+        statistics.setNumberOfStarsThree(tourLogService.countStarsThreeFromTour(tourID));
+        statistics.setNumberOfStarsFour(tourLogService.countStarsFourFromTour(tourID));
+        statistics.setNumberOfStarsFive(tourLogService.countStarsFiveFromTour(tourID));
         return statistics;
     }
 
@@ -178,7 +176,6 @@ public class TourServiceImpl implements TourService {
     }
 
 
-    // TODO: 09.05.2022 anpassen
     private double loadAvgFromTotalTime(String tourID) {
         int counter = 0;
         double sumTotalTime = 0.0;

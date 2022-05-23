@@ -1,5 +1,8 @@
 package at.technikum.tourplanner.business.net;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,10 +13,13 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-// TODO: 11.05.2022 @Checked
+
 public class NetworkCommunicationServiceImpl implements NetworkCommunicationService {
 
-    //Load IMAGE FROM NET
+    //LOGGER
+    private final static Logger log = LogManager.getLogger(NetworkCommunicationServiceImpl.class.getName());
+
+    //LOAD IMAGE FROM NET
     @Override
     public byte[] loadImageByLink(String downloadURL) {
 
@@ -27,8 +33,10 @@ public class NetworkCommunicationServiceImpl implements NetworkCommunicationServ
 
         } catch (IOException e) {
             e.printStackTrace();
+            log.error(e);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            log.error(e);
         }
 
         return null;
@@ -45,10 +53,13 @@ public class NetworkCommunicationServiceImpl implements NetworkCommunicationServ
             return response.thenApply(HttpResponse::body).get(40, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            log.error(e);
         } catch (ExecutionException e) {
             e.printStackTrace();
+            log.error(e);
         } catch (TimeoutException e) {
             e.printStackTrace();
+            log.error(e);
         }
         return "";
     }

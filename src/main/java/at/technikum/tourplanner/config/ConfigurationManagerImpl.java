@@ -1,26 +1,32 @@
-package at.technikum.tourplanner.business.config;
+package at.technikum.tourplanner.config;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.Properties;
 
-// TODO: 11.05.2022 @Checked 
+
 public class ConfigurationManagerImpl implements ConfigurationManager {
-    
+
+    //LOGGER
+    private final static Logger log = LogManager.getLogger(ConfigurationManagerImpl.class.getName());
+
     private static String getConfigPropertyValue(String propertyName) {
         Properties properties = new Properties();
         final File initialFile = new File("src/config.properties");
 
-        InputStream inputStream = null;
-        try {
 
-            inputStream = new DataInputStream(new FileInputStream(initialFile));
+        try {
+            InputStream inputStream = new DataInputStream(new FileInputStream(initialFile));
             properties.load(inputStream);
             return properties.getProperty(propertyName);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            log.error(e);
         } catch (IOException e) {
             e.printStackTrace();
+            log.error(e);
         }
 
         return "";

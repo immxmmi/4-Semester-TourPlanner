@@ -1,6 +1,5 @@
-package at.technikum.tourplanner.business.config;
+package at.technikum.tourplanner.config;
 
-// TODO: 11.05.2022 @Checked
 public interface ConfigurationManager {
     String getVersion();
 

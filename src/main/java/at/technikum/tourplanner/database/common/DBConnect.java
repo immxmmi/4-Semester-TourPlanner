@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.database.common;
 
-import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.config.ConfigurationManagerImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

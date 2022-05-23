@@ -1,6 +1,6 @@
 package at.technikum.tourplanner.database.fileServer;
 
-import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.config.ConfigurationManagerImpl;
 import at.technikum.tourplanner.models.Tour;
 import com.google.gson.Gson;
 

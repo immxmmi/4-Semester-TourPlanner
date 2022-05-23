@@ -5,10 +5,15 @@ import at.technikum.tourplanner.database.sqlServer.TourLogDaoImpl;
 import at.technikum.tourplanner.models.Level;
 import at.technikum.tourplanner.models.Stars;
 import at.technikum.tourplanner.models.TourLog;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-// TODO: 11.05.2022 @Checked - TEST IMPL
+
 public class TourLogServiceImpl implements TourLogService {
+
+    //LOGGER
+    private final static Logger log = LogManager.getLogger(TourLogServiceImpl.class.getName());
 
     private static TourLogDao tourLogDao = new TourLogDaoImpl();
 
@@ -16,18 +21,23 @@ public class TourLogServiceImpl implements TourLogService {
     @Override
     public Boolean saveTourLog(TourLog tourLog) {
         if (tourLogDao.insert(tourLog) != null) {
+            log.debug("SAVE TOUR LOG SUCCESSFUL");
             return true;
         }
+        log.error("ERROR TOUR LOG SUCCESSFUL");
         return false;
     }
+
     @Override
     public Boolean deleteTourLog(String tourLogID) {
         return tourLogDao.delete(tourLogID);
     }
+
     @Override
     public TourLog getTourLog(String tourLogID) {
         return tourLogDao.getItemById(tourLogID);
     }
+
     @Override
     public TourLog updateTourLog(TourLog tourLog) {
         return tourLogDao.update(tourLog);
@@ -58,14 +68,17 @@ public class TourLogServiceImpl implements TourLogService {
     public int countLevelEasyFromTour(String tourID) {
         return tourLogDao.countLevel(tourID, Level.easy);
     }
+
     @Override
     public int countLevelNormalFromTour(String tourID) {
         return tourLogDao.countLevel(tourID, Level.normal);
     }
+
     @Override
     public int countLevelHardFromTour(String tourID) {
         return tourLogDao.countLevel(tourID, Level.hard);
     }
+
     @Override
     public int countLevelExpertFromTour(String tourID) {
         return tourLogDao.countLevel(tourID, Level.expert);
@@ -76,23 +89,30 @@ public class TourLogServiceImpl implements TourLogService {
     public int countStarsNoneFromTour(String tourID) {
         return tourLogDao.countStars(tourID, Stars.none);
     }
+
     @Override
     public int countStarsOneFromTour(String tourID) {
         return tourLogDao.countStars(tourID, Stars.one);
     }
+
     @Override
     public int countStarsTwoFromTour(String tourID) {
         return tourLogDao.countStars(tourID, Stars.two);
     }
+
     @Override
     public int countStarsThreeFromTour(String tourID) {
         return tourLogDao.countStars(tourID, Stars.three);
     }
+
     @Override
     public int countStarsFourFromTour(String tourID) {
         return tourLogDao.countStars(tourID, Stars.four);
     }
+
     @Override
-    public int countStarsFiveFromTour(String tourID) {return tourLogDao.countStars(tourID, Stars.five);}
+    public int countStarsFiveFromTour(String tourID) {
+        return tourLogDao.countStars(tourID, Stars.five);
+    }
 
 }

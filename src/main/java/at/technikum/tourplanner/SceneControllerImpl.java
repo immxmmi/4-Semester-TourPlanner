@@ -1,7 +1,7 @@
 package at.technikum.tourplanner;
 
-import at.technikum.tourplanner.business.config.ConfigurationManager;
-import at.technikum.tourplanner.business.config.ConfigurationManagerImpl;
+import at.technikum.tourplanner.config.ConfigurationManager;
+import at.technikum.tourplanner.config.ConfigurationManagerImpl;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourLog;
 import at.technikum.tourplanner.view.controller.EditTourController;
