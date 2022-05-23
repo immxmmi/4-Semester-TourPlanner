@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class TourStatistics {
+
     //COUNT
-    int numberOfTourlogs;
+    int numberOfTourLog;
 
     //LEVEL
     int numberOfLevelEasy;

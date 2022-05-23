@@ -22,7 +22,7 @@ public class RouteImage {
     @Builder.Default
     private int width = config.getImageWidth();
     @Builder.Default
-    private int height = config.getImageHeight();;
+    private int height = config.getImageHeight();
     @Builder.Default
     private int zoom = 5;
 
@@ -45,7 +45,7 @@ public class RouteImage {
 
     //Path:  Tour/data/name.jpg
     @Builder.Default
-    private String filePath="";
+    private String filePath = "";
 
     @Builder.Default
     private byte[] data = null;

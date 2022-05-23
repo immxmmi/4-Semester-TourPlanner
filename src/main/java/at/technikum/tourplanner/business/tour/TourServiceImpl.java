@@ -154,7 +154,7 @@ public class TourServiceImpl implements TourService {
     @Override
     public TourStatistics loadTourStatistics(String tourID) {
         TourStatistics statistics = new TourStatistics();
-        statistics.setNumberOfTourlogs(tourLogService.countTourLogsFromTour(tourID));
+        statistics.setNumberOfTourLog(tourLogService.countTourLogsFromTour(tourID));
         statistics.setNumberOfLevelEasy(tourLogService.countLevelEasyFromTour(tourID));
         statistics.setNumberOfLevelNormal(tourLogService.countLevelNormalFromTour(tourID));
         statistics.setNumberOfLevelHard(tourLogService.countLevelHardFromTour(tourID));

@@ -45,6 +45,4 @@ public class Route {
     private RouteImage routeImage = RouteImage.builder().build();
 
 
-
-
 }

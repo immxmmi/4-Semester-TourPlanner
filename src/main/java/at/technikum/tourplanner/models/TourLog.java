@@ -4,11 +4,13 @@ import com.google.gson.annotations.SerializedName;
 import lombok.*;
 
 import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder (toBuilder = true)
+@Builder(toBuilder = true)
 public class TourLog {
+
     @SerializedName("tourLogID")
     private String tourLogID;
     @SerializedName("tourID")

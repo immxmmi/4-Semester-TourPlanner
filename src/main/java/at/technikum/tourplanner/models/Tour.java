@@ -1,13 +1,12 @@
 package at.technikum.tourplanner.models;
 
 import com.google.gson.annotations.SerializedName;
-import javafx.beans.property.StringProperty;
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.sql.Date;
 import java.sql.Time;
-
-import java.text.SimpleDateFormat;
 
 @Data
 @NoArgsConstructor
