@@ -8,7 +8,7 @@ import lombok.Data;
 
 import java.sql.Date;
 import java.sql.Time;
-// TODO: 13.05.2022 @Checked
+
 @Data
 public class TourViewModel {
 

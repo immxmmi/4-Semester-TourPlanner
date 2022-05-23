@@ -4,7 +4,8 @@ import at.technikum.tourplanner.models.*;
 import javafx.beans.property.*;
 
 import java.sql.Date;
-// TODO: 13.05.2022 @Checked
+
+
 public class TourLogViewModel {
 
     private final StringProperty tourLogID;
