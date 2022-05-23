@@ -1,5 +1,6 @@
 package at.technikum.tourplanner.view.controller;
 
+import at.technikum.tourplanner.business.handler.ThreadMaker;
 import at.technikum.tourplanner.business.tour.TourService;
 import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.models.Tour;
@@ -17,6 +18,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CreateTourController extends AbstractNavBar implements Initializable {
+
+    // GENERAL
+    @FXML
+    private Label loading;
 
     // TOUR - CREATE
     @FXML
@@ -51,10 +56,12 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
     // BUTTON - CREATE TOUR
     @FXML
     private void createTour(ActionEvent actionEvent) throws IOException {
+        loading.setText("Loading . . .");
         TourService tourService = new TourServiceImpl();
         boolean check = true;
 
         if (set_tour_transport.getValue() == null) {
+            loading.setText("ERROR");
             error_transport.setText("!");
             check = false;
         } else {
@@ -62,6 +69,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
         }
 
         if (set_tour_title.getText().equals("")) {
+            loading.setText("ERROR");
             error_title.setText("!");
             check = false;
         } else {
@@ -69,6 +77,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
         }
 
         if (set_tour_from.getText().equals("")) {
+            loading.setText("ERROR");
             error_from.setText("!");
             check = false;
         } else {
@@ -76,6 +85,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
         }
 
         if (set_tour_to.getText().equals("")) {
+            loading.setText("ERROR");
             error_to.setText("!");
             check = false;
         } else {
@@ -83,6 +93,7 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
         }
 
         if (set_tour_description.getText().equals("")) {
+            loading.setText("ERROR");
             error_description.setText("!");
             check = false;
         } else {
@@ -102,10 +113,11 @@ public class CreateTourController extends AbstractNavBar implements Initializabl
             tourService.saveTour(tour);
 
             if (tourService.getTourByID(tour.getTourID()) == null) {
+                loading.setText("ERROR");
                 error_from.setText("! - Place may not exit");
                 error_to.setText("! - Place may not exit");
                 if (set_tour_transport.getValue().equals(Transporter.pedestrian)) {
-                    error_transport.setText("! - Maybe too far to walk (limit: 200 miles / 320 km)");
+                    error_transport.setText("! - Maybe too far to walk (limit: 320 km)");
                 }
             } else {
                 this.switchToMain(actionEvent);
