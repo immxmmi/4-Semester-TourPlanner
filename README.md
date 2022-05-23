@@ -2,7 +2,7 @@
 Links:
 - Docker:  https://hub.docker.com/r/immxmmi/4-semester-tour-planer
 - Git: https://github.com/immxmmi/4-Semester-SWEN2-TourPlanner.git 
-- Download: https://mega.nz/file/y2500RZb#lsGnSaIkIlmW-Zm_2mMe1bl63pTKxQMJwS67w2Gaix0
+- Download: https://mega.nz/file/jjoRzAyK#9b9n72-16wDyOgEswMH5sLzHluRYpIkU2dZ5kGH2VN4
 ## Installation
 - git clone https://github.com/immxmmi/4-Semester-SWEN2-TourPlanner.git
 - docker pull immxmmi/4-semester-tour-planer
