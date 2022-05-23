@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-// TODO: 13.05.2022 @Checked
+
 public abstract class AbstractTourList extends AbstractNavBar {
 
     @FXML
@@ -130,7 +130,7 @@ public abstract class AbstractTourList extends AbstractNavBar {
         if (file != null) {
             doc.save(file);
         }
-            doc.close();
+        doc.close();
     }
 
     //SAVE - FORMAT

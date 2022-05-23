@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-// TODO: 13.05.2022 @Checked
+
 public abstract class AbstractNavBar {
 
     public SceneController sCon = new SceneControllerImpl();

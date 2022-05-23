@@ -16,8 +16,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-// TODO: 11.05.2022 @Checked
+
 public class EditTourController extends AbstractNavBar implements Initializable {
+
     // TOUR - EDIT
     @FXML
     private TextField set_tour_title;

@@ -8,10 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
-// TODO: 13.05.2022 @Checked
+
 public class SearchTourController extends AbstractNavBar {
 
     @FXML
@@ -34,7 +35,10 @@ public class SearchTourController extends AbstractNavBar {
         for (Tour tour : searchResult) {
             searchList.add(new TourViewModel(tour));
         }
-        if (searchResult == null) {searchStatus.setText("Not Found!");return;}
+        if (searchResult == null) {
+            searchStatus.setText("Not Found!");
+            return;
+        }
 
         sCon.switchToSearchList(actionEvent, searchList);
     }

@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
-// TODO: 13.05.2022 @Checked
+
 public class SearchListController extends AbstractTourList {
 
     private ArrayList<TourViewModel> currentSearchList = new ArrayList<TourViewModel>();
@@ -63,7 +63,7 @@ public class SearchListController extends AbstractTourList {
     // RELOAD LIST
     @FXML
     public void reloadList(ActionEvent actionEvent) throws IOException {
-        sCon.switchToSearchList(actionEvent,currentSearchList);
+        sCon.switchToSearchList(actionEvent, currentSearchList);
     }
 
 }

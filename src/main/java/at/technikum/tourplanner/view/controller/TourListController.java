@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-// TODO: 13.05.2022 @Checked
+
 public class TourListController extends AbstractTourList implements Initializable {
 
     //INIT
@@ -69,6 +69,5 @@ public class TourListController extends AbstractTourList implements Initializabl
             getObsTourList().add(new TourViewModel(tour));
         }
     }
-
 
 }

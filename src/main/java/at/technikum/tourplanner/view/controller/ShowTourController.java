@@ -46,7 +46,6 @@ public class ShowTourController extends AbstractNavBar {
     private TourLogService tourLogService = new TourLogServiceImpl();
     private ObservableList<TourLogViewModel> obsTourList = FXCollections.observableArrayList();
 
-
     // LOAD THE PAGE
     @FXML
     public void initialize(TourViewModel currentTour) {
@@ -71,7 +70,6 @@ public class ShowTourController extends AbstractNavBar {
 
 
     }
-
 
     // TOUR
     // SET TOUR
@@ -176,7 +174,7 @@ public class ShowTourController extends AbstractNavBar {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     TourLogViewModel rowData = row.getItem();
                     try {
-                        sCon.switchToEditTourLog(event,rowData.convertTourLogViewModelInTourLogModel(rowData));
+                        sCon.switchToEditTourLog(event, rowData.convertTourLogViewModelInTourLogModel(rowData));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -264,14 +262,13 @@ public class ShowTourController extends AbstractNavBar {
             check = false;
         } else {
             try {
-                 totalTime = Double.parseDouble(get_tourLog_total.getText());
+                totalTime = Double.parseDouble(get_tourLog_total.getText());
             } catch (NumberFormatException e) {
                 check = false;
                 error_total.setText("!");
             }
             error_total.setText("");
         }
-
 
 
         //Comment
@@ -341,7 +338,7 @@ public class ShowTourController extends AbstractNavBar {
         if (file != null) {
             doc.save(file);
         }
-            doc.close();
+        doc.close();
     }
 
     // RELOAD PAGE
@@ -381,7 +378,7 @@ public class ShowTourController extends AbstractNavBar {
 
     @FXML
     public void settingsTour(ActionEvent actionEvent) throws IOException {
-        sCon.switchToEditTour(actionEvent,tour);
+        sCon.switchToEditTour(actionEvent, tour);
     }
 
     @FXML

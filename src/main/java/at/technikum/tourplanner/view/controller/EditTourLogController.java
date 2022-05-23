@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-// TODO: 11.05.2022 @Checked
-public class EditTourLogController extends AbstractNavBar implements Initializable{
+
+public class EditTourLogController extends AbstractNavBar implements Initializable {
     @FXML
     private TextField set_tour_total_time;
     @FXML
@@ -48,9 +48,10 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
         loadLevels();
         loadStars();
     }
+
     public void initialize(TourLog tourlog) {
         currentTourLog = tourlog;
-        set_tour_total_time.setText(""+tourlog.getTotalTime());
+        set_tour_total_time.setText("" + tourlog.getTotalTime());
         set_tour_comment.setText(tourlog.getComment());
 
     }
@@ -59,13 +60,13 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
     @FXML
     private void editTourLog(ActionEvent actionEvent) throws IOException {
 
-       boolean check = true;
-       if (set_tourlog_level.getValue() == null) {
-           error_level.setText("!");
-           check = false;
-       } else {
-           error_level.setText("");
-       }
+        boolean check = true;
+        if (set_tourlog_level.getValue() == null) {
+            error_level.setText("!");
+            check = false;
+        } else {
+            error_level.setText("");
+        }
 
         if (set_tourlog_stars.getValue() == null) {
             error_stars.setText("!");
@@ -98,7 +99,6 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
         }
 
 
-
         //Comment
         if (set_tour_comment.getText() == null) {
             error_comment.setText("!");
@@ -108,14 +108,14 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
         }
 
 
-       if (check) {
-           currentTourLog.setComment(set_tour_comment.getText());
-           currentTourLog.setLevel(set_tourlog_level.getValue());
-           currentTourLog.setStars(set_tourlog_stars.getValue());
-           currentTourLog.setTotalTime(totalTime);
-           tourLogService.updateTourLog(currentTourLog);
-           this.switchToMain(actionEvent);
-       }
+        if (check) {
+            currentTourLog.setComment(set_tour_comment.getText());
+            currentTourLog.setLevel(set_tourlog_level.getValue());
+            currentTourLog.setStars(set_tourlog_stars.getValue());
+            currentTourLog.setTotalTime(totalTime);
+            tourLogService.updateTourLog(currentTourLog);
+            this.switchToMain(actionEvent);
+        }
     }
 
     // LOAD
@@ -124,6 +124,7 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
             set_tourlog_level.getItems().add(level);
         }
     }
+
     private void loadStars() {
         for (Stars stars : Stars.values()) {
             set_tourlog_stars.getItems().add(stars);
