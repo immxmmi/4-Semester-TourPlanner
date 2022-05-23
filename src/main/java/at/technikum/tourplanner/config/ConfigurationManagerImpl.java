@@ -14,7 +14,7 @@ public class ConfigurationManagerImpl implements ConfigurationManager {
 
     private static String getConfigPropertyValue(String propertyName) {
         Properties properties = new Properties();
-        final File initialFile = new File("src/main/resources/config/config.properties");
+        final File initialFile = new File("src/config/config.properties");
 
 
         try {
