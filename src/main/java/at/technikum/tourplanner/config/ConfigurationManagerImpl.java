@@ -161,6 +161,11 @@ public class ConfigurationManagerImpl implements ConfigurationManager {
     }
 
     @Override
+    public int getErrorHeight() {
+        return Integer.parseInt(getConfigPropertyValue("error_height"));
+    }
+
+    @Override
     public int getErrorWidth() {
         return Integer.parseInt(getConfigPropertyValue("error_width"));
     }

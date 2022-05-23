@@ -30,6 +30,8 @@ public interface ConfigurationManager {
 
     int getListTourWidth();
 
+    int getErrorHeight();
+
     int getErrorWidth();
 
     //VIEWSETTINGS

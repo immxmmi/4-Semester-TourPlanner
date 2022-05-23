@@ -22,6 +22,7 @@ public class DBConnect implements Cloneable {
     private String jdbcURL;
     protected Connection connection;
     private static DBConnect instance = null;
+    private Boolean DBOnline = true;
 
 
     /**
@@ -65,7 +66,6 @@ public class DBConnect implements Cloneable {
                 config.getDbPort());
     }
 
-
     /**
      * START CONNECTION
      **/
@@ -76,10 +76,11 @@ public class DBConnect implements Cloneable {
             log.debug("CONNECT DB -- success");
            // System.out.println(TextColor.ANSI_GREEN + "CONNECT DB -- success" + TextColor.ANSI_RESET);
         } catch (SQLException e) {
+            DBOnline = false;
             log.error("CONNECT DB -- failed" );
             log.error(e);
             //System.out.println(TextColor.ANSI_RED + "CONNECT DB -- failed" + TextColor.ANSI_RESET);
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -121,5 +122,7 @@ public class DBConnect implements Cloneable {
         DBConnect.instance = new DBConnect();
     }
 
-
+    public Boolean getDBOnline() {
+        return DBOnline;
+    }
 }
