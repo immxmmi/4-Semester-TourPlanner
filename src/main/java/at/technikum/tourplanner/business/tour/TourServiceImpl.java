@@ -84,6 +84,8 @@ public class TourServiceImpl implements TourService {
         tour.setTime(currentRoute[0].getTime());
 
         if (tour.getDistance() == 0.0) {
+            log.error("FROM : " + tour.getFrom());
+            log.error("TO : " + tour.getTo());
             log.error("Distance : " + tour.getDistance());
             return null;
         }
