@@ -1,5 +1,7 @@
 package at.technikum.tourplanner.business.report;
 
+import at.technikum.tourplanner.business.tour.TourService;
+import at.technikum.tourplanner.business.tour.TourServiceImpl;
 import at.technikum.tourplanner.config.ConfigurationManager;
 import at.technikum.tourplanner.config.ConfigurationManagerImpl;
 import at.technikum.tourplanner.database.fileServer.FileAccess;
@@ -7,6 +9,7 @@ import at.technikum.tourplanner.database.fileServer.FileAccessImpl;
 import at.technikum.tourplanner.models.RouteImage;
 import at.technikum.tourplanner.models.Tour;
 import at.technikum.tourplanner.models.TourLog;
+import at.technikum.tourplanner.models.TourStatistics;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -49,6 +52,10 @@ public class ReportImpl implements Report {
     //CREATE PDF DOC AND RETURN IT
     @Override
     public PDDocument createTourReport(Tour tour, ArrayList<TourLog> tourLogs) {
+
+        TourService tourService = new TourServiceImpl();
+        TourStatistics tourStatistics = tourService.loadTourStatistics(tour.getTourID());
+
         // TimeStamp
         String reportTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
@@ -106,6 +113,7 @@ public class ReportImpl implements Report {
             write.newLine();
             write.showText("Description: " + tour.getDescription());
             write.newLine();
+            write.showText("Average distance: " + tourStatistics.getAvgDistance());
 
             for (TourLog tourlog : tourLogs) {
                 write.newLine();

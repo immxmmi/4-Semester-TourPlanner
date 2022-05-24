@@ -167,6 +167,7 @@ public class TourServiceImpl implements TourService {
         statistics.setNumberOfStarsThree(tourLogService.countStarsThreeFromTour(tourID));
         statistics.setNumberOfStarsFour(tourLogService.countStarsFourFromTour(tourID));
         statistics.setNumberOfStarsFive(tourLogService.countStarsFiveFromTour(tourID));
+        statistics.setAvgDistance(getTourByID(tourID).getDistance()*0.85);
         return statistics;
     }
 
