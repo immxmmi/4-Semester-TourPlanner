@@ -17,6 +17,7 @@ Links:
 
 
 ### CONFIGURATIONS ###
-- MainApplication -> modify options -> add VM options (ALT + V)
+- 1a start APP
+- 1b MainApplication -> modify options -> add VM options (ALT + V)
   * --module-path "C:\Program Files\Java\javafx-sdk-18.0.1\lib"  (Where you save JavaFX 18 zip)
   * --add-modules javafx.controls,javafx.fxml
