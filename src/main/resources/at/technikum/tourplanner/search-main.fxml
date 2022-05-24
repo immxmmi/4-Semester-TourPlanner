@@ -50,7 +50,7 @@
          </cursor>
       </Button>
       <Label fx:id="searchStatus" layoutX="39.0" layoutY="75.0" prefHeight="27.0" prefWidth="71.0" textFill="#ff2e2e" />
-      <Button layoutX="877.0" layoutY="11.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="43.0" prefWidth="55.0" style="-fx-background-radius: 190;" textAlignment="CENTER">
+      <Button layoutX="879.0" layoutY="11.0" mnemonicParsing="false" onAction="#searchTour" prefHeight="43.0" prefWidth="55.0" style="-fx-background-radius: 190;" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
