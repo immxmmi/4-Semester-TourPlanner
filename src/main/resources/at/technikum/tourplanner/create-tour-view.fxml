@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.CreateTourController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="871.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.technikum.tourplanner.view.controller.CreateTourController">
    <children>
-      <ImageView fitHeight="617.0" fitWidth="979.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="586.0" fitWidth="869.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/background/background_tour_create.jpg" />
          </image>
       </ImageView>
-      <Text fill="#7c7575" layoutX="259.0" layoutY="71.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Tour" textAlignment="CENTER" wrappingWidth="502.9366149902344">
+      <Text fill="#7c7575" layoutX="150.0" layoutY="68.0" stroke="#4b4b4b" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Tour" textAlignment="CENTER" wrappingWidth="502.9366149902344">
          <font>
             <Font name="SansSerif Bold" size="60.0" />
          </font>
@@ -22,53 +28,53 @@
             <Glow level="0.45" />
          </effect>
       </Text>
-      <TextField fx:id="set_tour_title" layoutX="304.0" layoutY="165.0" prefHeight="32.0" prefWidth="413.0" promptText="Tour-1" />
-      <TextField fx:id="set_tour_from" layoutX="304.0" layoutY="258.0" prefHeight="32.0" prefWidth="413.0" promptText="Wien" />
-      <Label layoutX="110.0" layoutY="165.0" text="Title:" textFill="#726868">
+      <TextField fx:id="set_tour_title" layoutX="211.0" layoutY="165.0" prefHeight="32.0" prefWidth="397.0" promptText="Tour-1" />
+      <TextField fx:id="set_tour_from" layoutX="211.0" layoutY="261.0" prefHeight="32.0" prefWidth="397.0" promptText="Wien" />
+      <Label layoutX="39.0" layoutY="165.0" text="Title:" textFill="#726868">
          <font>
             <Font name="SansSerif Bold" size="28.0" />
          </font>
          <effect>
             <Glow level="0.42" />
          </effect></Label>
-      <Label layoutX="112.0" layoutY="259.0" text="From:" textFill="#726868">
+      <Label layoutX="39.0" layoutY="261.0" text="From:" textFill="#726868">
          <font>
             <Font name="SansSerif Bold" size="28.0" />
          </font>
          <effect>
             <Glow level="0.42" />
          </effect></Label>
-      <Label layoutX="110.0" layoutY="212.0" text="Transport:" textFill="#726868">
+      <Label layoutX="36.0" layoutY="211.0" text="Transport:" textFill="#726868">
          <font>
             <Font name="SansSerif Bold" size="28.0" />
          </font>
          <effect>
             <Glow level="0.42" />
          </effect></Label>
-      <Label layoutX="112.0" layoutY="376.0" text="Description:" textFill="#726868">
+      <Label layoutX="36.0" layoutY="374.0" text="Description:" textFill="#726868">
          <font>
             <Font name="SansSerif Bold" size="28.0" />
          </font>
          <effect>
             <Glow level="0.42" />
          </effect></Label>
-      <Label layoutX="110.0" layoutY="311.0" text="To:" textFill="#726868">
+      <Label layoutX="39.0" layoutY="311.0" text="To:" textFill="#726868">
          <font>
             <Font name="SansSerif Bold" size="28.0" />
          </font>
          <effect>
             <Glow level="0.42" />
          </effect></Label>
-      <TextField fx:id="set_tour_to" layoutX="304.0" layoutY="310.0" prefHeight="32.0" prefWidth="413.0" promptText="Berlin" />
-      <TextArea fx:id="set_tour_description" layoutX="304.0" layoutY="376.0" prefHeight="134.0" prefWidth="413.0" promptText="Das ist meine erste Tour." />
-      <Button fx:id="create_btn" defaultButton="true" layoutX="801.0" layoutY="517.0" mnemonicParsing="false" onAction="#createTour" prefHeight="54.0" prefWidth="87.0" style="-fx-background-radius: 300; -fx-background-color: #13A735;" text="save">
+      <TextField fx:id="set_tour_to" layoutX="211.0" layoutY="311.0" prefHeight="32.0" prefWidth="397.0" promptText="Berlin" />
+      <TextArea fx:id="set_tour_description" layoutX="210.0" layoutY="376.0" prefHeight="134.0" prefWidth="397.0" promptText="Das ist meine erste Tour." />
+      <Button fx:id="create_btn" defaultButton="true" layoutX="750.0" layoutY="453.0" mnemonicParsing="false" onAction="#createTour" prefHeight="45.0" prefWidth="79.0" style="-fx-background-radius: 300; -fx-background-color: #13A735;" text="save">
          <font>
-            <Font name="SansSerif Bold" size="24.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <ComboBox fx:id="set_tour_transport" layoutX="304.0" layoutY="211.0" prefHeight="32.0" prefWidth="140.0" promptText="Transporter" />
+      <ComboBox fx:id="set_tour_transport" layoutX="211.0" layoutY="211.0" prefHeight="32.0" prefWidth="140.0" promptText="Transporter" />
       <Button layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="29.0" prefWidth="33.0" style="-fx-background-radius: 75; -fx-background-color: #b4b3b1;" textFill="#b4b3b1">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -81,37 +87,37 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="801.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="27.0" prefWidth="87.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
+      <Button layoutX="761.0" layoutY="15.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="35.0" prefWidth="96.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="error_title" layoutX="736.0" layoutY="166.0" prefHeight="27.0" prefWidth="216.0" textFill="RED">
+      <Label fx:id="error_title" layoutX="620.0" layoutY="168.0" prefHeight="27.0" prefWidth="216.0" text="a" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="error_to" layoutX="620.0" layoutY="314.0" prefHeight="27.0" prefWidth="216.0" text="a" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="error_to" layoutX="727.0" layoutY="313.0" prefHeight="27.0" prefWidth="216.0" textFill="RED">
+      <Label fx:id="error_from" layoutX="620.0" layoutY="264.0" prefHeight="27.0" prefWidth="216.0" text="a" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="error_from" layoutX="727.0" layoutY="261.0" prefHeight="27.0" prefWidth="216.0" textFill="RED">
+      <Label fx:id="error_description" layoutX="618.0" layoutY="377.0" prefHeight="27.0" prefWidth="211.0" text="a" textFill="RED">
          <font>
             <Font name="SansSerif Regular" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="error_description" layoutX="732.0" layoutY="376.0" prefHeight="27.0" prefWidth="211.0" textFill="RED">
+      <Label fx:id="error_transport" layoutX="364.0" layoutY="215.0" prefHeight="27.0" prefWidth="487.0" text="a" textFill="RED">
          <font>
-            <Font name="SansSerif Regular" size="23.0" />
-         </font>
-      </Label>
-      <Label fx:id="error_transport" layoutX="461.0" layoutY="214.0" prefHeight="27.0" prefWidth="487.0" textFill="RED">
-         <font>
-            <Font name="SansSerif Regular" size="18.0" />
+            <Font size="18.0" />
          </font>
       </Label>
       <Label fx:id="loading" layoutX="44.0" layoutY="527.0" prefHeight="34.0" prefWidth="176.0">
