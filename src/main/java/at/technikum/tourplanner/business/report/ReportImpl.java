@@ -63,6 +63,15 @@ public class ReportImpl implements Report {
             // Start edit File
             PDPageContentStream write = new PDPageContentStream(newReport, currentPage);
 
+            write.beginText();
+
+            write.setFont(PDType1Font.TIMES_ROMAN, 24);
+            write.setLeading(5f);
+            write.newLineAtOffset(195, 750);
+            write.showText("TOUR REPORT CARD");
+
+            write.endText();
+
             RouteImage currentRoutImage = tour.getRouteImage();
             // Route Image
             // PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
@@ -75,8 +84,8 @@ public class ReportImpl implements Report {
 
             // // SETTINGS
             write.addComment("TEST");
-            write.setFont(PDType1Font.COURIER_BOLD, 13);
-            write.setLeading(10f);
+            write.setFont(PDType1Font.TIMES_ROMAN, 16);
+            write.setLeading(14f);
             write.newLineAtOffset(25, 300);
             write.newLine();
             write.showText("Create Report Date: " + reportTime);
