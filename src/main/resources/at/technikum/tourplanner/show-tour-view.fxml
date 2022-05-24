@@ -33,6 +33,7 @@
 -->
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -69,6 +70,9 @@
                </image>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="29.0" prefWidth="8.0" style="-fx-background-radius: 75; -fx-background-color: #b4b3b1;">
          <graphic>
@@ -78,6 +82,9 @@
                </image>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <TabPane layoutX="590.0" layoutY="75.0" prefHeight="366.0" prefWidth="551.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -190,6 +197,9 @@
                </image>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Label layoutX="21.0" layoutY="591.0" text="Description:">
          <font>
@@ -243,7 +253,10 @@
                   <Image url="@img/icon/settings_icon.png" />
                </image>
             </ImageView>
-         </graphic></Button>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Button layoutX="83.0" layoutY="15.0" mnemonicParsing="false" onAction="#reloadPage" prefHeight="31.0" prefWidth="42.0" style="-fx-background-radius: 75; -fx-background-color: #4759DE;" textFill="#3a00f8">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -252,6 +265,9 @@
                </image>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </Pane>

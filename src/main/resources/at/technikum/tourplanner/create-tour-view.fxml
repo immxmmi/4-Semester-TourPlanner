@@ -120,9 +120,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="loading" layoutX="44.0" layoutY="527.0" prefHeight="34.0" prefWidth="176.0">
+      <Label fx:id="loading" layoutX="18.0" layoutY="476.0" prefHeight="34.0" prefWidth="176.0" textFill="#ff1919">
          <font>
-            <Font name="Arial" size="26.0" />
+            <Font name="SansSerif Bold" size="26.0" />
          </font>
       </Label>
    </children>

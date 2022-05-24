@@ -44,10 +44,13 @@
                </cursor>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Button layoutX="993.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="31.0" prefWidth="87.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
+      <Button layoutX="974.0" layoutY="21.0" mnemonicParsing="false" onAction="#switchToShowTourList" prefHeight="35.0" prefWidth="106.0" style="-fx-background-radius: 190;" text="Tour List" textAlignment="CENTER">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -64,6 +67,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button layoutX="1086.0" layoutY="22.0" mnemonicParsing="false" onAction="#settingsTour" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 100;">
          <graphic>
@@ -76,6 +82,9 @@
                </cursor>
             </ImageView>
          </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <VBox fx:id="saveStage" layoutX="1145.0" layoutY="-64.0" prefHeight="12.0" prefWidth="20.0" />
       <Button layoutX="1089.0" layoutY="405.0" mnemonicParsing="false" onAction="#deleteTour" prefHeight="29.0" prefWidth="0.0" style="-fx-background-radius: 75; -fx-background-color: #D84120;">
