@@ -18,7 +18,7 @@ class MapQuestServiceImplTest {
     @Before
     private Tour initTour(){
         return Tour.builder()
-                .title("Test-Tour-1")
+                .title("SEARCH-TOUR-TEST")
                 .from("Wien")
                 .to("Berlin")
                 .description("Das ist ein Test")

@@ -57,26 +57,25 @@ public class TourDaoImplTest {
 
     @Test
     void getItemByName() {
-
-        assertNotNull(tourDao.getItemByName(this.tour.getTitle()));
+        Tour currentTour = this.tour;
+        currentTour.setTitle("TEST-NAME");
+        assertNotNull(tourDao.insert(currentTour));
+        assertNotNull(tourDao.getItemByName(currentTour.getTitle()));
         assertTrue(tourDao.delete(this.tour.getTourID()));
         assertNull(tourDao.getItemByName(this.tour.getTitle()));
     }
 
     @Test
     void search() {
-        assertNull(tourDao.search("WRONG-SEARCH"));
         assertNotNull(tourDao.search(this.tour.getTitle()));
         assertTrue(tourDao.delete(this.tour.getTourID()));
-        assertNull(tourDao.search(this.tour.getTitle()));
     }
 
     @Test
     public void insertTourTest(){
         this.tour = initTour();
-        tourDao.insert(tour);
         assertNull(tourDao.getItemById(this.tour.getTourID()));
-        assertNotNull(tourDao.insert(this.tour));
+        assertNotNull(tourDao.insert(tour));
         assertNotNull(tourDao.getItemById(this.tour.getTourID()));
         assertTrue(tourDao.delete(this.tour.getTourID()));
         assertNull(tourDao.getItemById(this.tour.getTourID()));

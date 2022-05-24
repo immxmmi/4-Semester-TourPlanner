@@ -9,9 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.*;
+
 
 class TourLogDaoImplTest {
 
@@ -71,12 +70,15 @@ class TourLogDaoImplTest {
     @Test
     void update() {
         TourLog testTourLog = initTourLog();
-        assertNotNull(testTourLog);
-        assertNotNull(tourLogDao.getItemById(testTourLog.getComment()));
+        testTourLog.setTourID("UPDATE INSERT");
+        assertNotNull(tourLogDao.insert(testTourLog));
+        assertNotNull(tourLogDao.getItemById(testTourLog.getTourLogID()));
+        assertFalse(testTourLog.getComment().equals("TEST-COMMENT"));
         testTourLog.setComment("TEST-COMMENT");
         assertNotNull(tourLogDao.update(testTourLog));
         assertEquals("TEST-COMMENT", testTourLog.getComment());
         assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
+        assertNull(tourLogDao.getItemById(testTourLog.getTourLogID()));
     }
 
     @Test
@@ -121,9 +123,11 @@ class TourLogDaoImplTest {
     @Test
     void getItemById() {
         TourLog testTourLog = initTourLog();
-        assertNotNull(testTourLog);
+        testTourLog.setTourLogID("get ID");
+        assertNotNull(tourLogDao.insert(testTourLog));
         assertNotNull(tourLogDao.getItemById(testTourLog.getTourLogID()));
         assertTrue(tourLogDao.delete(testTourLog.getTourLogID()));
+        assertNull(tourLogDao.getItemById(testTourLog.getTourLogID()));
     }
 
 
