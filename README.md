@@ -13,26 +13,14 @@
   <p align="center">
   Tour Planner Pro
     <br />
-    <a href="https://github.com/immxmmi/4-Semester-TourPlanner"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/blob/main/doc/TourPlannerDocumentation.pdf"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/immxmmi/4-Semester-TourPlanner">View Demo</a>
-    ·
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Report Bug</a>
     ·
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Request Feature</a>
   </p>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
