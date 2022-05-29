@@ -1,9 +1,12 @@
 # 4-Semester-TourPlanner
-Links:
+
+## Links:
 - Docker:  https://hub.docker.com/r/immxmmi/4-semester-tour-planer
 - Git: https://github.com/immxmmi/4-Semester-SWEN2-TourPlanner.git 
-- Download JAR: https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4
-- Download EXE: https://mega.nz/file/j2REyAhJ#EcaovJ5t6wvMWwYgdJpXZDsvsXd7NAkjVEn-ynia2y4
+- Download TourPro.jar: https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4
+- Download TourPro.exe: https://mega.nz/file/j2REyAhJ#EcaovJ5t6wvMWwYgdJpXZDsvsXd7NAkjVEn-ynia2y4
+
+
 ## Installation
 - git clone https://github.com/immxmmi/4-Semester-SWEN2-TourPlanner.git
 - docker pull immxmmi/4-semester-tour-planer
@@ -17,8 +20,10 @@ Links:
 - https://www.oracle.com/java/technologies/downloads/
 
 
-### CONFIGURATIONS ###
+### Start ###
 - 1a start APP
 - 1b MainApplication -> modify options -> add VM options (ALT + V)
   * --module-path "C:\Program Files\Java\javafx-sdk-18.0.1\lib"  (Where you save JavaFX 18 zip)
   * --add-modules javafx.controls,javafx.fxml
+
+
