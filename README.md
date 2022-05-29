@@ -11,9 +11,8 @@
   <h3 align="center">  Tour Planner Pro</h3>
 
   <p align="center">
-  Tour Planner Pro
     <br />
-    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/"><strong>Momo && Schako</strong></a>
+    <p><strong>Momo && Schako</strong></p>
     <br />
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/blob/main/doc/TourPlannerDocumentation.pdf"><strong>Explore the docs »</strong></a>
     <br />
