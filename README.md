@@ -28,7 +28,7 @@
    - Prerequisites for Jar Version (Java JDK 18)
    *Check Java Version 
      ```sh
-      java --version"
+      java --version
     ```
    - Download Java JDK 18
    - WINDOWS:
