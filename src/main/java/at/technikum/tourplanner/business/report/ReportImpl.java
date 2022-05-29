@@ -15,6 +15,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
@@ -72,8 +74,8 @@ public class ReportImpl implements Report {
 
             write.beginText();
 
-            write.setFont(PDType1Font.TIMES_ROMAN, 24);
-            write.setLeading(5f);
+            write.setFont(PDType1Font.COURIER_BOLD, 24);
+            write.setLeading(10f);
             write.newLineAtOffset(195, 750);
             write.showText("TOUR REPORT CARD");
 
@@ -83,8 +85,7 @@ public class ReportImpl implements Report {
             // Route Image
             // PDImageXObject imageXObject = PDImageXObject.createFromFile(currentRoutImage.getFilePath(), newReport);
             PDImageXObject imageXObject = PDImageXObject.createFromByteArray(newReport, currentRoutImage.getData(), "IMG");
-            write.drawImage(imageXObject, 50, 400, currentRoutImage.getWidth(), currentRoutImage.getHeight());
-
+            write.drawImage(imageXObject, 50, 425, currentRoutImage.getWidth(), currentRoutImage.getHeight());
 
             // START - TEXTING
             write.beginText();
@@ -92,12 +93,24 @@ public class ReportImpl implements Report {
             // // SETTINGS
             write.addComment("TEST");
             write.setFont(PDType1Font.TIMES_ROMAN, 16);
-            write.setLeading(14f);
-            write.newLineAtOffset(25, 300);
+            write.setLeading(15f);
+            write.newLineAtOffset(25, 375);
+            //
+            write.newLine();
+            write.showText("On this report you can view the statistical data of the tour. This Tour is titled " + tour.getTitle());
+            write.newLine();
+            write.showText("The starting point is " + tour.getFrom());
+            write.showText(" to destination " + tour.getTo());
+            write.newLine();
+            write.showText("The distance is  " + tour.getDistance());
+            write.showText(" km");
+            write.newLine();
+            write.showText("Below you can see a summary and further information of the tour.");
+            //
             write.newLine();
             write.showText("Create Report Date: " + reportTime);
-            write.newLine();
-            write.showText("Tour ID: " + tour.getTourID());
+            //write.newLine();
+            //write.showText("Tour ID: " + tour.getTourID());
             write.newLine();
             write.showText("Date: " + tour.getDate());
             write.newLine();
@@ -116,8 +129,8 @@ public class ReportImpl implements Report {
             write.showText("Average distance: " + tourStatistics.getAvgDistance());
 
             for (TourLog tourlog : tourLogs) {
-                write.newLine();
-                write.showText("TourLog-ID: " + tourlog.getTourLogID());
+                //write.newLine();
+                //write.showText("TourLog-ID: " + tourlog.getTourLogID());
                 write.newLine();
                 write.showText("Date: " + tourlog.getDate());
                 write.newLine();
@@ -143,5 +156,6 @@ public class ReportImpl implements Report {
         }
         return newReport;
     }
+
 
 }
