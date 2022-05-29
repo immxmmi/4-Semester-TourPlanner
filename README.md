@@ -5,14 +5,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/immxmmi/4-Semester-TourPlanner">
-    <img src="git_img/Logo.jpg" alt="Logo" width="1920" height="1238">
+    <img src="git_img/Logo.jpg" alt="Logo" width="800" height="400">
   </a>
 
   <h3 align="center">  Tour Planner Pro</h3>
 
   <p align="center">
-    <br />
-    <p><strong>Momo && Schako</strong></p>
+     <strong>Momo && Schako</strong>
     <br />
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/blob/main/doc/TourPlannerDocumentation.pdf"><strong>Explore the docs »</strong></a>
     <br />
