@@ -65,12 +65,12 @@
 ### Online Database
 - https://www.elephantsql.com/
 
-### Start ###
-- start App
+### Start App
+- Main Class = Main Application
 - MainApplication -> modify options -> add VM options (ALT + V)
 
 ### Prerequisites
-*VM Options
+  *VM Options
   ```sh
   --module-path "C:\Program Files\Java\javafx-sdk-18.0.1\lib"  (Where you save JavaFX 18 zip)
   --add-modules javafx.controls,javafx.fxml
