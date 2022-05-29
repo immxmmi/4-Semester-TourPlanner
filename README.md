@@ -1,5 +1,30 @@
 # 4-Semester-TourPlanner
 
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/immxmmi/4-Semester-TourPlanner">
+    <img src="git_img/Logo.jpg" alt="Logo" width="800" height="400">
+  </a>
+
+  <h3 align="center">  Tour Planner Pro</h3>
+
+  <p align="center">
+     <strong>Momo && Schako</strong>
+    <br />
+    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/blob/main/doc/TourPlannerDocumentation.pdf"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Request Feature</a>
+  </p>
+</div>
+
+
+
+
 ## Links:
 - Docker:  https://hub.docker.com/r/immxmmi/4-semester-tour-planer
 - Git: https://github.com/immxmmi/4-Semester-SWEN2-TourPlanner.git 
