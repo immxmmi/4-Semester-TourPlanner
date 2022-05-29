@@ -91,5 +91,4 @@ public class EditTourController extends AbstractNavBar implements Initializable 
         }
     }
 
-
 }

@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 
 public class EditTourLogController extends AbstractNavBar implements Initializable {
+
     @FXML
     private TextField set_tour_total_time;
     @FXML
@@ -130,6 +131,5 @@ public class EditTourLogController extends AbstractNavBar implements Initializab
             set_tourlog_stars.getItems().add(stars);
         }
     }
-
 
 }

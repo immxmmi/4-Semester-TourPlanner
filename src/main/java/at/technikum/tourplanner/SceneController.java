@@ -18,12 +18,10 @@ public interface SceneController {
 
     // Tour + TourLogger Einträge - Anzeigen
     void switchToShowTour(ActionEvent event, TourViewModel tourViewModel) throws IOException;
-
     void switchToShowTour(MouseEvent event, TourViewModel tourViewModel) throws IOException;
 
     // Tour + TourLogger Einträge - Anzeigen
     void switchToEditTour(ActionEvent event, Tour tour) throws IOException;
-
     void switchToEditTourLog(MouseEvent event, TourLog tourLog) throws IOException;
 
     // TourListe + Tour Erstellen Button - Anzeigen

@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.sql.Connection;
 
 public class ErrorController{
+
     SceneController sC = new SceneControllerImpl();
     @FXML
     private void reload(ActionEvent event) throws IOException {
         sC.switchToMain(event);
     }
+
 }
