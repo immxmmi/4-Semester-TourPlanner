@@ -16,7 +16,6 @@ class TourLogServiceImplTest {
 
     @Before
     private TourLog initTourLog(){
-
         return TourLog.builder()
                 .tourLogID("TEST-TOURLOG")
                 .tourID("test")
@@ -31,11 +30,9 @@ class TourLogServiceImplTest {
     @Test
     void saveTourLog() {
         TourLog tourLog = this.tourLog;
-        assertNotNull(tourLogService.saveTourLog(tourLog));
+        assertTrue(tourLogService.saveTourLog(tourLog));
         assertTrue(tourLogService.deleteTourLog(tourLog.getTourLogID()));
-        tourLog.setLevel(Level.easy);
-        assertNotNull(tourLogService.saveTourLog(tourLog));
-        assertTrue(tourLogService.deleteTourLog(tourLog.getTourLogID()));
+        assertNull(tourLogService.getTourLog(tourLog.getTourLogID()));
     }
 
     @Test
