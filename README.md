@@ -28,20 +28,19 @@
    - Prerequisites for Jar Version (Java JDK 18)
    *Check Java Version 
      ```sh
-      java --version
-    ```
+     java --version
+     ```
    - Download Java JDK 18
-   - WINDOWS:
-     - https://www.oracle.com/java/technologies/downloads/#jdk18-windows 
-   - Linux:
-     - https://www.oracle.com/java/technologies/downloads/#jdk18-linux
-   - MacOS:
-     - https://www.oracle.com/java/technologies/downloads/#jdk18-mac 
+     - WINDOWS: https://www.oracle.com/java/technologies/downloads/#jdk18-windows 
+     - Linux:   https://www.oracle.com/java/technologies/downloads/#jdk18-linux
+     - MacOS:   https://www.oracle.com/java/technologies/downloads/#jdk18-mac 
+     
    - Start Tour Planner.jar
+   
      *Console Start: [in TourPro File] 
      ```sh
-       java --jar "Tour Planner.jar"
-    ```
+     java --jar "Tour Planner.jar"
+     ```
    
 - EXE
    - Download TourPro.exe: https://mega.nz/file/j2REyAhJ#EcaovJ5t6wvMWwYgdJpXZDsvsXd7NAkjVEn-ynia2y4
