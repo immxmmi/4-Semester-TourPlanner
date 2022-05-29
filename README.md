@@ -4,8 +4,6 @@
     <img src="git_img/Logo.jpg" alt="Logo" width="1000" height="500">
   </a>
 
-  
-
   <p align="center">
     <br/>
      <strong>Momo && Schako</strong>
@@ -20,11 +18,9 @@
 </div>
 
 
-
-
 ## Links:
 - Docker:  https://hub.docker.com/r/immxmmi/4-semester-tour-planer
-- Git: https://github.com/immxmmi/4-Semester-SWEN2-TourPlanner.git 
+- Git: https://github.com/immxmmi/4-Semester-TourPlanner.git 
 - Download TourPro.jar: https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4
 - Download TourPro.exe: https://mega.nz/file/j2REyAhJ#EcaovJ5t6wvMWwYgdJpXZDsvsXd7NAkjVEn-ynia2y4
 
