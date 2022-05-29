@@ -31,6 +31,7 @@ class TourServiceImplTest {
     @Test
     void saveTour() {
         Tour currentTour = this.tour;
+        currentTour.setTourID("TESTTour");
         assertNotNull(tourService.saveTour(currentTour));
         assertTrue(tourService.deleteTour(currentTour.getTourID()));
         currentTour.setFrom("testddddd");
