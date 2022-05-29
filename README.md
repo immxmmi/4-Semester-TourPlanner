@@ -1,21 +1,18 @@
-# 4-Semester-TourPlanner
-
-
-<!-- PROJECT LOGO -->
-<br />
+<h1 align="center">  Tour Planner Pro</h1>
 <div align="center">
   <a href="https://github.com/immxmmi/4-Semester-TourPlanner">
-    <img src="git_img/Logo.jpg" alt="Logo" width="800" height="400">
+    <img src="git_img/Logo.jpg" alt="Logo" width="1000" height="500">
   </a>
 
-  <h3 align="center">  Tour Planner Pro</h3>
+  
 
   <p align="center">
+    <br/>
      <strong>Momo && Schako</strong>
     <br />
-    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/blob/main/doc/TourPlannerDocumentation.pdf"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
+    <br/>
+    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/blob/main/doc/TourPlannerDocumentation.pdf">Documentation</a>
+    .
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Report Bug</a>
     ·
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Request Feature</a>
