@@ -18,12 +18,33 @@
 </div>
 
 
-## Links:
+# Links:
 - Docker:  https://hub.docker.com/r/immxmmi/4-semester-tour-planer
 - Git: https://github.com/immxmmi/4-Semester-TourPlanner.git 
-- Download TourPro.jar: https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4
-- Download TourPro.exe: https://mega.nz/file/j2REyAhJ#EcaovJ5t6wvMWwYgdJpXZDsvsXd7NAkjVEn-ynia2y4
 
+# Start
+- JAR 
+   - Download TourPro.jar: https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4
+   - Prerequisites for Jar Version (Java JDK 18)
+   *Check Java Version 
+     ```sh
+      java --version"
+  ```
+   - Download Java JDK 18
+   - WINDOWS:
+     - https://www.oracle.com/java/technologies/downloads/#jdk18-windows 
+   - Linux:
+     - https://www.oracle.com/java/technologies/downloads/#jdk18-linux
+   - MacOS:
+     - https://www.oracle.com/java/technologies/downloads/#jdk18-mac 
+   - Start Tour Planner.jar
+   *Console Start: [in TourPro File] 
+   ```sh
+     java --jar "Tour Planner.jar"
+  ```
+   
+- EXE
+   - Download TourPro.exe: https://mega.nz/file/j2REyAhJ#EcaovJ5t6wvMWwYgdJpXZDsvsXd7NAkjVEn-ynia2y4
 
 # Developer
 
