@@ -23,15 +23,6 @@
   </p>
 </div>
 <div align="center">
-  <a href="https://github.com/immxmmi/4-Semester-TourPlanner">
-    <img src="git_img/Logo.jpg" alt="Logo" width="1000" height="500">
-  </a>
-
-  <p align="center">
-    <br/>
-     <strong>Momo && Schako</strong>
-    <br />
-    <br/>
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/blob/main/doc/TourPlannerDocumentation.pdf">Documentation</a>
     .
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Report Bug</a>
