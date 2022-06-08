@@ -14,25 +14,13 @@
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Report Bug</a>
     ·
     <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Request Feature</a>
-    ·
-    <a href="https://mega.nz/file/j2REyAhJ#EcaovJ5t6wvMWwYgdJpXZDsvsXd7NAkjVEn-ynia2y4">Download For Windows</a>
-    .
-    <a href="https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4">Download For Mac</a>
-    .
-    <a href="https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4">Download For Linux</a>
   </p>
 </div>
 <div align="center">
-    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/blob/main/doc/TourPlannerDocumentation.pdf">Documentation</a>
-    .
-    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/immxmmi/4-Semester-TourPlanner/issues">Request Feature</a>
-    ·
     <a href="https://mega.nz/file/j2REyAhJ#EcaovJ5t6wvMWwYgdJpXZDsvsXd7NAkjVEn-ynia2y4">Download For Windows</a>
     .
     <a href="https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4">Download For Mac</a>
-    .
+    ·
     <a href="https://mega.nz/file/KzYFTZRZ#MzVwPVvgcpxhFEWgb0EPYYlIG2uRb-pifgH8_DAdbO4">Download For Linux</a>
   </p>
 </div>
